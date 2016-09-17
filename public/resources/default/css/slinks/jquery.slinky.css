@@ -1,0 +1,89 @@
+/* Required styles; changing these may break the menu */
+#middel-mobile-nav{
+	padding-left: 0;
+}
+#middel-mobile-nav .slinky-menu {
+	overflow: hidden;
+	transform: translateZ(0);
+	transition: all 300ms ease;
+	-webkit-transform: translateZ(0);
+	-webkit-transition: all 300ms ease;
+}
+
+#middel-mobile-nav .slinky-menu > ul {
+	left: 0;
+	position: relative;
+	transform: translateZ(0);
+	transition: all 300ms ease;
+	-webkit-transform: translateZ(0);
+	-webkit-transition: all 300ms ease;
+}
+
+#middel-mobile-nav .slinky-menu ul {
+	padding-left: 0;
+}
+
+#middel-mobile-nav .slinky-menu ul,
+#middel-mobile-nav .slinky-menu li {
+	list-style: none;
+	border-bottom:1px solid rgb(230, 230, 230);
+	margin: 0;
+}
+
+#middel-mobile-nav .slinky-menu ul {
+	width: 100%;
+}
+
+#middel-mobile-nav .slinky-menu a {
+	display: block;
+}
+
+#middel-mobile-nav .slinky-menu li ul {
+	display: none;
+	left: 100%;
+	position: absolute;
+	top: 0;
+}
+
+#middel-mobile-nav .slinky-menu .header {
+	position: relative;
+}
+
+#middel-mobile-nav .slinky-menu h2 ~ a.back {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+#middel-mobile-nav .slinky-menu h2 {
+	font-size: 14px;
+	margin: 0;
+	text-align: center;
+	font-weight: 200;
+	line-height: 22px;
+}
+
+/* Default theme */
+
+#middel-mobile-nav .slinky-menu .header {
+	background: #d9edf7;
+}
+
+#middel-mobile-nav .slinky-menu h2 {
+	padding: 1em;
+}
+
+#middel-mobile-nav .slinky-menu a {
+	padding: 1em;
+}
+#middel-mobile-nav .slinky-menu a.next:after {
+	content: '\276f';
+	margin-left: 1em;
+	float: right;
+}
+
+#middel-mobile-nav .slinky-menu a.back:before {
+	content: '\276e';
+	margin-right: 1em;
+	float: left;
+}
