@@ -32,4 +32,4 @@ Openant 一个多语言、多商家、订单商品功能强大的支付全球支
 -------
 - [常见问题及解决办法手册](http://www.openant.com/helper/faq.html)
 - [社区论坛](http://www.openant.com/bbs.php)
-- qq群：583566684
+- qq群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
