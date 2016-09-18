@@ -113,14 +113,12 @@ class Signin extends CI_Controller {
 	
 	public function logout ()
 	{
-		$this->output->set_status_header(302);
 		$this->user->logout();
 		$this->session->set_flashdata('success', lang_line('success_loginout'));
 	}
 	
 	public function signinup()
 	{
-		$this->output->set_status_header(302);
 		$load=FALSE;
 		if($this->config->get_config('login_window') == '0' || $this->agent->is_mobile() || $this->input->post('is_view') != '1'){
 			$this->document->setTitle(lang_line('titles'));
