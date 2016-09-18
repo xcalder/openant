@@ -1,9 +1,5 @@
 RewriteEngine on
 
-RewriteCond %{HTTP_HOST} ^(lv\.com)(:80)? [NC]
-RewriteRule ^(.*) http://www.lv.com/$1 [R=301,L]
-
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
