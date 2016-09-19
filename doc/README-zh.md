@@ -27,6 +27,12 @@ Openant 一个多语言、多商家、订单商品功能强大的支付全球支
 
 截图
 ---
+![](https://github.com/xcalder/openant/blob/master/doc/001.gif?raw=true)
+
+![](https://github.com/xcalder/openant/blob/master/doc/002.gif?raw=true)
+
+![](https://github.com/xcalder/openant/blob/master/doc/003.gif?raw=true)
+
 
 交流讨论
 -------
