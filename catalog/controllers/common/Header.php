@@ -56,11 +56,11 @@ class Header extends CI_Common {
 		
 		$data['position_above']=$this->position_above->index();
 
-		if($this->user->hasPermission_access('admin')){
+		if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
-		if($this->user->hasPermission_access('sale')){
+		if($this->user->hasPermission('access', 'sale/wecome')){
 			$data['access_sale']=TRUE;
 		}
 		
@@ -93,11 +93,11 @@ class Header extends CI_Common {
 		$this->load->model('helper/information_model');
 		$data['position_above']=$this->position_above->index();
 
-		if($this->user->hasPermission_access('admin')){
+	if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
-		if($this->user->hasPermission_access('sale')){
+		if($this->user->hasPermission('access', 'sale/wecome')){
 			$data['access_sale']=TRUE;
 		}
 		
@@ -163,11 +163,11 @@ class Header extends CI_Common {
 		
 		$data['position_above']=$this->position_above->index();
 		
-		if($this->user->hasPermission_access('admin')){
+	if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
-		if($this->user->hasPermission_access('sale')){
+		if($this->user->hasPermission('access', 'sale/wecome')){
 			$data['access_sale']=TRUE;
 		}
 		
@@ -195,11 +195,11 @@ class Header extends CI_Common {
 	public function step_top(){
 		$data['position_above']=$this->position_above->index();
 		
-		if($this->user->hasPermission_access('admin')){
+	if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
-		if($this->user->hasPermission_access('sale')){
+		if($this->user->hasPermission('access', 'sale/wecome')){
 			$data['access_sale']=TRUE;
 		}
 		

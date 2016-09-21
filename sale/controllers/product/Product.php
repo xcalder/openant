@@ -6,6 +6,11 @@ class Product extends MY_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'sale/product/product')){
+			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('currency'));
 		$this->load->model(array('product/product_model', 'common/language_model', 'product/address_model', 'product/attribute_model', 'product/option_model', 'product/manufacturer_model', 'product/barcode_model', 'product/stock_status_model', 'product/freight_model', 'product/aftermarket_model', 'product/tax_class_model', 'product/length_class_model', 'product/weight_class_model', 'product/user_class_model', 'product/download_model'));
 	}

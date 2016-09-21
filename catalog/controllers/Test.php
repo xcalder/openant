@@ -114,9 +114,33 @@ class Test extends CI_Controller {
 		//echo $this->user_balances_model->user_balances_log('1');
 		var_dump($data);
 		*/
-		echo substr(GetUrlToDomain(base_url()), 0, -1);
+		//var_dump($this->order_model->get_order_products_to_payment(array('112')));
+		
+		$this->file_list(APPPATH);
 		
 		$this->load->view('theme/default/template/test',$data);
+	}
+	
+	function file_list($path)
+	{
+		if ($handle = opendir($path))//打开路径成功
+		{
+			while (false !== ($file = readdir($handle)))//循环读取目录中的文件名并赋值给$file
+			{
+				if ($file != "." && $file != "..")//排除当前路径和前一路径
+				{
+					if (is_dir($path."/".$file))
+					{
+						//                    echo $path.": ".$file."<br>";//去掉此行显示的是所有的非目录文件
+						$this->file_list($path."/".$file);
+					}
+					else
+					{
+						echo $path."/".$file."<br>";
+					}
+				}
+			}
+		}
 	}
 	
 }

@@ -41,7 +41,7 @@ class Cart extends MY_Controller{
 			foreach($stores as $key=>$value){
 				$carts_product[$key]=$this->cart_model->get_store($stores[$key]);
 				foreach($carts as $k=>$v){
-					if($carts_product[$key]['store_id'] == $carts[$k]['store_id']){
+					if(isset($carts_product[$key]['store_id']) && isset($carts[$k]['store_id']) && $carts_product[$key]['store_id'] == $carts[$k]['store_id']){
 						$carts_product[$key]['products'][]=$carts[$k];
 					}
 				}

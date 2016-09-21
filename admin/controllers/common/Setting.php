@@ -3,11 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setting extends MY_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/common/setting')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('setting/setting_model','localisation/country_model','common/language_model','common/currency_model','localisation/length_class_model','information/information_model','localisation/weight_class_model','localisation/order_status_model', 'common/user_model', 'common/sale_class_model', 'common/user_class_model'));
 	}
 

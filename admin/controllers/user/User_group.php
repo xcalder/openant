@@ -4,11 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User_group extends MY_Controller {
 	
 	private $error = array();
+	private $files=array();
 	
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper(array('directory'));
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/user/user_group')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('form_validation'));
 		$this->load->model(array('common/user_model','common/language_model'));
 	}
@@ -168,42 +173,58 @@ class User_group extends MY_Controller {
 			$data['modify']=$permission['modify'];
 		}
 		
-		if(isset($this->input->post('user_group')['approval'])){
-			$data['approval']=$this->input->post('user_group')['approval'];
-		}elseif(isset($user_group_info['user_group']['approval'])){
-			$data['approval']=$user_group_info['user_group']['approval'];
-		}
-		
 		if(isset($this->input->post('user_group')['sort_order'])){
 			$data['sort_order']=$this->input->post('user_group')['sort_order'];
 		}elseif(isset($user_group_info['user_group']['sort_order'])){
 			$data['sort_order']=$user_group_info['user_group']['sort_order'];
 		}
 		
-		
+		$unset_maps=array('common/scheduling_module.php', 'common/language_module.php', 'common/language.php', 'common/position_top.php', 'common/position_right.php', 'common/position_left.php', 'errors/page_missing.php', 'common/currency_common.php', 'common/currency.php', 'common/footer.php', 'common/position_above.php', 'common/position_bottom.php', 'common/header.php', 'common/image_common.php');
 		//遍历后台目录
-		$admin_maps 					=directory_map('./admin/controllers/');
-		$admin_maps						=$this->change_array($admin_maps);
+		$admin_maps						=$this->file_list(FCPATH.'admin/controllers');
+		$this->files=array();
 		foreach($admin_maps as $key=>$value){
-			if(!strpos($admin_maps[$key], '.php') !== false){
+			if(isset($admin_maps[$key])){
+				$admin_maps[$key] = str_replace(FCPATH.'admin/controllers/', '', $admin_maps[$key]);
+				$admin_maps[$key] = str_replace('\\', '/', strtolower($admin_maps[$key]));
+			}
+			if(isset($admin_maps[$key]) && strstr($admin_maps[$key], 'extension/')){
+				unset($admin_maps[$key]);
+			}
+			if(isset($admin_maps[$key]) && in_array($admin_maps[$key], $unset_maps)){
+				unset($admin_maps[$key]);
+			}
+			if(isset($admin_maps[$key]) && !strpos($admin_maps[$key], '.php') !== false){
 				//排除非php文件
 				unset($admin_maps[$key]);
-			}else{
-				//去掉文件后缀
+			}
+			//去掉文件后缀
+			if(isset($admin_maps[$key])){
 				$admin_maps[$key]		='admin/'.str_replace('.php','',$admin_maps[$key]);
 			}
 		}
 		$data['admin_maps']=$admin_maps;
 		
 		//遍历商家中心目录
-		$sale_maps 						=directory_map('./sale/controllers/');
-		$sale_maps						=$this->change_array($sale_maps);
+		$sale_maps						=$this->file_list(FCPATH.'sale/controllers');
+		$this->files=array();
 		foreach($sale_maps as $key=>$value){
-			if(!strpos($sale_maps[$key], '.php') !== false){
+			if(isset($sale_maps[$key])){
+				$sale_maps[$key] = str_replace(FCPATH.'sale/controllers/', '', $sale_maps[$key]);
+				$sale_maps[$key] = str_replace('\\', '/', strtolower($sale_maps[$key]));
+			}
+			if(isset($sale_maps[$key]) && strstr($sale_maps[$key], 'extension/')){
+				unset($sale_maps[$key]);
+			}
+			if(isset($sale_maps[$key]) && in_array($sale_maps[$key], $unset_maps)){
+				unset($sale_maps[$key]);
+			}
+			if(isset($sale_maps[$key]) && !strpos($sale_maps[$key], '.php') !== false){
 				//排除非php文件
 				unset($sale_maps[$key]);
-			}else{
-				//去掉文件后缀
+			}
+			//去掉文件后缀
+			if(isset($sale_maps[$key])){
 				$sale_maps[$key]		='sale/'.str_replace('.php','',$sale_maps[$key]);
 			}
 		}
@@ -227,29 +248,26 @@ class User_group extends MY_Controller {
 		$this->load->view('theme/default/template/user/user_group_from',$data);
 	}
 	
-	private function change_array($data=array())
+	private function file_list($path)
 	{
-		$arr = array();
-		foreach ($data as $key => $val) {
-			if(is_array($val) ) {
-				foreach($val as $k=>$v){
-					if(is_array($v)){
-						$this->change_array($v);
-					}else{
-						$arr[]=str_replace('\\','/',$key.strtolower($v));
+		if ($handle = opendir($path))//打开路径成功
+		{
+			while (false !== ($file = readdir($handle)))//循环读取目录中的文件名并赋值给$file
+			{
+				if ($file != "." && $file != "..")//排除当前路径和前一路径
+				{
+					if (is_dir($path."/".$file))
+					{
+						$this->file_list($path."/".$file);
 					}
-				}
-			} else {
-				if(is_numeric($key)){
-					if(isset($val) && !empty($val)){
-						$arr[] = str_replace('\\','/',strtolower($val));
+					else
+					{
+						$this->files[] = $path."/".$file;
 					}
-				}else{
-					$arr[] = str_replace('\\','/',$key.'/'.strtolower($val));
 				}
 			}
 		}
-		return $arr;
+		return $this->files;
 	}
 	
 	private function valid_user_group_name($user_group_description){

@@ -6,6 +6,11 @@ class Will_move_text extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/extension/module/will_move_text')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('common/module_model', 'common/banner_model'));
 	}
 

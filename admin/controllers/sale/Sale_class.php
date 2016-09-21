@@ -7,8 +7,12 @@ class Sale_class extends MY_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper(array('directory'));
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/sale/sale_class')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('form_validation'));
 		$this->load->model(array('common/sale_class_model','common/language_model'));
 	}

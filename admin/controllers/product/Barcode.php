@@ -6,6 +6,11 @@ class Barcode extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/product/barcode')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('common/barcode_model', 'common/language_model'));
 	}
 

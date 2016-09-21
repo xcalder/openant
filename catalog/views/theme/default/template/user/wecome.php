@@ -70,12 +70,13 @@
 					<?php echo $pagination;?>
 				
 					<?php foreach($orders as $order):?>
+					<?php if($order['products'] && !empty($order['products'])):?>
 					<tr style="background-color: #f5f5f5">
 						<td colspan="3" style="border-right-width: 0;">订单号：<?php echo date('YmdHis',strtotime($order['date_added'])).'-'.$order['order_id'];?></td>
 						<td colspan="2" class="text-right" style="border-left-width: 0;border-right-width: 0"><img width="18px" height="18px" class="lazy" data-original="<?php echo $this->image_common->resize($order['logo'], 18, 18);?>" alt="<?php echo $order['store_name']; ?>"><?php echo $order['store_name'];?></td>
 						<td style="border-left-width: 0;"></td>
 					</tr>
-					<?php if($order['products']):?>
+					
 					<tr>
 						<td class="text-left col-sm-2 col-md-2"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
 						<td class="text-left col-sm-2 col-md-2"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo utf8_substr($order['products'][0]['name'], 0, 15); ?></a></span><br/><span class="value"><?php echo !empty($order['products'][0]['value']) ? utf8_substr($order['products'][0]['value'], 0, 15) : '';?></span></td>

@@ -17,7 +17,6 @@ class User_model extends CI_Model {
 			'status'					=>'1',
 			'date_added'				=>date("Y-m-d H:i:s"),
 			'ip'						=>$this->input->ip_address(),
-			'approved'					=>$data['approved'],
 			'user_class_id'				=>$data['user_class_id'],
 		);
 		

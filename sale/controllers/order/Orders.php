@@ -6,6 +6,11 @@ class Orders extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'sale/order/orders')){
+			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('currency'));
 		$this->load->model(array('order/order_model'));
 	}

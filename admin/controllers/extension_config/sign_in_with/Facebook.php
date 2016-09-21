@@ -8,6 +8,11 @@ class Facebook extends MY_Controller {
 		parent::__construct();
 		$this->load->helper(array('directory'));
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/extension/sign_in_with/facebook')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('setting/sign_in_with_model'));
 	}
 

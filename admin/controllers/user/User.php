@@ -8,6 +8,11 @@ class User extends MY_Controller {
 		parent::__construct();
 		$this->load->helper(array('string'));
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'admin/user/user')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('form_validation', 'currency'));
 		$this->load->model(array('common/user_model', 'common/user_class_model', 'localisation/address_model','localisation/location_model', 'common/competence_model'));
 	}
@@ -65,14 +70,7 @@ class User extends MY_Controller {
 					$this->error['user_group_id']='用户组不对';
 				}
 			}
-			if($this->input->get('approved') != NULL){
-				if($this->form_validation->in_list($this->input->get('approved'),'0,1')){
-					$data['approved']=$this->input->get('approved');
-				}else{
-					$this->error['approved']='approved不对';
-				}
-				
-			}
+			
 			if($this->input->get('date_added') != NULL){
 				if($this->form_validation->no_y_m_d($this->input->get('date_added'))){
 					$data['date_added']=$this->input->get('date_added');
@@ -278,13 +276,7 @@ class User extends MY_Controller {
 		}else{
 			$data['status']='';
 		}
-		if(isset($users['approved'])){
-			$data['approved']=$users['approved'];
-		}elseif(isset($user_info['approved'])){
-			$data['approved']=$user_info['approved'];
-		}else{
-			$data['approved']='';
-		}
+		
 		if(isset($users['safe'])){
 			$data['safe']=$users['safe'];
 		}elseif(isset($user_info['safe'])){

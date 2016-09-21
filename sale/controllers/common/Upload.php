@@ -7,8 +7,12 @@ class Upload extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
+		if(!$this->user->hasPermission('access', 'sale/common/upload')){
+			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
+		}
 		$this->load->library(array('upload'));
-		
 		$user_added_date=$this->user->getDate_added();
 		$this->user_directory=date("Y",strtotime($user_added_date)).'/'.date("m",strtotime($user_added_date)).'/'.date("d",strtotime($user_added_date)).'/'.$this->user->getId();
 		

@@ -29,6 +29,12 @@ class Header extends CI_Common {
 			//在线用户
 			$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
 		}
+		
+		if(!$this->user->hasPermission('access', 'sale/wecome')){
+			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
+		}
 	}
 
 	public function index()
@@ -53,7 +59,7 @@ class Header extends CI_Common {
 		
 		$this->lang->load('common/header',$_SESSION['language_name']);
 		
-		if($this->user->hasPermission_access('admin')){
+		if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		

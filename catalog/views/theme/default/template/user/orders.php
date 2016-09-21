@@ -37,13 +37,15 @@
 						$style_bg='style="background-color: #f8f8f8;"';
 					}
 					?>
+					
+					<?php if(isset($order['products']) && $order['products'] && !empty($order['products'])):?>
 					<tr <?php echo $style_bg;?>>
 						<td colspan="2" class="border-right"><input class="select" type="checkbox" /><?php echo date('Y-m-d',strtotime($order['date_added']));?></td>
 						<td colspan="3" class="border-right">订单号：<?php echo date('YmdHis',strtotime($order['date_added'])).'-'.$order['order_id'];?></td>
 						<td colspan="2" class="hidden-xs border-right"><img width="18px" height="18px" class="lazy" data-original="<?php echo $this->image_common->resize($order['logo'], 18, 18);?>" alt="<?php echo $order['store_name']; ?>"><?php echo $order['store_name'];?></td>
 						<td class="text-right hidden-xs border-right"><button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="删除订单" onclick="del_order('<?php echo $order['order_id'];?>');"><i class="text-warning glyphicon glyphicon-remove"></i></button></td>
 					</tr>
-					<?php if(isset($order['products']) && $order['products']):?>
+					
 					<tr>
 						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right" style="vertical-align: middle"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
 						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>

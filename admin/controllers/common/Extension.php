@@ -4,17 +4,17 @@ class Extension extends MY_Controller{
 	private $error = array ();
 	public function __construct(){
 		parent::__construct ();
-		$this->load->helper ( array (
-				'utf8',
-				'directory'
-			));
+		$this->load->helper ( array ('utf8', 'directory'));
 		$this->load->language ( 'wecome' );
-		$this->load->library ( array (
-				'form_validation' 
-			));
-		$this->load->model ( array (
-				'common/extension_model' 
-			));
+		
+		if(!$this->user->hasPermission('access', 'admin/common/extension')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
+		
+		$this->load->library ( array ('form_validation'));
+		$this->load->model ( array ('common/extension_model'));
 	}
 	public function install_module(){
 		$this->document->setTitle ( '扩展模块安装' );

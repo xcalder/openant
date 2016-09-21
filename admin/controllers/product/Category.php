@@ -7,6 +7,11 @@ class Category extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('product/category');
+		if(!$this->user->hasPermission('access', 'admin/product/category')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('common/product_model','common/language_model', 'common/download_model', 'common/attribute_model', 'common/option_model', 'common/manufacturer_model', 'common/barcode_model', 'localisation/stock_status_model', 'localisation/aftermarket_model', 'localisation/tax_class_model'));
 	}
 

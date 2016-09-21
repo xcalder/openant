@@ -37,23 +37,7 @@
 							</select>
 							<?php echo isset($error['user_group_id']) ? '<label style="color:red">'.$error['user_group_id'].'</label>' : '';?>
 						</div>
-						<div class="form-group col-sm-3">
-							<label for="approved">批准</label>
-							<select name="approved" class="form-control" id="approved">
-								<option value="">--无--</option>
-								<?php if(isset($approved) && $approved == '1'):?>
-								<option value="1" selected>是</option>
-								<option value="0">否</option>
-								<?php elseif(isset($approved) && $approved == '0'):?>
-								<option value="1">是</option>
-								<option value="0" selected>否</option>
-								<?php else:?>
-								<option value="1">是</option>
-								<option value="0">否</option>
-								<?php endif;?>
-							</select>
-							<?php echo isset($error['approved']) ? '<label style="color:red">'.$error['approved'].'</label>' : '';?>
-						</div>
+						
 						<div class="form-group col-sm-3">
 							<label for="exampleInputEmail1">注册时间</label>
 							<input type="text" name="date_added" class="form-control" id="date-added" placeholder="注册时间" value="<?php echo isset($date_added) ? $date_added : '';?>">

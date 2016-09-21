@@ -3,16 +3,8 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Header extends CI_Common{
 	public function __construct(){
 		parent::__construct ();
-		$this->load->helper ( array (
-				'cookie',
-				'utf8'
-			));
-		$this->load->common ( array (
-				'language_module',
-				'currency_common',
-				'image',
-				'position_above'
-			));
+		$this->load->helper ( array ('cookie', 'utf8'));
+		$this->load->common ( array ('language_module', 'currency_common', 'image', 'position_above'));
 		$this->load->library ( array ('user_agent'));
 		$this->load->model(array('setting/sign_in_with_model', 'information/information_model'));
 		
@@ -23,7 +15,6 @@ class Header extends CI_Common{
 		$this->db->from($this->db->dbprefix('user_ban_ip'));
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
-			
 			$this->session->set_flashdata('fali', '被禁止访问的ip地址！');
 			unset($_SESSION['user_id']);
 		}
@@ -35,6 +26,12 @@ class Header extends CI_Common{
 			$this->session->set_userdata('token', md5($str));
 			//在线用户
 			$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
+		}
+		
+		if(!$this->user->hasPermission('access', 'admin/wecome')){
+			$this->session->set_flashdata('fali', '你没有访问管理员后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
 		}
 	}
 	public function index(){
@@ -52,7 +49,7 @@ class Header extends CI_Common{
 		
 		$this->lang->load ( 'common/header', $_SESSION['language_name']);
 		
-		if($this->user->hasPermission_access('sale' )){
+		if($this->user->hasPermission('access', 'sale/wecome' )){
 			$data ['access_sale'] = TRUE;
 		}
 		

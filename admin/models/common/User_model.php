@@ -14,9 +14,7 @@ class User_model extends CI_Model {
 		if(isset($data['user_group_id'])){
 			$this->db->where('user_group_id = '.$data['user_group_id']);
 		}
-		if(isset($data['approved'])){
-			$this->db->where('approved = '.$data['approved']);
-		}
+		
 		if(isset($data['date_added'])){
 			$this->db->like('date_added', $data['date_added']);
 		}
@@ -50,9 +48,7 @@ class User_model extends CI_Model {
 		if(isset($data['user_group_id'])){
 			$this->db->where('user_group_id = '.$data['user_group_id']);
 		}
-		if(isset($data['approved'])){
-			$this->db->where('approved = '.$data['approved']);
-		}
+		
 		if(isset($data['date_added'])){
 			$this->db->like('date_added', $data['date_added']);
 		}
@@ -331,6 +327,7 @@ class User_model extends CI_Model {
 				unset($data[$key]);
 			}
 		}
+		
 		$this->db->where('user_id', $data['user_id']);
 		$this->db->update($this->db->dbprefix('user'), $data);
 	}

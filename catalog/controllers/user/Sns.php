@@ -115,7 +115,6 @@ class Sns extends CI_Controller {
 						$data['adduser']['user_group_id']=$this->config->get_config('register_group');
 						$data['adduser']['user_class_id']=$this->config->get_config('default_user_class');
 						$data['adduser']['sale_class_id']=$this->config->get_config('default_sale_class');
-						$data['adduser']['approved']=$this->config->get_config('verify_email');
 						$data['adduser']['status']='1';
 						$data['adduser']['date_added']=date("Y-m-d H:i:s");
 						

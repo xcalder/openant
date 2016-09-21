@@ -30,12 +30,14 @@
 					</thead>
 					<tbody class="table-hover">
 					<?php foreach($orders as $order):?>
-					<?php if($order['order_status_id'] != $this->config->get_config('order_completion_status')){
+					<?php
+					if($order['order_status_id'] != $this->config->get_config('order_completion_status')){
 						$style_bg='style="background-color: #d9edf7;"';
 					}else{
 						$style_bg='style="background-color: #f8f8f8;"';
 					}
 					?>
+					<?php if($order['products'] && !empty($order['products'])):?>
 					<tr <?php echo $style_bg;?>>
 						<td colspan="2" class="border-right text-left"><input class="select" type="checkbox" /><?php echo date('Y-m-d',strtotime($order['date_added']));?></td>
 						<td colspan="2" class="border-right">订单号：<?php echo date('YmdHis',strtotime($order['date_added'])).'-'.$order['order_id'];?></td>
@@ -74,7 +76,7 @@
 							</form>
 						</td>
 					</tr>
-					<?php if($order['products']):?>
+					
 					<tr>
 						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
 						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>

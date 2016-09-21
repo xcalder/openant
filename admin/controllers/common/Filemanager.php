@@ -7,6 +7,11 @@ class FileManager extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('utf8','string'));
 		$this->lang->load('common/filemanager',$_SESSION['language_name']);
+		if(!$this->user->hasPermission('access', 'admin/common/filemanager')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
 	}
 	
 	public function index() {

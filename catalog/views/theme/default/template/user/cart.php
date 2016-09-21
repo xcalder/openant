@@ -16,9 +16,11 @@
 			<?php echo $position_top; ?>
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px">
-				<li role="presentation" class="active"><a href="#cart-all" aria-controls="cart-all" role="tab" data-toggle="tab">全部商品&nbsp;<span class="label label-info"><?php echo isset($_SESSION['cart_contents']) ? count($_SESSION['cart_contents']) - 2 : ''?></span></a></li>
+				<li role="presentation" class="active"><a href="#cart-all" aria-controls="cart-all" role="tab" data-toggle="tab">购物车商品<span class="label label-info"><?php echo isset($_SESSION['cart_contents']) ? count($_SESSION['cart_contents']) - 2 : ''?></span></a></li>
+				<!-- 
 				<li role="presentation"><a href="#cart-price-reduction" aria-controls="cart-price-reduction" role="tab" data-toggle="tab">降价商品&nbsp;<span class="label label-info">4</span></a></li>
 				<li role="presentation"><a href="#cart-tight-inventories" aria-controls="cart-tight-inventories" role="tab" data-toggle="tab">库存紧张&nbsp;<span class="label label-info">4</span></a></li>
+				 -->
 				<div class="carts-top-info">已选商品(不含运费)<a class="value-">0.00</a><button type="button" class="btn btn-info btn-xs">结算</button></div>
 			</ul>
 
@@ -43,6 +45,7 @@
 							</thead>
 							<tbody>
 								<?php foreach($carts_product as $key=>$value):?>
+								<?php if(isset($value['store_name']) && isset($value['products'])):?>
 								<tr class="cart-table-store">
 									<td class="text-center"><input ifcheckall="1" store="store-id-<?php echo $carts_product[$key]['store_id'];?>" type="checkbox" class="select" onclick="$('input[class_=\'select-<?php echo $carts_product[$key]['store_id'];?>\']').prop('checked', this.checked);" /></td>
 									<td colspan="3">店铺：<?php echo $carts_product[$key]['store_name'];?></td>
@@ -91,6 +94,7 @@
 								</tr>
 				    	
 								<?php endforeach;?>
+								<?php endif;?>
 								<?php endif;?>
 								<?php endforeach;?>
 							</tbody>

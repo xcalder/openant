@@ -152,26 +152,7 @@
 							<a onclick="$(this).parent().find(':checkbox').prop('checked', true);" style="cursor: pointer;">全选</a> / <a onclick="$(this).parent().find(':checkbox').prop('checked', false);">全不选</a>
 						</div>
 					</div>
-	            	<div class="form-group">
-						<label class="col-sm-2 control-label" for="approval">是否允许后台登陆</label>
-						<div class="col-sm-10">
-							<?php if(isset($approval) && $approval == '1'):?>
-							<label class="radio-inline">
-								<input type="radio" name="user_group[approval]" id="approval" value="1" checked>是
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="user_group[approval]" id="approval" value="0">否
-							</label>
-							<?php else:?>
-							<label class="radio-inline">
-								<input type="radio" name="user_group[approval]" id="approval" value="1">是
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="user_group[approval]" id="approval" value="0" checked>否
-							</label>
-							<?php endif;?>
-						</div>
-					</div>
+	            	
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="sort-order">排序</label>
 						<div class="col-sm-10">

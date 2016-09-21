@@ -6,6 +6,11 @@ class Manufacturer extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('wecome');
+		if(!$this->user->hasPermission('access', 'sale/product/manufacturer')){
+			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
+			redirect(base_url(), 'location', 301);
+			exit;
+		}
 		$this->load->model(array('common/manufacturer_model', 'common/language_model'));
 	}
 

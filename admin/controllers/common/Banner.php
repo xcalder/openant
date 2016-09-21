@@ -6,6 +6,13 @@ class Banner extends MY_Controller {
 		parent::__construct ();
 		$this->load->helper ( array ('utf8') );
 		$this->load->language ( 'wecome' );
+		
+		if(!$this->user->hasPermission('access', 'admin/common/banner')){
+			$this->session->set_flashdata('fali', '你没有访问权限！');
+			redirect(site_url(), 'location', 301);
+			exit;
+		}
+		
 		$this->load->library (array('form_validation'));
 		$this->load->model ( array ('common/banner_model','common/language_model' ) );
 	}

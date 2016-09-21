@@ -465,6 +465,24 @@
 							</li>
 						</ul>
 					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-cog"></i>
+							<span>社区</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="<?php echo site_url('bbs/plate');?>">
+									版块维护
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo site_url('bbs/posting');?>">
+									帖子管理
+								</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>

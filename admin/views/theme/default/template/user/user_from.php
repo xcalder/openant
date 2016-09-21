@@ -256,40 +256,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="approved">
-										approved
-									</label>
-									<div class="col-sm-10">
-										<select class="form-control" id="approved" name="user[approved]">
-											<?php
-											if($approved == '0'):?>
-											<option value="1">
-												启用
-											</option>
-											<option value="0" selected>
-												停用
-											</option>
-											<?php
-											elseif($approved == '1'):?>
-											<option value="1" selected>
-												启用
-											</option>
-											<option value="0">
-												停用
-											</option>
-											<?php
-											else:?>
-											<option value="1" selected>
-												启用
-											</option>
-											<option value="0">
-												停用
-											</option>
-											<?php endif;?>
-										</select>
-									</div>
-								</div>
+								
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="safe">
 										安全
@@ -686,6 +653,7 @@
 							<div class="tab-pane" id="tab-competence">
 								查看：
 								<hr>
+								<?php if(isset($competences['access']) && !empty($competences['access'])):?>
 								<?php foreach($competences['access'] as $key=>$competence):?>
 								<div class="form-group">
 									<span class="col-sm-2 control-label" for="user_access<?php echo $key;?>">
@@ -711,6 +679,7 @@
 									</div>
 								</div><hr>
 								<?php endforeach;?>
+								<?php endif;?>
 								
 								修改：
 								<hr>
