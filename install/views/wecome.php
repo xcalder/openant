@@ -10,7 +10,7 @@
     </div>
     <form action="<?php echo site_url('common/check');?>" method="post" enctype="multipart/form-data" id="install">
 	    <div class="col-sm-12">
-	    	请认真阅读本协议补充条款，任何个人或组织有权免费获得，修改发布或部分发布本程序的原代码，并且免费用于商业用途，但要保留底部原作者的版权标识，遮盖或修改原作者版权或标识视为自动放弃上述所有权利，原作者有权对违反协议用户行使（包括但不限于远程终止软件运行）权利，请知悉！
+	    	请认真阅读本协议,安装即表示你知悉、理解、并同意开源协议！
 	    	<br/><hr><input type="checkbox" name="agree" value="1">同意授权协议及附加条款并继续,如果你不同意软件许可请放弃安装，关闭些页面
 	    </div>
 	    <div class="col-sm-6" style="margin-top: 15px">
