@@ -29,8 +29,8 @@ class OAuth2_Provider_Foursquare extends OAuth2_Provider
 			'oauth_token' => $token->access_token,
 		));
 
-		$response = json_decode(file_get_contents($url));
-
+		$response = json_decode($this->vget($url));
+		//$response = json_decode(file_get_contents($url));
 		$user = $response->response->user;
 
 		// Create a response from the request

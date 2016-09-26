@@ -32,7 +32,8 @@ class OAuth2_Provider_Soundcloud extends OAuth2_Provider
 			'oauth_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url));
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
 		// Create a response from the request
 		return array(

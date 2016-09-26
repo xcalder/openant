@@ -44,7 +44,8 @@ class OAuth2_Provider_Mailru extends OAuth2_Provider
 		$sig = $this->sign_server_server($request_params,$this->client_secret);
 		$url = 'http://www.appsmail.ru/platform/api?'.http_build_query($request_params).'&sig='.$sig;
 
-		$user = json_decode(file_get_contents($url));
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
 		return array(
 			'via' => 'mailru',

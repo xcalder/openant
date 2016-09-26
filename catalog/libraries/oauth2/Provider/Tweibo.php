@@ -37,7 +37,9 @@ class OAuth2_Provider_Tweibo extends OAuth2_Provider
                         'clientip' => get_instance()->input->ip_address(),
                         'oauth_version' => '2.a'
 		));
-		$user = json_decode(file_get_contents($url));
+		
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
       	if ($user->ret)
         {

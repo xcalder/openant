@@ -44,7 +44,8 @@ class OAuth2_Provider_Windowslive extends OAuth2_Provider
 		));
 		
 		// perform network request
-		$user = json_decode(file_get_contents($url));
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
 		// create a response from the request and return it
 		return array(

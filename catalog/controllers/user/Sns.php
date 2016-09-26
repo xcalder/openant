@@ -18,7 +18,7 @@ class Sns extends CI_Controller {
 
 	public function session($provider = '')
 	{
-		$this->output->set_status_header(302);
+		//$this->output->set_status_header(302);
 		$providers = $this->sign_in_with_model->get_sign_with($provider);
 		//var_dump($providers);
 		if (!$providers)
@@ -66,7 +66,7 @@ class Sns extends CI_Controller {
 				{
 					$select_user_id=$this->sign_in_with_model->select_user_for_vid($sns_user['via'], $sns_user['uid']);
 					if($select_user_id){
-						$this->session->set_flashdata('success', ((isset($sns_user['nickname']) && !empty($sns_user['nickname'])) ? $sns_user['nickname'] : $sns_user['name']) . $provider.'登陆成功！');
+						$this->session->set_flashdata('success', ((isset($sns_user['nickname']) && !empty($sns_user['nickname'])) ? $sns_user['nickname'] : $sns_user['name']).'登陆成功！');
 						
 						$_SESSION['user_id']=$select_user_id;
 						

@@ -86,38 +86,6 @@ class Test extends CI_Controller {
 		//var_dump($this->agent->languages());
 		//var_dump($this->language_model->get_language_like_locale($this->agent->languages()));
 		
-		
-		/*
-		$data=array(
-			'user_id'			=>$this->user->getId(),
-			'money'				=>'10.01',
-			'to_user_id'		=>'1',
-			'operators'			=>'-',
-			'pay_password'		=>md5('1234567'),
-			'content'			=>array(
-				'title'=>'转帐',
-				'description'=>'项目款支付！',
-			)
-		);
-		
-		var_dump($this->user_balances_model->update($data));
-		
-		echo '<br/><br/><br/>';
-		$data='';
-		$data['page']='0';
-		$data['user_id']=$this->user->getId();
-		var_dump($this->user_balances_model->get_balances_activitys($data));
-		
-		echo '<br/><br/><br/>';
-		
-		
-		//echo $this->user_balances_model->user_balances_log('1');
-		var_dump($data);
-		*/
-		//var_dump($this->order_model->get_order_products_to_payment(array('112')));
-		
-		$this->file_list(APPPATH);
-		
 		$this->load->view('theme/default/template/test',$data);
 	}
 	

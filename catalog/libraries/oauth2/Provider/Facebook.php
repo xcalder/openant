@@ -11,7 +11,8 @@
 
 class OAuth2_Provider_Facebook extends OAuth2_Provider
 {
-	protected $scope = array('offline_access', 'email', 'read_stream');
+	//protected $scope = array('offline_access', 'email', 'read_stream');
+	protected $scope = array('email');
 
 	public function url_authorize()
 	{
@@ -29,8 +30,9 @@ class OAuth2_Provider_Facebook extends OAuth2_Provider
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url));
-
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
+		
 		// Create a response from the request
 		return array(
 			'via' => 'facebook',

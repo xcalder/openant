@@ -31,7 +31,8 @@ class OAuth2_Provider_Vkontakte extends OAuth2_Provider
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url))->response;
+		$user = json_decode($this->vget($url))->response;
+		//$user = json_decode(file_get_contents($url))->response;
 
 		if(sizeof($user)==0)
 			return null;

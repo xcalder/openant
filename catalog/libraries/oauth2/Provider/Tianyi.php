@@ -40,7 +40,9 @@ class OAuth2_Provider_Tianyi extends OAuth2_Provider
 			'access_token' => $token->access_token,
             'app_id' => $this->client_id
 		));
-		$user_network_info = json_decode(file_get_contents($url));
+		
+		$user_network_info = json_decode($this->vget($url));
+		//$user_network_info = json_decode(file_get_contents($url));
 
       	if (array_key_exists("error", $user_network_info))
         {

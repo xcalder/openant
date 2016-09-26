@@ -67,7 +67,9 @@ class OAuth2_Provider_Google extends OAuth2_Provider
 			'access_token' => $token->access_token,
 		));
 		
-		$user = json_decode(file_get_contents($url), true);
+		$user = json_decode($this->vget($url), true);
+		//$user = json_decode(file_get_contents($url), true);
+		
 		return array(
 			'via' => 'google',
 			'uid' => $user['id'],

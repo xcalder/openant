@@ -34,7 +34,9 @@ class OAuth2_Provider_Baidu extends OAuth2_Provider
 			'access_token' => $token->access_token,
 			'uid' => $token->uid,
 		));
-		$user = json_decode(file_get_contents($url));
+		
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
       	if (array_key_exists("error", $user))
         {

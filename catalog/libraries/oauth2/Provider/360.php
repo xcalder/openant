@@ -31,7 +31,9 @@ class OAuth2_Provider_360 extends OAuth2_Provider
 		$url = 'https://openapi.360.cn/user/me?'.http_build_query(array(
 			'access_token' => $token->access_token
 		));
-		$user = json_decode(file_get_contents($url));
+		
+		//$user = json_decode(file_get_contents($url));
+		$user = json_decode($this->vget($url));
 
       	if (array_key_exists("error", $user))
         {

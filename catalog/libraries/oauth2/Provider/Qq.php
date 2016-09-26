@@ -30,8 +30,10 @@ class OAuth2_Provider_Qq extends OAuth2_Provider
 		$url = 'https://graph.qq.com/oauth2.0/me?'.http_build_query(array(
 			'access_token' => $token->access_token
 		));
-		$response = file_get_contents($url);
-                
+		
+		//$response = file_get_contents($url);
+		$response = $this->vget($url);
+		
         if (strpos($response, "callback") !== false)
         {
             $lpos = strpos($response, "(");
@@ -50,7 +52,10 @@ class OAuth2_Provider_Qq extends OAuth2_Provider
 			'openid' => $me->openid,
             'oauth_consumer_key' => $this->client_id
 		));
-                $response = file_get_contents($url);
+        
+        //$response = file_get_contents($url);
+        $response = $this->vget($url);
+        
 		$user = json_decode($response);
                 
 	    if (isset($me->error))

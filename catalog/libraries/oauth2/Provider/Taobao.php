@@ -37,7 +37,9 @@ class OAuth2_Provider_Taobao extends OAuth2_Provider
                         'format' => 'json',
                         'fields' => 'user_id,uid,nick,location,avatar',
 		));
-		$user = json_decode(file_get_contents($url));
+		
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
       	if (array_key_exists('error_response', $user))
         {

@@ -36,8 +36,9 @@ class OAuth2_Provider_Paypal extends OAuth2_Provider
         $url = 'https://identity.x.com/xidentity/resources/profile/me?' . http_build_query(array(
             'oauth_token' => $token->access_token
         ));
-
-        $user = json_decode(file_get_contents($url),true);
+		
+        $user = json_decode($this->vget($url),true);
+        //$user = json_decode(file_get_contents($url),true);
 		$user = $user['identity'];
 
 		return array(

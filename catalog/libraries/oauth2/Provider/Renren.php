@@ -36,6 +36,8 @@ class OAuth2_Provider_Renren extends OAuth2_Provider
             'call_id' => time(),
             'method' => 'users.getInfo'
         );
+        
+        /*
         $opts = array(
 			'http' => array(
 				'method'  => 'POST',
@@ -45,7 +47,9 @@ class OAuth2_Provider_Renren extends OAuth2_Provider
 		);
 		$_default_opts = stream_context_get_params(stream_context_get_default());
 		$context = stream_context_create(array_merge_recursive($_default_opts['options'], $opts));
-		$user = json_decode(file_get_contents($url, false, $context));
+		*/
+		//$user = json_decode(file_get_contents($url, false, $context));
+		$user = json_decode($this->vpost($url, http_build_query($params)));
 		
       	if ( ! is_array($user) OR ! isset($user[0]) OR ! ($user = $user[0]) OR array_key_exists("error_code", $user))
         {

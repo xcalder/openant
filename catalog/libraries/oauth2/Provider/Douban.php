@@ -35,7 +35,9 @@ class OAuth2_Provider_Douban extends OAuth2_Provider
 		$url = 'https://api.douban.com/v2/user/'.$token->uid.'?'.http_build_query(array(
 			'access_token' => $token->access_token
 		));
-		$user = json_decode(file_get_contents($url));
+		
+		$user = json_decode($this->vget($url));
+		//$user = json_decode(file_get_contents($url));
 
       	if ( ! $user OR array_key_exists('msg', $user))
         {
