@@ -79,6 +79,10 @@ class Orders extends MY_Controller {
 	}
 	
 	public function add_callout(){
+		if (!$this->user->hasPermission('modify', 'sale/order/orders')) {
+			$data['error'] = '没有权限修改';
+		}
+		
 		if($this->input->post('order_id') == NULL || $this->input->post('callout_type') == NULL || $this->input->post('callout_content') == NULL){
 			$data['error']='标注失败';
 		}

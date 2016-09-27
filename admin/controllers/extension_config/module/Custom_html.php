@@ -6,9 +6,9 @@ class Custom_html extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->language('wecome');
-		if(!$this->user->hasPermission('access', 'admin/extension/module/custom_html')){
+		if(!$this->user->hasPermission('access', 'admin/extension_config/module/custom_html')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('common/module_model'));
@@ -23,12 +23,12 @@ class Custom_html extends MY_Controller {
 	public function edit(){
 		$this->document->setTitle('自定义HTML模块修改');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			
 			$this->module_model->update($this->input->post(),'custom_html');
 			
 			$this->session->set_flashdata('success','自定义HTML修改成功！');
-			redirect(site_url('extension_config/module/custom_html'), 'location', 301);
+			redirect(site_url('extension_config/module/custom_html'));
 		}
 		
 		$this->get_form();
@@ -37,12 +37,12 @@ class Custom_html extends MY_Controller {
 	public function add(){
 		$this->document->setTitle('自定义HTML插件的模块添加');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			
 			$this->module_model->add($this->input->post(),'custom_html');
 			
 			$this->session->set_flashdata('success','自定义HTML添加成功！');
-			redirect(site_url('extension_config/module/custom_html'), 'location', 301);
+			redirect(site_url('extension_config/module/custom_html'));
 		}
 		
 		$this->get_form();
@@ -53,12 +53,12 @@ class Custom_html extends MY_Controller {
 		
 		if($this->input->get('module_id') == NULL){
 			$this->session->set_flashdata('fali','自定义HTML删除失败！');
-			redirect(site_url('extension_config/module/custom_html'), 'location', 301);
+			redirect(site_url('extension_config/module/custom_html'));
 			return;
 		}
-		if($this->module_model->delete($this->input->get('module_id'))){
+		if($this->check_modify() && $this->module_model->delete($this->input->get('module_id'))){
 			$this->session->set_flashdata('success','自定义HTML删除成功！');
-			redirect(site_url('extension_config/module/custom_html'), 'location', 301);
+			redirect(site_url('extension_config/module/custom_html'));
 		}
 		
 		$this->get_list();
@@ -100,5 +100,15 @@ class Custom_html extends MY_Controller {
 		$data['footer']					=$this->footer->index();
 		
 		$this->load->view('theme/default/template/extension_config/module/custom_html_form',$data);
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/extension_config/module/custom_html')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('extension_config/module/custom_html'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

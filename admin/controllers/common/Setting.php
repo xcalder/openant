@@ -9,7 +9,7 @@ class Setting extends MY_Controller
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/common/setting')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('setting/setting_model','localisation/country_model','common/language_model','common/currency_model','localisation/length_class_model','information/information_model','localisation/weight_class_model','localisation/order_status_model', 'common/user_model', 'common/sale_class_model', 'common/user_class_model'));
@@ -25,11 +25,12 @@ class Setting extends MY_Controller
 	public function edit()
 	{
 		$this->document->setTitle('设置修改');
-		if($_SERVER['REQUEST_METHOD'] == "POST")
+		
+		if($_SERVER['REQUEST_METHOD'] == "POST" && $this->check_modify())
 		{
 			$this->setting_model->edit($this->input->post(), 'config');
 			$this->session->set_flashdata('success', '成功：修改网站设置成功！');
-			redirect(site_url('common/setting'), 'location', 301);
+			redirect(site_url('common/setting'));
 		}
 
 		$this->get_form();
@@ -788,5 +789,15 @@ class Setting extends MY_Controller
 		$data['footer'] = $this->footer->index();
 
 		$this->load->view('theme/default/template/common/setting',$data);
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/common/setting')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/setting'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

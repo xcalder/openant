@@ -19,7 +19,7 @@ class information_category_model extends CI_Model {
 		//文章基本数据
 		$this->db->select('information_category_id, parent_id');
 		$this->db->limit($limit, $offset);
-		$this->db->order_by('information_category.sort_order', 'DESC');
+		$this->db->order_by('information_category.sort_order', 'ASC');
 		
 		$query = $this->db->get($this->db->dbprefix('information_category'));
 		
@@ -69,7 +69,7 @@ class information_category_model extends CI_Model {
 	{
 		$this->db->select('information_category_id');
 		$this->db->where('store_id', '0');
-		$this->db->order_by('information_category.sort_order', 'DESC');
+		$this->db->order_by('information_category.sort_order', 'ASC');
 		$this->db->from($this->db->dbprefix('information_category'));//查
 		
 		$query = $this->db->get();
@@ -93,7 +93,7 @@ class information_category_model extends CI_Model {
 		//基本数据
 		$this->db->select('information_category_id, parent_id');
 		$this->db->where('store_id', '0');
-		$this->db->order_by('information_category.sort_order', 'DESC');
+		$this->db->order_by('information_category.sort_order', 'ASC');
 		$this->db->from($this->db->dbprefix('information_category'));//查
 		
 		$query = $this->db->get();
@@ -210,28 +210,26 @@ class information_category_model extends CI_Model {
 			return FALSE;
 		}
 		foreach($data as $key=>$value){
-			$this->db->select('parent_id');
-			$this->db->where('information_category_id', $data[$key]);
+			$this->db->select('information_category_id');
+			$this->db->where('parent_id', $data[$key]);
 			$this->db->from($this->db->dbprefix('information_category'));
 			$query=$this->db->get();
+			if($query->num_rows > 0){
+				//有子分类
+				return true;
+			}
 			
-			if($query->num_rows() > 0){
-				$parent_ids=$query->result_array();
-				$parent_ids=array_flip(array_flip(array_column($parent_ids,'parent_id')));
-				foreach($parent_ids as $parent_id){
-					$this->db->select('information_category_id');
-					$this->db->where('information_category_id', $parent_id);
-					$this->db->from($this->db->dbprefix('information_category'));
-					$query=$this->db->get();
-					
-					if($query->num_rows() > 0){
-						return TRUE;
-					}
-				}
+			$this->db->select('information_id');
+			$this->db->where('information_category_id', $data[$key]);
+			$this->db->from($this->db->dbprefix('information'));
+			$query=$this->db->get();
+			if($query->num_rows > 0){
+				//有文章
+				return true;
 			}
 		}
 		
-		return FALSE;
+		return false;
 	}
 	
 	//删除分类

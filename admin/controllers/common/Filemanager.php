@@ -216,11 +216,11 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
+		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->lang->line('error_permission');
+			$json['error'] = '你无权修改';
 		}
-*/
+
 		// Make sure we have the correct directory
 		if ($this->input->get('directory')) {
 			
@@ -303,11 +303,11 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
+		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->language->get('error_permission');
+			$json['error'] = '你无权修改';
 		}
-		*/
+		
 
 		// Make sure we have the correct directory
 		if ($this->input->get('directory')) {
@@ -358,11 +358,11 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
+		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->language->get('error_permission');
+			$json['error'] = '你无权修改！';
 		}
-		*/
+		
 
 		if ($this->input->post('path')) {
 			$paths = $this->input->post('path');

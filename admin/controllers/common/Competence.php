@@ -10,7 +10,7 @@ class Competence extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/common/competence')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -29,8 +29,8 @@ class Competence extends MY_Controller {
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->competence_model->add($this->input->post());
-			
-			redirect(site_url('common/competence'), 'location', 301);
+			$this->session->set_flashdata('success', '新增成功！');
+			redirect(site_url('common/competence'));
 		}
 		
 		$this->get_form();
@@ -42,8 +42,8 @@ class Competence extends MY_Controller {
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->competence_model->edit($this->input->post());
-			
-			redirect(site_url('common/competence'), 'location', 301);
+			$this->session->set_flashdata('success', '修改成功！');
+			redirect(site_url('common/competence'));
 		}
 		
 		$this->get_form();
@@ -53,10 +53,11 @@ class Competence extends MY_Controller {
 	{
 		$this->document->setTitle('删除权限参数');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_delete()){
+			
 			$this->competence_model->delete($this->input->post('selected'));
 			
-			redirect(site_url('common/competence'), 'location', 301);
+			redirect(site_url('common/competence'));
 		}
 		
 		$this->get_list();
@@ -169,6 +170,11 @@ class Competence extends MY_Controller {
 
 	//验证表单
 	public function validate_form(){
+		if (!$this->user->hasPermission('modify', 'admin/common/competence')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/competence'));
+			exit();
+		}
 		
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){
@@ -178,5 +184,13 @@ class Competence extends MY_Controller {
 		}
 		
 		return !$this->error;
+	}
+	
+	public function check_delete(){
+		if (!$this->user->hasPermission('modify', 'admin/common/competence')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/competence'));
+			exit();
+		}
 	}
 }

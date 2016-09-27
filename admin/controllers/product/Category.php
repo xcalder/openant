@@ -9,7 +9,7 @@ class Category extends MY_Controller {
 		$this->load->language('product/category');
 		if(!$this->user->hasPermission('access', 'admin/product/category')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('common/product_model','common/language_model', 'common/download_model', 'common/attribute_model', 'common/option_model', 'common/manufacturer_model', 'common/barcode_model', 'localisation/stock_status_model', 'localisation/aftermarket_model', 'localisation/tax_class_model'));
@@ -28,7 +28,7 @@ class Category extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->product_model->edit_category($this->input->post());
 			
-			redirect(site_url('product/category'), 'location', 301);
+			redirect(site_url('product/category'));
 		}
 		
 		$this->get_form();
@@ -41,7 +41,7 @@ class Category extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->product_model->add_category($this->input->post());
 			
-			redirect(site_url('product/category'), 'location', 301);
+			redirect(site_url('product/category'));
 		}
 		
 		$this->get_form();
@@ -53,10 +53,10 @@ class Category extends MY_Controller {
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->product_model->delete_category($this->input->post('selected'));
 			
-			redirect(site_url('product/category'), 'location', 301);
+			redirect(site_url('product/category'));
 			return;
 		}
-		redirect(site_url('product/category'), 'location', 301);
+		redirect(site_url('product/category'));
 		$this->get_list();
 	}
 	
@@ -304,11 +304,12 @@ class Category extends MY_Controller {
 	
 	//验证表单
 	private function validateForm(){
-		/*
-		if (!$this->user->hasPermission('modify', 'product/category')) {
-			$this->error['warning'] = '没有权限修改';
+		if (!$this->user->hasPermission('modify', 'admin/product/category')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/category'));
+			exit();
 		}
-		*/
+		
 		foreach ($this->input->post('category_description') as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 255)) {
 				$this->error['name'][$language_id] = '分类名2——255字符';
@@ -325,6 +326,12 @@ class Category extends MY_Controller {
 	//验证删除
 	public function validate_delete($data)
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/category')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/category'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}

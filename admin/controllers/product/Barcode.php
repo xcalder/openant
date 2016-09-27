@@ -8,7 +8,7 @@ class Barcode extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/product/barcode')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('common/barcode_model', 'common/language_model'));
@@ -25,13 +25,13 @@ class Barcode extends MY_Controller {
 	{
 		$this->document->setTitle('添加条码');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$data['base']=$this->input->post('base');
 			$data['description']=$this->input->post('description');
 			
 			$this->barcode_model->add_barcode($data);
 			
-			redirect(site_url('product/barcode'), 'location', 301);
+			redirect(site_url('product/barcode'));
 		}
 		
 		$this->get_form();
@@ -41,14 +41,14 @@ class Barcode extends MY_Controller {
 	{
 		$this->document->setTitle('修改条码');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$data['barcode_id']=$this->input->get('barcode_id');
 			$data['base']=$this->input->post('base');
 			$data['description']=$this->input->post('description');
 			
 			$this->barcode_model->edit_barcode($data);
 			
-			redirect(site_url('product/barcode'), 'location', 301);
+			redirect(site_url('product/barcode'));
 		}
 		
 		$this->get_form();
@@ -62,7 +62,7 @@ class Barcode extends MY_Controller {
 			
 			$this->barcode_model->delete_barcode($this->input->post('selected'));
 			
-			redirect(site_url('product/barcode'), 'location', 301);
+			redirect(site_url('product/barcode'));
 		}
 		
 		$this->get_list();
@@ -145,6 +145,11 @@ class Barcode extends MY_Controller {
 	//验证删除
 	public function validate_delete($data)
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/barcode')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -155,5 +160,15 @@ class Barcode extends MY_Controller {
 		}
 		
 		return !$this->error;
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/product/barcode')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/barcode'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

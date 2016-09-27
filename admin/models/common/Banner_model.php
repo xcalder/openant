@@ -182,6 +182,27 @@ class Banner_model extends CI_Model {
 			$this->db->reset_query();
 		}
 	}
+	
+	public function check_delete($data){
+		$this->db->select('setting');
+		$this->db->where('code', 'slideshow');
+		$query = $this->db->get($this->db->dbprefix('module')); 
+		if($query->num_rows() > 0){
+			$banners=$query->result_array();
+			foreach ($banners as $value){
+				$banner_ids[]=unserialize($value['setting'])['banner_id'];
+			}
+			unset($banners);
+			
+			foreach ($data as $value){
+				if(in_array($value, $banner_ids)){
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
 
 	public function delete($data){
 		foreach($data as $key=>$value){

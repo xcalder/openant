@@ -10,7 +10,7 @@ class User extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/user/user')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation', 'currency'));
@@ -28,7 +28,7 @@ class User extends MY_Controller {
 	{
 		$this->document->setTitle('编辑会员');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && $this->input->get('user_id')){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->input->get('user_id') && $this->check_modify()){
 			$user = $this->input->post('user');
 			if($this->validation_user($user)){
 				$user['user_id']=$this->input->get('user_id');
@@ -43,7 +43,7 @@ class User extends MY_Controller {
 			
 			$this->user_model->edit_user_competence($this->input->post('competence'), $this->input->get('user_id'));
 			
-			redirect(site_url('user/user'), 'location', 301);
+			redirect(site_url('user/user'));
 		}
 		
 		$this->get_from();
@@ -534,7 +534,7 @@ class User extends MY_Controller {
 	public function add_history(){
 		if($this->input->post('comment') != NULL && $this->input->get('user_id') != NULL){
 			//验证数据
-			if($this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->max_length($this->input->post('comment'),'2000')){
+			if($this->check_modify() && $this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->max_length($this->input->post('comment'),'2000')){
 				$data['comment'] = $this->input->post('comment');
 				$data['user_id'] = $this->input->get('user_id');
 				$data['date_added'] = date("Y-m-d H:i:s");
@@ -563,7 +563,7 @@ class User extends MY_Controller {
 	public function add_transaction(){
 		if($this->input->post('amount') != NULL && $this->input->get('user_id') != NULL){
 			//验证数据
-			if($this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->numeric($this->input->post('amount')) && $this->form_validation->max_length($this->input->post('description'),'2000')){
+			if($this->check_modify() && $this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->numeric($this->input->post('amount')) && $this->form_validation->max_length($this->input->post('description'),'2000')){
 				$data['description'] = $this->input->post('description');
 				$data['user_id'] = $this->input->get('user_id');
 				$data['amount'] = $this->input->post('amount');
@@ -594,7 +594,7 @@ class User extends MY_Controller {
 	public function add_reward(){
 		if($this->input->post('points') != NULL && $this->input->get('user_id') != NULL){
 			//验证数据
-			if($this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->numeric($this->input->post('points')) && $this->form_validation->max_length($this->input->post('description'),'2000')){
+			if($this->check_modify() && $this->form_validation->numeric($this->input->get('user_id')) && $this->form_validation->numeric($this->input->post('points')) && $this->form_validation->max_length($this->input->post('description'),'2000')){
 				$data['description'] = $this->input->post('description');
 				$data['user_id'] = $this->input->get('user_id');
 				$data['points'] = $this->input->post('points');
@@ -623,6 +623,11 @@ class User extends MY_Controller {
 
 	//验证user
 	public function validation_user($user){
+		if (!$this->user->hasPermission('modify', 'admin/user/user')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
+		
 		if(!$this->form_validation->min_length($user['nickname'],'3') || !$this->form_validation->max_length($user['nickname'],'18')){
 			$this->error['error_nickname']='昵称长度3——18字符';
 		}
@@ -641,6 +646,11 @@ class User extends MY_Controller {
 	
 	//验证地址
 	public function validation_address($address=array()){
+		if (!$this->user->hasPermission('modify', 'admin/user/user')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
+		
 		if(!isset($address)){
 			return FALSE;
 		}
@@ -666,11 +676,21 @@ class User extends MY_Controller {
 	
 	//加黑名单
 	public function add_ban_ip(){
-		if($this->input->post('ip') != NULL && $this->form_validation->valid_ip($this->input->post('ip'))){
+		if($this->check_modify() && $this->input->post('ip') != NULL && $this->form_validation->valid_ip($this->input->post('ip'))){
 			$data['ip']=$this->input->post('ip');
 			$this->user_model->add_ban_ip($data);
 		}else{
 			return FALSE;
+		}
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/user/user')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('user/user'));
+			exit();
+		}else {
+			return true;
 		}
 	}
 }

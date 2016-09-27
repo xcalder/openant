@@ -8,7 +8,7 @@ class Manufacturer extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'sale/product/manufacturer')){
 			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
-			redirect(base_url(), 'location', 301);
+			redirect(base_url());
 			exit;
 		}
 		$this->load->model(array('common/manufacturer_model', 'common/language_model'));
@@ -25,13 +25,13 @@ class Manufacturer extends MY_Controller {
 	{
 		$this->document->setTitle('申请品牌');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$data['base']=$this->input->post('base');
 			$data['description']=$this->input->post('description');
 			
 			$this->manufacturer_model->add_manufacturer($data);
 			
-			redirect(site_url('product/manufacturer'), 'location', 301);
+			redirect(site_url('product/manufacturer'));
 		}
 		
 		$this->get_form();
@@ -41,14 +41,14 @@ class Manufacturer extends MY_Controller {
 	{
 		$this->document->setTitle('修改品牌');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$data['manufacturer_id']=$this->input->get('manufacturer_id');
 			$data['base']=$this->input->post('base');
 			$data['description']=$this->input->post('description');
 			
 			$this->manufacturer_model->edit_manufacturer($data);
 			
-			redirect(site_url('product/manufacturer'), 'location', 301);
+			redirect(site_url('product/manufacturer'));
 		}
 		
 		$this->get_form();
@@ -62,7 +62,7 @@ class Manufacturer extends MY_Controller {
 			
 			$this->manufacturer_model->delete_manufacturer($this->input->post('selected'));
 			
-			redirect(site_url('product/manufacturer'), 'location', 301);
+			redirect(site_url('product/manufacturer'));
 		}
 		
 		$this->get_list();
@@ -157,6 +157,12 @@ class Manufacturer extends MY_Controller {
 	//验证删除
 	public function validate_delete($data)
 	{
+		if (!$this->user->hasPermission('modify', 'sale/product/manufacturer')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/manufacturer'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -167,5 +173,15 @@ class Manufacturer extends MY_Controller {
 		}
 		
 		return !$this->error;
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'sale/product/manufacturer')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/manufacturer'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

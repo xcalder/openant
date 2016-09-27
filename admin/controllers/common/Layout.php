@@ -10,7 +10,7 @@ class Layout extends MY_Controller{
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/common/layout')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -26,10 +26,10 @@ class Layout extends MY_Controller{
 	public function delete(){
 		$this->document->setTitle('删除布局');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$this->layout_model->delete($this->input->post('selected'));
 			$this->session->set_flashdata('success', '成功：布局删除成功！');
-			redirect(site_url('common/layout'), 'location', 301);
+			redirect(site_url('common/layout'));
 		}
 		
 		$this->get_list();
@@ -42,7 +42,7 @@ class Layout extends MY_Controller{
 			//验证通过，更新表
 			$this->layout_model->edit($this->input->post());
 			$this->session->set_flashdata('success', '成功：布局修改成功！');
-			redirect(site_url('common/layout'), 'location', 301);
+			redirect(site_url('common/layout'));
 		}
 		$this->get_form();
 	}
@@ -54,7 +54,7 @@ class Layout extends MY_Controller{
 			//验证通过，更新表
 			$this->layout_model->add($this->input->post());
 			$this->session->set_flashdata('success', '成功：添加布局成功！');
-			redirect(site_url('common/layout'), 'location', 301);
+			redirect(site_url('common/layout'));
 		}
 		
 		$this->get_form();
@@ -150,8 +150,22 @@ class Layout extends MY_Controller{
 		$this->load->view('theme/default/template/common/layout_list',$data);
 	}
 	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/common/layout')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/layout'));
+			exit();
+		}else{
+			return TRUE;
+		}
+	}
+	
 	public function validate_form(){
-		
+		if (!$this->user->hasPermission('modify', 'admin/common/layout')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/layout'));
+			exit();
+		}
 		
 		if((utf8_strlen($this->input->post('base')['name']) < 2) || (utf8_strlen($this->input->post('base')['name']) > 255)){
 			$this->error['error_name']='名称2——255字符';

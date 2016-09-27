@@ -10,7 +10,7 @@ class User_class extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/user/user_class')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -32,7 +32,7 @@ class User_class extends MY_Controller {
 			
 			$this->user_class_model->add_user_class($this->input->post());
 			
-			redirect(site_url('user/user_class'), 'location', 301);
+			redirect(site_url('user/user_class'));
 		}
 		
 		$this->get_from();
@@ -58,7 +58,7 @@ class User_class extends MY_Controller {
 			
 			$this->user_class_model->edit_user_class_description($this->input->get('user_class_id'), $description);
 			
-			redirect(site_url('user/user_class'), 'location', 301);
+			redirect(site_url('user/user_class'));
 		}
 		
 		$this->get_from();
@@ -72,7 +72,7 @@ class User_class extends MY_Controller {
 			$this->user_class_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：买家组删除成功！');
-			redirect(site_url('user/user_class'), 'location', 301);
+			redirect(site_url('user/user_class'));
 		}
 		
 		$this->get_list();
@@ -171,6 +171,10 @@ class User_class extends MY_Controller {
 	}
 	
 	private function valid_user_class_name($user_class_description){
+		if (!$this->user->hasPermission('modify', 'admin/user/user_class')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
 		
 		foreach($user_class_description as $key=>$value){
 			if(!$this->form_validation->min_length($user_class_description[$key]['name'],'2') || !$this->form_validation->max_length($user_class_description[$key]['name'],'32')){
@@ -186,6 +190,11 @@ class User_class extends MY_Controller {
 	
 	private function valid_delete()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/user/user_class')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
+		
 		foreach($this->input->post('selected') as $value){
 			if($this->user_class_model->check_delete($value) === FALSE){
 				$this->session->set_flashdata('fali', '警告：你正在删除的买家组被使用，无法删除！');

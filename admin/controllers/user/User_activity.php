@@ -72,7 +72,7 @@ class User_activity extends MY_Controller {
 					$activitys[$key]['comment']='游客'.$comment[$key]->nickname.'提交一个<a href="'.$comment[$key]->order_id.'">新订单</a>';
 				}
 				if(isset($user_activitys['user_activitys'][$key]['key']) && $user_activitys['user_activitys'][$key]['key'] == 'register'){
-					$activitys[$key]['comment']='<a href="'. $comment[$key]->user_id .'">'.$comment[$key]->nickname.'</a>注册了一个新帐号';
+					@$activitys[$key]['comment']='<a href="'. $comment[$key]->user_id .'">'.$comment[$key]->nickname.'</a>注册了一个新帐号';
 				}
 				if(isset($user_activitys['user_activitys'][$key]['key']) && $user_activitys['user_activitys'][$key]['key'] == 'order_account'){
 					$activitys[$key]['comment']='<a href="'.$comment[$key]->user_id.'">'.$comment[$key]->nickname.'</a>提交了一个<a href="'.$comment[$key]->order_id.'">新订单</a>';

@@ -10,7 +10,7 @@ class Language extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/localisation/language')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -30,7 +30,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->language_model->add($this->input->post());
 			
-			redirect(site_url('localisation/language'), 'location', 301);
+			redirect(site_url('localisation/language'));
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->language_model->edit($this->input->post());
 			
-			redirect(site_url('localisation/language'), 'location', 301);
+			redirect(site_url('localisation/language'));
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->language_model->delete($this->input->post('selected'));
 			
-			redirect(site_url('localisation/language'), 'location', 301);
+			redirect(site_url('localisation/language'));
 		}
 		
 		$this->get_list();
@@ -205,6 +205,10 @@ class Language extends MY_Controller {
 	}
 	
 	public function validate_delete(){
+		if (!$this->user->hasPermission('modify', 'admin/localisation/language')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
 		
 		if($this->language_model->check_delete($this->input->post('selected'))){
 			$this->error['wring_delete']='有一个删除的语言设置正在被使用';
@@ -215,7 +219,10 @@ class Language extends MY_Controller {
 	
 	//验证表单
 	public function validate_form(){
-		
+		if (!$this->user->hasPermission('modify', 'admin/localisation/language')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
 		
 		if((utf8_strlen($this->input->post('name')) < 2) || (utf8_strlen($this->input->post('name')) > 32)){
 			$this->error['error_name']='语言名称2——32字符';

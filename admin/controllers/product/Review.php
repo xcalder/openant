@@ -8,7 +8,7 @@ class Review extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/product/review')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('common/review_model'));
@@ -23,11 +23,11 @@ class Review extends MY_Controller {
 	
 	public function delete(){
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
+		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
 			
 			$this->review_model->del_review($this->input->post('selected'));
 		}
-		redirect(site_url('product/review'), 'location', 301);
+		redirect(site_url('product/review'));
 		
 		$this->get_list();
 	}
@@ -79,5 +79,15 @@ class Review extends MY_Controller {
 		$data['footer']=$this->footer->index();
 		
 		$this->load->view('theme/default/template/product/review',$data);
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/product/review')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/review'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

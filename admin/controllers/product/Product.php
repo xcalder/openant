@@ -9,7 +9,7 @@ class Product extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/product/product')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('currency'));
@@ -87,6 +87,12 @@ class Product extends MY_Controller {
 	}
 	
 	public function invalid(){
+		if (!$this->user->hasPermission('modify', 'admin/product/product')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/product'));
+			exit();
+		}
+		
 		if(!$_SERVER['REQUEST_METHOD']=="POST"){
 			return FALSE;
 		}
@@ -113,10 +119,16 @@ class Product extends MY_Controller {
 			$this->product_model->invalid($this->input->post('product_id'), $data);
 		}
 		
-		redirect(site_url('product/product'), 'location', 301);
+		redirect(site_url('product/product'));
 	}
 	
 	public function uninvalid(){
+		if (!$this->user->hasPermission('modify', 'admin/product/product')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/product'));
+			exit();
+		}
+		
 		if(!$_SERVER['REQUEST_METHOD']=="POST"){
 			return FALSE;
 		}
@@ -128,6 +140,6 @@ class Product extends MY_Controller {
 			$this->product_model->invalid($this->input->post('product_id'), $data);
 		}
 		
-		redirect(site_url('product/product'), 'location', 301);
+		redirect(site_url('product/product'));
 	}
 }

@@ -9,7 +9,7 @@ class information extends MY_Controller{
 		$this->load->language('information/information');
 		if(!$this->user->hasPermission('access', 'admin/information/information')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('information/information_model', 'information/information_category_model', 'common/language_model'));
@@ -27,7 +27,7 @@ class information extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_model->edit($this->input->post());
 			
-			redirect(site_url('information/information'), 'location', 301);
+			redirect(site_url('information/information'));
 		}
 		
 		$this->get_form();
@@ -40,7 +40,7 @@ class information extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_model->add($this->input->post());
 			
-			redirect(site_url('information/information'), 'location', 301);
+			redirect(site_url('information/information'));
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class information extends MY_Controller{
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->information_model->delete($this->input->post('selected'));
 			
-			redirect(site_url('information/information'), 'location', 301);
+			redirect(site_url('information/information'));
 		}
 		$this->get_list();
 	}
@@ -170,11 +170,11 @@ class information extends MY_Controller{
 	
 	//验证表单
 	private function validateForm(){
-		/*
-		if (!$this->user->hasPermission('modify', 'information/information')) {
-		$this->error['warning'] = '没有权限修改';
+		if (!$this->user->hasPermission('modify', 'admin/information/information')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
 		}
-		*/
+		
 		foreach($this->input->post('information_description') as $language_id => $value){
 			if((utf8_strlen($value['title']) < 2) || (utf8_strlen($value['title']) > 255)){
 				$this->error['information'][$language_id]['error_title'] = '文章名2——255字符';
@@ -190,6 +190,11 @@ class information extends MY_Controller{
 	
 	//验证删除
 	public function validate_delete($data){
+		if (!$this->user->hasPermission('modify', 'admin/information/information')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		if($this->information_model->check_delete($this->input->post('selected'))){
 			$this->error['wring_delete']='有一个删除的货币设置正在被使用';
 		}

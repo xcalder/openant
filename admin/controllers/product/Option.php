@@ -10,7 +10,7 @@ class Option extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/product/option')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -36,7 +36,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->edit_option($data);
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->add_option($data);
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 		}
 		
 		$this->get_form();
@@ -69,7 +69,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->edit_option_group($data);
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 		}
 		
 		$this->get_form();
@@ -85,7 +85,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->add_option_group($data);
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 		}
 		
 		$this->get_form();
@@ -98,7 +98,7 @@ class Option extends MY_Controller {
 		if(!empty($this->input->post('selected')) && $this->validate_delete_option($this->input->post('selected'))){
 			$this->option_model->delete_option($this->input->post('selected'));
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 			
 		}
 		$this->get_list();
@@ -111,7 +111,7 @@ class Option extends MY_Controller {
 		if(!empty($this->input->post('selected_group')) && $this->validate_delete_option_group($this->input->post('selected_group'))){
 			$this->option_model->delete_option_group($this->input->post('selected_group'));
 			
-			redirect(site_url('product/option'), 'location', 301);
+			redirect(site_url('product/option'));
 			
 		}
 		$this->get_list();
@@ -294,6 +294,12 @@ class Option extends MY_Controller {
 	
 	
 	public function validate_delete_option($data){
+		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/option'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -308,6 +314,12 @@ class Option extends MY_Controller {
 	}
 	
 	public function validate_delete_option_group($data){
+		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/option'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -323,6 +335,12 @@ class Option extends MY_Controller {
 	
 	public function validate_option()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/option'));
+			exit();
+		}
+		
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['name']) < 2) || (utf8_strlen($description[$key]['name']) > 255)){
@@ -338,6 +356,12 @@ class Option extends MY_Controller {
 	
 	public function validate_option_group()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/option'));
+			exit();
+		}
+		
 		$description=$this->input->post('group_description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['option_group_name']) < 2) || (utf8_strlen($description[$key]['option_group_name']) > 255)){

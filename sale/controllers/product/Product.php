@@ -8,7 +8,7 @@ class Product extends MY_Controller{
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'sale/product/product')){
 			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
-			redirect(base_url(), 'location', 301);
+			redirect(base_url());
 			exit;
 		}
 		$this->load->library(array('currency'));
@@ -25,7 +25,7 @@ class Product extends MY_Controller{
 	public function add(){
 		$this->document->setTitle('添加商品');
 		if(!$_SERVER['REQUEST_METHOD']=="POST" || $this->input->post('parent_id') == NULL){
-			redirect(site_url('product/product/select_category'), 'location', 301);
+			redirect(site_url('product/product/select_category'));
 		}
 		
 		$this->get_form();
@@ -34,9 +34,9 @@ class Product extends MY_Controller{
 	//添加商品
 	public function add_product(){
 		$this->document->setTitle('添加商品');
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$this->product_model->add_product($this->input->post());
-			redirect(site_url('product/product'), 'location', 301);
+			redirect(site_url('product/product'));
 		}
 		
 		$this->get_form();
@@ -47,12 +47,12 @@ class Product extends MY_Controller{
 		$this->document->setTitle('编辑商品');
 		
 		if($this->input->get('product_id') == NULL){
-			redirect(site_url('product/product/select_category'), 'location', 301);
+			redirect(site_url('product/product/select_category'));
 		}
 		
-		if($_SERVER['REQUEST_METHOD']=="POST"){
+		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$this->product_model->edit_product($this->input->post());
-			redirect(site_url('product/product'), 'location', 301);
+			redirect(site_url('product/product'));
 		}
 		$this->get_form();
 	}
@@ -76,10 +76,10 @@ class Product extends MY_Controller{
 	public function added(){
 		$this->document->setTitle('批量上架商品');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
+		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
 			$this->product_model->added($this->input->post('selected'));
 		}
-		redirect(site_url('product/product'), 'location', 301);
+		redirect(site_url('product/product'));
 		
 		$this->get_list();
 	}
@@ -87,22 +87,22 @@ class Product extends MY_Controller{
 	public function shelves(){
 		$this->document->setTitle('批量下架商品');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
+		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
 			$this->product_model->shelves($this->input->post('selected'));
 		}
 		
-		redirect(site_url('product/product'), 'location', 301);
+		redirect(site_url('product/product'));
 		
 		$this->get_list();
 	}
 	public function delete(){
 		$this->document->setTitle('批量下架商品');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
+		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
 			$this->product_model->delete_product($this->input->post('selected'));
 		}
 		
-		redirect(site_url('product/product'), 'location', 301);
+		redirect(site_url('product/product'));
 		
 		$this->get_list();
 	}
@@ -421,5 +421,15 @@ class Product extends MY_Controller{
 		->set_content_type('application/json')
 		->set_output(json_encode($json));
 
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'sale/product/product')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/product'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

@@ -19,7 +19,7 @@ class Extension extends MY_Controller{
 	public function install_module(){
 		$this->document->setTitle ( '扩展模块安装' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'module';
 			$this->extension_model->install ( $data );
@@ -32,7 +32,7 @@ class Extension extends MY_Controller{
 	public function install_payment(){
 		$this->document->setTitle ( '支付模块安装' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'payment';
 			$this->extension_model->install ( $data );
@@ -47,7 +47,7 @@ class Extension extends MY_Controller{
 	public function install_delivery(){
 		$this->document->setTitle ( '配送模块安装' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'delivery';
 			$this->extension_model->install ( $data );
@@ -62,7 +62,7 @@ class Extension extends MY_Controller{
 	public function install_overall(){
 		$this->document->setTitle ( '全局模块安装' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'overall';
 			$this->extension_model->install ( $data );
@@ -77,7 +77,7 @@ class Extension extends MY_Controller{
 	public function install_sign_in_with(){
 		$this->document->setTitle ( '第三方登陆安装' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'sign_in_with';
 			$this->extension_model->install ( $data );
@@ -90,7 +90,7 @@ class Extension extends MY_Controller{
 	public function uninstall_module(){
 		$this->document->setTitle ( '扩展模块卸载' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'module';
 			$this->extension_model->uninstall ( $data );
@@ -105,7 +105,7 @@ class Extension extends MY_Controller{
 	public function uninstall_sign_in_with(){
 		$this->document->setTitle ( '第三方登陆卸载' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'sign_in_with';
 			$this->extension_model->uninstall ( $data );
@@ -120,7 +120,7 @@ class Extension extends MY_Controller{
 	public function uninstall_overall(){
 		$this->document->setTitle ( '全局模块卸载' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'overall';
 			$this->extension_model->uninstall ( $data );
@@ -135,7 +135,7 @@ class Extension extends MY_Controller{
 	public function uninstall_delivery(){
 		$this->document->setTitle ( '配送模块卸载' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'delivery';
 			$this->extension_model->uninstall ( $data );
@@ -148,7 +148,7 @@ class Extension extends MY_Controller{
 	public function uninstall_payment(){
 		$this->document->setTitle ( '支付模块卸载' );
 		
-		if($this->input->get ( 'extension' )){
+		if($this->input->get ( 'extension' ) && $this->check_modify()){
 			$data ['code'] = $this->input->get ( 'extension' );
 			$data ['type'] = 'payment';
 			$this->extension_model->uninstall ( $data );
@@ -263,5 +263,15 @@ class Extension extends MY_Controller{
 			}
 		}
 		return $arr;
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'admin/common/extension')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/extension/module'));
+			exit();
+		}else{
+			return TRUE;
+		}
 	}
 }

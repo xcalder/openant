@@ -8,7 +8,7 @@ class Sale extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/sale/sale')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('currency'));
@@ -73,6 +73,12 @@ class Sale extends MY_Controller {
 	}
 	
 	public function invalid(){
+		if (!$this->user->hasPermission('modify', 'admin/sale/sale')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('sale/sale'));
+			exit();
+		}
+		
 		if(!$_SERVER['REQUEST_METHOD']=="POST"){
 			return FALSE;
 		}
@@ -99,10 +105,16 @@ class Sale extends MY_Controller {
 			$this->store_model->invalid($this->input->post('store_id'), $data);
 		}
 		
-		redirect(site_url('sale/sale'), 'location', 301);
+		redirect(site_url('sale/sale'));
 	}
 	
 	public function uninvalid(){
+		if (!$this->user->hasPermission('modify', 'admin/sale/sale')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('sale/sale'));
+			exit();
+		}
+		
 		if(!$_SERVER['REQUEST_METHOD']=="POST"){
 			return FALSE;
 		}
@@ -114,6 +126,6 @@ class Sale extends MY_Controller {
 			$this->store_model->invalid($this->input->post('store_id'), $data);
 		}
 		
-		redirect(site_url('sale/sale'), 'location', 301);
+		redirect(site_url('sale/sale'));
 	}
 }

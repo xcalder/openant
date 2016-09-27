@@ -9,7 +9,7 @@ class Information_category extends MY_Controller{
 		$this->load->language('information/information_category');
 		if(!$this->user->hasPermission('access', 'admin/information/information_category')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('information/information_category_model','common/language_model'));
@@ -27,7 +27,7 @@ class Information_category extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_category_model->edit($this->input->post());
 			
-			redirect(site_url('information/information_category'), 'location', 301);
+			redirect(site_url('information/information_category'));
 		}
 		
 		$this->get_form();
@@ -40,7 +40,7 @@ class Information_category extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_category_model->add($this->input->post());
 			
-			redirect(site_url('information/information_category'), 'location', 301);
+			redirect(site_url('information/information_category'));
 		}
 		
 		$this->get_form();
@@ -52,7 +52,11 @@ class Information_category extends MY_Controller{
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->information_category_model->delete($this->input->post('selected'));
 			
-			redirect(site_url('information/information_category'), 'location', 301);
+			redirect(site_url('information/information_category'));
+		}
+		
+		if(!empty($this->error)){
+			$this->session->set_flashdata('success',implode($this->error));
 		}
 		$this->get_list();
 	}
@@ -190,11 +194,12 @@ class Information_category extends MY_Controller{
 	
 	//验证表单
 	private function validateForm(){
-		/*
-		if (!$this->user->hasPermission('modify', 'information/information_category')) {
-		$this->error['warning'] = '没有权限修改';
+		
+		if (!$this->user->hasPermission('modify', 'admin/information/information_category')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
 		}
-		*/
+		
 		foreach($this->input->post('information_category_description') as $language_id => $value){
 			if((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 255)){
 				$this->error['name'][$language_id]['error_name'] = '分类名2——255字符';
@@ -210,8 +215,13 @@ class Information_category extends MY_Controller{
 	
 	//验证删除
 	public function validate_delete($data){
+		if (!$this->user->hasPermission('modify', 'admin/information/information_category')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		if($this->information_category_model->check_delete($this->input->post('selected'))){
-			$this->error['wring_delete']='有一个删除的货币设置正在被使用';
+			$this->error['wring_delete']='有一个删除的分类正在被使用';
 		}
 		
 		return !$this->error;

@@ -11,7 +11,7 @@ class User_group extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/user/user_group')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -33,7 +33,7 @@ class User_group extends MY_Controller {
 			
 			$this->user_model->add_user_group($this->input->post());
 			
-			redirect(site_url('user/user_group'), 'location', 301);
+			redirect(site_url('user/user_group'));
 		}
 		
 		$this->get_from();
@@ -73,7 +73,7 @@ class User_group extends MY_Controller {
 			
 			$this->user_model->edit_user_group_description($this->input->get('user_group_id'), $description);
 			
-			redirect(site_url('user/user_group'), 'location', 301);
+			redirect(site_url('user/user_group'));
 		}
 		
 		$this->get_from();
@@ -87,7 +87,7 @@ class User_group extends MY_Controller {
 			$this->user_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：权限组删除成功！');
-			redirect(site_url('user/user_group'), 'location', 301);
+			redirect(site_url('user/user_group'));
 		}
 		
 		$this->get_list();
@@ -271,7 +271,10 @@ class User_group extends MY_Controller {
 	}
 	
 	private function valid_user_group_name($user_group_description){
-		
+		if (!$this->user->hasPermission('modify', 'admin/user/user_group')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
 		foreach($user_group_description as $key=>$value){
 			if(!$this->form_validation->min_length($user_group_description[$key]['name'],'2') || !$this->form_validation->max_length($user_group_description[$key]['name'],'32')){
 				$this->error[$key]['error_name']='名称长度2——32字符';
@@ -286,6 +289,10 @@ class User_group extends MY_Controller {
 	
 	private function valid_delete()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/user/user_group')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
 		foreach($this->input->post('selected') as $value){
 			if($this->user_model->check_delete($value) === FALSE){
 				$this->session->set_flashdata('fali', '警告：你正在删除的权限组被使用，无法删除！');

@@ -36,23 +36,36 @@ class Upload extends CI_Controller {
         
         $this->upload->initialize($config);
         
-        if (!$this->upload->do_upload('file'))
-        {
-            $json['error'] = $this->upload->display_errors('','');
-
+        if($this->check_modify()){
+        	if (!$this->upload->do_upload('file'))
+        	{
+        		$json['error'] = $this->upload->display_errors('','');
+        	
+        	}
+        	else
+        	{
+        		$json['success']['move_path'] = 'upload/'. $this->user_directory.'/'.$this->upload->data()['file_name'];
+        		$json['success']['cache_path'] = 'upload/upload_cache/'. $this->user_directory.'/'.$this->upload->data()['file_name'];
+        		$json['success']['client_name'] = $this->upload->data()['client_name'];
+        	
+        	}
+        }else{
+        	$json['error'] = '无权上传';
         }
-        else
-        {
-            $json['success']['move_path'] = 'upload/'. $this->user_directory.'/'.$this->upload->data()['file_name'];
-            $json['success']['cache_path'] = 'upload/upload_cache/'. $this->user_directory.'/'.$this->upload->data()['file_name'];
-            $json['success']['client_name'] = $this->upload->data()['client_name'];
-
-        }
-        //var_dump($this->input->post());
-        
+       
         $this->output
 			    ->set_content_type('application/json')
 			    ->set_output(json_encode($json, JSON_UNESCAPED_UNICODE));
 			    
+	}
+	
+	public function check_modify(){
+		if (!$this->user->hasPermission('modify', 'sale/common/upload')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('extension_config/module/slideshow'));
+			exit();
+		}else {
+			return true;
+		}
 	}
 }

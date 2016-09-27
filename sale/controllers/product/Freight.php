@@ -10,7 +10,7 @@ class Freight extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'sale/product/freight')){
 			$this->session->set_flashdata('fali', '你没有访问商家后台的权限！');
-			redirect(base_url(), 'location', 301);
+			redirect(base_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -36,7 +36,7 @@ class Freight extends MY_Controller {
 			
 			$this->freight_model->edit_freight($data);
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Freight extends MY_Controller {
 			
 			$this->freight_model->add_freight($data);
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 		}
 		
 		$this->get_form();
@@ -69,7 +69,7 @@ class Freight extends MY_Controller {
 			
 			$this->freight_model->edit_freight_template($data);
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 		}
 		
 		$this->get_form();
@@ -85,7 +85,7 @@ class Freight extends MY_Controller {
 			
 			$this->freight_model->add_freight_template($data);
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 		}
 		
 		$this->get_form();
@@ -98,7 +98,7 @@ class Freight extends MY_Controller {
 		if(!empty($this->input->post('selected')) && $this->validate_delete_freight($this->input->post('selected'))){
 			$this->freight_model->delete_freight($this->input->post('selected'));
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 			
 		}
 		$this->get_list();
@@ -111,7 +111,7 @@ class Freight extends MY_Controller {
 		if(!empty($this->input->post('selected_group')) && $this->validate_delete_freight_template($this->input->post('selected_group'))){
 			$this->freight_model->delete_freight_template($this->input->post('selected_group'));
 			
-			redirect(site_url('product/freight'), 'location', 301);
+			redirect(site_url('product/freight'));
 			
 		}
 		$this->get_list();
@@ -312,6 +312,12 @@ class Freight extends MY_Controller {
 	
 	
 	public function validate_delete_freight($data){
+		if (!$this->user->hasPermission('modify', 'sale/product/freight')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/freight'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -326,6 +332,12 @@ class Freight extends MY_Controller {
 	}
 	
 	public function validate_delete_freight_template($data){
+		if (!$this->user->hasPermission('modify', 'sale/product/freight')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/freight'));
+			exit();
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -341,6 +353,11 @@ class Freight extends MY_Controller {
 	
 	public function validate_freight()
 	{
+		if (!$this->user->hasPermission('modify', 'sale/product/freight')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/freight'));
+			exit();
+		}
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['name']) < 2) || (utf8_strlen($description[$key]['name']) > 255)){
@@ -356,6 +373,12 @@ class Freight extends MY_Controller {
 	
 	public function validate_freight_template()
 	{
+		if (!$this->user->hasPermission('modify', 'sale/product/freight')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('product/freight'));
+			exit();
+		}
+		
 		$description=$this->input->post('group_description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['freight_template_name']) < 2) || (utf8_strlen($description[$key]['freight_template_name']) > 255)){

@@ -10,7 +10,7 @@ class Tax_rate extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/localisation/tax_rate')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -30,7 +30,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->Tax_rate_model->add($this->input->post());
 			
-			redirect(site_url('localisation/tax_rate'), 'location', 301);
+			redirect(site_url('localisation/tax_rate'));
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->Tax_rate_model->edit($this->input->post());
 			
-			redirect(site_url('localisation/tax_rate'), 'location', 301);
+			redirect(site_url('localisation/tax_rate'));
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->Tax_rate_model->delete_tax_rate($this->input->post('selected'));
 			
-			redirect(site_url('localisation/tax_rate'), 'location', 301);
+			redirect(site_url('localisation/tax_rate'));
 		}
 		
 		$this->get_list();
@@ -182,6 +182,10 @@ class Tax_rate extends MY_Controller {
 	}
 	
 	public function validate_delete(){
+		if (!$this->user->hasPermission('modify', 'admin/localisation/tax_rate')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
 		
 		if($this->Tax_rate_model->check_delete_tax_rate($this->input->post('selected'))){
 			$this->error['wring_delete']='有一个删除的税率设置正在被使用';
@@ -192,6 +196,10 @@ class Tax_rate extends MY_Controller {
 	
 	//验证表单
 	public function validate_form(){
+		if (!$this->user->hasPermission('modify', 'admin/localisation/tax_rate')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
 		
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){

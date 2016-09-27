@@ -10,7 +10,7 @@ class Sale_class extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/sale/sale_class')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -32,7 +32,7 @@ class Sale_class extends MY_Controller {
 			
 			$this->sale_class_model->add_sale_class($this->input->post());
 			
-			redirect(site_url('sale/sale_class'), 'location', 301);
+			redirect(site_url('sale/sale_class'));
 		}
 		
 		$this->get_from();
@@ -58,7 +58,7 @@ class Sale_class extends MY_Controller {
 			
 			$this->sale_class_model->edit_sale_class_description($this->input->get('sale_class_id'), $description);
 			
-			redirect(site_url('sale/sale_class'), 'location', 301);
+			redirect(site_url('sale/sale_class'));
 		}
 		
 		$this->get_from();
@@ -72,7 +72,7 @@ class Sale_class extends MY_Controller {
 			$this->sale_class_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：商家组删除成功！');
-			redirect(site_url('sale/sale_class'), 'location', 301);
+			redirect(site_url('sale/sale_class'));
 		}
 		
 		$this->get_list();
@@ -172,6 +172,10 @@ class Sale_class extends MY_Controller {
 	}
 	
 	private function valid_sale_class_name($sale_class_description){
+		if (!$this->user->hasPermission('modify', 'admin/sale/sale_class')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
 		
 		foreach($sale_class_description as $key=>$value){
 			if(!$this->form_validation->min_length($sale_class_description[$key]['name'],'2') || !$this->form_validation->max_length($sale_class_description[$key]['name'],'32')){
@@ -187,6 +191,11 @@ class Sale_class extends MY_Controller {
 	
 	private function valid_delete()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/sale/sale_class')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['danger']='无权修改';
+		}
+		
 		foreach($this->input->post('selected') as $value){
 			if($this->sale_class_model->check_delete($value) === FALSE){
 				$this->session->set_flashdata('fali', '警告：你正在删除的商家组被使用，无法删除！');

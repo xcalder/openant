@@ -46,7 +46,7 @@ class Banner extends MY_Controller {
 	public function delete() {
 		$this->document->setTitle ( '删除Banner' );
 		
-		if ($_SERVER ['REQUEST_METHOD'] == "POST") {
+		if ($_SERVER ['REQUEST_METHOD'] == "POST" && $this->check_delete($this->input->post('selected'))) {
 			$this->banner_model->delete ( $this->input->post ( 'selected' ) );
 			$this->session->set_flashdata ( 'success', '成功：删除Banner成功！' );
 			redirect ( site_url ( 'common/banner' ), 'location', 301 );
@@ -163,10 +163,33 @@ class Banner extends MY_Controller {
 	
 	// 验证表单
 	public function validate_form() {
+		if (!$this->user->hasPermission('modify', 'admin/common/banner')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/banner'));
+			exit();
+		}
+		
 		if ((utf8_strlen ( $this->input->post ( 'base' )['name'] ) < 1) || (utf8_strlen ( $this->input->post ( 'base' )['name'] ) > 64)) {
 			$this->error ['error_name'] = 'Banner名称1——64字符';
 		}
 		
 		return ! $this->error;
+	}
+	
+	public function check_delete($data){
+		if (!$this->user->hasPermission('modify', 'admin/common/banner')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('common/banner'));
+			exit();
+		}
+		$this->load->model('common/banner_model');
+		
+		if($this->banner_model->check_delete($data)){
+			$this->session->set_flashdata('danger', 'banner正在被使用，不能删除！');
+			redirect(site_url('common/banner'));
+			exit();
+		}
+		
+		//return ! $this->error;
 	}
 }

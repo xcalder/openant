@@ -8,9 +8,9 @@ class Weibo extends MY_Controller {
 		parent::__construct();
 		$this->load->helper(array('directory'));
 		$this->load->language('wecome');
-		if(!$this->user->hasPermission('access', 'admin/extension/sign_in_with/weibo')){
+		if(!$this->user->hasPermission('access', 'admin/extension_config/sign_in_with/weibo')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->model(array('setting/sign_in_with_model'));
@@ -28,7 +28,7 @@ class Weibo extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->sign_in_with_model->add($this->input->post(), 'sign_in_with', 'weibo');
 			
-			redirect(site_url('common/extension/sign_in_with'), 'location', 301);
+			redirect(site_url('common/extension/sign_in_with'));
 		}
 		
 		$this->get_form();
@@ -98,11 +98,11 @@ class Weibo extends MY_Controller {
 	
 	//验证表单
 	private function validateForm(){
-		/*
-		if (!$this->user->hasPermission('modify', 'information/information')) {
-		$this->error['warning'] = '没有权限修改';
-		}
-		*/
+		if (!$this->user->hasPermission('modify', 'admin/extension_config/sign_in_with/weibo')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}		
+
 		if((utf8_strlen($this->input->post('appid')) < 2) || (utf8_strlen($this->input->post('appid')) > 255)){
 			$this->error['appid'] = 'App ID 2——255字符';
 		}

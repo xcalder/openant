@@ -10,7 +10,7 @@ class Attribute extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/product/attribute')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('form_validation'));
@@ -36,7 +36,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->edit_attribute($data);
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->add_attribute($data);
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 		}
 		
 		$this->get_form();
@@ -69,7 +69,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->edit_attribute_group($data);
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 		}
 		
 		$this->get_form();
@@ -85,7 +85,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->add_attribute_group($data);
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 		}
 		
 		$this->get_form();
@@ -98,7 +98,7 @@ class Attribute extends MY_Controller {
 		if(!empty($this->input->post('selected')) && $this->validate_delete_attribute($this->input->post('selected'))){
 			$this->attribute_model->delete_attribute($this->input->post('selected'));
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 			
 		}
 		$this->get_list();
@@ -111,7 +111,7 @@ class Attribute extends MY_Controller {
 		if(!empty($this->input->post('selected_group')) && $this->validate_delete_attribute_group($this->input->post('selected_group'))){
 			$this->attribute_model->delete_attribute_group($this->input->post('selected_group'));
 			
-			redirect(site_url('product/attribute'), 'location', 301);
+			redirect(site_url('product/attribute'));
 			
 		}
 		$this->get_list();
@@ -288,6 +288,11 @@ class Attribute extends MY_Controller {
 	
 	
 	public function validate_delete_attribute($data){
+		if (!$this->user->hasPermission('modify', 'admin/product/attribute')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -302,6 +307,11 @@ class Attribute extends MY_Controller {
 	}
 	
 	public function validate_delete_attribute_group($data){
+		if (!$this->user->hasPermission('modify', 'admin/product/attribute')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		if(empty($data)){
 			return FALSE;
 		}
@@ -317,6 +327,11 @@ class Attribute extends MY_Controller {
 	
 	public function validate_attribute()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/attribute')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['name']) < 2) || (utf8_strlen($description[$key]['name']) > 255)){
@@ -332,6 +347,11 @@ class Attribute extends MY_Controller {
 	
 	public function validate_attribute_group()
 	{
+		if (!$this->user->hasPermission('modify', 'admin/product/attribute')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			$this->error['warning'] = '没有权限修改';
+		}
+		
 		$description=$this->input->post('group_description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['group_name']) < 2) || (utf8_strlen($description[$key]['group_name']) > 255)){

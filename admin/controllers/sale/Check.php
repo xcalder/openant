@@ -74,6 +74,12 @@ class Check extends MY_Controller {
 	}
 	
 	public function pass(){
+		if (!$this->user->hasPermission('modify', 'admin/sale/check')) {
+			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
+			redirect(site_url('sale/check'));
+			exit();
+		}
+		
 		if($this->input->post('store_id') == NULL || $this->input->post('user_id') == NULL){
 			return;
 		}

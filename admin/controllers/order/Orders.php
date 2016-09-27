@@ -8,7 +8,7 @@ class Orders extends MY_Controller {
 		$this->load->language('wecome');
 		if(!$this->user->hasPermission('access', 'admin/order/orders')){
 			$this->session->set_flashdata('fali', '你没有访问权限！');
-			redirect(site_url(), 'location', 301);
+			redirect(site_url());
 			exit;
 		}
 		$this->load->library(array('currency'));
@@ -101,6 +101,10 @@ class Orders extends MY_Controller {
 	}
 	
 	public function add_callout(){
+		if (!$this->user->hasPermission('modify', 'admin/order/orders')) {
+			$data['error'] = '没有权限修改';
+		}
+		
 		if($this->input->post('order_id') == NULL || $this->input->post('callout_type') == NULL || $this->input->post('callout_content') == NULL){
 			$data['error']='标注失败';
 		}
@@ -122,8 +126,12 @@ class Orders extends MY_Controller {
 	}
 	
 	public function del_order(){
+		if (!$this->user->hasPermission('modify', 'admin/order/orders')) {
+			$data['error'] = '没有权限修改';
+		}
+		
 		if($this->input->post('order_id') == NULL){
-			$data['error']='标注失败';
+			$data['error']='删除失败！';
 		}
 		
 		if(!isset($data)){
