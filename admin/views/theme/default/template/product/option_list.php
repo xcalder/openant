@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品选项列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/option/add_option.html#edit-option" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗？') ? $('#form-option').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/option/add_option.html#edit-option" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗？') ? $('#form-option').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -33,7 +33,7 @@
 									<td><?php echo $option['name'];?></td>
 									<td><?php echo $option['option_group_name'];?></td>
 									<td><?php echo $option['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/option/edit_option?option_id='.$option['option_id'])?>#edit-option" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/option/edit_option?option_id='.$option['option_id'])?>#edit-option" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>
@@ -55,8 +55,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品选项组列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/option/add_option_group.html#edit-option-group" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗') ? $('#form-option-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/option/add_option_group.html#edit-option-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗') ? $('#form-option-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -78,7 +78,7 @@
 									<td class="text-center"><input type="checkbox" name="selected_group[]" value="<?php echo $option_group['option_group_id']; ?>" /></td>
 									<td><?php echo $option_group['option_group_name'];?></td>
 									<td><?php echo $option_group['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/option/edit_option_group?option_group_id='.$option_group['option_group_id'])?>#edit-option-group" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/option/edit_option_group?option_group_id='.$option_group['option_group_id'])?>#edit-option-group" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

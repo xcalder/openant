@@ -8,8 +8,8 @@
       	<div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;会员列表</p>
 			<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-				<a href="<?php echo site_url('user/user/add')?>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-				<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></button>
+				<a href="<?php echo site_url('user/user/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<button type="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
         <!-- /widget-header -->
@@ -74,7 +74,7 @@
 						<div class="form-group col-sm-3">
 							<label style="display: block">搜索</label>
 							<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>">
-							<button type="button" onclick="submit('form-user-list')" class="btn"><i class="glyphicon glyphicon-search"></i>&nbsp;搜索</button>
+							<button type="button" onclick="submit('form-user-list')" class="btn btn-sm"><i class="glyphicon glyphicon-search"></i>&nbsp;搜索</button>
 						</div>
             		
             		</form>

@@ -11,11 +11,11 @@
 						</i>&nbsp;Banner列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="<?php echo site_url('common/banner/add')?>" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="添加">
+						<a href="<?php echo site_url('common/banner/add')?>" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="添加">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定删除Banner吗？') ? $('#form-banner').submit() : false;" data-container="body" data-toggle="popover" data-placement="top" data-content="删除">
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除Banner吗？') ? $('#form-banner').submit() : false;" data-container="body" data-toggle="popover" data-placement="top" data-content="删除">
 							<i class="glyphicon glyphicon-trash">
 							</i>
 						</button>
@@ -57,7 +57,7 @@
 										<?php echo ($banner['status'] == '1') ? '启用' : '禁用';?>
 									</td>
 									<td class="text-right">
-										<a href="<?php echo site_url('common/banner/edit?banner_id=').$banner['banner_id'];?>" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
+										<a href="<?php echo site_url('common/banner/edit?banner_id=').$banner['banner_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
 											<i class="glyphicon glyphicon-edit">
 											</i>
 										</a>

@@ -8,11 +8,11 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>会员活动</p>
 					<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-						<button type="button" onclick="submit('form-user-edit')" class="btn btn-default">
+						<button type="button" onclick="submit('form-user-edit')" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo site_url('user/user');?>" class="btn btn-default">
+						<a href="<?php echo site_url('user/user');?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>
@@ -490,7 +490,7 @@
 										<textarea class="form-control" rows="3" id="user-history" name="user_history[comment]" placeholder="昵称"></textarea>
 									</div>
 									<div class="col-sm-12 text-right" style="margin-top: 15px">
-										<button type="button" onclick="add_history();" id="user-history" class="btn">
+										<button type="button" onclick="add_history();" id="user-history" class="btn btn-sm">
 											提交
 										</button>
 									</div>
@@ -566,7 +566,7 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-12 text-right">
-												<button onclick="add_transaction();" type="button" id="submit-user-transactions" class="btn">
+												<button onclick="add_transaction();" type="button" id="submit-user-transactions" class="btn btn-sm">
 													提交
 												</button>
 											</div>
@@ -643,7 +643,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-sm-12 text-right">
-											<button onclick="add_reward();" type="button" id="submit-user-rewards" class="btn">
+											<button onclick="add_reward();" type="button" id="submit-user-rewards" class="btn btn-sm">
 												提交
 											</button>
 										</div>

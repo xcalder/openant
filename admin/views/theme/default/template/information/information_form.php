@@ -11,11 +11,11 @@
 						</i>&nbsp;编辑文章
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<button type="button" onclick="submit('form-information')" class="btn btn-default">
+						<button type="button" onclick="submit('form-information')" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo site_url('information/information');?>" class="btn btn-default">
+						<a href="<?php echo site_url('information/information');?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>

@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;会员列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo site_url('localisation/currency/add')?>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-				<button type="button" class="btn btn-default" onclick="confirm('确定删除货币参数吗？') ? $('#form-currency').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+				<a href="<?php echo site_url('localisation/currency/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除货币参数吗？') ? $('#form-currency').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
         <!-- /widget-header -->
@@ -35,7 +35,7 @@
 						<td><?php echo $currency['code'];?></td>
 						<td><?php echo $currency['value'];?></td>
 						<td><?php echo $currency['date_modified'];?></td>
-						<td class="text-right"><a href="<?php echo site_url('localisation/currency/edit?currency_id=').$currency['currency_id'];?>" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo site_url('localisation/currency/edit?currency_id=').$currency['currency_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

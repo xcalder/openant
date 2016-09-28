@@ -9,7 +9,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<button type="button" class="btn btn-default" onclick="confirm('确定处罚所选商品吗？') ? $('#form-category').submit() : false;" data-container="body" data-toggle="popover" data-placement="top" data-content="批量处罚30天"><i class="glyphicon glyphicon-remove-circle"></i></button>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定处罚所选商品吗？') ? $('#form-category').submit() : false;" data-container="body" data-toggle="popover" data-placement="top" data-content="批量处罚30天"><i class="glyphicon glyphicon-remove-circle"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -60,9 +60,9 @@
 							<td class="text-center"><?php echo $str_invalid;?></td>
 							<td class="text-right">
 								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-success" data-container="body" data-toggle="popover" data-placement="top" data-content="解除屏蔽" <?php echo $uninvalid;?> onclick="uninvalid('<?php echo $product['product_id'];?>');"><i class="glyphicon glyphicon-ok"></i></button>
+									<button type="button" class="btn btn-sm btn-success" data-container="body" data-toggle="popover" data-placement="top" data-content="解除屏蔽" <?php echo $uninvalid;?> onclick="uninvalid('<?php echo $product['product_id'];?>');"><i class="glyphicon glyphicon-ok"></i></button>
 									<div class="btn-group" data-container="body" data-toggle="popover" data-placement="top" data-content="选择屏蔽时间">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php echo $invalid;?>>
+										<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php echo $invalid;?>>
 										<i class="glyphicon glyphicon-calendar"></i>
 										</button>
 										<ul class="dropdown-menu" style="right: 0;left: auto;">
@@ -72,7 +72,7 @@
 											<li onclick="invalid('<?php echo $product['product_id'];?>','90');"><a>90天</a></li>
 										</ul>
 									</div>
-									<button type="button" class="btn btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="永久屏蔽" <?php echo $invalid;?> onclick="invalid('<?php echo $product['product_id'];?>','always');"><i class="glyphicon glyphicon-remove"></i></button>
+									<button type="button" class="btn btn-sm btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="永久屏蔽" <?php echo $invalid;?> onclick="invalid('<?php echo $product['product_id'];?>','always');"><i class="glyphicon glyphicon-remove"></i></button>
 								</div>
 							</td>
 						</tr>

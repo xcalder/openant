@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;品牌列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/manufacturer/add.html" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-manufacturer').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/manufacturer/add.html" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-manufacturer').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -33,7 +33,7 @@
 									<td><?php echo $manufacturer['name'];?></td>
 									<td><?php echo ($manufacturer['status'] == '1') ? '待审核' : '审核通过';?></td>
 									<td><?php echo $manufacturer['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/manufacturer/edit?manufacturer_id='.$manufacturer['manufacturer_id'])?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/manufacturer/edit?manufacturer_id='.$manufacturer['manufacturer_id'])?>" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

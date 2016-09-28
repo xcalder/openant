@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
         	<h3 class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;修改买家组</h3>
         	<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-				<button type="button" onclick="submit('form-user-class-edit')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-				<a href="<?php echo site_url('user/user_class');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+				<button type="button" onclick="submit('form-user-class-edit')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+				<a href="<?php echo site_url('user/user_class');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->

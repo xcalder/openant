@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;国家设置列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo site_url('localisation/country/add')?>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-				<button type="button" class="btn btn-default" onclick="confirm('确定删除国家设置参数吗？') ? $('#form-country').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+				<a href="<?php echo site_url('localisation/country/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除国家设置参数吗？') ? $('#form-country').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
         <!-- /widget-header -->
@@ -33,7 +33,7 @@
 						<td><?php echo $country['name'];?></td>
 						<td><?php echo $country['iso_code_2'];?></td>
 						<td><?php echo $country['iso_code_3'];?></td>
-						<td class="text-right"><a href="<?php echo site_url('localisation/country/edit?country_id=').$country['country_id'];?>" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo site_url('localisation/country/edit?country_id=').$country['country_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

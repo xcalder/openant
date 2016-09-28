@@ -3,12 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo isset($title) ? $title : '楚雄蚂蚁开源软件工作室'; ?></title>
-	<?php
-	if($description):?>
+	<?php if($description):?>
 	<meta name="description" content="<?php echo $description; ?>" />
 	<?php endif;?>
-	<?php
-	if($keywords):?>
+	<?php if($keywords):?>
 	<meta name="keywords" content="<?php echo $keywords; ?>" />
 	<?php endif;?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
@@ -24,20 +22,17 @@
 	<link rel="shortcut icon" href="<?php echo base_url('public/resources/default/image/favicon.png');?>" />
 	
 	<link href="public/min?g=css&v=<?php echo CI_VERSION;?>" rel="stylesheet">
-	<?php
-	foreach($styles as $style):?>
+	<?php foreach($styles as $style):?>
 	<link type="text/css" href="<?php echo $style['href']; ?>" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 	<?php endforeach;?>
-	<?php
-	foreach($links as $link):?>
+	<?php foreach($links as $link):?>
 	<link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 	<?php endforeach;?>
 
 	<script src="public/min?g=js&v=<?php echo CI_VERSION;?>">
 	</script>
 
-	<?php
-	foreach($scripts as $script):?>
+	<?php foreach($scripts as $script):?>
 	<script type="text/javascript" src="<?php echo $script; ?>">
 	</script>
 	<?php endforeach; ?>
@@ -46,14 +41,16 @@
 	<!--[if lt IE 9]>
 	<script src="public/resources/default/js/ie9-html5.js"></script>
 	<![endif]-->
-	<?php
-	if(isset($_SESSION['success'])):?>
+	<?php if(isset($_SESSION['success'])):?>
 	<script type="text/javascript">
 		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['success'];?>',},{type: 'success',});});
 	</script><?php endif;?>
-	<?php
-	if(isset($_SESSION['fali'])):?>
+	<?php if(isset($_SESSION['fali'])):?>
 	<script type="text/javascript">
 		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['fali'];?>' },{type: 'warning'});});
+	</script><?php endif;?>
+	<?php if(isset($_SESSION['danger'])):?>
+	<script type="text/javascript">
+		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['danger'];?>' },{type: 'danger'});});
 	</script><?php endif;?>
 </head>

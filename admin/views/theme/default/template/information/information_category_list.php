@@ -11,11 +11,11 @@
 						</i>&nbsp;文章分类列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/information/information_category/add.html" class="btn btn-default">
+						<a href="admin.php/information/information_category/add.html" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-information_category').submit() : false;">
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-information_category').submit() : false;">
 							<i class="glyphicon glyphicon-trash">
 							</i>
 						</button>
@@ -56,7 +56,7 @@
 									<?php echo $information_category['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$information_category['information_category_id']);?>" class="btn btn-info">
+									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$information_category['information_category_id']);?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>
@@ -77,7 +77,7 @@
 									<?php echo $child['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$child['information_category_id']);?>" class="btn btn-info">
+									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$child['information_category_id']);?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>
@@ -100,7 +100,7 @@
 									<?php echo $information_category['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$information_category['information_category_id']);?>" class="btn btn-info">
+									<a href="<?php echo site_url('information/information_category/edit?information_category_id='.$information_category['information_category_id']);?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>

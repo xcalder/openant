@@ -11,11 +11,11 @@
 						</i>&nbsp;编辑Banner
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<button type="button" onclick="submit('form-banner')" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="保存">
+						<button type="button" onclick="submit('form-banner')" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="保存">
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo site_url('common/banner');?>" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="返回">
+						<a href="<?php echo site_url('common/banner');?>" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="返回">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>
@@ -118,7 +118,7 @@
 												<input type="text" name="image[<?php echo $row;?>][sort_order]" class="form-control" placeholder="排序" value="<?php echo !empty($image['sort_order']) ? $image['sort_order'] : '0';?>">
 											</td>
 											<td class="text-right">
-												<button type="button" onclick="$('#banner-row<?php echo $row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger">
+												<button type="button" onclick="$('#banner-row<?php echo $row; ?>').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger">
 													<i class="glyphicon glyphicon-minus">
 													</i>
 												</button>
@@ -131,7 +131,7 @@
 									<tfoot>
 										<tr>
 											<td colspan="5" class="text-right">
-												<button type="button" onclick="addimg();" data-toggle="tooltip" class="btn btn-primary">
+												<button type="button" onclick="addimg();" data-toggle="tooltip" class="btn btn-sm btn-primary">
 													<i class="glyphicon glyphicon-plus">
 													</i>
 												</button>
@@ -167,7 +167,7 @@
 		html += '<td><a href="" id="thumb-image'+row+'" data-toggle="admin-image" class="img-thumbnail"><img class="lazy" data-original="<?php echo $placeholder_image;?>" data-placeholder="<?php echo $placeholder_image;?>" /></a>';
 		html += '<input type="hidden" name="image['+row+'][image]" value="" id="input-image'+row+'" /></td>';
 		html += '<td><input type="text" name="image['+row+'][sort_order]" class="form-control" placeholder="排序" value="0"></td>';
-		html += '<td class="text-right"><button type="button" onclick="$(\'#banner-row'+row+'\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
+		html += '<td class="text-right"><button type="button" onclick="$(\'#banner-row'+row+'\').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
 
 		$('#banner tbody').append(html);
 

@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑区域设置</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
-			  <button type="button" onclick="submit('form-geo_zone')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo site_url('localisation/geo_zone');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <button type="button" onclick="submit('form-geo_zone')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+			  <a href="<?php echo site_url('localisation/geo_zone');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->
@@ -72,7 +72,7 @@
 										
 									</select>
 								</td>
-								<td class="text-right"><button type="button" onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
+								<td class="text-right"><button type="button" onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
 							</tr>
 							<?php $zone_to_geo_zone_row++; ?>
 							<?php endforeach;?>
@@ -81,7 +81,7 @@
 						<tfoot>
 							<tr>
 								<td colspan="2"></td>
-								<td class="text-right"><button type="button" onclick="addGeoZone();" data-toggle="tooltip" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button></td>
+								<td class="text-right"><button type="button" onclick="addGeoZone();" data-toggle="tooltip" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -122,7 +122,7 @@ function addGeoZone() {
 	<?php endforeach;?>   
 	html += '</select></td>';
 	html += '  <td><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" id="zone' + zone_to_geo_zone_row + '" class="form-control"></select></td>';
-	html += '  <td class="text-right"><button type="button" onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>';
+	html += '  <td class="text-right"><button type="button" onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>';
 	html += '</tr>';
 	
 	$('#zone-to-geo-zone tbody').append(html);

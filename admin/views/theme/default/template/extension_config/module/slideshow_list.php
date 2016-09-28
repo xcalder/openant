@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-cog"></i>&nbsp;模块名称</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="<?php echo site_url('extension_config/module/slideshow/add');?>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<a href="<?php echo site_url('common/extension/module');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+						<a href="<?php echo site_url('extension_config/module/slideshow/add');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('common/extension/module');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -32,10 +32,10 @@
 							<tr>
 								<td><?php echo $module['name'];?></td>
 								<td class="text-right">
-									<a href="<?php echo site_url('extension_config/module/slideshow/delete?module_id=').$module['module_id'];?>" class="btn btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="删除">
+									<a href="<?php echo site_url('extension_config/module/slideshow/delete?module_id=').$module['module_id'];?>" class="btn btn-sm btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="删除">
 										<i class="glyphicon glyphicon-minus"></i>
 									</a>
-									<a href="<?php echo site_url('extension_config/module/slideshow/edit?module_id=').$module['module_id'];?>" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
+									<a href="<?php echo site_url('extension_config/module/slideshow/edit?module_id=').$module['module_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
 										<i class="glyphicon glyphicon-edit"></i>
 									</a>
 								</td>

@@ -6,16 +6,16 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <div class="col-sm-5"><a href="<?php echo $parent; ?>" data-toggle="tooltip" title="<?php echo lang_line('text_parent');?>" id="button-parent" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a> <a href="<?php echo $refresh; ?>" data-toggle="tooltip" title="<?php echo lang_line('text_refresh');?>" id="button-refresh" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i></a>
-          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_upload');?>" id="button-upload" class="btn btn-primary"><i class="glyphicon glyphicon-open"></i></button>
-          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_folder');?>" id="button-folder" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i></button>
-          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_delete');?>" id="button-delete" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+        <div class="col-sm-5"><a href="<?php echo $parent; ?>" data-toggle="tooltip" title="<?php echo lang_line('text_parent');?>" id="button-parent" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a> <a href="<?php echo $refresh; ?>" data-toggle="tooltip" title="<?php echo lang_line('text_refresh');?>" id="button-refresh" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i></a>
+          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_upload');?>" id="button-upload" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-open"></i></button>
+          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_folder');?>" id="button-folder" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-folder-open"></i></button>
+          <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_delete');?>" id="button-delete" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
         </div>
         <div class="col-sm-7">
           <div class="input-group">
             <input type="text" name="search" value="<?php echo $filter_name; ?>" placeholder="<?php echo lang_line('text_search');?>" class="form-control">
             <span class="input-group-btn">
-            <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_search');?>" id="button-search" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="button" data-toggle="tooltip" title="<?php echo lang_line('text_search');?>" id="button-search" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-search"></i></button>
             </span></div>
         </div>
       </div>
@@ -179,7 +179,7 @@ $('#button-folder').popover({
 	content: function() {
 		html  = '<div class="input-group">';
 		html += '  <input type="text" name="folder" value="" placeholder="<?php echo lang_line('text_folder');?>" class="form-control">';
-		html += '  <span class="input-group-btn"><button type="button" title="<?php echo lang_line('text_folder');?>" id="button-create" class="btn btn-primary"><i class="glyphicon glyphicon-folder-open"></i></button></span>';
+		html += '  <span class="input-group-btn"><button type="button" title="<?php echo lang_line('text_folder');?>" id="button-create" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-folder-open"></i></button></span>';
 		html += '</div>';
 		
 		return html;	

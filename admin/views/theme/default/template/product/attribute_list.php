@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品属性列表</p>
 					<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-						<a href="admin.php/product/attribute/add_attribute.html#edit-attribute" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗？') ? $('#form-attribute').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/attribute/add_attribute.html#edit-attribute" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗？') ? $('#form-attribute').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -33,7 +33,7 @@
 									<td><?php echo $attribute['name'];?></td>
 									<td><?php echo $attribute['group_name'];?></td>
 									<td><?php echo $attribute['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/attribute/edit_attribute?attribute_id='.$attribute['attribute_id'])?>#edit-attribute" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/attribute/edit_attribute?attribute_id='.$attribute['attribute_id'])?>#edit-attribute" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>
@@ -55,8 +55,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品属性组列表</p>
 					<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-						<a href="admin.php/product/attribute/add_attribute_group.html#edit-attribute-group" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗') ? $('#form-attribute-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/attribute/add_attribute_group.html#edit-attribute-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗') ? $('#form-attribute-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -78,7 +78,7 @@
 									<td class="text-center"><input type="checkbox" name="selected_group[]" value="<?php echo $attribute_group['attribute_group_id']; ?>" /></td>
 									<td><?php echo $attribute_group['group_name'];?></td>
 									<td><?php echo $attribute_group['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/attribute/edit_attribute_group?attribute_group_id='.$attribute_group['attribute_group_id'])?>#edit-attribute-group" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/attribute/edit_attribute_group?attribute_group_id='.$attribute_group['attribute_group_id'])?>#edit-attribute-group" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

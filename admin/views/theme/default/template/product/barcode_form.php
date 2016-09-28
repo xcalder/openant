@@ -9,8 +9,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑条码</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<button type="button" onclick="submit('form-barcode')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-						<a href="<?php echo site_url('product/barcode');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+						<button type="button" onclick="submit('form-barcode')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+						<a href="<?php echo site_url('product/barcode');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 					</div>
 				</div>
 				<!-- /widget-header -->

@@ -8,8 +8,8 @@
         <div class="panel-heading  row row-panel-heading bg-info">
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;Qq登陆插件设置</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
-			  <button type="button" onclick="submit('form-download')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo site_url('common/extension/sign_in_with');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <button type="button" onclick="submit('form-download')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+			  <a href="<?php echo site_url('common/extension/sign_in_with');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->

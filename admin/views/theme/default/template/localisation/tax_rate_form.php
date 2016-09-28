@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑税率</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
-			  <button type="button" onclick="submit('form-tax_rate')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo site_url('localisation/tax_rate');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <button type="button" onclick="submit('form-tax_rate')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+			  <a href="<?php echo site_url('localisation/tax_rate');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->

@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;运费列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/freight/add_freight.html#edit-freight" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗？') ? $('#form-freight').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/freight/add_freight.html#edit-freight" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗？') ? $('#form-freight').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -33,7 +33,7 @@
 									<td><?php echo $freight['name'];?></td>
 									<td><?php echo $freight['freight_template_name'];?></td>
 									<td><?php echo $freight['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/freight/edit_freight?freight_id='.$freight['freight_id'])?>#edit-freight" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/freight/edit_freight?freight_id='.$freight['freight_id'])?>#edit-freight" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>
@@ -55,8 +55,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;运费模板列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/freight/add_freight_template.html#edit-freight-group" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定吗') ? $('#form-freight-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/freight/add_freight_template.html#edit-freight-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗') ? $('#form-freight-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -78,7 +78,7 @@
 									<td class="text-center"><input type="checkbox" name="selected_group[]" value="<?php echo $freight_template['freight_template_id']; ?>" /></td>
 									<td><?php echo $freight_template['freight_template_name'];?></td>
 									<td><?php echo $freight_template['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/freight/edit_freight_template?freight_template_id='.$freight_template['freight_template_id'])?>#edit-freight-group" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/freight/edit_freight_template?freight_template_id='.$freight_template['freight_template_id'])?>#edit-freight-group" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

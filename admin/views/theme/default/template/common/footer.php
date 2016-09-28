@@ -73,7 +73,7 @@
 									placement: 'right',
 									trigger: 'manual',
 									content: function() {
-										return '<button type="button" id="button-image" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+										return '<button type="button" id="button-image" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
 									}
 								});
 			

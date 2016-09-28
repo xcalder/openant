@@ -35,7 +35,7 @@
 							<td><?php echo $store['sale_class_name'];?></td>
 							<td>所在地</td>
 							<td><?php echo ($store['check'] == 1) ? '<span style="color:red">待审核</span>' : '';?></td>
-							<td class="text-right"><button type="button" onclick="pass('<?php echo $store['store_id'];?>', '<?php echo $store['user_id'];?>');" class="btn btn-success">通过</button></td>
+							<td class="text-right"><button type="button" onclick="pass('<?php echo $store['store_id'];?>', '<?php echo $store['user_id'];?>');" class="btn btn-sm btn-success">通过</button></td>
 						</tr>
 						<?php endif;?>
 						<?php endforeach;?>

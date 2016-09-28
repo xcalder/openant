@@ -44,9 +44,9 @@
 						<td colspan="2" class="hidden-xs border-right"><img width="18px" height="18px" class="lazy" data-original="<?php echo $this->image_common->resize($order['logo'], 18, 18);?>" alt="<?php echo $order['store_name']; ?>"><?php echo $order['store_name'];?></td>
 						<td class="text-right hidden-xs border-right">
 							<div class="btn-group btn-group-sm" role="group">
-							  <button type="button" class="btn btn-default" data-toggle="collapse" href="#general-callout-<?php echo $order['order_id'];?>" aria-expanded="true" aria-controls="general-callout-<?php echo $order['order_id'];?>"><i class="text-primary glyphicon glyphicon-flag"></i></button>
-							  <button type="button" class="btn btn-default" data-toggle="collapse" href="#focus-callout-<?php echo $order['order_id'];?>" aria-expanded="true" aria-controls="focus-callout-<?php echo $order['order_id'];?>"><i class="text-danger glyphicon glyphicon-flag"></i></button>
-							  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="删除订单" onclick="del_order('<?php echo $order['order_id'];?>');"><i class="text-danger glyphicon glyphicon-remove"></i></button>
+							  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" href="#general-callout-<?php echo $order['order_id'];?>" aria-expanded="true" aria-controls="general-callout-<?php echo $order['order_id'];?>"><i class="text-primary glyphicon glyphicon-flag"></i></button>
+							  <button type="button" class="btn btn-sm btn-default" data-toggle="collapse" href="#focus-callout-<?php echo $order['order_id'];?>" aria-expanded="true" aria-controls="focus-callout-<?php echo $order['order_id'];?>"><i class="text-danger glyphicon glyphicon-flag"></i></button>
+							  <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="删除订单" onclick="del_order('<?php echo $order['order_id'];?>');"><i class="text-danger glyphicon glyphicon-remove"></i></button>
 							</div>
 						</td>
 					</tr>
@@ -58,7 +58,7 @@
 							    <div class="col-sm-7">
 							      <input type="text" class="form-control" id="general-<?php echo $order['order_id'];?>" placeholder="请输入标注内容" value="<?php echo ($order['callout']['callout_type'] == 'general') ? $order['callout']['callout_content'] : '';?>">
 							    </div>
-							     <button type="button" class="btn btn-default col-sm-2" onclick="callout('<?php echo $order['order_id'];?>', 'general');">确定</button>
+							     <button type="button" class="btn btn-sm btn-default col-sm-2" onclick="callout('<?php echo $order['order_id'];?>', 'general');">确定</button>
 							  </div>
 							</form>
 						</td>
@@ -71,7 +71,7 @@
 							    <div class="col-sm-7">
 							      <input type="text" class="form-control" id="focus-<?php echo $order['order_id'];?>" placeholder="请输入标注内容" value="<?php echo ($order['callout']['callout_type'] == 'focus') ? $order['callout']['callout_content'] : '';?>">
 							    </div>
-							     <button type="button" class="btn btn-default col-sm-2" onclick="callout('<?php echo $order['order_id'];?>', 'focus');">确定</button>
+							     <button type="button" class="btn btn-sm btn-default col-sm-2" onclick="callout('<?php echo $order['order_id'];?>', 'focus');">确定</button>
 							  </div>
 							</form>
 						</td>

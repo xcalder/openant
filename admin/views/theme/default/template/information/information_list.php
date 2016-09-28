@@ -11,11 +11,11 @@
 						</i>&nbsp;文章列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/information/information/add.html" class="btn btn-default">
+						<a href="admin.php/information/information/add.html" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定删除文章吗？') ? $('#form-information').submit() : false;">
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除文章吗？') ? $('#form-information').submit() : false;">
 							<i class="glyphicon glyphicon-trash">
 							</i>
 						</button>
@@ -57,7 +57,7 @@
 									<?php echo $information['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo site_url('information/information/edit?information_id='.$information['information_id'])?>" class="btn btn-info">
+									<a href="<?php echo site_url('information/information/edit?information_id='.$information['information_id'])?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>

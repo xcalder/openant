@@ -8,8 +8,8 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品分类列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/category/add.html" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-						<button type="button" class="btn btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-category').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+						<a href="admin.php/product/category/add.html" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-category').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -32,7 +32,7 @@
 									<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $categorys[$key]['category_id']; ?>" /></td>
 									<td class="text-left"><?php echo $categorys[$key]['name'];?></td>
 									<td class="text-left"><?php echo $categorys[$key]['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['category_id'])?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['category_id'])?>" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php else:?>
@@ -40,7 +40,7 @@
 									<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $categorys[$key]['category_id']; ?>" /></td>
 									<td class="text-left"><?php echo $categorys[$key]['name'];?></td>
 									<td class="text-left"><?php echo $categorys[$key]['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['category_id'])?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['category_id'])?>" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php foreach($categorys[$key]['childs'] as $k=>$v):?>
@@ -48,7 +48,7 @@
 									<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $categorys[$key]['childs'][$k]['category_id']; ?>" /></td>
 									<td class="text-left"><?php echo $categorys[$key]['name'].'=>'.$categorys[$key]['childs'][$k]['name'];?></td>
 									<td class="text-left"><?php echo $categorys[$key]['childs'][$k]['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['childs'][$k]['category_id'])?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo site_url('product/category/edit?category_id='.$categorys[$key]['childs'][$k]['category_id'])?>" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

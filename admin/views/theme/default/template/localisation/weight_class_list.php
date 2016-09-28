@@ -8,8 +8,8 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;重量列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo site_url('localisation/weight_class/add')?>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-				<button type="button" class="btn btn-default" onclick="confirm('确定删除重量参数吗？') ? $('#form-weight_class').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+				<a href="<?php echo site_url('localisation/weight_class/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除重量参数吗？') ? $('#form-weight_class').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
         <!-- /widget-header -->
@@ -33,7 +33,7 @@
 						<td><?php echo $weight_class['title'];?></td>
 						<td><?php echo $weight_class['unit'];?></td>
 						<td><?php echo $weight_class['value'];?></td>
-						<td class="text-right"><a href="<?php echo site_url('localisation/weight_class/edit?weight_class_id=').$weight_class['weight_class_id'];?>" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo site_url('localisation/weight_class/edit?weight_class_id=').$weight_class['weight_class_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

@@ -23,9 +23,9 @@
 							<td><?php echo $user_online['ip']?></td>
 							<td><?php echo isset($user_online['nickname']) ? $user_online['nickname'] : '游客';?></td>
 							<?php if(isset($user_ban_ip) && in_array($user_online['ip'],$user_ban_ip)):?>
-							<td class="text-right"><button onclick="add_ban_ip('<?php echo $user_online['ip'];?>','add-ban-ip<?php echo $key;?>');" type="button" id="add-ban-ip<?php echo $key;?>" class="btn btn-success" disabled="disabled">加入黑名单</button></td>
+							<td class="text-right"><button onclick="add_ban_ip('<?php echo $user_online['ip'];?>','add-ban-ip<?php echo $key;?>');" type="button" id="add-ban-ip<?php echo $key;?>" class="btn btn-sm btn-success" disabled="disabled">加入黑名单</button></td>
 							<?php else:?>
-							<td class="text-right"><button onclick="add_ban_ip('<?php echo $user_online['ip'];?>','add-ban-ip<?php echo $key;?>');" type="button" id="add-ban-ip<?php echo $key;?>" class="btn btn-success">加入黑名单</button></td>
+							<td class="text-right"><button onclick="add_ban_ip('<?php echo $user_online['ip'];?>','add-ban-ip<?php echo $key;?>');" type="button" id="add-ban-ip<?php echo $key;?>" class="btn btn-sm btn-success">加入黑名单</button></td>
 							<?php endif;?>
 						</tr>
 						<?php endforeach;?>

@@ -266,11 +266,6 @@
 									会员积分
 								</a>
 							</li>
-							<li>
-								<a href="<?php echo site_url('order/order_total');?>">
-									订单统计
-								</a>
-							</li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -461,6 +456,24 @@
 							<li>
 								<a href="signup.html">
 									错误日志
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-cog"></i>
+							<span>社区</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="<?php echo site_url('bbs/plate');?>">
+									版块维护
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo site_url('bbs/posting');?>">
+									帖子管理
 								</a>
 							</li>
 						</ul>

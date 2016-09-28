@@ -65,9 +65,9 @@
 							<td>所在地</td>
 							<td class="text-right">
 								<div class="btn-group" role="group">
-								 <button type="button" class="btn btn-success" data-container="body" data-toggle="popover" data-placement="top" data-content="解除屏蔽" <?php echo $uninvalid;?> onclick="uninvalid('<?php echo $store['store_id'];?>');"><i class="glyphicon glyphicon-ok"></i></button>
+								 <button type="button" class="btn btn-sm btn-success" data-container="body" data-toggle="popover" data-placement="top" data-content="解除屏蔽" <?php echo $uninvalid;?> onclick="uninvalid('<?php echo $store['store_id'];?>');"><i class="glyphicon glyphicon-ok"></i></button>
 								 <div class="btn-group" data-container="body" data-toggle="popover" data-placement="top" data-content="选择屏蔽时间">
-									 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php echo $invalid;?>>
+									 <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php echo $invalid;?>>
 									 	<i class="glyphicon glyphicon-calendar"></i>
 									 </button>
 									  <ul class="dropdown-menu" style="right: 0;left: auto;">
@@ -77,7 +77,7 @@
 									    <li onclick="invalid('<?php echo $store['store_id'];?>','90');"><a>90天</a></li>
 									  </ul>
 								 </div>
-								 <button type="button" class="btn btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="永久屏蔽" <?php echo $invalid;?> onclick="invalid('<?php echo $store['store_id'];?>','always');"><i class="glyphicon glyphicon-remove"></i></button>
+								 <button type="button" class="btn btn-sm btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="永久屏蔽" <?php echo $invalid;?> onclick="invalid('<?php echo $store['store_id'];?>','always');"><i class="glyphicon glyphicon-remove"></i></button>
 								</div>
 							</td>
 						</tr>

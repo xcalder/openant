@@ -11,11 +11,11 @@
 						</i>&nbsp;编辑布局
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<button type="button" onclick="submit('form-layout')" class="btn btn-default">
+						<button type="button" onclick="submit('form-layout')" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo site_url('common/layout');?>" class="btn btn-default">
+						<a href="<?php echo site_url('common/layout');?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>
@@ -63,7 +63,7 @@
 												<input type="text" class="form-control" id="route" name="route[<?php echo $route_row;?>][route]]" placeholder="路由" value="<?php echo $route['route'];?>">
 											</td>
 											<td class="text-right">
-												<button type="button" onclick="$('#route-<?php echo $route_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger">
+												<button type="button" onclick="$('#route-<?php echo $route_row; ?>').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger">
 													<i class="glyphicon glyphicon-minus">
 													</i>
 												</button>
@@ -76,7 +76,7 @@
 									<tfoot>
 										<tr>
 											<td colspan="2" class="text-right">
-												<button type="button" onclick="addroute();" data-toggle="tooltip" class="btn btn-primary">
+												<button type="button" onclick="addroute();" data-toggle="tooltip" class="btn btn-sm btn-primary">
 													<i class="glyphicon glyphicon-plus">
 													</i>
 												</button>
@@ -225,7 +225,7 @@
 
 											</td>
 											<td class="text-right">
-												<button type="button" onclick="$('#module-<?php echo $module_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger">
+												<button type="button" onclick="$('#module-<?php echo $module_row; ?>').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger">
 													<i class="glyphicon glyphicon-minus">
 													</i>
 												</button>
@@ -238,7 +238,7 @@
 									<tfoot>
 										<tr>
 											<td colspan="4" class="text-right">
-												<button type="button" onclick="addmodule();" data-toggle="tooltip" class="btn btn-primary">
+												<button type="button" onclick="addmodule();" data-toggle="tooltip" class="btn btn-sm btn-primary">
 													<i class="glyphicon glyphicon-plus">
 													</i>
 												</button>
@@ -266,7 +266,7 @@
 	{
 		html  = '<tr id="route-'+route_row+'"><td>';
 		html += '<input type="text" class="form-control" id="route" name="route['+route_row+'][route]]" placeholder="路由" value=""></td>';
-		html += '<td class="text-right"><button type="button" onclick="$(\'#route-'+route_row+'\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
+		html += '<td class="text-right"><button type="button" onclick="$(\'#route-'+route_row+'\').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
 
 		$('#route tbody').append(html);
 
@@ -285,7 +285,7 @@
 		html += '</select></td><td><select name="layout_module['+module_row+'][position]" class="form-control">';
 		html += '<option value="above">页面顶部</option><option value="top">内容顶部</option><option value="bottom">内容底部</option><option value="left">内容左边</option><option value="right">内容右边</option>';
 		html += '</select></td><td><input type="text" class="form-control" id="module" name="layout_module['+module_row+'][sort_order]" placeholder="排序" value="0"></td>';
-		html += '<td class="text-right"><button type="button" onclick="$(\'#module-'+module_row+'\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
+		html += '<td class="text-right"><button type="button" onclick="$(\'#module-'+module_row+'\').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
 
 		$('#module tbody').append(html);
 

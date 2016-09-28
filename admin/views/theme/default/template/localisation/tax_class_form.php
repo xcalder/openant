@@ -8,8 +8,8 @@
         <div class="panel-heading  row row-panel-heading bg-info">
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑税率组</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
-			  <button type="button" onclick="submit('form-tax_class')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo site_url('localisation/tax_class');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <button type="button" onclick="submit('form-tax_class')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+			  <a href="<?php echo site_url('localisation/tax_class');?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->
@@ -87,7 +87,7 @@
 								<td>
 									<input type="text" name="tax_rule[<?php echo $tax_rule_row; ?>][priority]" class="form-control" placeholder="优先级" value="<?php echo isset($tax_rule['priority']) ? $tax_rule['priority'] : '1';?>">
 								</td>
-								<td class="text-right"><button type="button" onclick="$('#tax-rule-row<?php echo $tax_rule_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
+								<td class="text-right"><button type="button" onclick="$('#tax-rule-row<?php echo $tax_rule_row; ?>').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
 							</tr>
 							<?php $tax_rule_row++;?>
 							<?php endforeach;?>
@@ -96,7 +96,7 @@
 						<tfoot>
 							<tr>
 								<td colspan="3"></td>
-								<td class="text-right"><button type="button" onclick="addRule();" data-toggle="tooltip" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button></td>
+								<td class="text-right"><button type="button" onclick="addRule();" data-toggle="tooltip" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -128,7 +128,7 @@ function addRule() {
 	html += '<select class="form-control" name="tax_rule['+tax_rule_row+'][based]">';
 	html += '<option value="shipping">购物地址</option><option value="payment">支付地址</option><option value="store">商店地址</option></select></td><td>';
 	html += '<input type="text" name="tax_rule['+tax_rule_row+'][priority]" class="form-control" placeholder="优先级" value="1"></td>';
-	html += '<td class="text-right"><button type="button" onclick="$(\'#tax-rule-row'+tax_rule_row+'\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
+	html += '<td class="text-right"><button type="button" onclick="$(\'#tax-rule-row'+tax_rule_row+'\').remove();" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td></tr>';
 	
 	$('#tax-rule tbody').append(html);
 	
