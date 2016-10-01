@@ -1,10 +1,12 @@
+- qq群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
+
 ![](http://www.openant.com/public/resources/default/image/logos/logo.jpg)
 
-OpenAnt/蚂蚁开源- qq群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
+OpenAnt/蚂蚁开源
+
 ==========================
-[![Build Status](http://www.openant.com/doc/001.png)](http://www.openant.com)
-[![Packagist](http://www.openant.com/doc/002.png)](http://www.openant.com)
-[![CodeIgniter](http://www.openant.com/doc/003.png)](http://www.codeigniter.org)
+
+[![Build Status](http://www.openant.com/doc/001.png)](http://www.openant.com)[![Packagist](http://www.openant.com/doc/002.png)](http://www.openant.com)[![CodeIgniter](http://www.openant.com/doc/003.png)](http://www.codeigniter.org)
 
 Openant——多语言、多商家、订单、商品功能强大的，（插件方式）支持全球支付方式，整站采用插件模块布局的购物车商城平台项目，该项目采用GPL3许可证授权，你可以在遵循GPL3许可证的前提下自由复制、分发，甚至出售原代码。！
 
@@ -12,26 +14,37 @@ Openant——多语言、多商家、订单、商品功能强大的，（插件�
 
 
 1.新项目考虑了当前电商的更多新问题，没有历史包袱，系统架构设计更松偶合。
+
 2.商家入驻，充值提现，全球语言，子帐号，推广分成，平台分成，站内竟价排名，每天登陆送积分，积分抵钱，商品折扣，商品会员价，平台优惠券，商家优惠券，预留接口全面。
 
 目前，这是一个试测试版本，欢迎试用反馈给我们，或者合并你的修改到仓库 ：
+
 开发版本包含的功能：
+
 * 多语言：可以扩展支持全球语言，适合外贸使用
 
 * 一个帐号单点登陆：商家、用户、管理员相同帐号，分配不同权限即可
 
 * 订单管理：
+
 a.平台管理员后台可以查看标注订单，自动为商家统计订单总额
+
 b.商家后台可以查看，修改订单，（不能删除），发货，管理退换货商品（可以为某个订单下的单个商品操作退换货）
+
 c.会员后台可以管理自己的订单，提醒商家发货，查看订单详情，申请退款（退款理由可以在管理后台设定供选择，退换方式【退款退货、仅退款、仅退货】可以在管理员后台设定）
 
 * 商品管理：
+
 a.平台后台可以查看所有商家的所有商品，可以对某一商家的某一商品进行屏蔽（不在前台展示），可以选择永久屏蔽、屏蔽时间（7天、15天、30天）
+
 b.平台后台可以设置平台商品分类（类目），商品属性、商品选项，类目里可以为类目指定（选择）商品属性、商品选项（选项、属性可以设置在此类目下是否必填）
+
 c.平台后台可以设置、添加品牌，
 
 d.商家后台添加商品，流程：选择类目-》填写商品详情（包括：平台后台设定好的类目属性、选项、运费模板，商品其它详细信息，折扣价，折扣价开始结束时间，会员价，会员价开始结束时间）
+
 e.可以申请添加品牌（需要平台通过审核才能在商品发布中选择）
+
 f.申请添加类目：需要在平台后台通过审核才能在添加商品时使用
 
 
