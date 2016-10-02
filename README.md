@@ -1,6 +1,8 @@
 - qq群(QQ Group)：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
 
-![](http://www.openant.com/public/resources/default/image/logos/logo.jpg)
+![](http://www.openant.com/public/resources/default/image/favicon.png)
+
+![](http://www.openant.com/image/catalog/banner-home/20160526050500ROPqBzEjak.jpg)
 
 OpenAnt/蚂蚁开源
 
@@ -106,12 +108,9 @@ rely
 
 Screenshots
 ---
-![](https://github.com/xcalder/openant/blob/master/doc/001.gif?raw=true)
+![](http://www.openant.com/image/catalog/banner-home/20160629050604FlO6MTDJdx.jpg)
 
-![](https://github.com/xcalder/openant/blob/master/doc/002.gif?raw=true)
-
-![](https://github.com/xcalder/openant/blob/master/doc/003.gif?raw=true)
-
+![](http://www.openant.com/image/catalog/banner-home/20160526050509AUtb5cw8rT.jpg)
 
 交流讨论
 
