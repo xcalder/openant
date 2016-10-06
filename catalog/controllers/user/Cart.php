@@ -66,13 +66,7 @@ class Cart extends MY_Controller{
 	}
 	
 	public function add(){
-		/*
-		if($this->input->post('prices') != NULL){
-			$prices=$this->input->post('prices');
-		}else{
-			$json['error']='添加购物车失败！';
-		}
-		*/
+		
 		if($this->input->post('qtys') != NULL){
 			$qtys=$this->input->post('qtys');
 		}else{
@@ -128,8 +122,10 @@ class Cart extends MY_Controller{
 				$data['preferential_value']=$product_price['discount_value'];
 			}
 			
-			if($this->cart->insert($data)){
+			$rowid=$this->cart->insert($data);
+			if($rowid){
 				$json['success']='添加<a target="_blank" href="'.site_url('user/cart').'">'.utf8_substr($names, 0, 18).'</a>到购物车成功！';
+				$json['rowid']=$rowid;
 				$cart_array=$this->cart->contents(TRUE);
 				$this->cart_model->add_cart($cart_array);
 			}else{
@@ -149,22 +145,11 @@ class Cart extends MY_Controller{
 		}else{
 			$update['rowid']=$data['rowid'];
 		}
-		/*
-		$product_price=$this->get_product_price($_SESSION['cart_contents'][$data['rowid']]['id'], $data['options']);
-		if(!$product_price){
-			$json['error']='添加购物车失败！';
-		}else{
-			$update['price']=round($product_price['price'], 4);
-		}
-		*/
+		
 		if(isset($data['qty'])){
 			$update['qty']=$data['qty'];
 		}
-		/*
-		if(isset($data['price'])){
-			$update['price']=$data['price'];
-		}
-		*/
+		
 		if(isset($data['options'])){
 			$update['options']=explode('.', $data['options']);
 		}

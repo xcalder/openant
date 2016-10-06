@@ -85,7 +85,7 @@
 					}
 					?>
 					<div id="product-price" class="col-md-9" style="padding: 0">
-						<p><strong><?php echo $product['name'];?></strong></p>
+						<h1><?php echo $product['name'];?></h1>
 						<p style="color:rgb(186, 186, 186);"><?php echo $product['meta_description'];?></p>
 						
 						<?php if(isset($product['discount_price'])):?>
@@ -230,19 +230,13 @@
 			</div>
 			<div class="btn-group btn-group-justified sale-btn" role="group" style="margin: 15px 0;">
 				<div class="btn-group btn-group-lg" role="group">
-					<button type="button" class="btn btn-success">
-						<?php echo lang_line('buy_now');?>
-					</button>
+					<button type="button" onclick="add_cart('buy_now');" class="btn btn-success" <?php echo $product['quantity'] < 1 ? 'disabled' : '';?>><?php echo lang_line('buy_now');?></button>
 				</div>
 				<div class="btn-group btn-group-lg" role="group">
-					<button type="button" onclick="add_cart();" class="btn btn-primary">
-						<?php echo lang_line('add_cart');?>
-					</button>
+					<button type="button" onclick="add_cart('');" class="btn btn-primary" <?php echo $product['quantity'] < 1 ? 'disabled' : '';?>><?php echo lang_line('add_cart');?></button>
 				</div>
 				<div class="btn-group btn-group-lg" role="group">
-					<button type="button" class="btn btn-info">
-						<?php echo lang_line('collect');?>
-					</button>
+					<button type="button" class="btn btn-info"><?php echo lang_line('collect');?></button>
 				</div>
 			</div>
 			<?php
@@ -433,23 +427,21 @@
 		<?php if(isset($product['options'])):?>
 		var options=new Array();
 		<?php endif;?>
-		var price='';
 		var qty='';
 		var product_id='<?php echo $product_id;?>';
 		var name='<?php echo $product['name'];?>';
-		function add_cart(){
+		function add_cart(action){
 			<?php if(isset($product['options'])):?>
 			var op_ac_nu = '<?php echo count($product['options']);?>';
 			if($('#product-options .active').length == op_ac_nu){
 				$("#product-options .active").each(function(index, element){
-						options[index]=$(this).attr('option_id');
-					});
+					options[index]=$(this).attr('option_id');
+				});
 			
-				price = $('.cart_price').text();
 				qty = $('.spinner input').val();
 				//alert(options);
 				<?php if($this->user->isLogged()):?>
-				ajax_add_cart(options, price, qty, product_id, name);
+				ajax_add_cart(action, options, qty, product_id, name);
 				<?php elseif($this->config->get_config('login_window') == '1' && !$this->agent->is_mobile()):?>
 				$('#mylogin').modal({
 						show: true
@@ -466,27 +458,28 @@
 					}, 2000);
 			}
 			<?php else:?>
-			price = $('.cart_price').text();
 			qty = $('.spinner input').val();
 			//alert(options);
 			<?php if($this->user->isLogged()):?>
-			ajax_add_cart('', price, qty, product_id, name);
-			<?php else:?>
-			$('#mylogin').modal({
+			ajax_add_cart(action, '', qty, product_id, name);
+			<?php elseif($this->config->get_config('login_window') == '1' && !$this->agent->is_mobile()):?>
+				$('#mylogin').modal({
 					show: true
 				})
 			$('#mylogin .login-botton').addClass('active');
+			<?php else:?>
+				window.location.href="user/signin/login?url="+window.location.href;
 			<?php endif;?>
 			<?php endif;?>
 		}
-		function ajax_add_cart(options, price, qty, productid, name)
+		function ajax_add_cart(action, options, qty, productid, name)
 		{
 			$.ajax(
 				{
 					url: '<?php echo site_url();?>user/cart/add.html',
 					type: 'post',
 					dataType: 'json',
-					data: {option_id:options, prices:price, qtys:qty, product_ids:productid, names:name},
+					data: {option_id:options, qtys:qty, product_ids:productid, names:name},
 					beforeSend: function()
 					{
 						NProgress.start();
@@ -503,6 +496,10 @@
 									$('#page-cart').parent().html(data);
 									lazy_load();
 								});
+							if(action == 'buy_now'){
+								$('#buy_now_value').val(data.rowid);
+								submit('buy_now');
+							}
 						}else{
 							$.notify({message: data.error },{type: 'warning'});
 						}
@@ -514,7 +511,7 @@
 					}
 				});
 		}
-	
+
 		//滑动支持
 
 		$('#product-image').hammer().on('swipeleft', function(){
@@ -530,6 +527,9 @@
 			});
  
 	</script>
+	<form action="<?php echo site_url('user/confirm');?>" method="post" enctype="multipart/form-data" id="buy_now">
+		<input type="hidden" name="selected[]" id="buy_now_value" value="">
+	</form>
 </div>
 <!-- /container -->
 <?php echo $footer;//装载header?>
