@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php if($activitys):?>
+					<?php if(isset($activitys) && $activitys):?>
 					<?php foreach($activitys as $activity):?>
 					<?php $activity['content']=unserialize($activity['content']);?>
 					<tr>

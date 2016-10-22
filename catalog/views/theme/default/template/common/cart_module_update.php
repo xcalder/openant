@@ -1,4 +1,4 @@
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="page-cart">
+<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" id="page-cart">
         <i class="glyphicon glyphicon-shopping-cart"></i><?php echo lang_line('text_cart');?><span class="badge"><?php echo ($carts !== FALSE && is_array($carts)) ? count($carts) - 2 : '';?></span>
     </a>
     <ul class="dropdown-menu cart-list">

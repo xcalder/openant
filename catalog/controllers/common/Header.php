@@ -8,7 +8,7 @@ class Header extends CI_Common {
 		$this->load->helper(array('utf8'));
 		$this->load->common(array('language_module', 'currency_common', 'cart_module', 'position_above'));
 		$this->load->library(array('user_agent'));
-		$this->load->model(array('category/category_model', 'setting/sign_in_with_model', 'helper/information_model', 'common/manufacturer_model'));
+		$this->load->model(array('category/category_model', 'setting/sign_in_with_model', 'helper/information_model', 'common/manufacturer_model', 'common/wishlist_model', 'common/user_activity_model'));
 		$this->lang->load('common/header',$_SESSION['language_name']);
 		
 		//调ip黑名单，判断如果不在黑名单中则允许访问
@@ -29,7 +29,9 @@ class Header extends CI_Common {
 			$str = uniqid(mt_rand(),1);
 			$this->session->set_userdata('token', md5($str));
 			//在线用户
-			$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
+			if(!$this->agent->is_robot()){
+				$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
+			}
 		}
 	}
 
@@ -85,7 +87,12 @@ class Header extends CI_Common {
 		
 		$data['manufacturers']=$this->manufacturer_model->get_manufacturers_to_header();
 		$data['categorys']=$this->category_model->get_categorys_to_header();
-
+		
+		$data['wishlist_count']=$this->wishlist_model->get_wishlist_count();
+		
+		$data['css']='catalog';
+		
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		return $this->load->view('theme/default/template/common/top',$data,TRUE);
 	}
 	
@@ -93,7 +100,7 @@ class Header extends CI_Common {
 		$this->load->model('helper/information_model');
 		$data['position_above']=$this->position_above->index();
 
-	if($this->user->hasPermission('access', 'admin/wecome')){
+		if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
@@ -119,6 +126,11 @@ class Header extends CI_Common {
 		$data['sign_ins']=$this->sign_in_with_model->get_sign_withs();
 		
 		$data['language_id']=isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1';
+		$data['wishlist_count']=$this->wishlist_model->get_wishlist_count();
+		
+		$data['css']='faq';
+		
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		
 		return $this->load->view('theme/default/template/common/faq_top',$data,TRUE);
 	}
@@ -163,7 +175,7 @@ class Header extends CI_Common {
 		
 		$data['position_above']=$this->position_above->index();
 		
-	if($this->user->hasPermission('access', 'admin/wecome')){
+		if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
@@ -188,6 +200,10 @@ class Header extends CI_Common {
 		
 		$data['manufacturers']=$this->manufacturer_model->get_manufacturers_to_header();
 		$data['categorys']=$this->category_model->get_categorys_to_header();
+		$data['wishlist_count']=$this->wishlist_model->get_wishlist_count();
+		
+		$data['css']='user';
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		
 		return $this->load->view('theme/default/template/common/user_top',$data,TRUE);
 	}
@@ -195,7 +211,7 @@ class Header extends CI_Common {
 	public function step_top(){
 		$data['position_above']=$this->position_above->index();
 		
-	if($this->user->hasPermission('access', 'admin/wecome')){
+		if($this->user->hasPermission('access', 'admin/wecome')){
 			$data['access_admin']=TRUE;
 		}
 		
@@ -222,6 +238,11 @@ class Header extends CI_Common {
 		
 		$data['manufacturers']=$this->manufacturer_model->get_manufacturers_to_header();
 		$data['categorys']=$this->category_model->get_categorys_to_header();
+		
+		$data['wishlist_count']=$this->wishlist_model->get_wishlist_count();
+		
+		$data['css']='step';
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		
 		return $this->load->view('theme/default/template/common/step_top',$data,TRUE);
 	}
@@ -240,6 +261,9 @@ class Header extends CI_Common {
 
 		$data['manufacturers']=$this->manufacturer_model->get_manufacturers_to_header();
 		$data['categorys']=$this->category_model->get_categorys_to_header();
+		
+		$data['css']='login';
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		
 		return $this->load->view('theme/default/template/common/login_top',$data,TRUE);
 	}

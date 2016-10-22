@@ -25,6 +25,7 @@ function getURLVar(key) {
 }
 
 $(document).ready(function(){
+	$('a.navbar-brand-logo').parent().attr("style", "line-height:0px");
 	
 		if($(window).width() < 994){
 			$('#content').removeAttr("style");
@@ -184,9 +185,9 @@ function mylogin(id){
 
 //退出登陆
 function logout(){
-	$.get("user/signin/logout.html",function(){
-			window.location.reload();
-		});
+	$.get("index.php/user/signin/logout.html",function(){
+		window.location.reload();
+	});
 }
 
 //自定义验证，输入只能是中英数字下划线

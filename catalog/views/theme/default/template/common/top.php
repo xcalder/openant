@@ -1,7 +1,7 @@
-<body id="<?php //echo $css;?>">
+<body id="<?php echo $css;?>">
 	<div id="header">
 	<!-- Start Navigation -->
-		<nav class="navbar navbar-default brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
+		<nav class="navbar brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
 			<div class="container">
 
 				<!-- Start Header Navigation -->
@@ -16,38 +16,27 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu-top">
 					<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-						<li style="max-height: 50px"><a class="navbar-brand navbar-brand-logo" style="padding: 0 15px" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="50px" height="50px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 65, 65, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="logo lazy" alt="" style="background: url();"></a></li>
+						<li><a class="navbar-brand navbar-brand-logo" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="46px" height="46px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 46, 46, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="lazy" alt="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"></a></li>
 						<?php echo $language;?>
 						<?php echo $currency;?>
 					
 						<?php echo $cart_module;?>
-						<li><a href="#"><i class="glyphicon glyphicon-star"></i><?php echo lang_line('favorites');?><span class="badge">42</span></a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><?php echo lang_line('business');?><span class="badge">42</span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a target="_black" href="user/new_store.html"><?php echo lang_line('business_in');?></a>
-								</li>
-								<li>
-									<a href="javascript:;"><?php echo lang_line('goods_sold');?></a>
-								</li>
-								<li>
-									<a href="javascript:;"><?php echo lang_line('sale_goods');?></a>
-								</li>
-							</ul>
-						</li>
+						<li><a href="<?php echo site_url('user/wishlist');?>"><i class="glyphicon glyphicon-star"></i><?php echo lang_line('favorites');?><span id="wishlist-count" class="badge"><?php echo $wishlist_count;?></span></a></li>
+						<?php if(!isset($access_sale)):?>
+						<li><a target="_black" href="<?php site_url('user/new_store');?>" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><?php echo lang_line('business_in');?></a></li>
+						<?php endif;?>
 						<li class="dropdown megamenu-fw">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i><?php echo lang_line('site_map');?></a>
+							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i><?php echo lang_line('site_map');?></a>
 							<ul class="dropdown-menu megamenu-content" role="menu">
 								<li>
 									<div class="col-menu col-md-3">
 										<h6 class="title"><?php echo lang_line('self');?></h6>
 										<ul class="menu-col">
 											<li>
-												<a href="user/forget.html"><?php echo lang_line('forget');?></a>
+												<a href="<?php echo site_url('user/forget');?>"><?php echo lang_line('forget');?></a>
 											</li>
 											<li>
-												<a href="user/new_store.html"><?php echo lang_line('business_in');?></a>
+												<a href="<?php echo site_url('user/new_store');?>"><?php echo lang_line('business_in');?></a>
 											</li>
 										</ul>
 									</div>
@@ -58,11 +47,11 @@
 											<?php if($categorys):?>
 											<?php foreach($categorys as $category):?>
 											<li>
-												<a href="product/category.html?id=<?php echo $category['category_id'];?>"><?php echo $category['name'];?></a>
+												<a href="<?php echo site_url('product/category?id='.$category['category_id']);?>"><?php echo $category['name'];?></a>
 											</li>
 											<?php endforeach;?>
 											<?php endif;?>
-										<li><a href="product/category/category_all.html">所有分类</a></li>
+										<li><a href="<?php echo site_url('product/category/category_all');?>">所有分类</a></li>
 										</ul>
 									</div>
 									<!-- end col-3 -->
@@ -76,7 +65,7 @@
 											</li>
 											<?php endforeach;?>
 											<?php endif;?>
-											<li><a href="product/manufacturer/manufacturer_all.html">所有品牌</a></li>
+											<li><a href="<?php echo site_url('product/manufacturer/manufacturer_all');?>">所有品牌</a></li>
 										</ul>
 									</div>
 									<div class="col-menu col-md-3">
@@ -87,7 +76,7 @@
                                             	<?php foreach($nav_infomation['informations'] as $information):?>
                                                 <li>
 												<a
-													href="helper/faq.html?inforation_id=<?php echo $information['information_id'];?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a>
+													href="<?php echo site_url('helper/faq?inforation_id='.$information['information_id']);?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a>
 											</li>
                                                 <?php endforeach;?>
                                             </ul>
@@ -110,21 +99,21 @@
 						</li>
 						<?php else:?>
 						<li>
-							<a href="<?php echo base_url()?>user/signin/login.html?url=<?php echo rawurlencode(all_current_url());?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
+							<a href="<?php echo site_url('user/signin/login?url='.rawurlencode(all_current_url()))?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>user/signin/signinup.html"><i class="glyphicon glyphicon-pencil"></i><?php echo lang_line('register');?></a>
+							<a href="<?php echo site_url('user/signin/signinup')?>"><i class="glyphicon glyphicon-pencil"></i><?php echo lang_line('register');?></a>
 						</li>
 						<?php endif;?>
 						
 						<?php else:?>
 						<!--如果没有登陆不显示-->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><?php echo utf8_substr($this->user->getnickname(), 0, 8);?><span class="badge">14</span>
+							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><?php echo utf8_substr($this->user->getnickname(), 0, 8);?><span class="badge"><?php echo $activity_count;?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="<?php echo site_url('user');?>"><?php echo lang_line('news');?><span class="badge">14</span></a>
+									<a href="<?php echo site_url('user/notice');?>"><?php echo lang_line('news');?><span class="badge"><?php echo $activity_count;?></span></a>
 								</li>
 								<li>
 									<a href="<?php echo site_url('user');?>"><?php echo lang_line('user_center');?></a>
@@ -199,7 +188,7 @@
 						<?php $menu['column'] = ($menu['column'] < 1) ? '1' : $menu['column'];?>
 						<?php if(isset($menu['child']) && is_array($menu['child'])):?>
 						<li class="dropdown megamenu-fw">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['name'];?></a>
+							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['name'];?></a>
 							<?php foreach(array_chunk($menu['child'], ceil(count($menu['child']) / $menu['column'])) as $child):?>
 							<ul class="dropdown-menu megamenu-content" role="menu">
 									<li class="container">
@@ -269,7 +258,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane login-botton" id="login-tab">
-							<form action="<?php echo base_url('user/signin/login.html');?>" method="post" enctype="multipart/form-data" id="login">
+							<form action="<?php echo site_url('user/signin/login');?>" method="post" enctype="multipart/form-data" id="login">
 								<div class="form-group error"></div>
 								<div class="form-group">
 									<input type="text" id="email" name="email" value=""
@@ -284,7 +273,7 @@
 								</div>
 								<!-- /password -->
 								<div class="form-group">
-									<a href="user/forget.html"><?php echo lang_line('forget');?></a>
+									<a href="<?php echo site_url('user/forget');?>"><?php echo lang_line('forget');?></a>
 								</div>
 								<div class="form-group">
 									<input type="hidden" name="is_view" value="1"/>
@@ -295,7 +284,7 @@
 						</div>
 						<div role="tabpanel" class="tab-pane register-botton"
 							id="register-tab">
-							<form action="<?php echo base_url('user/signin/signinup.html');?>" method="post" enctype="multipart/form-data" id="regist">
+							<form action="<?php echo site_url('user/signin/signinup');?>" method="post" enctype="multipart/form-data" id="regist">
 								<div class="form-group error"></div>
 								<div class="form-group">
 									<input type="text" id="email" name="email" value=""
@@ -322,7 +311,7 @@
 									<img title="<?php echo lang_line('refresh');?>"
 										src="<?php echo site_url('common/captcha');?>"
 										align="absbottom"
-										onclick="this.src='common/captcha.html?'+Math.random();"></img>
+										onclick="this.src='index.php/common/captcha.html?'+Math.random();"></img>
 								</div>
 								<!-- /field -->
 								<div class="form-group">
@@ -332,7 +321,7 @@
 
 										<label class="login-forget">
 											<a
-												onclick="window.open('<?php echo base_url('helper/faq.html?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
+												onclick="window.open('<?php echo site_url('helper/faq?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
 										</label>
 									</div>
 								</div>
@@ -360,7 +349,7 @@
 		<script>
 		//第三方登陆
 		function with_login(key){
-			window.open ('user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+			window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 		}
 	
 		//登陆
@@ -426,7 +415,7 @@
 							captcha: {
 								required: true,
 								rangelength:[4,4],
-								remote: "common/captcha/veri.html"
+								remote: "index.php/common/captcha/veri.html"
 							},
 							agree: {
 								required: true,

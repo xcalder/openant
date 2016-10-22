@@ -86,22 +86,6 @@
 												</label><?php endif;?>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="meta-description<?php echo $language['language_id']; ?>">
-												meta描述
-											</label>
-											<div class="col-sm-10">
-												<textarea name="information_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" class="form-control" placeholder="meta描述" rows="5"><?php echo isset($information_description[$language['language_id']]['meta_description']) ? $information_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="meta-keyword<?php echo $language['language_id']; ?>">
-												meta关键词
-											</label>
-											<div class="col-sm-10">
-												<textarea name="information_description[<?php echo $language['language_id']; ?>][meta_keyword]" id="meta-keyword<?php echo $language['language_id']; ?>" class="form-control" placeholder="meta关键词" rows="5"><?php echo isset($information_description[$language['language_id']]['meta_keyword']) ? $information_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
-											</div>
-										</div>
 									</div>
 									<?php endforeach;?>
 								</div>

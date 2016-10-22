@@ -32,7 +32,7 @@ class position_bottom extends CI_Common{
 			}else{
 				$module_name=strtolower($modules[$key]['code'].'_module');
 				$this->load->extension('module/'.$module_name);
-				$data['modules'][]=$this->$module_name->index($modules[$key]['setting']);
+				$data['modules'][]=$this->$module_name->index($modules[$key]['setting'], 'bottom');
 			}
 		}
 		$this->html=$this->load->view('theme/default/template/common/position_bottom', $data, true);

@@ -8,7 +8,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品属性列表</p>
 					<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-						<a href="admin.php/product/attribute/add_attribute.html#edit-attribute" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('product/attribute/add_attribute')?>#edit-attribute" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗？') ? $('#form-attribute').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;商品属性组列表</p>
 					<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-						<a href="admin.php/product/attribute/add_attribute_group.html#edit-attribute-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('product/attribute/add_attribute_group')?>#edit-attribute-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗') ? $('#form-attribute-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>

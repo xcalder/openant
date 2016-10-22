@@ -9,9 +9,9 @@
 			</div>
 		</div><hr>
 		<!-- /container -->
-		<div class="footer bg-success">
+		<div class="footer">
 			<!-- Start Navigation -->
-			<nav class="navbar navbar-default bootsnav" style="border-bottom-width: 0px;">
+			<nav class="navbar bootsnav" style="border-bottom-width: 0px;">
 				<div class="container">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="navbar-menu">

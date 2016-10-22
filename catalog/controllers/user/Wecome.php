@@ -8,7 +8,7 @@ class Wecome extends MY_Controller {
 		$this->load->helper(array('utf8'));
 		$this->load->language('wecome');
 		$this->load->library(array('currency'));
-		$this->load->model(array('common/user_model', 'order/order_model', 'order/user_balances_model'));
+		$this->load->model(array('common/user_model', 'order/order_model', 'order/user_balances_model', 'common/wishlist_model'));
 	}
 
 	public function index()
@@ -52,6 +52,8 @@ class Wecome extends MY_Controller {
 				}
 			}
 		}
+		
+		$data['wishlist_count']=$this->wishlist_model->get_wishlist_count();
 		
 		//待收货订单
 		$data ['page'] = '0';

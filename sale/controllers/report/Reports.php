@@ -19,7 +19,7 @@ class Reports extends CI_Controller {
 		$data=array();
 		
 		$this->document->setTitle('报表');
-		$this->document->addScript('public/min?f=public/resources/default/js/chart.min.js');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/chart.min.js');
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

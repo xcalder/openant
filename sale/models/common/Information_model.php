@@ -13,7 +13,7 @@ class Information_model extends CI_Model {
 		$this->db->select('information_category_id');
 		$this->db->where('store_id', '0');
 		$this->db->where('position', $position);
-		$this->db->order_by('information_category.sort_order', 'DESC');
+		$this->db->order_by('information_category.sort_order', 'ASC');
 		$this->db->from($this->db->dbprefix('information_category'));//查
 		
 		$query = $this->db->get();

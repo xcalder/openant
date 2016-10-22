@@ -58,10 +58,10 @@
 				<?php foreach($products as $product):?>
 				<div class="<?php echo $class;?> col-xs-6">
 					<div class="thumbnail">
-						<a href="product.html?product_id=<?php echo $product['product_id'];?>"><img width="<?php echo $this->config->get_config('product_list_image_size_w');?>px" height="<?php echo $this->config->get_config('product_list_image_size_h');?>px" class="lazy" data-original="<?php echo $this->image_common->resize($product['image'], $this->config->get_config('product_list_image_size_w'), $this->config->get_config('product_list_image_size_h'), 'h');?>" alt="<?php echo $product['name'];?>"></a>
+						<a href="<?php echo site_url('product?product_id='.$product['product_id']);?>"><img width="<?php echo $this->config->get_config('product_list_image_size_w');?>px" height="<?php echo $this->config->get_config('product_list_image_size_h');?>px" class="lazy" data-original="<?php echo $this->image_common->resize($product['image'], $this->config->get_config('product_list_image_size_w'), $this->config->get_config('product_list_image_size_h'), 'h');?>" alt="<?php echo $product['name'];?>"></a>
 						<div class="caption">
 							<strong><?php echo $this->currency->Compute($product['price']);?></strong>
-							<a target="_blank" href="product.html?product_id=<?php echo $product['product_id'];?>"><p><?php echo $product['name'];?></p></a>
+							<a target="_blank" href="<?php echo site_url('product?product_id='.$product['product_id']);?>"><p><?php echo $product['name'];?></p></a>
 					
 							<div class="row">
 								<span data-toggle="tooltip" data-placement="top" title="<?php echo sprintf(lang_line('sales'), (isset($product['seal_quantity_total']) ? $product['seal_quantity_total'] : '0'));?>" class="col-sm-4 col-xs-4 text-left"><i class="glyphicon glyphicon-credit-card"></i></span>

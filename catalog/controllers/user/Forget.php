@@ -9,8 +9,8 @@ class Forget extends CI_Controller {
 		$this->load->helper(array('string'));
 		$this->load->model(array('common/user_model', 'common/forget_model'));
 		
-		$this->document->addStyle('public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f=public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
 	}
 
 	public function index()
@@ -29,7 +29,7 @@ class Forget extends CI_Controller {
 			$data['subject']							='密码重置：你收到这封邮件是因为你在'.unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']].'申请了修改密码服务,如果不是你的操作，请忽略此邮件！';
 			$massage									='<h3>重置你在'.unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']].'的密码<h3>';
 			$massage									.='<h5><br/>这是一封系统邮件，请不要直接回复<br/><h5>';
-			$massage									.='<p>本次改密申请24小时内有效，如果超时请重新申请！<br/>你可以直接<a href="'.base_url().'user/forget/edit.html?check='.$check.'">点击链接修改密码</a><br/><br/>当上面的链接不可用时，请复制下面的网址到地址栏直接访问！<br/><br/>'.base_url().'user/forget/edit.html?check='.$check.'<p>';
+			$massage									.='<p>本次改密申请24小时内有效，如果超时请重新申请！<br/>你可以直接<a href="'.site_url('user/forget/edit?check='.$check).'">点击链接修改密码</a><br/><br/>当上面的链接不可用时，请复制下面的网址到地址栏直接访问！<br/><br/>'.site_url('user/forget/edit?check='.$check).'<p>';
 			$data['message']							=$massage;
 			$this->load->common('sender_email');
 			if($this->sender_email->sender($data)){

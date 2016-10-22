@@ -10,7 +10,7 @@
 			<?php echo $position_left;?>
 			<div class="col-sm-3 panel panel-default middle-flat-left">
 				<div class="panel-body">
-					<form action="<?php echo base_url('user/signin/login.html');?>?url=<?php echo $this->input->get('url')?>" method="post" enctype="multipart/form-data" id="signin">
+					<form action="<?php echo site_url('user/signin/login?url='.$this->input->get('url'));?>" method="post" enctype="multipart/form-data" id="signin">
 						<p class="text-center login-title">
 						<strong><?php echo lang_line('login');?></strong><hr style="margin: 10px 0">
 						<div class="form-group error">
@@ -83,7 +83,7 @@ if(isset($_SESSION['warning'])):?>
 	//第三方登陆
 	function with_login(key)
 	{
-		window.open ('user/sns/session/'+key+'.html','newwindow','height=500,width=500,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+		window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=500,width=500,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 	}
 
 	//登陆

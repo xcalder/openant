@@ -8,7 +8,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;条码列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/barcode/add.html" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('product/barcode/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除分类吗？') ? $('#form-barcode').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>

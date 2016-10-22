@@ -53,25 +53,6 @@
 												<textarea name="category_description[<?php echo $language['language_id']; ?>][description]" id="input-description<?php echo $language['language_id']; ?>" class="form-control" placeholder="分类描述"><?php echo isset($category_description[$language['language_id']]['description']) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="meta_title"><span style="color:red">*</span>mate标签</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="meta_title" name="category_description[<?php echo $language['language_id']; ?>][meta_title]" placeholder="mat标签" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_title'] : ''; ?>">
-												<?php if(!empty($error_meta_title)):?><label class="text-danger"><?php echo isset($error_meta_title[$language['language_id']]) ? $error_meta_title[$language['language_id']] : '';?></label><?php endif;?>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="meta-description">mate标签描述</label>
-											<div class="col-sm-10">
-												<textarea rows="5" name="category_description[<?php echo $language['language_id']; ?>][meta_description]" class="form-control" placeholder="1253645"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="meta-keyword">mate标签关键词</label>
-											<div class="col-sm-10">
-												<textarea class="form-control" cols="20" rows="5" name="category_description[<?php echo $language['language_id']; ?>][meta_keyword]" placeholder="555"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
-											</div>
-										</div>
 									</div>
 									<?php endforeach;?>
 								</div>

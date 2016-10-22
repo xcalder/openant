@@ -39,7 +39,7 @@
 						<tr>
 							<td class="text-center col-md-1 col-sm-1 col-xs-1"><input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" /></td>
 							<td class="col-md-1 col-sm-2 col-xs-2"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="lazy" data-original="<?php echo $product['image'];?>"></td>
-							<td class="col-md-2 col-sm-3 col-xs-3"><a target="_blank" href="<?php echo base_url().'product.html?product_id='.$product['product_id'];?>"><?php echo utf8_substr($product['name'], 0, 30);?></a></td>
+							<td class="col-md-2 col-sm-3 col-xs-3"><a target="_blank" href="<?php echo base_url().'index.php/product.html?product_id='.$product['product_id'];?>"><?php echo utf8_substr($product['name'], 0, 30);?></a></td>
 							<td class="col-md-1 col-sm-1 col-xs-1"><?php echo $this->currency->Compute($product['price']);?></td>
 							<td class="col-md-1 col-sm-1 col-xs-1"><?php echo $product['quantity'];?></td>
 							<td class="col-md-1 col-sm-1 col-xs-1"><?php echo $product['sales'];?></td>

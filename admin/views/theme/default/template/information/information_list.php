@@ -11,7 +11,7 @@
 						</i>&nbsp;文章列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/information/information/add.html" class="btn btn-sm btn-default">
+						<a href="<?php echo site_url('information/information/add')?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>

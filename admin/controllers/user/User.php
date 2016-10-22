@@ -28,7 +28,7 @@ class User extends MY_Controller {
 	{
 		$this->document->setTitle('编辑会员');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && $this->input->get('user_id') && $this->check_modify()){
+		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST" && $this->input->get('user_id')){
 			$user = $this->input->post('user');
 			if($this->validation_user($user)){
 				$user['user_id']=$this->input->get('user_id');
@@ -51,8 +51,8 @@ class User extends MY_Controller {
 
 	private function get_list()
 	{
-		$this->document->addStyle('public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
-		$this->document->addScript('public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
+		$this->document->addStyle((SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
+		$this->document->addScript((SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
 		$data=array();
 		
 		if($this->input->get()){

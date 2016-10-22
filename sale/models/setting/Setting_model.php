@@ -19,7 +19,7 @@ class Setting_model extends CI_Model {
 			if (!$result['serialized']) {
 				$data[$result['key']] = $result['value'];
 			} else {
-				$data[$result['key']] = json_decode($result['value'], true);
+				$data[$result['key']] = unserialize($result['value'], true);
 			}
 		}
 		

@@ -217,7 +217,7 @@ class FileManager extends CI_Controller {
 
 		// Check user has permission
 		
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
+		if (!$this->user->hasPermission('modify', 'admin/common/filemanager')) {
 			$json['error'] = '你无权修改';
 		}
 
@@ -304,7 +304,7 @@ class FileManager extends CI_Controller {
 
 		// Check user has permission
 		
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
+		if (!$this->user->hasPermission('modify', 'admin/common/filemanager')) {
 			$json['error'] = '你无权修改';
 		}
 		
@@ -359,7 +359,7 @@ class FileManager extends CI_Controller {
 
 		// Check user has permission
 		
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
+		if (!$this->user->hasPermission('modify', 'admin/common/filemanager')) {
 			$json['error'] = '你无权修改！';
 		}
 		

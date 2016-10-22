@@ -12,7 +12,6 @@ class Return_action_model extends CI_Model {
 		//
 		$this->db->limit($this->config->get_config('config_limit_admin'), $data['page']);
 		$this->db->select('return_action_id');
-		//$this->db->from($this->db->dbprefix('return_action'));
 		$query = $this->db->get($this->db->dbprefix('return_action'));
 		
 		//统计记录条数
@@ -26,6 +25,24 @@ class Return_action_model extends CI_Model {
 			return $return_actions;
 		}
 		
+		return FALSE;
+	}
+	
+	//
+	public function get_return_actions_to_setting()
+	{
+		//
+		$this->db->select('return_action_id');
+		$query = $this->db->get($this->db->dbprefix('return_action'));
+	
+		if($query->num_rows() > 0){
+			$row = $query->result_array();
+			foreach($row as $value){
+				$return_actions[] = $this->get_return_action($value['return_action_id']);
+			}
+			return $return_actions;
+		}
+	
 		return FALSE;
 	}
 	

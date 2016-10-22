@@ -12,7 +12,7 @@ class Setting extends MY_Controller
 			redirect(site_url());
 			exit;
 		}
-		$this->load->model(array('setting/setting_model','localisation/country_model','common/language_model','common/currency_model','localisation/length_class_model','information/information_model','localisation/weight_class_model','localisation/order_status_model', 'common/user_model', 'common/sale_class_model', 'common/user_class_model'));
+		$this->load->model(array('setting/setting_model','localisation/country_model','common/language_model','common/currency_model','localisation/length_class_model','information/information_model','localisation/weight_class_model','localisation/order_status_model', 'localisation/return_action_model', 'common/user_model', 'common/sale_class_model', 'common/user_class_model'));
 	}
 
 	public function index()
@@ -40,6 +40,7 @@ class Setting extends MY_Controller
 	{
 		$settings = $this->setting_model->get_settings();
 		$languages=$this->language_model->get_languages();
+		$return_actions=$this->return_action_model->get_return_actions_to_setting();
 		foreach($settings as $key=>$value)
 		{
 			if($this->input->post('store_country_id') != NULL && !isset($store_country_id))
@@ -351,6 +352,40 @@ class Setting extends MY_Controller
 				$default_order_status = TRUE;
 			}
 			
+			//退换货事件
+			if($this->input->post('action_return_and_refund') != NULL && !isset($action_return_and_refund))
+			{
+				$data['action_return_and_refund'] = $this->input->post('action_return_and_refund');
+				$action_return_and_refund = TRUE;
+			}
+			elseif($settings[$key]['key'] == 'action_return_and_refund' && !isset($action_return_and_refund))
+			{
+				$data['action_return_and_refund'] = $settings[$key]['value'];
+				$action_return_and_refund = TRUE;
+			}
+			
+			if($this->input->post('action_return') != NULL && !isset($action_return))
+			{
+				$data['action_return'] = $this->input->post('action_return');
+				$action_return = TRUE;
+			}
+			elseif($settings[$key]['key'] == 'action_return' && !isset($action_return))
+			{
+				$data['action_return'] = $settings[$key]['value'];
+				$action_return = TRUE;
+			}
+			
+			if($this->input->post('action_refund') != NULL && !isset($action_refund))
+			{
+				$data['action_refund'] = $this->input->post('action_refund');
+				$action_refund = TRUE;
+			}
+			elseif($settings[$key]['key'] == 'action_refund' && !isset($action_refund))
+			{
+				$data['action_refund'] = $settings[$key]['value'];
+				$action_refund = TRUE;
+			}
+			
 			if($this->input->post('inbound_state') != NULL && !isset($inbound_state))
 			{
 				$data['inbound_state'] = $this->input->post('inbound_state');
@@ -371,6 +406,28 @@ class Setting extends MY_Controller
 			{
 				$data['state_to_be_evaluated'] = $settings[$key]['value'];
 				$state_to_be_evaluated = TRUE;
+			}
+			
+			if($this->input->post('order_completion_status') != NULL && !isset($order_completion_status))
+			{
+				$data['order_completion_status'] = $this->input->post('order_completion_status');
+				$order_completion_status = TRUE;
+			}
+			elseif($settings[$key]['key'] == 'order_completion_status' && !isset($order_completion_status))
+			{
+				$data['order_completion_status'] = $settings[$key]['value'];
+				$order_completion_status = TRUE;
+			}
+			
+			if($this->input->post('to_be_delivered') != NULL && !isset($to_be_delivered))
+			{
+				$data['to_be_delivered'] = $this->input->post('to_be_delivered');
+				$to_be_delivered = TRUE;
+			}
+			elseif($settings[$key]['key'] == 'to_be_delivered' && !isset($to_be_delivered))
+			{
+				$data['to_be_delivered'] = $settings[$key]['value'];
+				$to_be_delivered = TRUE;
 			}
 			
 			if($this->input->post('admin_user_group') != NULL && !isset($admin_user_group))
@@ -766,7 +823,7 @@ class Setting extends MY_Controller
 				$data['output_compression_level'] = $settings[$key]['value'];
 				$output_compression_level = TRUE;
 			}
-
+	
 		}
 
 		$data['action'] = site_url('common/setting/edit');
@@ -775,6 +832,7 @@ class Setting extends MY_Controller
 
 		$data['countrys'] = $this->country_model->get_countrys();
 		$data['languages'] = $languages;
+		$data['return_actions'] = $return_actions;
 		$data['currencys'] = $this->currency_model->get_currencys();
 		$data['length_classs'] = $this->length_class_model->get_length_classs();
 		$data['weight_classs'] = $this->weight_class_model->get_weight_classs();

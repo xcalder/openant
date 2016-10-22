@@ -6,7 +6,7 @@ class Header extends CI_Common{
 		$this->load->helper ( array ('cookie', 'utf8'));
 		$this->load->common ( array ('language_module', 'currency_common', 'image', 'position_above'));
 		$this->load->library ( array ('user_agent'));
-		$this->load->model(array('setting/sign_in_with_model', 'information/information_model'));
+		$this->load->model(array('setting/sign_in_with_model', 'information/information_model', 'common/user_activity_model'));
 		
 		//调ip黑名单，判断如果不在黑名单中则允许访问
 		$this->load->database();
@@ -25,7 +25,9 @@ class Header extends CI_Common{
 			$str = uniqid(mt_rand(),1);
 			$this->session->set_userdata('token', md5($str));
 			//在线用户
-			$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
+			if(!$this->agent->is_robot()){
+				$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
+			}
 		}
 		
 		if(!$this->user->hasPermission('access', 'admin/wecome')){
@@ -60,6 +62,9 @@ class Header extends CI_Common{
 		$data['language_id']=isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1';
 		
 		$data['nav_infomation']=$this->information_model->get_category_to_position('admin_top');
+		
+		$data['css']='admin';
+		$data['activity_count']=$this->user_activity_model->get_unread_message_count();
 		
 		return $this->load->view ( 'theme/default/template/common/top', $data, TRUE );
 	}

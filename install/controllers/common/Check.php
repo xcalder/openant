@@ -14,8 +14,6 @@ class Check extends CI_Controller {
 		
 		$this->document->setTitle(lang_line('title'));
 		
-		$this->document->addStyle('public/min?f=public/resources/default/css/home/home.css');
-		
 		$db = array(
 			'mysqli', 
 			'pgsql', 

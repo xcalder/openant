@@ -13,8 +13,6 @@ class Wecome extends CI_Controller {
 		
 		$this->document->setTitle(lang_line('title'));
 		
-		$this->document->addStyle('public/min?f=public/resources/default/css/home/home.css');
-		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
 		$data['footer']=$this->footer->index();

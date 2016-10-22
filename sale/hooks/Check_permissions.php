@@ -21,7 +21,7 @@ class Check_permissions {
 	{
 		unset($_SESSION['user_id']);
 		
-		redirect(base_url('user/signin/login.html?url='.rawurlencode(all_current_url())));
+		redirect(base_url('index.php/user/signin/login.html?url='.rawurlencode(all_current_url())));
 		
 		exit();
 	}

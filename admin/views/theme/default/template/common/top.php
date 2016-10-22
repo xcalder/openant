@@ -1,7 +1,7 @@
-<body>
+<body id=<?php echo $css;?>>
 <div id="header">
 	<!-- Start Navigation -->
-	<nav class="navbar navbar-default brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
+	<nav class="navbar brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
 		<div class="container">
 
 			<!-- Start Header Navigation -->
@@ -15,11 +15,11 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-menu-top">
 				<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-					<li style="max-height: 50px"><a class="navbar-brand navbar-brand-logo" style="padding: 0 15px" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']];?>"><img width="50px" height="50px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 65, 65, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="logo lazy" alt="" style="background: url();"></a></li>
+					<li><a class="navbar-brand navbar-brand-logo" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']];?>"><img width="46px" height="46px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 46, 46, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="lazy" alt="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"></a></li>
 					<?php echo $language;?>
 					<?php echo $currency;?>
 					
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><?php echo lang_line('text_business');?><span class="badge">42</span></a>
+					<li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><?php echo lang_line('text_business');?></a>
 						<ul class="dropdown-menu">
 							<li><a href="admin.php/order/orders.html">已售商品</a></li>
 							<li><a href="admin.php/product/product.html">售中商品</a></li>
@@ -27,7 +27,7 @@
 					</li>
 					<li><a target="_black" href="bbs.php"><i class="glyphicon glyphicon-tree-deciduous"></i>社区</a></li>
 					<li class="dropdown megamenu-fw">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i>站点地图</a>
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i>站点地图</a>
 						<ul class="dropdown-menu megamenu-content" role="menu">
 							<li>
 								<div class="row">
@@ -83,9 +83,9 @@
 					<!--如果已经登陆不显示-->
 					<?php if($this->user->isLogged()):?>
 					<!--如果没有登陆不显示-->
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><?php echo utf8_substr($this->user->getnickname(), 0, 8);?><span class="badge">14</span></a>
+					<li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><?php echo utf8_substr($this->user->getnickname(), 0, 8);?><span class="badge"><?php echo $activity_count;?></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo site_url('user');?>">消息<span class="badge">14</span></a></li>
+							<li><a href="user/notice.html">消息<span class="badge"><?php echo $activity_count;?></span></a></li>
 							<li><a href="user.html">个人中心</a></li>
 							<?php if(isset($access_admin)):?>
 							<li><a onclick="window.open('<?php echo $url_admin;?>');">进入内网</a></li>
@@ -292,7 +292,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo site_url('common/layout');?>">
+								<a href="http://www.openant.com">
 									插件商城
 								</a>
 							</li>
@@ -456,24 +456,6 @@
 							<li>
 								<a href="signup.html">
 									错误日志
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="glyphicon glyphicon-cog"></i>
-							<span>社区</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="<?php echo site_url('bbs/plate');?>">
-									版块维护
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo site_url('bbs/posting');?>">
-									帖子管理
 								</a>
 							</li>
 						</ul>

@@ -1,3 +1,13 @@
+body{
+	overflow-x:hidden;
+}
+#bbs h1, #catalog h1{
+	font-size: 16px;
+	line-height: 16px;
+}
+#catalog h1{
+	font-weight: 100;
+}
 img
 {
 	border: 0;
@@ -355,4 +365,18 @@ div.addtion-image-delete
 #thmb-map img, #addtion-images img, #attribute-images img
 {
 	max-width: 100px;
+}
+
+#header a.navbar-brand-logo{
+	padding: 2px 15px !important;
+}
+#header a.navbar-brand-logo img{
+    max-height: 46px !important;
+    overflow: hidden !important;
+}
+#official .git-view{
+	margin-bottom: 15px;
+}
+#posting-list ul{
+	padding: 0;
 }

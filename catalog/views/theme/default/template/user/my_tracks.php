@@ -29,7 +29,7 @@
 					<?php if(isset($track['product']['product_id'])):?>
 					<div class="media">
 						<div class="media-left media-middle">
-							<a href="product.html?product_id=<?php echo $track['product']['product_id'];?>">
+							<a href="<?php echo site_url('product?product_id='.$track['product']['product_id']);?>">
 								<img class="lazy" data-original="<?php echo $this->image_common->resize($track['product']['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'), 'h');?>" alt="<?php echo $track['product']['name']?>" width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h')?>px">
 							</a>
 						</div>
@@ -37,7 +37,7 @@
 							<div class="col-sm-6"><?php echo $track['time'];?></div>
 							<div class="col-sm-6"><?php echo $track['product']['store_name']?></div><br/><hr style="margin: 5px 0">
 							<div class="col-sm-12">
-								<p class="media-heading"><a href="product.html?product_id=<?php echo $track['product']['product_id'];?>"><?php echo $track['product']['name']?></a></p>
+								<p class="media-heading"><a href="<?php echo site_url('product?product_id='.$track['product']['product_id']);?>"><?php echo $track['product']['name']?></a></p>
 								<?php echo utf8_substr(strip_tags($track['product']['description']), 0,145);?>
 							</div>
 						</div>

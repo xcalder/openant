@@ -17,14 +17,7 @@ class Setting_model extends CI_Model {
 		
 		if($query->num_rows() > 0){
 			
-			//foreach ($query->row_array() as $result) {
-				//if (!$result['serialized']) {
-					$result=$query->result_array();
-					//$data = $result['value'];
-				//} else {
-					//$data[$result['key']] = unserialize($result['value']);
-				//}
-			//}
+			$result=$query->result_array();
 			
 			return $result;
 		}

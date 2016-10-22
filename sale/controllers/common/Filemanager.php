@@ -94,7 +94,7 @@ class FileManager extends CI_Controller {
 					'name'  => implode(' ', $name),
 					'type'  => 'directory',
 					'path'  => utf8_substr($image, utf8_strlen(IMGPATH)),
-					'href'  => site_url().'/common/filemanager?directory=' . end($directory_name) . $url);
+					'href'  => site_url('/common/filemanager?directory=') . end($directory_name) . $url);
 			} elseif (is_file($image)) {
 				// Find which protocol to use to pass the full image link back
 
@@ -103,7 +103,7 @@ class FileManager extends CI_Controller {
 					'name'  => implode(' ', $name),
 					'type'  => 'image',
 					'path'  => utf8_substr($image, utf8_strlen(IMGPATH)),
-					'href'  => '/image'.utf8_substr($image, utf8_strlen(IMGPATH))
+					'href'  => base_url().'image'.utf8_substr($image, utf8_strlen(IMGPATH))
 				);
 			}
 		}
@@ -230,11 +230,9 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->lang->line('error_permission');
+		if (!$this->user->hasPermission('modify', 'sale/common/filemanager')) {
+			$json['error'] = '没有修改权限';
 		}
-*/
 
 		$user_added_date=$this->user->getDate_added();
 		$user_directory=date("Y",strtotime($user_added_date)).'/'.date("m",strtotime($user_added_date)).'/'.date("d",strtotime($user_added_date)).'/'.$this->user->getId();
@@ -321,11 +319,9 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->language->get('error_permission');
+		if (!$this->user->hasPermission('modify', 'sale/common/filemanager')) {
+			$json['error'] = '没有修改权限';
 		}
-		*/
 		
 		$user_added_date=$this->user->getDate_added();
 		$user_directory=date("Y",strtotime($user_added_date)).'/'.date("m",strtotime($user_added_date)).'/'.date("d",strtotime($user_added_date)).'/'.$this->user->getId();
@@ -378,11 +374,11 @@ class FileManager extends CI_Controller {
 		$json = array();
 
 		// Check user has permission
-		/*
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->language->get('error_permission');
+		
+		if (!$this->user->hasPermission('modify', 'sale/common/filemanager')) {
+			$json['error'] = '没有修改权限';
 		}
-		*/
+		
 
 		if ($this->input->post('path')) {
 			$paths = $this->input->post('path');

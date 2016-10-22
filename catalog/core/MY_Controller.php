@@ -17,7 +17,7 @@ class MY_Controller extends CI_Controller {
 			
 			unset($_SESSION['user_id']);
 			
-			redirect(base_url('user/signin/login.html?url='.rawurlencode(all_current_url())));
+			redirect(site_url('user/signin/login?url='.rawurlencode(all_current_url())));
 			
 			exit();
 		}

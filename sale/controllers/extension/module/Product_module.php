@@ -10,7 +10,7 @@ class Product_module extends CI_Extension {
 		$this->load->model(array('product/product_model'));
 	}
 
-	public function index($setting=FALSE){
+	public function index($setting=FALSE, $position){
 		if($setting){
 			$order['limit']=$setting['number'];
 			if($setting['order'] == 'time'){
@@ -33,7 +33,7 @@ class Product_module extends CI_Extension {
 			
 			$data['products']=$products['products'];
 			$data['view_name']=$setting['name'];
-			return $this->load->view('theme/default/template/extension/module/product_module', $data, TRUE);
+			return $this->load->view('theme/default/template/extension/module/product_'.$position.'_module', $data, TRUE);
 		}else{
 			return FALSE;
 		}

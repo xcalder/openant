@@ -28,6 +28,21 @@ if( ! function_exists('vpost')){
 	}
 }
 
+if( ! function_exists('vget')){
+	function vget($url){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,$url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
+		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		$result = curl_exec($ch);
+		curl_close ($ch);
+		return $result;
+	}
+}
+
 if( ! function_exists('randrgb')){
 	//post请求
 	function randrgb(){  

@@ -37,7 +37,7 @@
 						$style_bg='style="background-color: #f8f8f8;"';
 					}
 					?>
-					<?php if($order['products'] && !empty($order['products'])):?>
+					<?php if(isset($order['products']) && $order['products'] && !empty($order['products'])):?>
 					<tr <?php echo $style_bg;?>>
 						<td colspan="2" class="border-right text-left"><input class="select" type="checkbox" /><?php echo date('Y-m-d',strtotime($order['date_added']));?></td>
 						<td colspan="2" class="border-right">订单号：<?php echo date('YmdHis',strtotime($order['date_added'])).'-'.$order['order_id'];?></td>
@@ -78,8 +78,8 @@
 					</tr>
 					
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="index.php/product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="index.php/product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][0]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][0]['tax'] != 0):?>
@@ -97,8 +97,8 @@
 					<?php if(!empty($order['products'])):?>
 					<?php foreach($order['products'] as $key=>$value):?>
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="index.php/product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="index.php/product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][$key]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][$key]['tax'] != 0):?>

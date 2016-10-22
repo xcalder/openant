@@ -8,7 +8,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;运费列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/freight/add_freight.html#edit-freight" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('product/freight/add_freight')?>#edit-freight" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗？') ? $('#form-freight').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 				<div class="panel-heading row row-panel-heading bg-info">
 					<p class="navbar-left"><i class="glyphicon glyphicon-th-list"></i>&nbsp;运费模板列表</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="admin.php/product/freight/add_freight_template.html#edit-freight-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+						<a href="<?php echo site_url('product/freight/add_freight_template')?>#edit-freight-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 						<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定吗') ? $('#form-freight-group').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 					</div>
 				</div>

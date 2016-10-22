@@ -501,7 +501,7 @@ class User_model extends CI_Model {
 		$this->db->where('key', 'access');
 		$query=$this->db->get($this->db->dbprefix('user_competence'));
 		if($query->num_rows() > 0){
-			$row['access']=json_decode($query->row_array()['value']);
+			$row['access']=unserialize($query->row_array()['value']);
 		}
 		
 		$this->db->select('value');
@@ -509,7 +509,7 @@ class User_model extends CI_Model {
 		$this->db->where('key', 'edit');
 		$query=$this->db->get($this->db->dbprefix('user_competence'));
 		if($query->num_rows() > 0){
-			$row['edit']=json_decode($query->row_array()['value']);
+			$row['edit']=unserialize($query->row_array()['value']);
 		}
 		
 		if(isset($row)){
@@ -529,7 +529,7 @@ class User_model extends CI_Model {
 		    if( !$v )   
 		        unset($data['user_access'][$k] );
 		}
-		$access['value']=json_encode($data['user_access']);
+		$access['value']=serialize($data['user_access']);
 		$this->db->insert($this->db->dbprefix('user_competence'), $access);
 		
 		$edit['user_id']=$user_id;
@@ -538,7 +538,7 @@ class User_model extends CI_Model {
 		    if( !$v )   
 		        unset($data['user_edit'][$k] );   
 		}
-		$edit['value']=json_encode($data['user_edit']);
+		$edit['value']=serialize($data['user_edit']);
 		$this->db->insert($this->db->dbprefix('user_competence'), $edit);
 	}
 	

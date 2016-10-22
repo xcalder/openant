@@ -6,10 +6,10 @@
     <div class="col-md-12 middle-flat-left">
       <div class="panel panel-default">
         <div class="panel-heading row row-panel-heading bg-info">
-	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;发货状态列表</p>
+	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;退换货事件列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
 				<a href="<?php echo site_url('localisation/return_action/add')?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除发货状态参数吗？') ? $('#form-return_action').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
+				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除退换货事件参数吗？') ? $('#form-return_action').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
         <!-- /widget-header -->

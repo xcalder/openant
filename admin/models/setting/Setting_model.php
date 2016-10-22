@@ -29,20 +29,14 @@ class Setting_model extends CI_Model {
 		if(!empty($key)){
 			$this->db->where('key', $key);
 		}
-		
+	
 		$this->db->from($this->db->dbprefix('setting'));
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0){
 			
-			//foreach ($query->row_array() as $result) {
-				//if (!$result['serialized']) {
-					$result=$query->row_array();
-					$data = $result['value'];
-				//} else {
-					//$data[$result['key']] = unserialize($result['value']);
-				//}
-			//}
+			$result=$query->row_array();
+			$data = $result['value'];
 			
 			return $data;
 		}

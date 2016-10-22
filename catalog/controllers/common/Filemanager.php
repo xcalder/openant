@@ -283,6 +283,11 @@ class FileManager extends CI_Controller {
 				if (!in_array($_FILES['file']['type'], $allowed)) {
 					$json['error'] = $this->lang->line('error_filetype');
 				}
+				
+				$filesize=abs(filesize($_FILES['file']['tmp_name']));
+				if($filesize > 204800){    //大于200k
+					$json['error']='图片不得超过200Kb';
+				}
 
 				// Check to see if any PHP files are trying to be uploaded
 				$content = file_get_contents($_FILES['file']['tmp_name']);

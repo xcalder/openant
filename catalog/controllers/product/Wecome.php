@@ -25,12 +25,21 @@ class Wecome extends CI_Controller{
 		}
 		$this->document->setTitle($product_info['name']);
 		
-		$this->document->setKeywords($product_info['name']);
+		//提取关键词key
+		$this->load->library('phpanalysis');
+		$this->load->helper('string');
+		$this->phpanalysis->SetSource (unserialize($this->config->get_config('site_name'))[$_SESSION['language_id']].$product_info['name'].$product_info['name'].$product_info['meta_description'].utf8_substr(DeleteHtml($product_info['description']), 0, 200));
+		$this->phpanalysis->StartAnalysis ( true );
+			
+		$tags = $this->phpanalysis->GetFinallyKeywords ( 20 ); // 获取文章中的五个关键字
+		
+		$this->document->setKeywords($tags);
+		//提取关键词key
 		
 		$this->document->setDescription($product_info['meta_description']);
 		
-		$this->document->addScript('public/min?f=public/resources/default/js/spinner/jquery.spinner.min.js');
-		$this->document->addStyle('public/min?f=public/resources/default/css/spinner/bootstrap-spinner.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/spinner/jquery.spinner.min.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/spinner/bootstrap-spinner.css');
 
 		if(isset($product_info['attribute'])){
 			foreach($product_info['attribute'] as $key=>$value){

@@ -126,4 +126,14 @@ class Image_common extends CI_Common {
 		echo $new_img.'======';
 		return $new_img;
 	}
+	
+	public function get_string_image($string){
+		preg_match ("<img.*src=[\"](.*?)[\"].*?>", $string, $match);
+
+		if(isset($match[1])){
+			return $match[1];
+		}else{
+			return false;
+		}
+	}
 }

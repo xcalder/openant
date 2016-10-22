@@ -65,8 +65,8 @@ class Paypal extends MY_Controller {
 		$data = array(
 			'METHOD'             => 'SetExpressCheckout',
 			'MAXAMT'             => (float)$max_amount,
-			'RETURNURL'          => base_url().'extension/payment/paypal/checkoutreturn.html',
-			'CANCELURL'          => base_url().'user/confirm/payment.html?order_ids='.$this->input->get('order_ids'),
+			'RETURNURL'          => site_url('extension/payment/paypal/checkoutreturn'),
+			'CANCELURL'          => site_url('user/confirm/payment?order_ids='.$this->input->get('order_ids')),
 			'REQCONFIRMSHIPPING' => 0,
 			'NOSHIPPING'         => 0,
 			'LOCALECODE'         => 'EN',
@@ -118,7 +118,7 @@ class Paypal extends MY_Controller {
 			'TOKEN'                      => $_SESSION['paypal']['token'],
 			'PAYERID'                    => $_SESSION['paypal']['payerid'],
 			'METHOD'                     => 'DoExpressCheckoutPayment',
-			'PAYMENTREQUEST_0_NOTIFYURL' => base_url().'user/confirm/payment.html?order_ids='.$_SESSION['paypal']['order_ids'],
+			'PAYMENTREQUEST_0_NOTIFYURL' => site_url('user/confirm/payment?order_ids='.$_SESSION['paypal']['order_ids']),
 			'RETURNFMFDETAILS'           => 1
 		);
 

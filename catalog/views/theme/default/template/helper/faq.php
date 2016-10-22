@@ -25,7 +25,7 @@
 						<li id="category-<?php echo $category['information_category_id'];?>" class="category-<?php echo $category['information_category_id'];?>"><a onclick="change_active('.category-<?php echo $category['information_category_id'];?>');"><?php echo $category['name'];?></a>
 							<ul class="faq-nav-two">
 								<?php foreach($category['titles'] as $title):?>
-								<li class="inforation-<?php echo $title['information_id'];?>"><a href="helper/faq.html?inforation_id=<?php echo $title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 								<?php endforeach;?>
 								
 								<?php if($category['childs']):?>
@@ -35,7 +35,7 @@
 									<?php if($child['titles']):?>
 									<ul class="faq-nav-two">
 									<?php foreach($child['titles'] as $title):?>
-									<li class="inforation-<?php echo $title['information_id'];?>"><a href="helper/faq.html?inforation_id=<?php echo $title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+									<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 									<?php endforeach;?>
 									</ul>
 									<?php endif;?>
@@ -57,7 +57,7 @@
 								<?php if($child['titles']):?>
 								<ul class="faq-nav-two">
 								<?php foreach($child['titles'] as $title):?>
-								<li class="inforation-<?php echo $title['information_id'];?>"><a href="helper/faq.html?inforation_id=<?php echo $title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 								<?php endforeach;?>
 								</ul>
 								<?php endif;?>

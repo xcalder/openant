@@ -40,15 +40,15 @@
 					
 					<?php if(isset($order['products']) && $order['products'] && !empty($order['products'])):?>
 					<tr <?php echo $style_bg;?>>
-						<td colspan="2" class="border-right"><input class="select" type="checkbox" /><?php echo date('Y-m-d',strtotime($order['date_added']));?></td>
+						<td colspan="2" class="border-right text-left"><input class="select" type="checkbox" /><?php echo date('Y-m-d',strtotime($order['date_added']));?></td>
 						<td colspan="3" class="border-right">订单号：<?php echo date('YmdHis',strtotime($order['date_added'])).'-'.$order['order_id'];?></td>
 						<td colspan="2" class="hidden-xs border-right"><img width="18px" height="18px" class="lazy" data-original="<?php echo $this->image_common->resize($order['logo'], 18, 18);?>" alt="<?php echo $order['store_name']; ?>"><?php echo $order['store_name'];?></td>
 						<td class="text-right hidden-xs border-right"><button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="删除订单" onclick="del_order('<?php echo $order['order_id'];?>');"><i class="text-warning glyphicon glyphicon-remove"></i></button></td>
 					</tr>
 					
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right" style="vertical-align: middle"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right" style="vertical-align: middle"><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][0]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][0]['product_id']);?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][0]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][0]['tax'] != 0):?>
@@ -56,14 +56,19 @@
 						<?php endif;?>
 						</td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><?php echo $order['products'][0]['quantity']; ?></td>
-						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">退款/退货<br/>投诉商家</td>
+						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">
+							<?php if($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
+							<a target="_blank" href="<?php echo site_url('user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][0]['rowid']);?>">退款/退货</a><br/>
+							<?php endif;?>
+							投诉商家
+						</td>
 						<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['total'] * $order['currency_value']); ?></b></strong>
 						<span>含税（<?php echo $this->currency->Compute(array_sum(array_column($order['products'], 'tax')) * $order['currency_value']);?>）</span>
 						</td>
-						<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a href="<?php echo site_url('user/orders/order_info?order_id=').$order['order_id'];?>">订单详情</a></td>
+						<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a target="_blank" href="<?php echo site_url('user/orders/order_info?order_id=').$order['order_id'];?>">订单详情</a></td>
 						<td class="text-center col-md-2 col-sm-2 col-xs-2">
 							<?php if($order['order_status_id'] == $this->config->get_config('default_order_status')):?>
-							<a target="_blank" href="user/confirm/payment.html?order_ids=<?php echo $_SESSION['token'].','.$order['order_id'];?>" class="btn btn-default btn-sm">去付款</a>
+							<a target="_blank" href="<?php echo site_url('user/confirm/payment?order_ids='.$_SESSION['token'].','.$order['order_id']);?>" class="btn btn-default btn-sm">去付款</a>
 							<?php elseif($order['order_status_id'] == $this->config->get_config('to_be_delivered')):?>
 							<button type="button" class="btn btn-default btn-sm">提醒卖家发货</button>
 							<?php elseif($order['order_status_id'] == $this->config->get_config('inbound_state')):?>
@@ -80,8 +85,8 @@
 					<?php if(!empty($order['products'])):?>
 					<?php foreach($order['products'] as $key=>$value):?>
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][$key]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][$key]['product_id']);?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][$key]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][$key]['tax'] != 0):?>
@@ -89,7 +94,12 @@
 						<?php endif;?>
 						</td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><?php echo $order['products'][$key]['quantity']; ?></td>
-						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">退款/退货<br/>投诉商家</td>
+						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">
+							<?php if($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
+							<a target="_blank" href="<?php echo site_url('user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][$key]['rowid']);?>">退款/退货</a><br/>
+							<?php endif;?>
+							投诉商家
+						</td>
 						<td class="col-md-2 col-sm-2 col-xs-2 border-noborder-top-right"></td>
 						<td class="col-md-1 col-sm-1 col-xs-2 border-noborder-top-right"></td>
 						<td class="col-md-2 col-sm-2 col-xs-2 border-noborder-top"></td>

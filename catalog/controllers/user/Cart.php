@@ -13,11 +13,11 @@ class Cart extends MY_Controller{
 
 	public function index(){
 		$this->document->setTitle('购物车');
-		$this->document->addScript('public/min?f=public/resources/default/js/spinner/jquery.spinner.min.js');
-		$this->document->addStyle('public/min?f=public/resources/default/css/spinner/bootstrap-spinner.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/spinner/jquery.spinner.min.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/spinner/bootstrap-spinner.css');
 		
-		$this->document->addStyle('public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f=public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
 		
 		if(isset($_SESSION['cart_contents'])){
 			$carts=$_SESSION['cart_contents'];

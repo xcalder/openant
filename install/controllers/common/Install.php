@@ -17,8 +17,6 @@ class Install extends CI_Controller {
 		
 		$this->document->setTitle(lang_line('title'));
 		
-		$this->document->addStyle('public/min?f=public/resources/default/css/home/home.css');
-		
 		if (($_SERVER['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->install_model->database($this->input->post());
 			$configs=array(
@@ -129,7 +127,7 @@ class Install extends CI_Controller {
 			$config['cachedir'] = '';
 			$config['char_set'] = 'utf8';
 			$config['dbcollat'] = 'utf8_general_ci';
-			$this->load->database($config);
+			@$this->load->database($config);
 
 			if (!empty($this->db->error()['message'])) {
 				$this->error['warning'] = $this->db->error();

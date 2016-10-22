@@ -52,7 +52,7 @@ $(function () {
 });
 $('#btn').click(function(){
 	if($('#btn span').text() == 0){
-		window.location.href="user/new_store/add.html";
+		window.location.href="<?php echo site_url('user/new_store/add');?>";
 	}
 });
 

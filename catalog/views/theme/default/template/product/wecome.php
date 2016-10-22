@@ -236,7 +236,7 @@
 					<button type="button" onclick="add_cart('');" class="btn btn-primary" <?php echo $product['quantity'] < 1 ? 'disabled' : '';?>><?php echo lang_line('add_cart');?></button>
 				</div>
 				<div class="btn-group btn-group-lg" role="group">
-					<button type="button" class="btn btn-info"><?php echo lang_line('collect');?></button>
+					<button type="button" onclick="add_wishlist('<?php echo $product['name']?>');" class="btn btn-info"><?php echo lang_line('collect');?></button>
 				</div>
 			</div>
 			<?php
@@ -448,7 +448,7 @@
 					})
 				$('#mylogin .login-botton').addClass('active');
 				<?php else:?>
-					window.location.href="user/signin/login?url="+window.location.href;
+					window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
 				<?php endif;?>
 			}else{
 				$.notify({message: "<?php echo lang_line('select_product');?>" },{type: 'warning'});
@@ -468,7 +468,7 @@
 				})
 			$('#mylogin .login-botton').addClass('active');
 			<?php else:?>
-				window.location.href="user/signin/login?url="+window.location.href;
+				window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
 			<?php endif;?>
 			<?php endif;?>
 		}
@@ -510,6 +510,49 @@
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
 				});
+		}
+
+		function add_wishlist(name){
+			<?php if($this->user->isLogged()):?>
+				//添加到收藏夹
+				$.ajax(
+					{
+						url: '<?php echo site_url();?>user/wishlist/add.html',
+						type: 'post',
+						dataType: 'json',
+						data: {product_id:<?php echo $product_id;?>},
+						beforeSend: function()
+						{
+							NProgress.start();
+						},
+						complete: function()
+						{
+							NProgress.done();
+						},
+						success: function(data)
+						{
+							if(data.success){
+								$.notify({message: name + data.success,},{type: 'success',});
+								$('#wishlist-count').text(data.count);
+							}else{
+								$.notify({message: name + data.error },{type: 'warning'});
+							}
+					
+						},
+						error: function(xhr, ajaxOptions, thrownError)
+						{
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}
+					});
+				
+			<?php elseif($this->config->get_config('login_window') == '1' && !$this->agent->is_mobile()):?>
+				$('#mylogin').modal({
+					show: true
+				})
+			$('#mylogin .login-botton').addClass('active');
+			<?php else:?>
+				window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
+			<?php endif;?>
 		}
 
 		//滑动支持

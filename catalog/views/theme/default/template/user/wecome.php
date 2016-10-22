@@ -48,7 +48,7 @@
 					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('inbound_state');?>">侍收货<?php echo isset($count_inbound_state) ? '<span class="badge">'.$count_inbound_state.'</span>' : '';?></a></div>
 					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('state_to_be_evaluated');?>">侍评价<?php echo isset($count_to_be_evaluated) ? '<span class="badge">'.$count_to_be_evaluated.'</span>' : '';?></a></div>
 					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('refund_order');?>">退款中<?php echo isset($count_refund_order) ? '<span class="badge">'.$count_refund_order.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2">收藏夹</div>
+					<div class="col-sm-2 col-xs-2"><a href="<?php echo site_url('user/wishlist');?>">收藏夹<span class="badge"><?php echo $wishlist_count;?></span></a></div>
 					
 				</div>
 				<!-- /widget-content --> 

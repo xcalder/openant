@@ -68,9 +68,8 @@ class CI_User {
 				$query = $this->CI->db->get();
 				if($query->num_rows() > 0){
 					$row = $query->result_array();
-					//$row = array_column($row,'value');
 					foreach($row as $competence){
-						$this->competence[]=$competence;
+						$this->competence[$competence['key']]=unserialize($competence['value']);
 					}
 					
 				}
@@ -85,7 +84,7 @@ class CI_User {
 		if ($override) {
 			$user_query = $this->CI->db->query("SELECT * FROM " . $this->db->dbprefix('user') . " WHERE LOWER(email) = '" . $this->CI->db->escape($email) . "' AND status = '1'");
 		} else {
-			$user_query = $this->CI->db->query("SELECT * FROM " . $this->CI->db->dbprefix('user') . " WHERE LOWER(email) = " . $this->CI->db->escape($email) . " AND password = " . $this->CI->db->escape(md5($password)) . " AND status = '1' AND approved = '1'");
+			$user_query = $this->CI->db->query("SELECT * FROM " . $this->CI->db->dbprefix('user') . " WHERE LOWER(email) = " . $this->CI->db->escape($email) . " AND password = " . $this->CI->db->escape(md5($password)) . " AND status = '1'");
 		}
 
 		if ($user_query->row_array()) {
@@ -168,7 +167,7 @@ class CI_User {
 		return $this->user_id;
 	}
 	
-	public function hasPermission($key, $value) {
+	public function hasPermission($key='', $value='') {
 		if (isset($this->permission[$key])) {
 			return in_array($value, $this->permission[$key]);
 		} else {
@@ -176,25 +175,6 @@ class CI_User {
 		}
 	}
 	
-	//后台和卖家中心访问权限
-	public function hasPermission_access($key) {
-		if (isset($this->permission['access'])){
-			foreach($this->permission['access'] as $k=>$v){
-				if(strpos($this->permission['access'][$k], $key) !== false){
-					return $this->permission['access'][$k];
-				}else{
-					$c=FALSE;
-				}
-			}
-			if(isset($c)){
-				return $c;
-			}
-		}else {
-			return false;
-		}
-		return false;
-	}
-
 	public function getId() {
 		return $this->user_id;
 	}
@@ -259,25 +239,13 @@ class CI_User {
 		return $query->row['total'];
 	}
 	
-	public function has_competence ($key,$value)
+	public function has_competence ($key='',$value='')
 	{
-		if(!isset($key) || !isset($value)){
-			return FALSE;
-		}
 		if($this->isLogged()){
-			foreach ($this->competence as $competence){
-				foreach($competence as $key_=>$value_){
-					if($key == $value_){
-						$cpt = json_decode($competence['value']);
-					}
-				}
-			}
-			
-			if(!isset($cpt) || !is_array($cpt)){
+			if(isset($this->competence[$key])){
+				return in_array($value, $this->competence[$key]);
+			}else{
 				return FALSE;
-			}
-			if(in_array($value,$cpt)){
-				return TRUE;
 			}
 		}
 		return FALSE;

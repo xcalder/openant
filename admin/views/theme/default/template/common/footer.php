@@ -9,9 +9,9 @@
 			</div>
 		</div><hr>
 		<!-- /container -->
-		<div class="footer bg-success">
+		<div class="footer">
 			<!-- Start Navigation -->
-			<nav class="navbar navbar-default bootsnav" style="border-bottom-width: 0px;">
+			<nav class="navbar bootsnav" style="border-bottom-width: 0px;">
 				<div class="container">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="navbar-menu">
@@ -22,7 +22,7 @@
 							<li><a>执行内存<?php echo $this->benchmark->memory_usage();?></a></li>
 							<?php endif;?>
 							<li><a>滇ICP备15003514号-3<img width="14px" height="16px" class="lazy" data-original="public/resources/default/image/copy_rignt_24.png"></a></li>
-							<li><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=53230102000162"><img width="16px" height="16px" class="lazy" data-original="public/resources/default/image/icp-back.png">滇公网安备 53230102000162号</a></li>
+							<li><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=53230102000272"><img width="16px" height="16px" class="lazy" data-original="public/resources/default/image/icp-back.png">滇公网安备 53230102000272号</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div>   

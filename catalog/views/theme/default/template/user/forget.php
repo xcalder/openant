@@ -16,7 +16,7 @@
 							</div> <!-- /field -->
 							<div class="form-group form-captcha">
 								<input type="text" id="captcha" name="captcha" placeholder="验证码" class="form-control" value=""/>
-								<img title="点击刷新" src="common/captcha" align="absbottom" onclick="this.src='common/captcha?'+Math.random();"></img>
+								<img title="点击刷新" src="index.php/common/captcha" align="absbottom" onclick="this.src='index.php/common/captcha?'+Math.random();"></img>
 						
 							</div> <!-- /field -->
 					

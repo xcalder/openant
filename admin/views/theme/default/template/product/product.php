@@ -51,8 +51,8 @@
 						?>
 						<tr>
 							<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" /></td>
-							<td><a target="_blank" href="product.html?product_id=<?php echo $product['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="lazy" data-original="<?php echo $product['image'];?>"></a></td>
-							<td><a target="_blank" href="product.html?product_id=<?php echo $product['product_id'];?>"><?php echo utf8_substr($product['name'], 0, 30);?></a></td>
+							<td><a target="_blank" href="index.php/product.html?product_id=<?php echo $product['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="lazy" data-original="<?php echo $product['image'];?>"></a></td>
+							<td><a target="_blank" href="index.php/product.html?product_id=<?php echo $product['product_id'];?>"><?php echo utf8_substr($product['name'], 0, 30);?></a></td>
 							<td><?php echo $this->currency->Compute($product['price']);?></td>
 							<td><?php echo $product['quantity'];?></td>
 							<td><?php echo $product['sales'];?></td>

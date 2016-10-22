@@ -62,7 +62,7 @@ class User_activity extends MY_Controller {
 		
 		if($user_activitys){
 			foreach($user_activitys['user_activitys'] as $key=>$value){
-				$comment[$key]				=json_decode($user_activitys['user_activitys'][$key]['data']);
+				$comment[$key]				=unserialize($user_activitys['user_activitys'][$key]['data']);
 				$activitys[$key]['user_id']	=$user_activitys['user_activitys'][$key]['user_id'];
 				$activitys[$key]['key']		=$user_activitys['user_activitys'][$key]['key'];
 				$activitys[$key]['ip']		=$user_activitys['user_activitys'][$key]['ip'];

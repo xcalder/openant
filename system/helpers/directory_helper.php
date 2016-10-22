@@ -99,3 +99,29 @@ if ( ! function_exists('directory_map'))
 		return FALSE;
 	}
 }
+
+if ( ! function_exists('getdirsize'))
+{
+	function getdirsize($dir)
+	{
+		$size = 0;
+		$dirs = [$dir];
+		 
+		while(@$dir=array_shift($dirs)){
+			$fd = opendir($dir);
+			while(@$file=readdir($fd)){
+				if($file=='.' && $file=='..'){
+					continue;
+				}
+				$file = $dir.DIRECTORY_SEPARATOR.$file;
+				if(is_dir($file)){
+					array_push($dirs, $file);
+				}else{
+					$size += filesize($file);
+				}
+			}
+			closedir($fd);
+		}
+		return $size;
+	}
+}

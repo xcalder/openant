@@ -26,7 +26,7 @@ class Layout extends MY_Controller{
 	public function delete(){
 		$this->document->setTitle('删除布局');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
+		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST"){
 			$this->layout_model->delete($this->input->post('selected'));
 			$this->session->set_flashdata('success', '成功：布局删除成功！');
 			redirect(site_url('common/layout'));

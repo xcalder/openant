@@ -13,8 +13,8 @@ class Mobile_nav extends CI_Controller {
 		$this->lang->load('wecome',$_SESSION['language_name']);
 		
 		$this->document->setTitle(lang_line('mobile_nav'));
-		$this->document->addScript('public/min?f=public/resources/default/js/slinks/jquery.slinky.js');
-		$this->document->addStyle('public/min?f=public/resources/default/css/slinks/jquery.slinky.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/slinks/jquery.slinky.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/slinks/jquery.slinky.css');
 		
 		$data['menus']=$this->category_model->get_categorys_to_top();
 		

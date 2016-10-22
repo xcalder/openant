@@ -1,7 +1,7 @@
-<body id="<?php //echo $css;?>">
+<body id="<?php echo $css;?>">
 <div id="header">
 	<!-- Start Navigation -->
-	<nav class="navbar navbar-default brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
+	<nav class="navbar brand-center center-side bootsnav hidden-xs" style="z-index: 10" id="nav-top">
 	<div class="container">
 
 		<!-- Start Header Navigation -->
@@ -15,32 +15,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbar-menu-top">
 			<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-				<li style="max-height: 50px"><a class="navbar-brand navbar-brand-logo" style="padding: 0 15px" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="50px" height="50px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 65, 65, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="logo lazy" alt="" style="background: url();"></a></li>
+				<li><a class="navbar-brand navbar-brand-logo" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="46px" height="46px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 46, 46, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="lazy" alt="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"></a></li>
 				<?php echo $language;?>
 				<?php echo $currency;?>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<?php echo lang_line('text_business');?>
-						<span class="badge">
-							42
-						</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="javascript:;">
-								设置
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;">
-								帮助
-							</a>
-						</li>
-					</ul>
-				</li>
 				<li class="dropdown megamenu-fw">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">站点地图</a>
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">站点地图</a>
 					<ul class="dropdown-menu megamenu-content" role="menu">
 						<li class="container">
 							<div class="row">
@@ -90,7 +69,7 @@
                                         <div class="content">
                                             <ul class="menu-col">
                                             	<?php foreach($nav_infomation['informations'] as $information):?>
-                                                <li><a href="helper/faq.html?inforation_id=<?php echo $information['information_id'];?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a></li>
+                                                <li><a href="index.php/helper/faq.html?inforation_id=<?php echo $information['information_id'];?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a></li>
                                                 <?php endforeach;?>
                                             </ul>
                                         </div>
@@ -106,18 +85,18 @@
 				if($this->user->isLogged()):?>
 				<!--如果没有登陆不显示-->
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 						<?php echo utf8_substr($this->user->getnickname(), 0, 8);?>
 						<span class="badge">
-							14
+							<?php echo $activity_count;?>
 						</span>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo site_url();?>">
+							<a href="user/notice.html">
 								消息
 								<span class="badge">
-									14
+									<?php echo $activity_count;?>
 								</span>
 							</a>
 						</li>

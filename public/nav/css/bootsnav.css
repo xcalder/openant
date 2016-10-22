@@ -53,7 +53,6 @@ nav.navbar.bootsnav{
     -webkit-border-radius: 0px;
     -o-border-radius: 0px;
     border-radius: 0px;
-    background-color: #fff;
     border: none;
     border-bottom: solid 1px #e0e0e0;
     z-index: 9;
@@ -273,6 +272,7 @@ ul.cart-list > li{
     position: relative;
     border-bottom: solid 1px #efefef;
     padding: 5px 15px !important;
+    min-height: 65px;
 }
 
 ul.cart-list > li > a.photo{
@@ -363,13 +363,6 @@ ul.cart-list > li.total > span{
 
 /* Side Menu
 =================================*/
-body{
-    -webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
 
 body.on-side{
     margin-left: -280px;
@@ -1020,7 +1013,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
 
 @media (max-width: 992px) {
 	body{
-		margin-left: 15px !important;
+		margin-left: 0px !important;
 	}
 	#content{
 		min-height: 300px !important;
@@ -1453,7 +1446,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
 		padding-left: 5px;
 	}
 	#middle{
-		padding-left: 15px;
+		padding-left: 0px;
 	}
 	#middle div.row:first-child{
 		padding-left: 25px;
@@ -1564,6 +1557,12 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
 	}
 	.panel{
 		border-width: 0;
+	}
+	.padding-left{
+		padding-left: 0;
+	}
+	.padding-right{
+		padding-right: 0;
 	}
 }
 

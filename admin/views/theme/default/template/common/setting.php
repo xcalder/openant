@@ -487,30 +487,6 @@
 						</div>
 						<hr style="margin: 0 0 15px 0">
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="guest_checkout">
-								游客结帐
-							</label>
-							<div class="col-sm-10">
-								<?php
-								if(isset($guest_checkout) && $guest_checkout == '0'):?>
-								<label class="radio-inline">
-									<input type="radio" name="guest_checkout" id="guest_checkout" value="1"> 是
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="guest_checkout" id="guest_checkout" value="0" checked> 否
-								</label>
-								<?php
-								else:?>
-								<label class="radio-inline">
-									<input type="radio" name="guest_checkout" id="guest_checkout" value="1" checked> 是
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="guest_checkout" id="guest_checkout" value="0"> 否
-								</label>
-								<?php endif;?>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-sm-2 control-label" for="default_order_status">
 								默认提交订单状态
 							</label>
@@ -717,6 +693,75 @@
 								<?php endif;?>
 							</div>
 						</div>
+						
+						<hr style="margin: 0 0 15px 0">
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="return-and-refund">
+								退货且退款
+							</label>
+							<div class="col-sm-10">
+								<select id="return-and-refund" name="action_return_and_refund" class="form-control">
+									<?php if($return_actions):?>
+									<?php foreach($return_actions as $k=>$v):?>
+									<?php if(isset($return_actions) && $action_return_and_refund == $return_actions[$k]['return_action_id']):?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>" selected>
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php else:?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>">
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php endif;?>
+									<?php endforeach;?>
+									<?php endif;?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="return">
+								仅退货
+							</label>
+							<div class="col-sm-10">
+								<select id="return" name="action_return" class="form-control">
+									<?php if($return_actions):?>
+									<?php foreach($return_actions as $k=>$v):?>
+									<?php if(isset($return_actions) && $action_return == $return_actions[$k]['return_action_id']):?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>" selected>
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php else:?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>">
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php endif;?>
+									<?php endforeach;?>
+									<?php endif;?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="refund">
+								仅退款
+							</label>
+							<div class="col-sm-10">
+								<select id="refund" name="action_refund" class="form-control">
+									<?php if($return_actions):?>
+									<?php foreach($return_actions as $k=>$v):?>
+									<?php if(isset($return_actions) && $action_refund == $return_actions[$k]['return_action_id']):?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>" selected>
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php else:?>
+									<option value="<?php echo $return_actions[$k]['return_action_id']?>">
+										<?php echo $return_actions[$k]['name']?>
+									</option>
+									<?php endif;?>
+									<?php endforeach;?>
+									<?php endif;?>
+								</select>
+							</div>
+						</div>
+						
 					</div>
 					<!-- /widget-content -->
 				</div>

@@ -33,7 +33,7 @@ class position_left extends CI_Common{
 			}else{
 				$module_name=strtolower($modules[$key]['code'].'_module');
 				$this->load->extension('module/'.$module_name);
-				$data['modules'][]=$this->$module_name->index($modules[$key]['setting']);
+				$data['modules'][]=$this->$module_name->index($modules[$key]['setting'], 'left');
 			}
 		}
 		$this->html=$this->load->view('theme/default/template/common/position_left', $data, true);

@@ -11,21 +11,6 @@ Last update : 02 Juni  2016
 /*
 Typography
 =========================== */
-html,body {
-    width:100%;
-    height: auto;
-    margin:0;
-    padding:0;
-}
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    position: relative;
-	font-size:14px;
-	line-height:24px;
-	color:#6f6f6f;
-	overflow-x: hidden;
-}
 
 a{
     color: #6f6f6f;

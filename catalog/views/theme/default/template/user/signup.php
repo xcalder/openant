@@ -10,7 +10,7 @@
 			<?php echo $position_left;?>
 				<div class="col-sm-3 panel panel-default middle-flat-left">
 					<div class="panel-body">
-						<form action="<?php echo base_url('user/signin/signinup.html');?>" method="post" enctype="multipart/form-data" id="signup">
+						<form action="<?php echo site_url('user/signin/signinup');?>" method="post" enctype="multipart/form-data" id="signup">
 							<p class="text-center login-title">
 							<strong><?php echo lang_line('register');?></strong><hr style="margin: 10px 0">
 							<div class="form-group error">
@@ -40,7 +40,7 @@
 								<img title="<?php echo lang_line('refresh');?>"
 											src="<?php echo site_url('common/captcha');?>"
 											align="absbottom"
-											onclick="this.src='common/captcha.html?'+Math.random();">
+											onclick="this.src='index.php/common/captcha.html?'+Math.random();">
 								</img>
 							</div>
 							<!-- /field -->
@@ -51,7 +51,7 @@
 									</label>
 
 									<label class="login-forget">
-										<a onclick="window.open('<?php echo base_url('helper/faq.html?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
+										<a onclick="window.open('<?php echo site_url('helper/faq?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
 									</label>
 								</div>
 							</div>
@@ -107,7 +107,7 @@ if(isset($_SESSION['warning'])):?>
 	//第三方登陆
 	function with_login(key)
 	{
-		window.open ('user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+		window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 	}
 	//注册
 	$(document).ready(function()
@@ -137,7 +137,7 @@ if(isset($_SESSION['warning'])):?>
 						{
 							required: true,
 							rangelength:[4,4],
-							remote: "common/captcha/veri.html"
+							remote: "index.php/common/captcha/veri.html"
 						},
 						agree:
 						{

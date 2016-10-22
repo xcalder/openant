@@ -2,11 +2,11 @@
 	<?php if(isset($_SESSION['language_code'])):?>
 	<?php foreach($languages as $language):?>
 	<?php if($language['code'] == $_SESSION['language_code']):?>
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image'];?>"><?php echo $language['name']?></a>
+	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><img width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image'];?>"><?php echo $language['name']?></a>
 	<?php endif;?>
 	<?php endforeach;?>
 	<?php else:?>
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image'];?>"><?php echo $language['name'];?></a>
+	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><img width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image'];?>"><?php echo $language['name'];?></a>
 	<?php endif;?>
 	
 	<ul class="dropdown-menu" id="language">

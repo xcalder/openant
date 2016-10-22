@@ -17,14 +17,14 @@ class Wecome extends CI_Controller {
 			$this->document->setTitle(lang_line('title'));
 		}
 		
-		if($this->config->get_config('meta_keyword')){
-			$this->document->setKeywords($this->config->get_config('meta_keyword'));
+		if(unserialize($this->config->get_config('meta_keyword'))[$_SESSION['language_id']]){
+			$this->document->setKeywords(unserialize($this->config->get_config('meta_keyword'))[$_SESSION['language_id']]);
 		}else{
 			$this->document->setKeywords(lang_line('meta_keyword'));
 		}
 		
-		if($this->config->get_config('meta_description')){
-			$this->document->setDescription($this->config->get_config('meta_description'));
+		if(unserialize($this->config->get_config('meta_description'))[$_SESSION['language_id']]){
+			$this->document->setDescription(unserialize($this->config->get_config('meta_description'))[$_SESSION['language_id']]);
 		}else{
 			$this->document->setDescription(lang_line('meta_description'));
 		}

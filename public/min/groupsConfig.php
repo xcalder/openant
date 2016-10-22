@@ -10,10 +10,20 @@
  *
  * See http://code.google.com/p/minify/wiki/CustomSource for other ideas
  **/
+$subpath=str_replace('/min', '/',str_replace($_SERVER['DOCUMENT_ROOT'].'/', '', str_replace('\\', '/', dirname(__FILE__))));
+$jss = array('resources/default/js/jquery-1.12.0.min.js', 'resources/default/js/bootstrap.js', 'resources/default/js/jquery.validate/jquery.validate.js', 'resources/default/js/jquery.goup.min.js', 'resources/default/js/jquery.form.js', 'resources/default/js/bootstrap-notify.min.js', 'resources/default/js/nprogress/nprogress.js', 'resources/default/js/jquery.lazyload.js', 'summernote/summernote.min.js', 'resources/default/js/hammer/hammer.min.js', 'resources/default/js/hammer/jquery.hammer.js', 'nav/js/bootsnav.js', 'resources/default/js/base.js');
+foreach ($jss as $js){
+	$js_s[]='//'.$subpath.$js;
+}
+
+$csss=array('resources/default/css/bootstrap.min.css', 'resources/default/css/bootstrap-responsive.min.css', 'summernote/summernote.css', 'resources/default/js/nprogress/nprogress.css', 'nav/css/bootsnav.css', 'nav/css/overwrite.css', 'nav/skins/color.css', 'resources/default/css/style.css');
+foreach ($csss as $css){
+	$css_s[]='//'.$subpath.$css;
+}
 
 return array(
-    'js' => array('//public/resources/default/js/jquery-1.12.0.min.js', '//public/resources/default/js/bootstrap.js', '//public/resources/default/js/jquery.validate/jquery.validate.js', '//public/resources/default/js/jquery.goup.min.js', '//public/resources/default/js/jquery.form.js', '//public/resources/default/js/bootstrap-notify.min.js', '//public/resources/default/js/nprogress/nprogress.js', '//public/resources/default/js/jquery.lazyload.js', '//public/summernote/summernote.min.js', '//public/resources/default/js/hammer/hammer.min.js', '//public/resources/default/js/hammer/jquery.hammer.js', '//public/nav/js/bootsnav.js', '//public/resources/default/js/base.js'),
+    'js' => $js_s,
 	
 	
-    'css' => array('//public/resources/default/css/bootstrap.min.css', '//public/resources/default/css/bootstrap-responsive.min.css', '//public/summernote/summernote.css', '//public/resources/default/js/nprogress/nprogress.css', '//public/nav/css/bootsnav.css', '//public/nav/css/overwrite.css', '//public/nav/skins/color.css', '//public/resources/default/css/style.css'),
+    'css' => $css_s,
 );

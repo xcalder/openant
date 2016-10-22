@@ -76,7 +76,7 @@ class Product extends MY_Controller{
 	public function added(){
 		$this->document->setTitle('批量上架商品');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
+		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
 			$this->product_model->added($this->input->post('selected'));
 		}
 		redirect(site_url('product/product'));
@@ -87,7 +87,7 @@ class Product extends MY_Controller{
 	public function shelves(){
 		$this->document->setTitle('批量下架商品');
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
+		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
 			$this->product_model->shelves($this->input->post('selected'));
 		}
 		
@@ -108,8 +108,8 @@ class Product extends MY_Controller{
 	}
 	
 	public function get_form(){
-		$this->document->addScript('public/min?f=public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
-		$this->document->addStyle('public/min?f=public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
 		
 		$data['languages'] = $this->language_model->get_languages();
 		$data['addresss']=$this->address_model->get_addresss($this->user->getId());

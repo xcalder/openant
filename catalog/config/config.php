@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = ( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'];//获取当前域名
+$config['base_url'] = ( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'].'/'.SUBPATH;//获取当前域名
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = ( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_H
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol'] = 'REQUEST_URI';
+$config['uri_protocol']	= 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ $config['url_suffix'] = '.html';
 | than english.
 |
 */
-$config['language'] = 'chinese';
+$config['language']	= 'chinese';
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = TRUE;
+$config['enable_hooks'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -390,11 +390,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix'] = '';
-$config['cookie_domain'] = 'openant.com';
-$config['cookie_path'] = '/';
-$config['cookie_secure'] = FALSE;
-$config['cookie_httponly'] = FALSE;
+$config['cookie_prefix']	= '';
+$config['cookie_domain']	= 'openant.com';
+$config['cookie_path']		= '/';
+$config['cookie_secure']	= FALSE;
+$config['cookie_httponly'] 	= FALSE;
 
 /*
 |--------------------------------------------------------------------------

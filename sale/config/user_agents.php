@@ -192,17 +192,11 @@ $mobiles = array(
 
 // There are hundreds of bots but these are the most common.
 $robots = array(
-	'googlebot'					=> 'Googlebot',
+	'googlebot'					=> 'Google',
 	'msnbot'					=> 'Bing',
-	'baiduspider'				=> 'Baiduspider',
-	'bingbot'					=> 'Bing',
-	'slurp'						=> 'Yahoo',
+	'baiduspider'				=> 'Baidu',
 	'yahoo'						=> 'Yahoo',
 	'360Spider'					=> '360',
-	'mediapartners-google'		=> 'Googlebot',
-	'adsbot-google'				=> 'Googlebot',
-	'feedfetcher-google'		=> 'Googlebot',
-	'curious george'			=> 'Googlebot',
 	'ask jeeves'				=> 'Ask Jeeves',
 	'fastcrawler'				=> 'FastCrawler',
 	'infoseek'					=> 'InfoSeek Robot 1.0',

@@ -18,14 +18,14 @@ class Return_reason extends MY_Controller {
 	}
 
 	public function index(){
-		$this->document->setTitle('发货状态设置');
+		$this->document->setTitle('退换货原因设置');
 		
 		$this->get_list();
 	}
 	
 	public function add()
 	{
-		$this->document->setTitle('添加发货状态设置');
+		$this->document->setTitle('添加退换货原因设置');
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->return_reason_model->add($this->input->post());
@@ -38,7 +38,7 @@ class Return_reason extends MY_Controller {
 	
 	public function edit()
 	{
-		$this->document->setTitle('修改发货状态设置');
+		$this->document->setTitle('修改退换货原因设置');
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->return_reason_model->edit($this->input->post());
@@ -51,7 +51,7 @@ class Return_reason extends MY_Controller {
 	
 	public function delete()
 	{
-		$this->document->setTitle('删除发货状态参数');
+		$this->document->setTitle('删除退换货原因参数');
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->return_reason_model->delete($this->input->post('selected'));
@@ -158,7 +158,7 @@ class Return_reason extends MY_Controller {
 		}
 		
 		if($this->return_reason_model->check_delete($this->input->post('selected'))){
-			$this->error['wring_delete']='有一个删除的发货状态设置正在被使用';
+			$this->error['wring_delete']='有一个删除的退换货原因设置正在被使用';
 		}
 		
 		return !$this->error;
@@ -174,7 +174,7 @@ class Return_reason extends MY_Controller {
 		$description=$this->input->post('description');
 		foreach($description as $key=>$value){
 			if((utf8_strlen($description[$key]['name']) < 2) || (utf8_strlen($description[$key]['name']) > 32)){
-				$this->error['error_description'][$key]['error_name']='发货状态名称2——32字符';
+				$this->error['error_description'][$key]['error_name']='退换货原因名称2——32字符';
 			}
 		}
 		

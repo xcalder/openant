@@ -26,7 +26,7 @@ class Paypal_model extends CI_Model {
 
 			$data['L_PAYMENTREQUEST_0_QTY' . $i] = $item['quantity'];
 
-			$data['L_PAYMENTREQUEST_0_ITEMURL' . $i] = base_url().'product.html?product_id=' . $item['product_id'];
+			$data['L_PAYMENTREQUEST_0_ITEMURL' . $i] = site_url('product.html?product_id=' . $item['product_id']);
 
 			if ($item['weight'] > 0) {
 				$weight = $this->weight->Compute($item['weight'], $item['weight_class_id'], $this->config->get_config('default_weight_class'), FALSE);

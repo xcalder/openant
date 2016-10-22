@@ -2,11 +2,11 @@
 	<?php if(isset($_SESSION['currency_id'])):?>
 	<?php foreach($currencys as $currency):?>
 	<?php if(isset($_SESSION['currency_id']) && $currency['currency_id'] == $_SESSION['currency_id']):?>
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo (!empty($currency['symbol_left']) ? $currency['symbol_left'] : $currency['symbol_right']).$currency['title'];?></a>
+	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><?php echo (!empty($currency['symbol_left']) ? $currency['symbol_left'] : $currency['symbol_right']).$currency['title'];?></a>
 	<?php endif;?>
 	<?php endforeach;?>
 	<?php else:?>
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo (!empty($currency['symbol_left']) ? $currency['symbol_left'] : $currency['symbol_right']).$currency['title'];?></a>
+	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><?php echo (!empty($currency['symbol_left']) ? $currency['symbol_left'] : $currency['symbol_right']).$currency['title'];?></a>
 	<?php endif;?>
 	
 	<ul class="dropdown-menu" id="currency">

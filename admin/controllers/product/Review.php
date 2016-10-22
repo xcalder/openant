@@ -23,7 +23,7 @@ class Review extends MY_Controller {
 	
 	public function delete(){
 		
-		if($_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected')) && $this->check_modify()){
+		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
 			
 			$this->review_model->del_review($this->input->post('selected'));
 		}

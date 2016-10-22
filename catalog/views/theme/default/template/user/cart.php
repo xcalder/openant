@@ -17,10 +17,7 @@
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px">
 				<li role="presentation" class="active"><a href="#cart-all" aria-controls="cart-all" role="tab" data-toggle="tab">购物车商品<span class="label label-info"><?php echo isset($_SESSION['cart_contents']) ? count($_SESSION['cart_contents']) - 2 : ''?></span></a></li>
-				<!-- 
-				<li role="presentation"><a href="#cart-price-reduction" aria-controls="cart-price-reduction" role="tab" data-toggle="tab">降价商品&nbsp;<span class="label label-info">4</span></a></li>
-				<li role="presentation"><a href="#cart-tight-inventories" aria-controls="cart-tight-inventories" role="tab" data-toggle="tab">库存紧张&nbsp;<span class="label label-info">4</span></a></li>
-				 -->
+				
 				<div class="carts-top-info">已选商品(不含运费)<a class="value-">0.00</a><button type="button" class="btn btn-info btn-xs">结算</button></div>
 			</ul>
 
@@ -59,12 +56,12 @@
 									<td style="width: 25%">
 										<div class="media">
 											<div class="media-left media-middle">
-												<a target="_blank" href="product.html?product_id=<?php echo $carts_product[$key]['products'][$b]['id'];?>">
+												<a target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>">
 													<img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" style="max-width: <?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px;display: block;" class="media-object lazy" data-original="<?php echo $this->image_common->resize($carts_product[$key]['products'][$b]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $carts_product[$key]['products'][$b]['name']; ?>">
 												</a>
 											</div>
 											<div class="media-body">
-												<a class="cart-table-product-name" target="_blank" href="product.html?product_id=<?php echo $carts_product[$key]['products'][$b]['id'];?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
+												<a class="cart-table-product-name" target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
 											</div>
 										</div>
 									</td>

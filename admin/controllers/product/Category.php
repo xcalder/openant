@@ -223,12 +223,6 @@ class Category extends MY_Controller {
 		} else {
 			$data['error_name'] = array();
 		}
-
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
-		} else {
-			$data['error_meta_title'] = array();
-		}
 		
 		$category_info = $this->product_model->get_category_info($this->input->get('category_id'));
 		$data['placeholder_image']='public/resources/default/image/no_image.jpg';
@@ -313,10 +307,6 @@ class Category extends MY_Controller {
 		foreach ($this->input->post('category_description') as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 255)) {
 				$this->error['name'][$language_id] = '分类名2——255字符';
-			}
-
-			if ((utf8_strlen($value['meta_title']) < 2) || (utf8_strlen($value['meta_title']) > 255)) {
-				$this->error['meta_title'][$language_id] = 'meta标签2——255字符';
 			}
 		}
 

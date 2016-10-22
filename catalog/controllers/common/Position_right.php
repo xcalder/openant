@@ -32,7 +32,7 @@ class position_right extends CI_Common{
 			}else{
 				$module_name=strtolower($modules[$key]['code'].'_module');
 				$this->load->extension('module/'.$module_name);
-				$data['modules'][]=$this->$module_name->index($modules[$key]['setting']);
+				$data['modules'][]=$this->$module_name->index($modules[$key]['setting'], 'right');
 			}
 		}
 		$this->html=$this->load->view('theme/default/template/common/position_right', $data, true);

@@ -48,12 +48,6 @@
 											<textarea rows="2" name="description[<?php echo $language['language_id']; ?>][meta_description]" id="description-m-<?php echo $language['language_id']; ?>" class="form-control" placeholder="卖点描述"><?php echo isset($descriptions[$language['language_id']]['meta_description']) ? $descriptions[$language['language_id']]['meta_description'] : ''; ?></textarea>
 										</div>
 									</div>
-									<div class="form-group">
-										<span class="col-sm-2 control-label" for="meta_keyword<?php echo $language['language_id']; ?>">搜索关键词</span>
-										<div class="col-sm-10">
-											<textarea rows="2" id="meta_keyword<?php echo $language['language_id']; ?>" name="description[<?php echo $language['language_id']; ?>][meta_keyword]" class="form-control" placeholder="搜索关键词"><?php echo isset($descriptions[$language['language_id']]['meta_keyword']) ? $descriptions[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
-										</div>
-									</div>
 								</div>
 								<?php endforeach;?>
 							</div>

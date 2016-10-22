@@ -54,13 +54,6 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	
-	$install=TRUE;
-	if(!$install){
-		$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-		header("location: ".$http_type . $_SERVER['HTTP_HOST'].'/common/install_success.html');
-		exit;
-	}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -233,6 +226,9 @@ switch (ENVIRONMENT)
 	// Path to the front controller (this file)
 	define('FCPATH', dirname(__FILE__).'/');
 	
+	// Path to the Subdirectory (this file)
+	define('SUBPATH', str_replace('//', '', str_replace('\\', '/', str_replace(str_replace("/", '\\', $_SERVER['DOCUMENT_ROOT']), '/', FCPATH))));
+	
 	// 图片目录
 	define('IMGPATH', FCPATH.'image');
 
@@ -261,6 +257,13 @@ switch (ENVIRONMENT)
 		define('APPPATH', BASEPATH.$application_folder.DIRECTORY_SEPARATOR);
 	}
 
+	$install=TRUE;
+	if(!$install){
+		//$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+		header("location: http://" . $_SERVER['HTTP_HOST'].'/'.SUBPATH.'index.php');
+		exit;
+	}
+	
 	// The path to the "views" folder
 	if ( ! is_dir($view_folder))
 	{

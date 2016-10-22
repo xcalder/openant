@@ -73,39 +73,47 @@ class Category extends CI_Controller {
 		
 		if($this->input->get('search') != NULL){
 			$title=$this->input->get('search');
+			$description=$this->input->get('search');
 		}elseif($category_info){
 			if(isset($category_info['childs'])){
 				foreach($category_info['childs'] as $child){
 					if($child['category_id'] == $data['category_id']){
 						$title=$child['name'];
-						$this->document->setKeywords($child['meta_keyword']);
-						$this->document->setDescription($child['meta_description']);
+						$description=$child['description'];
 					}else{
 						$title=$category_info['name'];
-						$this->document->setKeywords($category_info['meta_keyword']);
-						$this->document->setDescription($category_info['meta_description']);
+						$description=$category_info['description'];
 					}
 				}
 			}else{
 				$title=$category_info['name'];
-				$this->document->setKeywords($category_info['meta_keyword']);
-				$this->document->setDescription($category_info['meta_description']);
+				$description=$category_info['description'];
 			}
 			$data['category_name']=$category_info['name'];
 			$data['category_id']=$category_info['category_id'];
 			
 		}else{
 			$title=lang_line('all_product');
-			if($this->config->get_config('meta_keyword')){
-				$this->document->setKeywords($this->config->get_config('meta_keyword'));
-			}
 			
-			if($this->config->get_config('meta_description')){
-				$this->document->setDescription($this->config->get_config('meta_description'));
+			if(unserialize($this->config->get_config('meta_description'))[$_SESSION['language_id']]){
+				$description=unserialize($this->config->get_config('meta_description'))[$_SESSION['language_id']];
 			}
 		}
 		
 		$this->document->setTitle($title);
+		
+		//提取关键词key
+		$this->load->library('phpanalysis');
+		$this->load->helper('string');
+		$this->phpanalysis->SetSource (unserialize($this->config->get_config('site_name'))[$_SESSION['language_id']].$title.$title.utf8_substr(DeleteHtml($description), 0, 200));
+		$this->phpanalysis->StartAnalysis ( true );
+			
+		$tags = $this->phpanalysis->GetFinallyKeywords ( 20 ); // 获取文章中的五个关键字
+		
+		$this->document->setKeywords($tags);
+		//提取关键词key
+		
+		$this->document->setDescription(utf8_substr(DeleteHtml($description), 0, 200));
 		
 		$data['keyword']=$title;
 		

@@ -192,8 +192,8 @@ class Edit extends MY_Controller {
 	{
 		$this->document->setTitle('修改头像');
 		
-		$this->document->addStyle('public/min?f=public/head_portrait_update/css/style.css');
-		$this->document->addScript('public/head_portrait_update/js/cropbox.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/head_portrait_update/css/style.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/head_portrait_update/js/cropbox.js');
 		
 		$user=$this->user_model->get_user($_SESSION['user_id']);
 		

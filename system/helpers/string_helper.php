@@ -320,3 +320,11 @@ if ( ! function_exists('characet'))
 }
 
 
+if ( ! function_exists('DeleteHtml')){
+	function DeleteHtml($str)
+	{
+		return preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/", "", strip_tags($str));
+	}
+}
+
+

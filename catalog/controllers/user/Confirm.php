@@ -13,8 +13,8 @@ class Confirm extends MY_Controller{
 	public function index(){
 		$this->document->setTitle('确认订单');
 		
-		$this->document->addStyle('public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f=public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
 		
 		$data['addresss']=$this->address_model->get_addresss($this->user->getId());
 		
@@ -86,8 +86,8 @@ class Confirm extends MY_Controller{
 	public function payment(){
 		$this->document->setTitle('支付页面');
 		
-		$this->document->addStyle('public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f=public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
 		
 		$order_ids=$this->input->get('order_ids');
 		$order_ids=explode(',', $order_ids);
@@ -230,8 +230,8 @@ class Confirm extends MY_Controller{
 	public function payment_info(){
 		$this->document->setTitle('支付信息返回页面');
 		
-		$this->document->addStyle('public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f=public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
+		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
 		
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();

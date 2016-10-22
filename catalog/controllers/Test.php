@@ -23,7 +23,6 @@ class Test extends CI_Controller {
 		}
 		
 		$this->session->set_flashdata('success', '登陆成功！');
-		$this->document->addStyle('public/min?f=public/resources/default/css/home/home.css');
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();
 		$data['position_right']=$this->position_right->index();
@@ -85,7 +84,21 @@ class Test extends CI_Controller {
 		//$this->load->view('theme/default/template/user/signin',$data);
 		//var_dump($this->agent->languages());
 		//var_dump($this->language_model->get_language_like_locale($this->agent->languages()));
+		$tp='F:\www\demo\lv\public\min';$cp='F:/www/demo/lv/';
+		$subpath=str_replace('/min', '/',str_replace($cp, '', str_replace('\\', '/', $tp)));
+		$jss = array('resources/default/js/jquery-1.12.0.min.js', 'resources/default/js/bootstrap.js', 'resources/default/js/jquery.validate/jquery.validate.js', 'resources/default/js/jquery.goup.min.js', 'resources/default/js/jquery.form.js', 'resources/default/js/bootstrap-notify.min.js', 'resources/default/js/nprogress/nprogress.js', 'resources/default/js/jquery.lazyload.js', 'summernote/summernote.min.js', 'resources/default/js/hammer/hammer.min.js', 'resources/default/js/hammer/jquery.hammer.js', 'nav/js/bootsnav.js', 'resources/default/js/base.js');
+		foreach ($jss as $js){
+			$js_s[]='//'.$subpath.$js;
+		}
 		
+		$csss=array('resources/default/css/bootstrap.min.css', 'resources/default/css/bootstrap-responsive.min.css', 'summernote/summernote.css', 'resources/default/js/nprogress/nprogress.css', 'nav/css/bootsnav.css', 'nav/css/overwrite.css', 'nav/skins/color.css', 'resources/default/css/style.css');
+		foreach ($csss as $css){
+			$css_s[]='//'.$subpath.$css;
+		}
+		var_dump($css_s);
+		echo '<br/><br/>';
+		var_dump($js_s);
+		//echo json_code($dd);
 		$this->load->view('theme/default/template/test',$data);
 	}
 	

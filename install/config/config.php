@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = (( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']);//获取当前域名
+$config['base_url'] = (( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']).'/'.SUBPATH;//获取当前域名
 
 /*
 |--------------------------------------------------------------------------
