@@ -71,7 +71,7 @@ $(document).ready(function(){
 				//发送的数据
 				var language_id=$(this).attr("href");
 		
-				$.get("common/language.html?language_id="+language_id,function(){
+				$.get("index.php/common/language.html?language_id="+language_id,function(){
 						NProgress.done();
 						window.location.reload();//刷新当前页面.
 					});
@@ -85,7 +85,7 @@ $(document).ready(function(){
 
 				//发送的数据
 				var language_id=$(this).attr("href");
-				$.get("common/currency.html?currency_id="+language_id,function(){
+				$.get("index.php/common/currency.html?currency_id="+language_id,function(){
 						NProgress.done();
 						window.location.reload();//刷新当前页面.
 					});
