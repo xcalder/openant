@@ -1,3 +1,4 @@
+[手动安装教程](http://www.openant.com/bbs.php/community/posting?posting_id=16)
 - qq群(QQ Group)：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
 
 ![](http://www.openant.com/public/resources/default/image/favicon.png)
