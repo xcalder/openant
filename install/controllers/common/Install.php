@@ -48,7 +48,7 @@ class Install extends CI_Controller {
 			}
 			
 			$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-			header("location: ".$http_type . $_SERVER['HTTP_HOST'].'/common/install_success.html');
+			header("location: ".$http_type . $_SERVER['HTTP_HOST'].'index.php/common/install_success.html');
 		}
 		
 		if(!empty($this->error)){
