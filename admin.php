@@ -260,7 +260,7 @@ switch (ENVIRONMENT)
 	$install=TRUE;
 	if($install){
 		//$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-		header("location: http://" . $_SERVER['HTTP_HOST'].'/'.SUBPATH.'install.php/common/install.html');
+		header("location: http://" . $_SERVER['HTTP_HOST'].'/'.SUBPATH.'install.php');
 		exit;
 	}
 	
