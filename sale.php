@@ -228,7 +228,7 @@ switch (ENVIRONMENT)
 	define('FCPATH', dirname(__FILE__).'/');
 	
 	// Path to the Subdirectory (this file)
-	define('SUBPATH', str_replace('//', '', str_replace('\\', '/', str_replace(str_replace("/", '\\', $_SERVER['DOCUMENT_ROOT']), '/', FCPATH))));
+	define('SUBPATH', '');//子目录路径，如：http://www.openant.com/aa/cc/bb/dc/,填写'aa/cc/bb/dc/';
 	
 	// 图片目录
 	define('IMGPATH', FCPATH.'image');
@@ -258,13 +258,6 @@ switch (ENVIRONMENT)
 		define('APPPATH', BASEPATH.$application_folder.DIRECTORY_SEPARATOR);
 	}
 
-	$install=TRUE;
-	if($install){
-		//$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-		header("location: http://" . $_SERVER['HTTP_HOST'].'/'.SUBPATH.'install.php');
-		exit;
-	}
-	
 	// The path to the "views" folder
 	if ( ! is_dir($view_folder))
 	{

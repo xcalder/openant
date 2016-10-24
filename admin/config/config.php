@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = ( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'].'/'.SUBPATH;//获取当前域名
+$config['base_url'] = '';//当前域名,如：http://www.openant.com,如果在子目录下：http://www.openant.com/子目录1/子目录2/
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = ( is_https() ? 'https://' : 'http://' ) . $_SERVER['HTTP_H
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'admin.php';
+$config['index_page'] = 'admin.php';//入口文件
 
 /*
 |--------------------------------------------------------------------------
@@ -391,7 +391,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 |
 */
 $config['cookie_prefix'] = '';
-$config['cookie_domain'] = 'openant.com';
+$config['cookie_domain'] = 'openant.com';//cookie域名，不加www，不加http
 $config['cookie_path'] = '/';
 $config['cookie_secure'] = FALSE;
 $config['cookie_httponly'] = FALSE;

@@ -6,12 +6,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'openant.localhost',
-	'username' => 'openant.username',
-	'password' => 'openant.password',
-	'database' => 'openant.database',
-	'dbdriver' => 'openant.dbdriver',
-	'dbprefix' => 'openant.dbprefix',
+	'hostname' => 'openant.localhost',//一般改成localhost
+	'username' => 'openant.username',//数据库用户名
+	'password' => 'openant.password',//数据库密码
+	'database' => 'openant.database',//数据库名
+	'dbdriver' => 'openant.dbdriver',//mysql驱动，一般改成  mysqli
+	'dbprefix' => 'openant.dbprefix',//表前缀，目录只能改为空
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
