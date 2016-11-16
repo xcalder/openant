@@ -1,16 +1,9 @@
 [手动安装教程](http://www.openant.com/bbs.php/community/posting?posting_id=16)
 - qq群(QQ Group)：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
 
-![](http://www.openant.com/public/resources/default/image/favicon.png)
-
-![](http://www.openant.com/image/catalog/banner-home/20160526050500ROPqBzEjak.jpg)
-
 OpenAnt/蚂蚁开源
 
 ==========================
-
-[![Build Status](http://www.openant.com/doc/001.png)](http://www.openant.com)[![Packagist](http://www.openant.com/doc/002.png)](http://www.openant.com)[![CodeIgniter](http://www.openant.com/doc/003.png)](http://www.codeigniter.org)
-
 Openant——多语言、多商家、订单、商品功能强大的，（插件方式）支持全球支付方式，整站采用插件模块布局的购物车商城平台项目，该项目采用GPL3许可证授权，你可以在遵循GPL3许可证的前提下自由复制、分发，甚至出售原代码！
 
 Openant——Multi-language, multi-merchant, order, commodity powerful, (plug-in) support global payment, the whole station plug-in module layout shopping mall platform project, the project license GPL3 license, you can follow the GPL3 license Free distribution, distribution, and even sale of the original code.
@@ -104,14 +97,6 @@ rely
 ---
 
 * LNMP/LAMP(php5.6+)
-
-截图
-
-Screenshots
----
-![](http://www.openant.com/image/catalog/banner-home/20160629050604FlO6MTDJdx.jpg)
-
-![](http://www.openant.com/image/catalog/banner-home/20160526050509AUtb5cw8rT.jpg)
 
 交流讨论
 
