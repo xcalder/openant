@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /admin.php*
-Disallow: /sale.php*
+Disallow: /admin*
+Disallow: /sale*
 Disallow: /user*

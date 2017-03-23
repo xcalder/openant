@@ -23,7 +23,7 @@ class QR_code extends CI_Common {
 			
 			$logo=$this->config->get_config('site_image');
 			if(empty($logo)){
-				$logo=FCPATH.'public/resources/default/image/qr_logo.png';
+				$logo=FCPATH.'resources/public/resources/default/image/qr_logo.png';
 			} 
 			//$logo = $logo;//准备好的logo图片   
 			$QR = $qr_path;//已经生成的原始二维码图   
@@ -46,6 +46,6 @@ class QR_code extends CI_Common {
 			//输出图片   
 			imagepng($QR, $qr_path);
 		}
-		return 'image/cache/qrcode/'.$filename;
+		return 'resources/image/cache/qrcode/'.$filename;
 	}
 }

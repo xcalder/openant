@@ -47,8 +47,8 @@
 					<tbody>
 						<?php if($orders['products']):?>
 						<tr>
-							<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo site_url('product?product_id='.$orders['products'][0]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($orders['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $orders['products'][0]['name']; ?>"></a></td>
-							<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$orders['products'][0]['product_id']);?>"><?php echo $orders['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($orders['products'][0]['value']) ? $orders['products'][0]['value'] : '';?></span></td>
+							<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$orders['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($orders['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $orders['products'][0]['name']; ?>"></a></td>
+							<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$orders['products'][0]['product_id'];?>"><?php echo $orders['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($orders['products'][0]['value']) ? $orders['products'][0]['value'] : '';?></span></td>
 							<td class="col-md-2 col-sm-2 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($orders['products'][0]['price'] * $orders['currency_value']);?></b></strong>
 							
 							<?php if($orders['products'][0]['tax'] != 0):?>
@@ -65,8 +65,8 @@
 						<?php if(!empty($orders['products'])):?>
 						<?php foreach($orders['products'] as $key=>$value):?>
 						<tr>
-							<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo site_url('product?product_id='.$orders['products'][$key]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($orders['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $orders['products'][$key]['name']; ?>"></a></td>
-							<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$orders['products'][$key]['product_id']);?>"><?php echo $orders['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($orders['products'][$key]['value']) ? $orders['products'][$key]['value'] : '';?></span></td>
+							<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$orders['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($orders['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $orders['products'][$key]['name']; ?>"></a></td>
+							<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$orders['products'][$key]['product_id'];?>"><?php echo $orders['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($orders['products'][$key]['value']) ? $orders['products'][$key]['value'] : '';?></span></td>
 							<td class="col-md-2 col-sm-2 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($orders['products'][$key]['price'] * $orders['currency_value']);?></b></strong>
 							
 							<?php if($orders['products'][$key]['tax'] != 0):?>
@@ -84,7 +84,7 @@
 					<?php if($orders['order_status_id'] == $this->config->get_config('default_order_status')):?>
 					<tfoot>
 						<tr>
-							<td colspan="6" class="text-right"><a href="<?php echo site_url('user/confirm/payment?order_ids='.$_SESSION['token'].','.$orders['order_id']);?>" class="btn btn-info">去付款</a></td>
+							<td colspan="6" class="text-right"><a href="<?php echo $this->config->item('catalog').'user/confirm/payment?order_ids='.$_SESSION['token'].','.$orders['order_id'];?>" class="btn btn-info">去付款</a></td>
 						</tr>
 					</tfoot>
 					<?php endif;?>

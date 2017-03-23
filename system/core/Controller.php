@@ -80,6 +80,15 @@ class CI_Controller {
 		
 		log_message('info', 'Controller Class Initialized');
 		
+		//改版301重定向
+		$this->load->helper('url');
+		$url=all_current_url();
+		
+		if(strstr($url, '.html')){
+			$url=str_replace('.html', '', $url);
+			redirect($url, 'location', 301);
+		}
+		
 	}
 
 	// --------------------------------------------------------------------

@@ -235,11 +235,16 @@ if ( ! function_exists('doctype'))
 
 		if ( ! is_array($doctypes))
 		{
+			if (file_exists(FCPATH.'public/config/doctypes.php'))
+			{
+				include(FCPATH.'public/config/doctypes.php');
+			}
+			/*
 			if (file_exists(APPPATH.'config/doctypes.php'))
 			{
 				include(APPPATH.'config/doctypes.php');
 			}
-
+			*/
 			if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/doctypes.php'))
 			{
 				include(APPPATH.'config/'.ENVIRONMENT.'/doctypes.php');

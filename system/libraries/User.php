@@ -90,29 +90,6 @@ class CI_User {
 		if ($user_query->row_array()) {
 			$_SESSION['user_id'] = $user_query->row_array()['user_id'];
 			
-			/**
-			* 把购物车信息从数据库取出写入到session中
-			* @var 
-			* 
-			*/
-			$this->CI->db->select('rowid, id, qty, price, name, options, points, preferential_type, preferential_value');
-			$this->CI->db->where('user_id', $user_query->row_array()['user_id']);
-			$this->CI->db->from($this->CI->db->dbprefix('user_cart'));
-			$cart_query=$this->CI->db->get();
-			if($cart_query->num_rows() > 0){
-				$cart_contents=array();
-				$cart_arr=$cart_query->result_array();
-				foreach($cart_arr as $key=>$value){
-					$cart_arr[$key]['options']=explode('.', $cart_arr[$key]['options']);
-					$cart_contents[$cart_arr[$key]['rowid']]=$cart_arr[$key];
-					$cart_contents[$cart_arr[$key]['rowid']]['subtotal']=$cart_arr[$key]['qty'] * $cart_arr[$key]['price'];
-				}
-				$cart_contents['cart_total']=array_sum(array_column($cart_contents,'price'));
-				$cart_contents['total_items']=array_sum(array_column($cart_contents,'qty'));
-				$_SESSION['cart_contents']=$cart_contents;
-			}
-			
-
 			$this->user_id = $user_query->row_array()['user_id'];
 			$this->firstname = $user_query->row_array()['firstname'];
 			$this->lastname = $user_query->row_array()['lastname'];

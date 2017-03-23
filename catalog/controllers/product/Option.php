@@ -233,10 +233,9 @@ class Option extends CI_Controller{
 				$update['points']=$product_option_info['option']['points'];
 				$update['options']=explode('.', $option_id);
 				
-				if($this->cart->update($update)){
+				if($this->cart_model->update_cart($update)){
 					$data['sale']='success';
 					$update['options']=$option_id;
-					$this->cart_model->update_cart($update);
 				}else{
 					$data['sale']='fail';
 				}
@@ -317,13 +316,12 @@ class Option extends CI_Controller{
 	
 	public function remove_cart(){
 		$rowid=$this->input->post('rowid');
-		$name=$this->cart->get_item($rowid)['name'];
+		$name=$this->cart_model->get_product_name($rowid);
 		if(empty($rowid)){
 			$data['error']=sprintf(lang_line('error_del'), $name);
 		}else{
-			if($this->cart->remove($rowid)){
+			if($this->cart_model->delete($rowid)){
 				$data['success']=sprintf(lang_line('success_del'), $name);
-				$this->cart_model->delete($rowid);
 			}else{
 				$data['error']=sprintf(lang_line('error_del'), $name);
 			}

@@ -10,7 +10,7 @@
 			<?php echo $position_left;?>
 				<div class="col-sm-3 panel panel-default middle-flat-left">
 					<div class="panel-body">
-						<form action="<?php echo site_url('user/signin/signinup');?>" method="post" enctype="multipart/form-data" id="signup">
+						<form action="<?php echo $this->config->item('catalog').'user/signin/signinup';?>" method="post" enctype="multipart/form-data" id="signup">
 							<p class="text-center login-title">
 							<strong><?php echo lang_line('register');?></strong><hr style="margin: 10px 0">
 							<div class="form-group error">
@@ -38,9 +38,9 @@
 								placeholder="<?php echo lang_line('captcha');?>"
 								class="form-control" />
 								<img title="<?php echo lang_line('refresh');?>"
-											src="<?php echo site_url('common/captcha');?>"
+											src="<?php echo $this->config->item('catalog').'common/captcha';?>"
 											align="absbottom"
-											onclick="this.src='index.php/common/captcha.html?'+Math.random();">
+											onclick="this.src='<?php echo $this->config->item('catalog');?>/common/captcha?'+Math.random();">
 								</img>
 							</div>
 							<!-- /field -->
@@ -51,7 +51,7 @@
 									</label>
 
 									<label class="login-forget">
-										<a onclick="window.open('<?php echo site_url('helper/faq?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
+										<a onclick="window.open('<?php echo $this->config->item('catalog').'helper/faq?id='.$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
 									</label>
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 						foreach($sign_ins as $key=>$value):?>
 						<a onclick="with_login('<?php echo $key;?>');">
 							<img width="32px" height="32px" class="lazy"
-							data-original="public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
+							data-original="resources/public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
 							data-toggle="tooltip" data-placement="top"
 							title="<?php echo $value['setting']['extra'];?>">
 						</a>
@@ -83,22 +83,22 @@
 <?php
 if(isset($error_times)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($message)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($error_check)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($_SESSION['warning'])):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 
 <?php echo $login_footer;?>
@@ -107,7 +107,7 @@ if(isset($_SESSION['warning'])):?>
 	//第三方登陆
 	function with_login(key)
 	{
-		window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+		window.open ('<?php echo $this->config->item('catalog');?>/user/sns/session/'+key,'newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 	}
 	//注册
 	$(document).ready(function()
@@ -120,7 +120,7 @@ if(isset($_SESSION['warning'])):?>
 						{
 							required: true,
 							email: true,
-							remote: "user/signin/check_email_web.html"
+							remote: "user/signin/check_email_web"
 						},
 						password:
 						{
@@ -137,7 +137,7 @@ if(isset($_SESSION['warning'])):?>
 						{
 							required: true,
 							rangelength:[4,4],
-							remote: "index.php/common/captcha/veri.html"
+							remote: "<?php echo $this->config->item('catalog');?>/common/captcha/veri"
 						},
 						agree:
 						{

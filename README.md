@@ -1,4 +1,7 @@
-[手动安装教程](http://www.openant.com/bbs.php/community/posting?posting_id=16)
+这次的修改已经在 www.openant.com 上部署了，提交的版本也是openant.com 上的源码，如果你在测试过程中有任何问题，请到论坛发帖反馈给我。现在我的主要工作将是完善openant的开发文档，以便能够让更多的人参与进来。让更多的人去免费的使用和开发它。
+这是一个迟来的更新，因为最近忙于工作。在这一版本里，简化了安装，所有配置都放在了 public/config/config.php 里边。资源装载不在依赖base_url();解决了资源不能被装载的问题。重新设计了目录结构，可以让你方便的把二级域名绑定到如  admin.openant.com上。
+
+[手动安装教程](http://www.openant.com/bbs/index.php//community/posting?posting_id=16)
 - qq群(QQ Group)：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a3aa61a22c4546f12c7ba200607e4a67fcf091f2d02413568cadfff081990bd5"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="openant1群" title="openant1群"></a>
 
 OpenAnt/蚂蚁开源
@@ -9,9 +12,7 @@ Openant——多语言、多商家、订单、商品功能强大的，（插件�
 Openant——Multi-language, multi-merchant, order, commodity powerful, (plug-in) support global payment, the whole station plug-in module layout shopping mall platform project, the project license GPL3 license, you can follow the GPL3 license Free distribution, distribution, and even sale of the original code.
 
 
-[官网主页](http://www.openant.com) | [文档手册](http://www.openant.com/bbs.php) | [中文项目](http://git.oschina.net/xcalder/openant).
-
-[Official page](http://www.openant.com) | [Documentation](http://www.openant.com/bbs.php) | [English Readme](https://github.com/xcalder/openant).
+[官网主页](http://www.openant.com) | [文档手册](http://www.openant.com/catalog/index.php/helper/faq?inforation_id=10#category-5) | [Official page](http://www.openant.com)
 
 1.新项目考虑了当前电商的更多新问题，没有历史包袱，系统架构设计更松偶合。
 
@@ -102,8 +103,3 @@ rely
 
 Exchange of ideas
 -------
-- [常见问题及解决办法手册](http://www.openant.com/helper/faq.html)
-- [Frequently Asked Questions and Solutions Manual](http://www.openant.com/helper/faq.html)
-
-- [社区论坛](http://www.openant.com/bbs.php)
-- [Community Forum](http://www.openant.com/bbs.php)

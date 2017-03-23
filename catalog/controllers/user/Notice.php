@@ -21,22 +21,16 @@ class Notice extends MY_Controller {
 		}
 		
 		$notices_info=$this->user_activity_model->get_notices($data);
-		
 		$notices=array();
 		if(isset($notices_info['notices'])){
 			foreach ($notices_info['notices'] as $key=>$notice){
 				$arr=unserialize($notice['data']);
 				
+				$notices[$key]['id']=$notice['activity_id'];
 				$notices[$key]['date_added']=$notice['date_added'];
 				$notices[$key]['read']=$notice['read'];
-				
-				if($notice['key'] == 'register'){
-					$notices[$key]['message']='你注册了一个帐号，昵称'.$arr['nickname'];
-				}
-				
-				if($notice['key'] == 'order_account'){
-					$notices[$key]['message']='你提交了一个订单，订单号'.$arr['order_id'];
-				}
+				$notices[$key]['msg']=$arr['msg'];
+				$notices[$key]['title']=$arr['title'];
 			}
 		}
 		
@@ -80,5 +74,9 @@ class Notice extends MY_Controller {
 		$data['top']=$this->header->user_top();
 		$data['footer']=$this->footer->index();
 		$this->load->view('theme/default/template/user/notice',$data);
+	}
+	
+	public function o_read(){
+		$this->user_activity_model->o_read($this->input->get('id'));
 	}
 }

@@ -10,23 +10,23 @@ class Layout_model extends CI_Model {
 		
 		$this->db->select('layout_id');
 		$this->db->or_where('route', '%');
-		$this->db->or_where('route', 'index.php/%');
+		$this->db->or_where('route', 'catalog/%');
 		if($this->uri->segment(4) !== NULL){
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
 		}elseif($this->uri->segment(3) !== NULL){
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3));
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3));
 		}elseif($this->uri->segment(2) !== NULL){
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/%');
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1).'/'.$this->uri->segment(2));
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/%');
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1).'/'.$this->uri->segment(2));
 		}elseif($this->uri->segment(1) !== NULL){
-			$this->db->or_where('route', 'index.php/'.$this->uri->segment(1));
+			$this->db->or_where('route', 'catalog/'.$this->uri->segment(1));
 		}else{
-			$this->db->or_where('route', 'index.php/home');
+			$this->db->or_where('route', 'catalog/home');
 		}
 		
 		

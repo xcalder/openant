@@ -14,11 +14,11 @@
 	
 		<div id="middle" class="<?php echo $class; ?>">
 			<?php echo $position_top; ?>
-			<form action="<?php echo site_url('user/confirm/checkout');?>" method="post" enctype="multipart/form-data" id="forget-form">
+			<form action="<?php echo $this->config->item('catalog').'user/confirm/checkout';?>" method="post" enctype="multipart/form-data" id="forget-form">
 				<!-- Nav tabs -->
 				<strong>选择收货地址</strong><hr style="margin: 15px 0;border-top: 2px solid #5bc0de">
 				<?php if(!$check_out):?>
-				<p class="text-danger">请先<a onclick="add_address();">添加收货地址</a>或到<a target="_blank" href="<?php echo site_url('user/address');?>">管理地址</a>然后刷新页面</p>
+				<p class="text-danger">请先<a onclick="add_address();">添加收货地址</a>或到<a target="_blank" href="<?php echo $this->config->item('catalog').'user/address';?>">管理地址</a>然后刷新页面</p>
 				<?php else:?>
 				<div class="row show-address" style="margin-left: -15px;height: 130px;overflow: hidden;">
 					<?php if($addresss):?>
@@ -53,7 +53,7 @@
 				<div class="row" style="margin: 15px 0">
 					<a class="new-address col-sm-4" style="cursor: pointer;padding-left: 0" onclick="show_all();">显示全部地址<i class="glyphicon glyphicon-menu-down"></i></a>
 					<a class="col-sm-4 text-center" style="cursor: pointer" onclick="payment_address();" data-container="body" data-toggle="popover" data-placement="top" data-content="默认同收货地址，如果帐单地址不同请点击修改！" data-original-title="" title="">单独设置帐单地址<i class="glyphicon glyphicon-piggy-bank"></i></a>
-					<a class="col-sm-4 text-right" style="cursor: pointer;padding-right: 0" target="_blank" href="<?php echo site_url('user/address');?>">管理地址<i class="glyphicon glyphicon-edit"></i></a>
+					<a class="col-sm-4 text-right" style="cursor: pointer;padding-right: 0" target="_blank" href="<?php echo $this->config->item('catalog').'user/address';?>">管理地址<i class="glyphicon glyphicon-edit"></i></a>
 				</div>
 				<?php endif;?>
 				<strong>确认商品信息</strong><hr style="margin: 15px 0;border-top: 2px solid #5bc0de">
@@ -81,12 +81,12 @@
 									<div class="media">
 										<div class="media-left media-middle">
 											<input type="hidden" value="<?php echo $carts_product[$key]['products'][$b]['rowid'];?>" name="rowid[]"/>
-											<a target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>">
+											<a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$carts_product[$key]['products'][$b]['id'];?>">
 												<img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" style="max-width: <?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px;display: block;" class="media-object lazy" data-original="<?php echo $this->image_common->resize($carts_product[$key]['products'][$b]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $carts_product[$key]['products'][$b]['name']; ?>">
 											</a>
 										</div>
 										<div class="media-body">
-											<a class="cart-table-product-name" target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
+											<a class="cart-table-product-name" target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$carts_product[$key]['products'][$b]['id'];?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
 										</div>
 									</div>
 								</td>
@@ -150,7 +150,7 @@
 		function edit_address(id, def){
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>user/confirm/edit_address.html',
+					url: '<?php echo $this->config->item('catalog').'user/confirm/edit_address';?>',
 					type: 'post',
 					dataType: 'json',
 					data: {address_id:id},
@@ -165,8 +165,8 @@
 					success: function(data)
 					{
 						if(data.status == 'success'){
-							//$.notify({message: data.success },{type: 'success'});
-							var html  = '<form id="form1" class="form-horizontal" action="<?php echo site_url('user/confirm/edit_addres');?>" method="post" style="padding: 15px">';
+							//$.notify({message: data.success },{type: 'success',offset: {x: 0,y: 52}});
+							var html  = '<form id="form1" class="form-horizontal" action="<?php echo $this->config->item('catalog').'user/confirm/edit_addres';?>" method="post" style="padding: 15px">';
 							html += '<input type="hidden" name="address_id" value="'+id+'">';
 							html += '<div class="form-group">';
 							html += '<label for="firstname" class="col-sm-2 control-label">姓氏：</label>';
@@ -232,7 +232,7 @@
 							
 							$.ajax(
 								{
-									url: '<?php echo site_url();?>user/confirm/zone.html?zone_id='+data.address.zone_id+'&country_id='+data.address.country_id,
+									url: '<?php echo $this->config->item('catalog').'user/confirm/zone?zone_id=';?>'+data.address.zone_id+'&country_id='+data.address.country_id,
 									type: 'get',
 									dataType: 'html',
 									success: function(dataa)
@@ -245,7 +245,7 @@
 							$('#edit-shop-address').modal();
 							change_shipping_address();
 						}else{
-							$.notify({message: data.error },{type: 'warning'});
+							$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError)
@@ -256,7 +256,7 @@
 		}
 		
 		function add_address(){
-			var html  = '<form id="form1" class="form-horizontal" action="<?php echo site_url('user/confirm/add_addres');?>" method="post" style="padding: 15px">';
+			var html  = '<form id="form1" class="form-horizontal" action="<?php echo $this->config->item('catalog').'user/confirm/add_addres';?>" method="post" style="padding: 15px">';
 			html += '<div class="form-group">';
 			html += '<label for="firstname" class="col-sm-2 control-label">姓氏：</label>';
 			html += '<div class="col-sm-10">';
@@ -308,7 +308,7 @@
 			html += '</div></div></form>';
 			
 			$.ajax({
-					url: '<?php echo site_url();?>user/confirm/get_countys.html',
+					url: '<?php echo $this->config->item('catalog').'user/confirm/get_countys';?>',
 					type: 'get',
 					dataType: 'html',
 					success: function(datae)
@@ -328,7 +328,7 @@
 					if(data.info){
 						
 						$.ajax({
-								url: '<?php echo site_url();?>user/confirm/get_address_list.html',
+								url: '<?php echo $this->config->item('catalog').'user/confirm/get_address_list';?>',
 								type: 'get',
 								dataType: 'html',
 								success: function(datae)
@@ -345,9 +345,9 @@
 								}
 							});
 						
-						$.notify({message: data.info },{type: 'success'});
+						$.notify({message: data.info },{type: 'success',offset: {x: 0,y: 52}});
 					}else{
-						$.notify({message: data.error },{type: 'warning'});
+						$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 					}
 					
 					$('#edit-shop-address form').remove();
@@ -387,7 +387,7 @@
 		
 		function payment_address (){
 			$.ajax({
-				url: '<?php echo site_url();?>user/confirm/get_payment_address_list.html',
+				url: '<?php echo $this->config->item('catalog').'user/confirm/get_payment_address_list';?>',
 				type: 'get',
 				dataType: 'html',
 				success: function(data)
@@ -443,7 +443,7 @@
 		function countryd (element, zone_id=''){
 			$.ajax(
 				{
-					url: "<?php echo site_url();?>/localisation/country/get_country?country_id=" + element.value,
+					url: "<?php echo $this->config->item('catalog').'localisation/country/get_country?country_id=';?>" + element.value,
 					dataType: 'json',
 					beforeSend: function()
 					{

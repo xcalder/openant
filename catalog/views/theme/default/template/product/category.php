@@ -15,13 +15,22 @@
 		<div id="middle" class="<?php echo $class; ?>" role="main">
 			<?php echo $position_top; ?>
 			
+			<?php if(isset($search) && $search_key_words):?>
+			<div class="well well-sm">
+				<h6>热门搜索关键词</h6><hr>
+				<?php foreach ($search_key_words as $key_word):?>
+				<a style="margin-bottom: 15px;display:inline-block" class="label label-<?php echo $label[array_rand($label)];?>" href="<?php echo $this->config->item('catalog').'product/category?search='.$key_word['key_word'];?>"><?php echo $key_word['key_word'];?></a>
+				<?php endforeach;?>
+			</div>
+			<?php endif;?>
+			
 			<div class="row" style="margin-left: 0;background-color: #f5f5f5;margin-right: 0;border-bottom: solid 1px #e0e0e0;margin-bottom: 15px;">
 				<div class="col-md-7">
 					<ol class="breadcrumb" style="margin-bottom: 0">
-					  <li><a href="<?php echo site_url('product/category');?>"><?php echo lang_line('all_product');?></a></li>
+					  <li><a href="<?php echo $this->config->item('catalog').'product/category';?>"><?php echo lang_line('all_product');?></a></li>
 					  
 					  <?php if(isset($category_name)):?>
-					  <li><a href="<?php echo site_url('product/category?id=').$category_id;?>"><?php echo $category_name;?></a></li>
+					  <li><a href="<?php echo $this->config->item('catalog').'product/category?id='.$category_id;?>"><?php echo $category_name;?></a></li>
 					  <?php endif;?>
 					  
 					  <li class="active"><?php echo $keyword;?></li>
@@ -51,7 +60,7 @@
 						<div id="category_id">
 							<?php foreach($categorys['childs'] as $child):?>
 							<div class="text-center col-md-4 <?php echo isset($child['css']) ? $child['css'] : '';?>">
-								<a href="<?php echo site_url('product/category').'?id='.$categorys['category_id'].'_'.$child['category_id'];?>"><?php echo $child['name'];?></a>
+								<a href="<?php echo $this->config->item('catalog').'product/category?id='.$categorys['category_id'].'_'.$child['category_id'];?>"><?php echo $child['name'];?></a>
 							</div>
 							<?php endforeach;?>
 						</div>
@@ -75,15 +84,15 @@
 				<?php foreach($products as $product):?>
 				<div class="<?php echo $class;?> col-xs-6">
 					<div class="thumbnail">
-						<a href="<?php echo site_url('product?product_id='.$product['product_id']);?>"><img width="<?php echo $this->config->get_config('product_list_image_size_w');?>px" height="<?php echo $this->config->get_config('product_list_image_size_h');?>px" class="lazy" data-original="<?php echo $this->image_common->resize($product['image'], $this->config->get_config('product_list_image_size_w'), $this->config->get_config('product_list_image_size_h'), 'h');?>" alt="<?php echo $product['name'];?>"></a>
+						<a href="<?php echo $this->config->item('catalog').'product?product_id='.$product['product_id'];?>"><img width="<?php echo $this->config->get_config('product_list_image_size_w');?>px" height="<?php echo $this->config->get_config('product_list_image_size_h');?>px" class="lazy" data-original="<?php echo $this->image_common->resize($product['image'], $this->config->get_config('product_list_image_size_w'), $this->config->get_config('product_list_image_size_h'), 'h');?>" alt="<?php echo $product['name'];?>"></a>
 						<div class="caption">
 							<strong><?php echo $this->currency->Compute($product['price']);?></strong>
-							<a target="_blank" href="<?php echo site_url('product?product_id='.$product['product_id']);?>"><p><?php echo $product['name'];?></p></a>
+							<a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$product['product_id'];?>"><p><?php echo isset($search) ? highlight_phrase($product['name'], $search) : $product['name'];?></p></a>
 					
 							<div class="row">
 								<span data-toggle="tooltip" data-placement="top" title="<?php echo sprintf(lang_line('sales'), (isset($product['seal_quantity_total']) ? $product['seal_quantity_total'] : '0'));?>" class="col-sm-4 col-xs-4 text-left"><i class="glyphicon glyphicon-credit-card"></i></span>
 								<span data-toggle="tooltip" data-placement="top" title="<?php echo sprintf(lang_line('reviews'), (isset($product['reviews']) ? count($product['reviews']) : '0'));?>" class="col-sm-4 col-xs-4 text-center"><i class="glyphicon glyphicon-thumbs-up"></i></span>
-								<span data-toggle="tooltip" data-html="true" data-placement="top" title="<?php echo lang_line('text_business').$product['store_name'];?><br/><?php echo lang_line('refund').$product['order_rate']['refund_rate'];?><br/><?php echo lang_line('transactions').$product['order_rate']['success_rate'];?>" class="col-sm-4 col-xs-4 text-right"><i class="glyphicon glyphicon-star-empty"></i></span>
+								<span data-toggle="tooltip" data-html="true" data-placement="top" title="<?php echo lang_line('business').$product['store_name'];?><br/><?php echo lang_line('refund').$product['order_rate']['refund_rate'];?><br/><?php echo lang_line('transactions').$product['order_rate']['success_rate'];?>" class="col-sm-4 col-xs-4 text-right"><i class="glyphicon glyphicon-star-empty"></i></span>
 							</div>
 					
 						</div>
@@ -98,12 +107,21 @@
 			</div>
 			<!-- /widget -->
 			
+			<?php if(isset($search) && $search_abouts):?>
+			<div class="well well-sm">
+				<h6>相关搜索</h6><hr>
+				<?php foreach ($search_abouts as $key_word):?>
+				<a style="margin-bottom: 15px;display:inline-block" class="label label-<?php echo $label[array_rand($label)];?>" href="<?php echo $this->config->item('catalog').'product/category?search='.$key_word['key_word'];?>"><?php echo $key_word['key_word'];?></a>
+				<?php endforeach;?>
+			</div>
+			<?php endif;?>
+				
 			<?php echo $position_bottom; ?>
 		</div>
 		<?php echo $position_right; ?>
 		
 	</div>
-	<script>
+	<script type="text/javascript">
 		var p_width = $('#category-product-list').width();
 		if(p_width < 850 && p_width > 600){
 			$('#category-product-list .col-xs-6').attr("class", "col-sm-4 col-xs-6");
@@ -114,6 +132,11 @@
 		if(p_width < 600){
 			$('#category-product-list .col-xs-6').attr("class", "col-sm-6 col-xs-6");
 		}
+
+		//搜索关键词
+		<?php if(isset($search)):?>
+		$.get('<?php echo $this->config->item('catalog').'product/category/add_search_keyword?search='.$search?>');
+		<?php endif;?>
 	</script>
 </div>
 <!-- /row --> 

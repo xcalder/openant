@@ -49,6 +49,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CI_Lang {
 
 	/**
+	 * Refactor: base language provided inside system/language
+	 * 
+	 * @var string
+	 */
+	public $base_language = 'english';
+
+	/**
 	 * List of translations
 	 *
 	 * @var	array
@@ -117,6 +124,14 @@ class CI_Lang {
 			return;
 		}
 
+		// load the default language first, if necessary
+		// only do this for the language files under system/
+		$basepath = SYSDIR . 'language/' . $this->base_language . '/' . $langfile;
+		if (($found = file_exists($basepath)) === TRUE)
+		{
+			include($basepath);
+		}
+		
 		// Load the base file, so any others found can override it
 		$basepath = BASEPATH.'language/'.$idiom.'/'.$langfile;
 		if (($found = file_exists($basepath)) === TRUE)
@@ -142,6 +157,14 @@ class CI_Lang {
 				if ($basepath !== $package_path && file_exists($package_path))
 				{
 					include($package_path);
+					$found = TRUE;
+					break;
+				}
+				
+				$langpath = BASEPATH . '../public/language/' . $idiom . '/' . $langfile;
+				if ($basepath !== $langpath && file_exists($langpath))
+				{
+					include($langpath);
 					$found = TRUE;
 					break;
 				}

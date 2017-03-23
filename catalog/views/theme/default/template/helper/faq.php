@@ -22,20 +22,20 @@
 						
 						<?php if($category['titles']):?>
 						
-						<li id="category-<?php echo $category['information_category_id'];?>" class="category-<?php echo $category['information_category_id'];?>"><a onclick="change_active('.category-<?php echo $category['information_category_id'];?>');"><?php echo $category['name'];?></a>
+						<li id="category-<?php echo $category['information_category_id'];?>" class="category-<?php echo $category['information_category_id'];?>"><a style="font-weight: bold;" onclick="change_active('.category-<?php echo $category['information_category_id'];?>');"><?php echo $category['name'];?></a>
 							<ul class="faq-nav-two">
 								<?php foreach($category['titles'] as $title):?>
-								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo $this->config->item('catalog').'helper/faq?inforation_id='.$title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 								<?php endforeach;?>
 								
 								<?php if($category['childs']):?>
 								<?php foreach($category['childs'] as $child):?>
-									<li class="child-<?php echo $child['information_category_id'];?>"><a onclick="change_active('.child-<?php echo $child['information_category_id'];?>');"><?php echo $child['name'];?></a>
+									<li class="child-<?php echo $child['information_category_id'];?>"><a style="font-weight: bold;" onclick="change_active('.child-<?php echo $child['information_category_id'];?>');"><?php echo $child['name'];?></a>
 									
 									<?php if($child['titles']):?>
 									<ul class="faq-nav-two">
 									<?php foreach($child['titles'] as $title):?>
-									<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+									<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo $this->config->item('catalog').'helper/faq?inforation_id='.$title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 									<?php endforeach;?>
 									</ul>
 									<?php endif;?>
@@ -47,17 +47,17 @@
 							
 						</li>
 						<?php else:?>
-						<li id="category-<?php echo $category['information_category_id'];?>" class="category-<?php echo $category['information_category_id'];?>"><a onclick="change_active('.category-<?php echo $category['information_category_id'];?>');"><?php echo $category['name'];?></a>
+						<li id="category-<?php echo $category['information_category_id'];?>" class="category-<?php echo $category['information_category_id'];?>"><a style="font-weight: bold;" onclick="change_active('.category-<?php echo $category['information_category_id'];?>');"><?php echo $category['name'];?></a>
 						
 						<?php if($category['childs']):?>
 						<ul class="faq-nav-two">
 							<?php foreach($category['childs'] as $child):?>
-							<li class="child-<?php echo $child['information_category_id'];?>"><a onclick="change_active('.child-<?php echo $child['information_category_id'];?>');"><?php echo $child['name'];?></a>
+							<li class="child-<?php echo $child['information_category_id'];?>"><a style="font-weight: bold;" onclick="change_active('.child-<?php echo $child['information_category_id'];?>');"><?php echo $child['name'];?></a>
 							
 								<?php if($child['titles']):?>
 								<ul class="faq-nav-two">
 								<?php foreach($child['titles'] as $title):?>
-								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo site_url('helper/faq?inforation_id='.$title['information_id']);?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
+								<li class="inforation-<?php echo $title['information_id'];?>"><a href="<?php echo $this->config->item('catalog').'helper/faq?inforation_id='.$title['information_id'];?>#inforation-<?php echo $title['information_id'];?>"><?php echo $title['title'];?></a></li>
 								<?php endforeach;?>
 								</ul>
 								<?php endif;?>

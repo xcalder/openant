@@ -54,6 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -226,11 +227,8 @@ switch (ENVIRONMENT)
 	// Path to the front controller (this file)
 	define('FCPATH', dirname(__FILE__).'/');
 	
-	// Path to the Subdirectory (this file)
-	define('SUBPATH', '');//子目录路径，如：http://www.openant.com/aa/cc/bb/dc/,填写'aa/cc/bb/dc/';
-	
 	// 图片目录
-	define('IMGPATH', FCPATH.'image');
+	define('IMGPATH', FCPATH.'resources/image');
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
@@ -256,7 +254,7 @@ switch (ENVIRONMENT)
 
 		define('APPPATH', BASEPATH.$application_folder.DIRECTORY_SEPARATOR);
 	}
-	
+
 	// The path to the "views" folder
 	if ( ! is_dir($view_folder))
 	{

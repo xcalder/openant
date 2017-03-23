@@ -35,7 +35,7 @@ class Manufacturer extends CI_Controller {
 		}
 		
 		//分页
-		$config['base_url'] 			= site_url('product/manufacturer').'?id='.$this->input->get('id');
+		$config['base_url'] 			= $this->config->item('catalog').'product/manufacturer?id='.$this->input->get('id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -94,7 +94,7 @@ class Manufacturer extends CI_Controller {
 		$data['manufacturers']=$row['manufacturers'];
 		
 		//分页
-		$config['base_url'] 			= site_url('product/category/manufacturer_all');
+		$config['base_url'] 			= $this->config->item('catalog').'product/category/manufacturer_all';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

@@ -17,7 +17,7 @@ class MY_Controller extends CI_Controller {
 			
 			unset($_SESSION['user_id']);
 			
-			redirect(site_url('user/signin/login?url='.rawurlencode(all_current_url())));
+			redirect($this->config->item('catalog').'user/signin/login?url='.rawurlencode(all_current_url()));
 			
 			exit();
 		}

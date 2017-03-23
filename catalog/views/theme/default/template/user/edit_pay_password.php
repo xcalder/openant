@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-sm-12 panel panel-default middle-flat-left">
 					<div class="panel-body">
-						<form action="<?php echo site_url('user/edit/edit_pay_password');?>" method="post" enctype="multipart/form-data" id="edit-pay_password-form">
+						<form action="<?php echo $this->config->item('catalog').'user/edit/edit_pay_password';?>" method="post" enctype="multipart/form-data" id="edit-pay_password-form">
 							<p class="text-center login-title"><strong>修改支付密码</strong><hr style="margin: 10px 0">
 							<div class="form-group">
 								<input type="password" id="current_password" name="current_password" placeholder="登陆密码" class="form-control" value=""/>
@@ -34,7 +34,7 @@
 							</div> <!-- /field -->
 							<div class="form-group form-captcha">
 								<input type="text" id="captcha" name="captcha" placeholder="验证码" class="form-control" value=""/>
-								<img title="点击刷新" src="index.php/common/captcha" align="absbottom" onclick="this.src='index.php/common/captcha?'+Math.random();"></img>
+								<img title="点击刷新" src="<?php echo $this->config->item('catalog');?>/common/captcha" align="absbottom" onclick="this.src='<?php echo $this->config->item('catalog');?>/common/captcha?'+Math.random();"></img>
 					
 							</div> <!-- /field -->
 				
@@ -57,7 +57,7 @@
 							current_password: {
 								required: true,
 								rangelength: [6,18],
-								remote: "user/edit/verify_current_password.html"
+								remote: "user/edit/verify_current_password"
 							},
 							new_password: {
 								required: true,
@@ -71,7 +71,7 @@
 							captcha: {
 								required: true,
 								rangelength:[4,4],
-								remote: "common/captcha/veri.html"
+								remote: "common/captcha/veri"
 							}
 						},
 						messages:{

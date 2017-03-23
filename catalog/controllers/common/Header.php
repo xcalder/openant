@@ -8,31 +8,13 @@ class Header extends CI_Common {
 		$this->load->helper(array('utf8'));
 		$this->load->common(array('language_module', 'currency_common', 'cart_module', 'position_above'));
 		$this->load->library(array('user_agent'));
-		$this->load->model(array('category/category_model', 'setting/sign_in_with_model', 'helper/information_model', 'common/manufacturer_model', 'common/wishlist_model', 'common/user_activity_model'));
+		$this->load->model(array('common/tool_model', 'category/category_model', 'setting/sign_in_with_model', 'helper/information_model', 'common/manufacturer_model', 'common/wishlist_model', 'common/user_activity_model'));
 		$this->lang->load('common/header',$_SESSION['language_name']);
 		
 		//调ip黑名单，判断如果不在黑名单中则允许访问
-		$this->load->database();
-		$this->db->select('ip');
-		$this->db->where('ip', $this->input->ip_address());
-		$this->db->from($this->db->dbprefix('user_ban_ip'));
-		$query = $this->db->get();
-		if($query->num_rows() > 0){
-			
-			$this->session->set_flashdata('fali', '被禁止访问的ip地址！');
-			unset($_SESSION['user_id']);
-		}
-		
+		$this->tool_model->check_ban_ip();
 		//写令牌
-		
-		if(!isset($_SESSION['token'])){
-			$str = uniqid(mt_rand(),1);
-			$this->session->set_userdata('token', md5($str));
-			//在线用户
-			if(!$this->agent->is_robot()){
-				$this->db->insert($this->db->dbprefix('user_online'), array('token'=>$_SESSION['token']));
-			}
-		}
+		$this->tool_model->writer_token();
 	}
 
 	public function index()
@@ -70,8 +52,8 @@ class Header extends CI_Common {
 		
 		$data['menus']=$this->category_model->get_categorys_to_top();
 		
-		$data['url_admin']='admin.php';
-		$data['url_sale']='sale.php';
+		$data['url_admin']= $this->config->item('admin');
+		$data['url_sale']=$this->config->item('sale');
 		
 		$data['action_id']=$this->input->get('id');
 		$data['action_search']=$this->input->get('search');
@@ -112,8 +94,8 @@ class Header extends CI_Common {
 		
 		$data['menus']=$this->information_model->get_top_categorys();
 		
-		$data['url_admin']='admin.php';
-		$data['url_sale']='sale.php';
+		$data['url_admin']=$this->config->item('admin');
+		$data['url_sale']=$this->config->item('sale');
 		
 		$data['action_id']=$this->input->get('id');
 		$data['action_search']=$this->input->get('search');
@@ -189,8 +171,8 @@ class Header extends CI_Common {
 		$data['action_id']=$this->input->get('id');
 		$data['action_search']=$this->input->get('search');
 		
-		$data['url_admin']='admin.php';
-		$data['url_sale']='sale.php';
+		$data['url_admin']=$this->config->item('admin');
+		$data['url_sale']=$this->config->item('sale');
 		
 		$data['cart_module']=$this->cart_module->index();
 		
@@ -225,8 +207,8 @@ class Header extends CI_Common {
 		$data['action_id']=$this->input->get('id');
 		$data['action_search']=$this->input->get('search');
 		
-		$data['url_admin']='admin.php';
-		$data['url_sale']='sale.php';
+		$data['url_admin']=$this->config->item('admin');
+		$data['url_sale']=$this->config->item('sale');
 		
 		$data['sign_ins']=$this->sign_in_with_model->get_sign_withs();
 		
@@ -269,21 +251,11 @@ class Header extends CI_Common {
 	}
 	
 	public function no_find(){
-		$position_top=$this->position_top->index();
-		$position_left=$this->position_left->index();
-		$position_right=$this->position_right->index();
-		$position_bottom=$this->position_bottom->index();
 		$this->output->set_status_header(404);
 		
-		$image_404=$this->image_common->resize('/public/404.png', 210 , 210);
-		
 		$header=$this->header->index();
-		$top=$this->header->top();
-		$footer=$this->footer->index();
 		
-		$nav_infomation=$this->information_model->get_category_to_position('catalog_top');
-		
-		require_once(FCPATH.'catalog/views/theme/default/template/errors/page_missing.php');
+		require_once(FCPATH.'public/view/page_missing.php');
 		exit();
 	}
 }

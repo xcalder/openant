@@ -26,7 +26,7 @@
 						前往邮箱找回密码...
 					</h5>
 					没有收到？&nbsp;
-					<a href="<?php echo site_url('user/forget');?>">
+					<a href="<?php echo $this->config->item('catalog').'user/forget';?>">
 						重新发送邮件
 					</a>
 				</div>

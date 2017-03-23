@@ -70,7 +70,8 @@ class CI_Config {
 	 * @used-by	CI_Loader
 	 * @var		array
 	 */
-	public $_config_paths =	array(APPPATH);
+	//$fpath=FCPATH . 'public/';
+	public $_config_paths =	array();
 
 	// --------------------------------------------------------------------
 
@@ -127,7 +128,8 @@ class CI_Config {
 	{
 		$file = ($file === '') ? 'config' : str_replace('.php', '', $file);
 		$loaded = FALSE;
-
+		$ppath=FCPATH.'public/';
+		$this->config_paths=array($ppath, APPPATH);
 		foreach ($this->_config_paths as $path)
 		{
 			foreach (array($file, ENVIRONMENT.DIRECTORY_SEPARATOR.$file) as $location)

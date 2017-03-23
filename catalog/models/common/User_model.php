@@ -25,12 +25,9 @@ class User_model extends CI_Model {
 		$this->load->model('common/user_activity_model');
 		
 		//查user_id
-		$this->db->select_max('user_id');
+		$user_id=$this->db->insert_id();
 		
-		$query = $this->db->get($this->db->dbprefix('user'));
-		$row = $query->row_array();
-		
-		$this->user_activity_model->add_activity($row['user_id'],'register',array('user_id'=>$row['user_id'], 'nickname'=>$data['nickname']));
+		$this->user_activity_model->add_activity($user_id,'register',array('title'=>sprintf(lang_line('success_register'), $data['nickname']), 'msg'=>''));
 	}
 	
 	public function get_user_for_email($email)
@@ -105,8 +102,6 @@ class User_model extends CI_Model {
 		}
 		$this->db->select('*');
 		$this->db->where('user.user_id',$user_id);
-		//$this->db->where('user_group_description.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
-		//$this->db->join('user_group_description','user_group_description.user_group_id = user.user_group_id');
 		$this->db->from($this->db->dbprefix('user'));
 		
 		$query = $this->db->get();

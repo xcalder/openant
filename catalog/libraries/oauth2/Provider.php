@@ -108,7 +108,7 @@ abstract class OAuth2_Provider
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = site_url(get_instance()->uri->uri_string());
+		$this->redirect_uri = get_instance()->config->item('catalog').get_instance()->uri->uri_string();
 	}
 
 	/**

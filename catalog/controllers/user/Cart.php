@@ -7,21 +7,23 @@ class Cart extends MY_Controller{
 		parent::__construct();
 		$this->load->helper(array('utf8'));
 		$this->load->language('wecome');
-		$this->load->library(array('cart', 'currency'));
+		$this->load->library(array('currency'));
 		$this->load->model(array('product/product_model', 'product/cart_model'));
 	}
 
 	public function index(){
 		$this->document->setTitle('购物车');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/spinner/jquery.spinner.min.js');
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/spinner/bootstrap-spinner.css');
+		$this->document->addScript(base_url('resources/public/resources/default/js/spinner/jquery.spinner.min.js'));
+		$this->document->addStyle(base_url('resources/public/resources/default/css/spinner/bootstrap-spinner.css'));
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 		
-		if(isset($_SESSION['cart_contents'])){
-			$carts=$_SESSION['cart_contents'];
-			
+		$carts=$this->cart_model->get_carts();
+		
+		$data['i']=0;
+		
+		if($carts){
 			foreach($carts as $key=>$value){
 				if(isset($carts[$key]['rowid'])){
 					$product_info=$this->cart_model->get_product_info($carts[$key]['id']);
@@ -38,15 +40,16 @@ class Cart extends MY_Controller{
 			$stores=array_filter(array_unique(array_column($carts,'store_id')));
 			
 			$carts_product=array();
+			
 			foreach($stores as $key=>$value){
 				$carts_product[$key]=$this->cart_model->get_store($stores[$key]);
 				foreach($carts as $k=>$v){
 					if(isset($carts_product[$key]['store_id']) && isset($carts[$k]['store_id']) && $carts_product[$key]['store_id'] == $carts[$k]['store_id']){
 						$carts_product[$key]['products'][]=$carts[$k];
+						$data['i']++;
 					}
 				}
 			}
-			
 		}else{
 			$carts_product=FALSE;
 		}
@@ -93,7 +96,7 @@ class Cart extends MY_Controller{
 		if(!isset($json)){
 			if($this->input->post('option_id') != NULL && is_array($this->input->post('option_id'))){
 				$options=$this->input->post('option_id');
-				$data = array(
+				$data[0] = array(
 					'id'      => $product_ids,
 					'qty'     => (int)$qtys,
 					'price'   => round($product_price['price'], 4),
@@ -103,7 +106,7 @@ class Cart extends MY_Controller{
 					
 				);
 			}else{
-				$data = array(
+				$data[0] = array(
 					'id'      => $product_ids,
 					'qty'     => (int)$qtys,
 					'price'   => round($product_price['price'], 4),
@@ -113,21 +116,19 @@ class Cart extends MY_Controller{
 			}
 			
 			if(isset($product_price['special_value'])){
-				$data['preferential_type']='special';
-				$data['preferential_value']=$product_price['special_value'];
+				$data[0]['preferential_type']='special';
+				$data[0]['preferential_value']=$product_price['special_value'];
 			}
 			
 			if(isset($product_price['discount_value'])){
-				$data['preferential_type']='discount';
-				$data['preferential_value']=$product_price['discount_value'];
+				$data[0]['preferential_type']='discount';
+				$data[0]['preferential_value']=$product_price['discount_value'];
 			}
 			
-			$rowid=$this->cart->insert($data);
+			$rowid=$this->cart_model->add_cart($data);
 			if($rowid){
-				$json['success']='添加<a target="_blank" href="'.site_url('user/cart').'">'.utf8_substr($names, 0, 18).'</a>到购物车成功！';
+				$json['success']='添加<a target="_blank" href="'.$this->config->item('catalog').'user/cart'.'">'.utf8_substr($names, 0, 18).'</a>到购物车成功！';
 				$json['rowid']=$rowid;
-				$cart_array=$this->cart->contents(TRUE);
-				$this->cart_model->add_cart($cart_array);
 			}else{
 				$json['error']='添加'.$names.'到购物车失败！';
 			}
@@ -155,11 +156,10 @@ class Cart extends MY_Controller{
 		}
 		
 		if(!isset($json)){
-			if($this->cart->update($update)){
+			if($this->cart_model->update_cart($update)){
 				$json['success']='购物车更新成功！';
-				$json['subtotal']=$this->currency->Compute($this->cart->get_item($update['rowid'])['subtotal']);
+				$json['subtotal']=$this->currency->Compute($this->cart_model->get_cart_for_rowid($update['rowid'])['subtotal']);
 				
-				$this->cart_model->update_cart($update);
 			}else{
 				$json['error']='更新购物车出错！';
 			}

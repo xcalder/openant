@@ -30,25 +30,25 @@
 						</div>
 					</div>
 					<div class="col-sm-3 col-xs-3">
-						<a href="<?php echo site_url('user/address');?>" style="line-height: 55px">我的收货地址</a>
+						<a href="<?php echo $this->config->item('catalog').'user/address';?>" style="line-height: 55px">我的收货地址</a>
 					</div>
 					<div class="col-sm-3 col-xs-3" style="line-height: 55px">
 						我的优惠信息
 					</div>
 					<div class="col-sm-3 col-xs-3" style="line-height: 55px">
-						<a href="user/detailed_list.html">余额&nbsp;<span class="badge"><?php echo $this->currency->Compute($balances);?></span></a>
+						<a href="user/detailed_list">余额&nbsp;<span class="badge"><?php echo $this->currency->Compute($balances);?></span></a>
 					</div>
 				</div>
 				<!-- /widget-header -->
 				<hr style="margin: 5px">
 				<div class="panel-body">
 				
-					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('default_order_status');?>">侍付款<?php echo isset($count_default_order) ? '<span class="badge">'.$count_default_order.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('to_be_delivered');?>">侍发货<?php echo isset($count_to_be_delivered) ? '<span class="badge">'.$count_to_be_delivered.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('inbound_state');?>">侍收货<?php echo isset($count_inbound_state) ? '<span class="badge">'.$count_inbound_state.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('state_to_be_evaluated');?>">侍评价<?php echo isset($count_to_be_evaluated) ? '<span class="badge">'.$count_to_be_evaluated.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2"><a href="user/orders.html?page=0&order_status=<?php echo $this->config->get_config('refund_order');?>">退款中<?php echo isset($count_refund_order) ? '<span class="badge">'.$count_refund_order.'</span>' : '';?></a></div>
-					<div class="col-sm-2 col-xs-2"><a href="<?php echo site_url('user/wishlist');?>">收藏夹<span class="badge"><?php echo $wishlist_count;?></span></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="user/orders?page=0&order_status=<?php echo $this->config->get_config('default_order_status');?>">侍付款<?php echo isset($count_default_order) ? '<span class="badge">'.$count_default_order.'</span>' : '';?></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="user/orders?page=0&order_status=<?php echo $this->config->get_config('to_be_delivered');?>">侍发货<?php echo isset($count_to_be_delivered) ? '<span class="badge">'.$count_to_be_delivered.'</span>' : '';?></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="user/orders?page=0&order_status=<?php echo $this->config->get_config('inbound_state');?>">侍收货<?php echo isset($count_inbound_state) ? '<span class="badge">'.$count_inbound_state.'</span>' : '';?></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="user/orders?page=0&order_status=<?php echo $this->config->get_config('state_to_be_evaluated');?>">侍评价<?php echo isset($count_to_be_evaluated) ? '<span class="badge">'.$count_to_be_evaluated.'</span>' : '';?></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="user/orders?page=0&order_status=<?php echo $this->config->get_config('refund_order');?>">退款中<?php echo isset($count_refund_order) ? '<span class="badge">'.$count_refund_order.'</span>' : '';?></a></div>
+					<div class="col-sm-2 col-xs-2"><a href="<?php echo $this->config->item('catalog').'user/wishlist';?>">收藏夹<span class="badge"><?php echo $wishlist_count;?></span></a></div>
 					
 				</div>
 				<!-- /widget-content --> 
@@ -78,21 +78,21 @@
 					</tr>
 					
 					<tr>
-						<td class="text-left col-sm-2 col-md-2"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
-						<td class="text-left col-sm-2 col-md-2"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo utf8_substr($order['products'][0]['name'], 0, 15); ?></a></span><br/><span class="value"><?php echo !empty($order['products'][0]['value']) ? utf8_substr($order['products'][0]['value'], 0, 15) : '';?></span></td>
+						<td class="text-left col-sm-2 col-md-2"><a target="_blank" href="product?product_id=<?php echo $order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
+						<td class="text-left col-sm-2 col-md-2"><span><a target="_blank" href="product?product_id=<?php echo $order['products'][0]['product_id'];?>"><?php echo utf8_substr($order['products'][0]['name'], 0, 15); ?></a></span><br/><span class="value"><?php echo !empty($order['products'][0]['value']) ? utf8_substr($order['products'][0]['value'], 0, 15) : '';?></span></td>
 						<td class="text-center col-sm-1 col-md-2"><?php echo $order['products'][0]['quantity']; ?></td>
 						<td class="text-center col-md-2 hidden-xs" style="border-top-width: 0;border-bottom-width: 0"><strong style="color: red"><?php echo $this->currency->Compute($order['total'] * $order['currency_value']);?></b></strong>
 							<div>含税（<?php echo $this->currency->Compute(array_sum(array_column($order['products'], 'tax')) * $order['currency_value']);?>）</div>
 						</td>
-						<td class="text-center col-sm-3 col-md-2" style="border-top-width: 0;border-bottom-width: 0"><?php echo $order['status_name']; ?><div><a href="<?php echo site_url('user/orders/order_info?order_id=').$order['order_id'];?>">订单详情</a></div></td>
+						<td class="text-center col-sm-3 col-md-2" style="border-top-width: 0;border-bottom-width: 0"><?php echo $order['status_name']; ?><div><a href="<?php echo $this->config->item('catalog').'user/orders/order_info?order_id='.$order['order_id'];?>">订单详情</a></div></td>
 						<td class="text-center col-sm-3 col-md-2" style="border-top-width: 0;border-bottom-width: 0"><button type="button" class="btn btn-default">确认收货</button></td>
 					</tr>
 					<?php unset($order['products'][0]);?>
 					<?php if(!empty($order['products'])):?>
 					<?php foreach($order['products'] as $key=>$value):?>
 					<tr>
-						<td class="text-left"><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
-						<td class="text-left"><span><a target="_blank" href="product.html?product_id=<?php echo $order['products'][$key]['product_id'];?>"><?php echo utf8_substr($order['products'][$key]['name'], 0, 15); ?></a></span><br/><span class="value"><?php echo !empty($order['products'][$key]['value']) ? utf8_substr($order['products'][$key]['value'], 0, 15) : '';?></span></td>
+						<td class="text-left"><a target="_blank" href="product?product_id=<?php echo $order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
+						<td class="text-left"><span><a target="_blank" href="product?product_id=<?php echo $order['products'][$key]['product_id'];?>"><?php echo utf8_substr($order['products'][$key]['name'], 0, 15); ?></a></span><br/><span class="value"><?php echo !empty($order['products'][$key]['value']) ? utf8_substr($order['products'][$key]['value'], 0, 15) : '';?></span></td>
 						<td class="width-ten text-center"><?php echo $order['products'][$key]['quantity']; ?></td>
 						<td style="border-top-width: 0;border-bottom-width: 0"></td>
 						<td style="border-top-width: 0;border-bottom-width: 0"></td>

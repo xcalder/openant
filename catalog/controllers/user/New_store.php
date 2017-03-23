@@ -8,8 +8,8 @@ class New_store extends MY_Controller {
 		$this->load->language('wecome');
 		$this->load->model(array('common/store_model', 'helper/information_model'));
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 	}
 
 	public function index()
@@ -45,7 +45,7 @@ class New_store extends MY_Controller {
 		$this->document->setTitle('商家入驻');
 		
 		if($this->user->getStore_id() != 0){
-			redirect(site_url('user/new_store/right'), 'location', 301);
+			redirect($this->config->item('catalog').'user/new_store/right', 'location', 301);
 		}
 		
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -53,7 +53,7 @@ class New_store extends MY_Controller {
 			
 			$this->store_model->new_store($data);
 			
-			redirect(site_url('user/new_store/info'), 'location', 301);
+			redirect($this->config->item('catalog').'user/new_store/info', 'location', 301);
 		}
 		
 		$this->get_from();
@@ -61,7 +61,7 @@ class New_store extends MY_Controller {
 	
 	public function right(){
 		if($this->user->getStore_id() == 0){
-			redirect(site_url('user/new_store'), 'location', 301);
+			redirect($this->config->item('catalog').'user/new_store', 'location', 301);
 		}
 		
 		$this->document->setTitle('重复申请');
@@ -80,7 +80,7 @@ class New_store extends MY_Controller {
 	
 	public function info(){
 		if($this->user->getStore_id() == 0){
-			redirect(site_url('user/new_store'), 'location', 301);
+			redirect($this->config->item('catalog').'user/new_store', 'location', 301);
 		}
 		
 		$this->document->setTitle('申请成功，待审核');
@@ -101,7 +101,7 @@ class New_store extends MY_Controller {
 		$data['languages']				=$this->language_model->get_languages();
 		
 		
-		$data['placeholder_image']		='public/resources/default/image/no_image.jpg';
+		$data['placeholder_image']		='resources/public/resources/default/image/no_image.jpg';
 		$data['header']					=$this->header->index();
 		$data['top']					=$this->header->step_top();
 		$data['footer']					=$this->footer->index();

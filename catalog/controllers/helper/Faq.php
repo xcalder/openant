@@ -15,7 +15,7 @@ class Faq extends CI_Controller {
 		$information_ifo=$this->information_model->get_information(($this->input->get('inforation_id') != NULL) ? $this->input->get('inforation_id') : $this->config->get_config('registration_terms'));
 		
 		if($information_ifo == FALSE){
-			redirect(site_url('errors/page_missing'), 'location', 301);
+			$this->header->no_find();
 		}
 		
 		$categorys=$this->information_model->get_information_categorys();

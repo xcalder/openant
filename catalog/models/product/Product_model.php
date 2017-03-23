@@ -317,7 +317,24 @@ class Product_model extends CI_Model{
 		$this->db->join('product', 'product.product_id = product_to_category.product_id');//查商品描述表
 		
 		if(isset($data['search'])){
-			$this->db->like('product_description.name', $data['search']);
+			//提取关键词key
+			$this->load->library('phpanalysis');
+			$this->phpanalysis->SetSource ($data['search']);
+			$this->phpanalysis->StartAnalysis ( true );
+			$tags = $this->phpanalysis->GetFinallyKeywords ( 5 ); // 获取3个关键字
+			
+			$tags = explode(',', $tags);
+				
+			foreach ($tags as $k=>$v){
+				if($k == 0){
+					$this->db->like('product_description.name', $tags[$k]);
+					$this->db->or_like('product_description.description', $tags[$k]);
+				}else{
+					$this->db->or_like('product_description.name', $tags[$k]);
+					$this->db->or_like('product_description.description', $tags[$k]);
+				}
+			}
+			
 			$this->db->where('product_description.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
 			$this->db->join('product_description', 'product_description.product_id = product.product_id');//查商品描述表
 		}
@@ -362,7 +379,15 @@ class Product_model extends CI_Model{
 			$this->db->join('product', 'product.product_id = product_to_category.product_id');//查商品描述表
 			
 			if(isset($data['search'])){
-				$this->db->like('product_description.name', $data['search']);
+				foreach ($tags as $k=>$v){
+					if($k == 0){
+						$this->db->like('product_description.name', $tags[$k]);
+						$this->db->or_like('product_description.description', $tags[$k]);
+					}else{
+						$this->db->or_like('product_description.name', $tags[$k]);
+						$this->db->or_like('product_description.description', $tags[$k]);
+					}
+				}
 				$this->db->where('product_description.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
 				$this->db->join('product_description', 'product_description.product_id = product.product_id');//查商品描述表
 			}

@@ -112,6 +112,10 @@ class CI_Loader {
 	
 	protected $_ci_common_paths = array();
 	
+	protected $_ci_extensions 		= array();
+	
+	protected $_ci_extension_paths  = array();
+	
 	/**
 	 * List of loaded helpers
 	 *
@@ -227,136 +231,91 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Model Loader
+	 * model Loader
 	 *
-	 * Loads and instantiates models.
+	 * This function lets users load and instantiate classes.
+	 * It is designed to be called from a user's app controllers.
 	 *
-	 * @param	string	$model		Model name
-	 * @param	string	$name		An optional object name to assign to
-	 * @param	bool	$db_conn	An optional database connection configuration to initialize
-	 * @return	object
+	 * @param	string	the name of the class
+	 * @param	mixed	the optional parameters
+	 * @param	string	an optional object name
+	 * @return	void
 	 */
-	public function model($model, $name = '', $db_conn = FALSE)
+	public function model($model = '', $params = NULL, $object_name = NULL)
 	{
-		if (empty($model))
+		load_class('model','core');
+		$this->_ci_model_paths = array(APPPATH);
+		 
+		if(is_array($model))
 		{
-			return $this;
-		}
-		elseif (is_array($model))
-		{
-			foreach ($model as $key => $value)
+			foreach($model as $class)
 			{
-				is_int($key) ? $this->model($value, '', $db_conn) : $this->model($key, $value, $db_conn);
+	
+				$this->model($class, $params);
 			}
-
-			return $this;
+	
+			return;
 		}
-
-		$path = '';
-
+	
+		if($model == '' or isset($this->_ci_models[$model])) {
+			return FALSE;
+		}
+	
+		if(! is_null($params) && ! is_array($params)) {
+			$params = NULL;
+		}
+	
+		$subdir = '';
+	
 		// Is the model in a sub-folder? If so, parse out the filename and path.
 		if (($last_slash = strrpos($model, '/')) !== FALSE)
 		{
 			// The path is in front of the last slash
-			$path = substr($model, 0, ++$last_slash);
-
+			$subdir = substr($model, 0, $last_slash + 1);
+	
 			// And the model name behind it
-			$model = substr($model, $last_slash);
+			$model = substr($model, $last_slash + 1);
 		}
-
-		if (empty($name))
+	
+		foreach($this->_ci_model_paths as $path)
 		{
-			$name = $model;
-		}
-
-		if (in_array($name, $this->_ci_models, TRUE))
-		{
-			return $this;
-		}
-
-		$CI =& get_instance();
-		if (isset($CI->$name))
-		{
-			throw new RuntimeException('The model name you are loading is the name of a resource that is already being used: '.$name);
-		}
-
-		if ($db_conn !== FALSE && ! class_exists('CI_DB', FALSE))
-		{
-			if ($db_conn === TRUE)
+			$model=ucfirst($model);
+			
+			$filepath = $path . 'models/'.$subdir.$model.'.php';
+			
+			if ( ! file_exists($filepath))
 			{
-				$db_conn = '';
+				$filepath=BASEPATH . '../public/models/'.$subdir.$model.'.php';
 			}
-
-			$this->database($db_conn, FALSE, TRUE);
+			
+			if(! file_exists($filepath)){
+				continue;
+			}
+	
+			include_once($filepath);
+	
+			$model = strtolower($model);
+	
+			if (empty($object_name))
+			{
+				$object_name = $model;
+			}
+	
+			$model = ucfirst($model);
+			$CI = &get_instance();
+			if($params !== NULL)
+			{
+				$CI->$object_name = new $model($params);
+			}
+			else
+			{
+				$CI->$object_name = new $model();
+			}
+	
+			$this->_ci_models[] = $object_name;
+	
+			return;
 		}
-
-		// Note: All of the code under this condition used to be just:
-		//
-		//       load_class('Model', 'core');
-		//
-		//       However, load_class() instantiates classes
-		//       to cache them for later use and that prevents
-		//       MY_Model from being an abstract class and is
-		//       sub-optimal otherwise anyway.
-		if ( ! class_exists('CI_Model', FALSE))
-		{
-			$app_path = APPPATH.'core'.DIRECTORY_SEPARATOR;
-			if (file_exists($app_path.'Model.php'))
-			{
-				require_once($app_path.'Model.php');
-				if ( ! class_exists('CI_Model', FALSE))
-				{
-					throw new RuntimeException($app_path."Model.php exists, but doesn't declare class CI_Model");
-				}
-			}
-			elseif ( ! class_exists('CI_Model', FALSE))
-			{
-				require_once(BASEPATH.'core'.DIRECTORY_SEPARATOR.'Model.php');
-			}
-
-			$class = config_item('subclass_prefix').'Model';
-			if (file_exists($app_path.$class.'.php'))
-			{
-				require_once($app_path.$class.'.php');
-				if ( ! class_exists($class, FALSE))
-				{
-					throw new RuntimeException($app_path.$class.".php exists, but doesn't declare class ".$class);
-				}
-			}
-		}
-
-		$model = ucfirst($model);
-		if ( ! class_exists($model))
-		{
-			foreach ($this->_ci_model_paths as $mod_path)
-			{
-				if ( ! file_exists($mod_path.'models/'.$path.$model.'.php'))
-				{
-					continue;
-				}
-
-				require_once($mod_path.'models/'.$path.$model.'.php');
-				if ( ! class_exists($model, FALSE))
-				{
-					throw new RuntimeException($mod_path."models/".$path.$model.".php exists, but doesn't declare class ".$model);
-				}
-
-				break;
-			}
-
-			if ( ! class_exists($model, FALSE))
-			{
-				throw new RuntimeException('Unable to locate the model you have specified: '.$model);
-			}
-		}
-		elseif ( ! is_subclass_of($model, 'CI_Model'))
-		{
-			throw new RuntimeException("Class ".$model." already exists and doesn't extend CI_Model");
-		}
-
-		$this->_ci_models[] = $name;
-		$CI->$name = new $model();
-		return $this;
 	}
 	
 	/**
@@ -409,11 +368,15 @@ class CI_Loader {
 		foreach($this->_ci_common_paths as $path)
 		{
 			$common=ucfirst($common);
-			 
-			$filepath = $path .'controllers/common/'.$subdir.$common.'.php';
-	
+			
+			$filepath = $path . 'controllers/common/'.$subdir.$common.'.php';
+			
 			if ( ! file_exists($filepath))
 			{
+				$filepath=BASEPATH . '../public/controllers/common/'.$subdir.$common.'.php';
+			}
+			
+			if(! file_exists($filepath)){
 				continue;
 			}
 	
@@ -438,6 +401,95 @@ class CI_Loader {
 			}
 	
 			$this->_ci_commons[] = $object_name;
+	
+			return;
+		}
+	}
+	
+	/**
+	 * extension Loader
+	 *
+	 * This function lets users load and instantiate classes.
+	 * It is designed to be called from a user's app controllers.
+	 *
+	 * @param	string	the name of the class
+	 * @param	mixed	the optional parameters
+	 * @param	string	an optional object name
+	 * @return	void
+	 */
+	public function extension($extension = '', $params = NULL, $object_name = NULL)
+	{
+		load_class('Extension','core');
+		$this->_ci_extension_paths = array(APPPATH);
+		 
+		if(is_array($extension))
+		{
+			foreach($extension as $class)
+			{
+	
+				$this->extension($class, $params);
+			}
+	
+			return;
+		}
+	
+		if($extension == '' or isset($this->_ci_extensions[$extension])) {
+			return FALSE;
+		}
+	
+		if(! is_null($params) && ! is_array($params)) {
+			$params = NULL;
+		}
+	
+		$subdir = '';
+	
+		// Is the extension in a sub-folder? If so, parse out the filename and path.
+		if (($last_slash = strrpos($extension, '/')) !== FALSE)
+		{
+			// The path is in front of the last slash
+			$subdir = substr($extension, 0, $last_slash + 1);
+	
+			// And the extension name behind it
+			$extension = substr($extension, $last_slash + 1);
+		}
+	
+		foreach($this->_ci_extension_paths as $path)
+		{
+			$extension=ucfirst($extension);
+			
+			$filepath = $path .'controllers/extension/'.$subdir.$extension.'.php';
+			
+			if ( ! file_exists($filepath))
+			{
+				$filepath=BASEPATH . '../public/controllers/extension/'.$subdir.$extension.'.php';
+			}
+	
+			if ( ! file_exists($filepath))
+			{
+				continue;
+			}
+	
+			include_once($filepath);
+	
+			$extension = strtolower($extension);
+	
+			if (empty($object_name))
+			{
+				$object_name = $extension;
+			}
+	
+			$extension = ucfirst($extension);
+			$CI = &get_instance();
+			if($params !== NULL)
+			{
+				$CI->$object_name = new $extension($params);
+			}
+			else
+			{
+				$CI->$object_name = new $extension();
+			}
+	
+			$this->_ci_extensions[] = $object_name;
 	
 			return;
 		}
@@ -993,6 +1045,10 @@ class CI_Loader {
 			}
 		}
 
+		if(!file_exists($_ci_path)){
+			$_ci_path = BASEPATH . '../public/view/' . basename($_ci_file);
+		}
+
 		if ( ! $file_exists && ! file_exists($_ci_path))
 		{
 			show_error('Unable to load the requested file: '.$_ci_file);
@@ -1379,10 +1435,16 @@ class CI_Loader {
 	 */
 	protected function _ci_autoloader()
 	{
+		if (file_exists(BASEPATH.'../public/config/autoload.php'))
+		{
+			include(BASEPATH.'../public/config/autoload.php');
+		}
+		/*
 		if (file_exists(APPPATH.'config/autoload.php'))
 		{
 			include(APPPATH.'config/autoload.php');
 		}
+		*/
 
 		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/autoload.php'))
 		{

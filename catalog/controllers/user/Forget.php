@@ -9,8 +9,8 @@ class Forget extends CI_Controller {
 		$this->load->helper(array('string'));
 		$this->load->model(array('common/user_model', 'common/forget_model'));
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 	}
 
 	public function index()
@@ -18,7 +18,7 @@ class Forget extends CI_Controller {
 		$this->document->setTitle('找回密码');
 		
 		if($this->user->isLogged()){
-			redirect(site_url('user/edit/edit_paswd'));
+			redirect($this->config->item('catalog').'user/edit/edit_paswd');
 		}
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->user_model->get_user_for_email($this->input->post('email')) && $this->valid_index()){
@@ -29,7 +29,7 @@ class Forget extends CI_Controller {
 			$data['subject']							='密码重置：你收到这封邮件是因为你在'.unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']].'申请了修改密码服务,如果不是你的操作，请忽略此邮件！';
 			$massage									='<h3>重置你在'.unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']].'的密码<h3>';
 			$massage									.='<h5><br/>这是一封系统邮件，请不要直接回复<br/><h5>';
-			$massage									.='<p>本次改密申请24小时内有效，如果超时请重新申请！<br/>你可以直接<a href="'.site_url('user/forget/edit?check='.$check).'">点击链接修改密码</a><br/><br/>当上面的链接不可用时，请复制下面的网址到地址栏直接访问！<br/><br/>'.site_url('user/forget/edit?check='.$check).'<p>';
+			$massage									.='<p>本次改密申请24小时内有效，如果超时请重新申请！<br/>你可以直接<a href="'.$this->config->item('catalog').'user/forget/edit?check='.$check.'">点击链接修改密码</a><br/><br/>当上面的链接不可用时，请复制下面的网址到地址栏直接访问！<br/><br/>'.$this->config->item('catalog').'user/forget/edit?check='.$check.'<p>';
 			$data['message']							=$massage;
 			$this->load->common('sender_email');
 			if($this->sender_email->sender($data)){
@@ -42,10 +42,10 @@ class Forget extends CI_Controller {
 				
 				$data=array();
 				$this->session->set_flashdata('forget_info', TRUE);
-				redirect(site_url('user/forget/info'), 'location', 301);
+				redirect($this->config->item('catalog').'user/forget/info', 'location', 301);
 			}else{
 				$this->session->set_flashdata('fali', '服务器超时，请联系网站管理员！');
-				redirect(site_url('user/forget'), 'location', 301);
+				redirect($this->config->item('catalog').'user/forget', 'location', 301);
 			}
 			
 		}
@@ -69,11 +69,11 @@ class Forget extends CI_Controller {
 	public function info()
 	{
 		if(!isset($_SESSION['forget_info'])){
-			redirect(site_url('user/forget'), 'location', 301);
+			redirect($this->config->item('catalog').'user/forget', 'location', 301);
 		}
 		
 		if($this->user->isLogged()){
-			redirect(site_url('user/edit/edit_paswd'));
+			redirect($this->config->item('catalog').'user/edit/edit_paswd');
 		}
 		
 		$this->document->setTitle('邮件发送成功');
@@ -93,12 +93,12 @@ class Forget extends CI_Controller {
 	public function edit()
 	{
 		if($this->user->isLogged()){
-			redirect(site_url('user/edit/edit_paswd'));
+			redirect($this->config->item('catalog').'user/edit/edit_paswd');
 		}
 		
 		if($this->input->get('check') == NULL){
 			$this->session->set_flashdata('warning', '密码重置失败！');
-			redirect(site_url('user/forget'), 'location', 301);
+			redirect($this->config->item('catalog').'user/forget', 'location', 301);
 		}
 
 		$this->document->setTitle('重置密码');
@@ -109,15 +109,15 @@ class Forget extends CI_Controller {
 			
 			if($this->forget_model->edit_password($data) == TRUE){
 				$this->session->set_flashdata('success', '密码重置成功！');
-				redirect(site_url('user'), 'location', 301);
+				redirect($this->config->item('catalog').'user', 'location', 301);
 			}else{
 				$this->session->set_flashdata('fali', '密码重置失败,链接已经失效，请重新申请！');
-				redirect(site_url('user/forget'), 'location', 301);
+				redirect($this->config->item('catalog').'user/forget', 'location', 301);
 			}
 			
 		}
 		
-		$data['action']=site_url('user/forget/edit?check=').$this->input->get('check');
+		$data['action']=$this->config->item('catalog').'user/forget/edit?check='.$this->input->get('check');
 		
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();

@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-sm-12 panel panel-default middle-flat-left">
 				<div class="panel-body">
-					<form action="<?php echo site_url('user/edit/edit_user_info');?>" method="post" enctype="multipart/form-data" id="edit-paswd-form">
+					<form action="<?php echo $this->config->item('catalog').'user/edit/edit_user_info';?>" method="post" enctype="multipart/form-data" id="edit-paswd-form">
 						<p class="login-title"><strong>修改个人信息！</strong><hr style="margin: 10px 0">
 						<div class="form-group">
 							<label for="nickname">昵称</label>
@@ -95,7 +95,7 @@
 						email_captcha: {
 							required: true,
 							rangelength:[6,6],
-							remote: "user/edit/verify_email_captcha.html"
+							remote: "user/edit/verify_email_captcha"
 						}
 					},
 					messages:{
@@ -126,7 +126,7 @@
 				//邮箱格式正确
 				$.ajax(
 					{
-						url: '<?php echo site_url();?>user/edit/sender_email_check.html',
+						url: '<?php echo $this->config->item('catalog').'user/edit/sender_email_check';?>',
 						type: 'post',
 						dataType: 'json',
 						data: {email:email},

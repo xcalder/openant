@@ -14,7 +14,7 @@
 	
 		<div id="middle" class="<?php echo $class; ?> middle-flat-left">
 			<?php echo $position_top; ?>
-			 <form class="form-horizontal well well-sm" action="<?php echo site_url('user/address/add');?>" method="post" style="padding: 15px">
+			 <form class="form-horizontal well well-sm" action="<?php echo $this->config->item('catalog').'user/address/add';?>" method="post" style="padding: 15px">
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">姓氏：</label>
 		<div class="col-sm-10">
@@ -102,10 +102,10 @@
 							<tr>
 								<td style="width: 75%;"><?php echo $address['address'];?></td>
 								<?php if($this->user->getAddressId() == $address['address_id']):?>
-								<td style="width:15%;vertical-align: middle;"><a>删除</a>|<a href="<?php echo site_url('user/address?address_id=').$address['address_id'];?>">修改</a></td>
+								<td style="width:15%;vertical-align: middle;"><a>删除</a>|<a href="<?php echo $this->config->item('catalog').'user/address?address_id='.$address['address_id'];?>">修改</a></td>
 								<td style="width:10%;vertical-align: middle;"><button type="button" class="btn btn-default btn-xs">默认地址</button></td>
 								<?php else:?>
-								<td style="width:15%;vertical-align: middle;"><a href="<?php echo site_url('user/address/delete?address_id=').$address['address_id'];?>">删除</a>|<a href="<?php echo site_url('user/address?address_id=').$address['address_id'];?>">修改</a></td>
+								<td style="width:15%;vertical-align: middle;"><a href="<?php echo $this->config->item('catalog').'user/address/delete?address_id='.$address['address_id'];?>">删除</a>|<a href="<?php echo $this->config->item('catalog').'user/address?address_id='.$address['address_id'];?>">修改</a></td>
 								<td style="width:10%;vertical-align: middle;"><button type="button" onclick="set_defu('<?php echo $address['address_id'];?>');" class="btn btn-default set-default btn-xs">设为默认</button></td>
 								<?php endif;?>
 							</tr>
@@ -131,7 +131,7 @@
 		function set_defu(id){
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>user/address/set_def.html',
+					url: '<?php echo $this->config->item('catalog').'user/address/set_def';?>',
 					type: 'post',
 					dataType: 'json',
 					data: {address_id:id},
@@ -142,7 +142,7 @@
 		function countrye(element, zone_id=''){
 			$.ajax(
 				{
-					url: "<?php echo site_url();?>/localisation/country/get_country?country_id=" + element.value,
+					url: "<?php echo $this->config->item('catalog').'localisation/country/get_country?country_id=';?>" + element.value,
 					dataType: 'json',
 					beforeSend: function()
 					{

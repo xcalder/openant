@@ -24,7 +24,7 @@
 						</div> <!-- /field -->
 						<div class="form-group form-captcha" style="position: relative;">
 							<input type="text" id="captcha" name="captcha" value="" placeholder="验证码" class="form-control" />
-							<img title="点击刷新" src="index.php/common/captcha" align="absbottom" onclick="this.src='index.php/common/captcha?'+Math.random();">
+							<img title="点击刷新" src="<?php echo $this->config->item('catalog');?>/common/captcha" align="absbottom" onclick="this.src='<?php echo $this->config->item('catalog');?>/common/captcha?'+Math.random();">
 							</img>
 						</div> <!-- /field -->
 						<div class="form-group" style="position: relative;">
@@ -62,7 +62,7 @@
 						{
 							required: true,
 							rangelength:[4,4],
-							remote: "common/captcha/veri.html"
+							remote: "common/captcha/veri"
 						}
 					},
 					messages:

@@ -31,7 +31,9 @@
 					</thead>
 					<tbody class="table-hover">
 					<?php foreach($orders as $order):?>
-					<?php if($order['order_status_id'] != $this->config->get_config('order_completion_status')){
+					<?php if($order['order_status_id'] == $this->config->get_config('refund_order') || $order['order_status_id'] == $this->config->get_config('refund_order_success')){
+						$style_bg='style="background-color: #eee;"';
+					}elseif($order['order_status_id'] != $this->config->get_config('order_completion_status')){
 						$style_bg='style="background-color: #d9edf7;"';
 					}else{
 						$style_bg='style="background-color: #f8f8f8;"';
@@ -47,8 +49,8 @@
 					</tr>
 					
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right" style="vertical-align: middle"><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][0]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][0]['product_id']);?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right" style="vertical-align: middle"><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$order['products'][0]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][0]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][0]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$order['products'][0]['product_id'];?>"><?php echo $order['products'][0]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][0]['value']) ? $order['products'][0]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][0]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][0]['tax'] != 0):?>
@@ -57,18 +59,20 @@
 						</td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><?php echo $order['products'][0]['quantity']; ?></td>
 						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">
-							<?php if($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
-							<a target="_blank" href="<?php echo site_url('user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][0]['rowid']);?>">退款/退货</a><br/>
+							<?php if(isset($order['products'][0]['return'])):?>
+							<a style="color: orange" target="_blank" href="<?php echo $this->config->item('catalog').'user/returned/info?rowid='.$order['products'][0]['rowid'];?>"><?php echo $order['products'][0]['return'];?></a><br/>
+							<?php elseif($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
+							<a target="_blank" href="<?php echo $this->config->item('catalog').'user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][0]['rowid'];?>">退款/退货</a><br/>
 							<?php endif;?>
 							投诉商家
 						</td>
 						<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['total'] * $order['currency_value']); ?></b></strong>
 						<span>含税（<?php echo $this->currency->Compute(array_sum(array_column($order['products'], 'tax')) * $order['currency_value']);?>）</span>
 						</td>
-						<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a target="_blank" href="<?php echo site_url('user/orders/order_info?order_id=').$order['order_id'];?>">订单详情</a></td>
+						<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a target="_blank" href="<?php echo $this->config->item('catalog').'user/orders/order_info?order_id='.$order['order_id'];?>">订单详情</a></td>
 						<td class="text-center col-md-2 col-sm-2 col-xs-2">
 							<?php if($order['order_status_id'] == $this->config->get_config('default_order_status')):?>
-							<a target="_blank" href="<?php echo site_url('user/confirm/payment?order_ids='.$_SESSION['token'].','.$order['order_id']);?>" class="btn btn-default btn-sm">去付款</a>
+							<a target="_blank" href="<?php echo $this->config->item('catalog').'user/confirm/payment?order_ids='.$_SESSION['token'].','.$order['order_id'];?>" class="btn btn-default btn-sm">去付款</a>
 							<?php elseif($order['order_status_id'] == $this->config->get_config('to_be_delivered')):?>
 							<button type="button" class="btn btn-default btn-sm">提醒卖家发货</button>
 							<?php elseif($order['order_status_id'] == $this->config->get_config('inbound_state')):?>
@@ -76,7 +80,7 @@
 							<?php elseif($order['order_status_id'] == $this->config->get_config('state_to_be_evaluated')):?>
 							<button type="button" class="btn btn-default btn-sm">去评价</button>
 							<?php elseif($order['order_status_id'] == $this->config->get_config('refund_order')):?>
-							<button type="button" class="btn btn-default btn-sm">退款中</button>
+							<button type="button" class="btn btn-warning btn-sm">退款中</button>
 							
 							<?php endif;?>
 						</td>
@@ -85,8 +89,8 @@
 					<?php if(!empty($order['products'])):?>
 					<?php foreach($order['products'] as $key=>$value):?>
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][$key]['product_id']);?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo site_url('product?product_id='.$order['products'][$key]['product_id']);?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$order['products'][$key]['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($order['products'][$key]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $order['products'][$key]['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$order['products'][$key]['product_id'];?>"><?php echo $order['products'][$key]['name']; ?></a></span><span class="value"><?php echo !empty($order['products'][$key]['value']) ? $order['products'][$key]['value'] : '';?></span></td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['products'][$key]['price'] * $order['currency_value']);?></b></strong>
 						
 						<?php if($order['products'][$key]['tax'] != 0):?>
@@ -95,8 +99,10 @@
 						</td>
 						<td class="col-md-1 col-sm-1 hidden-xs text-center border-right"><?php echo $order['products'][$key]['quantity']; ?></td>
 						<td class="text-center col-md-1 col-sm-1 hidden-xs border-right">
-							<?php if($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
-							<a target="_blank" href="<?php echo site_url('user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][$key]['rowid']);?>">退款/退货</a><br/>
+							<?php if(isset($order['products'][$key]['return'])):?>
+							<a style="color: orange" target="_blank" href="<?php echo $this->config->item('catalog').'user/returned/info?rowid='.$order['products'][$key]['rowid'];?>"><?php echo $order['products'][$key]['return'];?></a><br/>
+							<?php elseif($order['order_status_id'] != $this->config->get_config('default_order_status')):?>
+							<a target="_blank" href="<?php echo $this->config->item('catalog').'user/returned?token='.$_SESSION['token'].'&rowid='.$order['products'][$key]['rowid'];?>">退款/退货</a><br/>
 							<?php endif;?>
 							投诉商家
 						</td>
@@ -125,7 +131,7 @@
 	<script>
 		function del_order(id){
 			$.ajax({
-				url: '<?php echo site_url();?>/user/orders/del_order.html',
+				url: '<?php echo $this->config->item('catalog').'user/orders/del_order';?>',
 				type: 'post',
 				dataType: 'json',
 				data: {order_id:id},
@@ -141,9 +147,9 @@
 				{
 					if(data.success){
 						window.location.reload();
-						$.notify({message: data.success,},{type: 'success',});
+						$.notify({message: data.success,},{type: 'success',offset: {x: 0,y: 52}});
 					}else{
-						$.notify({message: data.error },{type: 'warning'});
+						$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError)

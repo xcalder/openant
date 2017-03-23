@@ -8,12 +8,8 @@ class Sns extends CI_Controller {
 	public function __construct()
     {
       	parent::__construct();
-    	if($this->user->getId()){
-    		echo $this->refresh;
-    		echo $this->close;
-    		return;
-    	}
     	$this->load->model('setting/sign_in_with_model');
+    	$this->lang->load('user/sns',$_SESSION['language_name']);
     }
 
 	public function session($provider = '')
@@ -23,7 +19,7 @@ class Sns extends CI_Controller {
 		//var_dump($providers);
 		if (!$providers)
 		{
-        	$this->session->set_flashdata('fali', '暂不支持'.$provider.'方式登录.');
+        	$this->session->set_flashdata('fali', sprintf(lang_line('not_support'), $provider));
             //redirect();
             echo $this->refresh;
             echo $this->close;
@@ -34,7 +30,7 @@ class Sns extends CI_Controller {
         $args = $this->input->get();
         if ($args AND !isset($args['code']))
         {
-          	$this->session->set_flashdata('fali', '授权失败了,可能由于应用设置问题或者用户拒绝授权.<br />具体原因:<br />'.json_encode($args));
+          	$this->session->set_flashdata('fali', sprintf(lang_line('authorization_failed'), json_encode($args)));
             //redirect();
             echo $this->refresh;
             echo $this->close;
@@ -49,7 +45,7 @@ class Sns extends CI_Controller {
                   }
                   catch (OAuth2_Exception $e)
                   {
-                  	$this->session->set_flashdata('fali', '操作失败<pre>'.$e.'</pre>');
+                  	$this->session->set_flashdata('fali', sprintf(lang_line('operation_failed'), $e));
                   	//redirect();
                   	echo $this->refresh;
                   	echo $this->close;
@@ -66,31 +62,20 @@ class Sns extends CI_Controller {
 				{
 					$select_user_id=$this->sign_in_with_model->select_user_for_vid($sns_user['via'], $sns_user['uid']);
 					if($select_user_id){
-						$this->session->set_flashdata('success', ((isset($sns_user['nickname']) && !empty($sns_user['nickname'])) ? $sns_user['nickname'] : $sns_user['name']).'登陆成功！');
+						if(isset($_SESSION['user_id'])){
+							$this->load->model('common/user_activity_model');
+							$this->user_activity_model->add_activity($_SESSION['user_id'], 'bind', array('title'=>sprintf(lang_line('already_used'), $provider), 'msg'=>''));
+							$this->session->set_flashdata('fail', sprintf(lang_line('already_used'), $provider));
+							echo $this->refresh;
+							echo $this->close;
+							return;
+						}
+						$this->session->set_flashdata('success', sprintf(lang_line('success_login'), $provider));
+						
+						$this->load->model('common/user_activity_model');
+						$this->user_activity_model->add_activity($select_user_id, 'bind', array('title'=>sprintf(lang_line('success_login'), $provider), 'msg'=>''));
 						
 						$_SESSION['user_id']=$select_user_id;
-						
-						/**
-						* 把购物车信息从数据库取出写入到session中
-						* @var 
-						* 
-						*/
-						$this->db->select('rowid, id, qty, price, name, options');
-						$this->db->where('user_id', $select_user_id);
-						$this->db->from($this->db->dbprefix('user_cart'));
-						$cart_query=$this->db->get();
-						if($cart_query->num_rows() > 0){
-							$cart_contents=array();
-							$cart_arr=$cart_query->result_array();
-							foreach($cart_arr as $key=>$value){
-								$cart_arr[$key]['options']=explode('.', $cart_arr[$key]['options']);
-								$cart_contents[$cart_arr[$key]['rowid']]=$cart_arr[$key];
-								$cart_contents[$cart_arr[$key]['rowid']]['subtotal']=$cart_arr[$key]['qty'] * $cart_arr[$key]['price'];
-							}
-							$cart_contents['cart_total']=array_sum(array_column($cart_contents,'price'));
-							$cart_contents['total_items']=array_sum(array_column($cart_contents,'qty'));
-							$_SESSION['cart_contents']=$cart_contents;
-						}
 						
 					}else{
 						if(isset($sns_user['first_name']) && !empty($sns_user['first_name'])){
@@ -104,29 +89,37 @@ class Sns extends CI_Controller {
 						}
 						if(isset($sns_user['image']) && !empty($sns_user['image'])){
 							$data['adduser']['image']=$sns_user['image'];
+							$data['addsgin']['image']=$sns_user['image'];
 						}
 						if(isset($sns_user['description']) && !empty($sns_user['description'])){
 							$data['adduser']['description']=$sns_user['description'];
 						}
 						if(isset($sns_user['nickname']) && !empty($sns_user['nickname'])){
 							$data['adduser']['nickname']=$sns_user['nickname'];
+							$data['addsgin']['nickname']=$sns_user['nickname'];
 						}
 						
 						$data['adduser']['user_group_id']=$this->config->get_config('register_group');
 						$data['adduser']['user_class_id']=$this->config->get_config('default_user_class');
 						$data['adduser']['sale_class_id']=$this->config->get_config('default_sale_class');
 						$data['adduser']['status']='1';
-						$data['adduser']['date_added']=date("Y-m-d H:i:s");
+						$date=date("Y-m-d H:i:s");
+						$data['adduser']['date_added']=$date;
 						
-						
+						$data['addsgin']['date_added']=$date;
 						$data['addsgin']['via']=$sns_user['via'];
 						$data['addsgin']['uid']=$sns_user['uid'];
 						if(isset($sns_user['location']) && !empty($sns_user['location'])){
 							$data['addsgin']['location']=$sns_user['location'];
 						}
 						
-						$this->sign_in_with_model->add_user_sign_in_with($data);
-						$this->session->set_flashdata('success', ((isset($sns_user['nickname']) && !empty($sns_user['nickname'])) ? $sns_user['nickname'] : $sns_user['name']) . $provider.'注册并登陆成功！');
+						if(isset($_SESSION['user_id'])){
+							$this->sign_in_with_model->add_bind_accounts($data);
+							$this->session->set_flashdata('success', sprintf(lang_line('success_bind'), $provider));
+						}else{
+							$this->sign_in_with_model->add_user_sign_in_with($data);
+							$this->session->set_flashdata('success', sprintf(lang_line('success_bind_login'), $provider));
+						}
 					}
 					
 					echo $this->refresh;
@@ -134,7 +127,7 @@ class Sns extends CI_Controller {
 				}
 				else
 				{
-                    $this->session->set_flashdata('fali', '获取用户信息失败');
+                    $this->session->set_flashdata('fali', lang_line('get_information_failed'));
                     //redirect();
                     echo $this->refresh;
                     echo $this->close;
@@ -143,7 +136,7 @@ class Sns extends CI_Controller {
 			}
 			catch (OAuth2_Exception $e)
 			{
-                $this->session->set_flashdata('fali', '操作失败<pre>'.$e.'</pre>');
+                $this->session->set_flashdata('fali', sprintf(lang_line('operation_failed'), $e));
                 //redirect();
                 echo $this->refresh;
                 echo $this->close;

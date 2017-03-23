@@ -82,7 +82,7 @@
 	{
 	$.ajax(
 		{
-			url: '<?php echo site_url();?>product/option.html?product_id=<?php echo $this->input->get('product_id');?>',
+			url: '<?php echo $this->config->item('catalog').'product/option?product_id='.$this->input->get('product_id');?>',
 			type: 'post',
 			dataType: 'json',
 			data: {arr:a, taxs:taxs},
@@ -123,7 +123,7 @@
 		
 		$.ajax(
 		{
-			url: '<?php echo site_url();?>product/option/cart_option_update.html?product_id=<?php echo $this->input->get('product_id')?>',
+			url: '<?php echo $this->config->item('catalog').'product/option/cart_option_update?product_id='.$this->input->get('product_id');?>',
 			type: 'post',
 			dataType: 'json',
 			data: {arr:a, taxs:taxs, number:numbe, rowids:rowid},

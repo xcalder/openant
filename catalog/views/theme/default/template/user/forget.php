@@ -8,7 +8,7 @@
 				<?php echo $position_left;?>
 				<div class="col-sm-3 panel panel-default middle-flat-left">
 					<div class="panel-body">
-						<form action="<?php echo site_url('user/forget');?>" method="post" enctype="multipart/form-data" id="forget-form">
+						<form action="<?php echo $this->config->item('catalog').'user/forget';?>" method="post" enctype="multipart/form-data" id="forget-form">
 							<p class="text-center login-title"><strong>找回密码</strong><hr style="margin: 10px 0">
 							<p>通过注册邮箱找回密码</p>
 							<div class="form-group">
@@ -16,7 +16,7 @@
 							</div> <!-- /field -->
 							<div class="form-group form-captcha">
 								<input type="text" id="captcha" name="captcha" placeholder="验证码" class="form-control" value=""/>
-								<img title="点击刷新" src="index.php/common/captcha" align="absbottom" onclick="this.src='index.php/common/captcha?'+Math.random();"></img>
+								<img title="点击刷新" src="<?php echo $this->config->item('catalog');?>/common/captcha" align="absbottom" onclick="this.src='<?php echo $this->config->item('catalog');?>/common/captcha?'+Math.random();"></img>
 						
 							</div> <!-- /field -->
 					
@@ -31,10 +31,10 @@
 	</div>
 </div>
 
-<?php if(isset($error_times)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger'});});</script><?php endif;?>
-<?php if(isset($message)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message'});});</script><?php endif;?>
-<?php if(isset($error_check)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning'});});</script><?php endif;?>
-<?php if(isset($_SESSION['warning'])):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning'});});</script><?php endif;?>
+<?php if(isset($error_times)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger',offset: {x: 0,y: 52}});});</script><?php endif;?>
+<?php if(isset($message)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message',offset: {x: 0,y: 52}});});</script><?php endif;?>
+<?php if(isset($error_check)):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning',offset: {x: 0,y: 52}});});</script><?php endif;?>
+<?php if(isset($_SESSION['warning'])):?><script type="text/javascript">$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning',offset: {x: 0,y: 52}});});</script><?php endif;?>
 
 <?php echo $login_footer;?>
 <script>
@@ -49,7 +49,7 @@
 						captcha: {
 							required: true,
 							rangelength:[4,4],
-							remote: "common/captcha/veri.html"
+							remote: "common/captcha/veri"
 						}
 					},
 					messages: {

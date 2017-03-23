@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="col-sm-3 text-center">
-						<a href="<?php echo site_url('user/address');?>">我的收货地址</a>
+						<a href="<?php echo $this->config->item('catalog').'user/address';?>">我的收货地址</a>
 					</div>
 					<div class="col-sm-3 text-center">
 						我的优惠信息

@@ -16,7 +16,7 @@
 			<?php echo $position_top; ?>
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px">
-				<li role="presentation" class="active"><a href="#cart-all" aria-controls="cart-all" role="tab" data-toggle="tab">购物车商品<span class="label label-info"><?php echo isset($_SESSION['cart_contents']) ? count($_SESSION['cart_contents']) - 2 : ''?></span></a></li>
+				<li role="presentation" class="active"><a href="#cart-all" aria-controls="cart-all" role="tab" data-toggle="tab">购物车商品<span class="label label-info" id="cart_quantity"><?php echo $i;?></span></a></li>
 				
 				<div class="carts-top-info">已选商品(不含运费)<a class="value-">0.00</a><button type="button" class="btn btn-info btn-xs">结算</button></div>
 			</ul>
@@ -27,7 +27,7 @@
 					<?php if($carts_product):?>
 					<div class="panel panel-default">
 						<!-- Table -->
-						<form action="<?php echo site_url('user/confirm');?>" method="post" enctype="multipart/form-data" id="cart-form">
+						<form action="<?php echo $this->config->item('catalog').'user/confirm';?>" method="post" enctype="multipart/form-data" id="cart-form">
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -56,12 +56,12 @@
 									<td style="width: 25%">
 										<div class="media">
 											<div class="media-left media-middle">
-												<a target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>">
+												<a target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$carts_product[$key]['products'][$b]['id'];?>">
 													<img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" style="max-width: <?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px;display: block;" class="media-object lazy" data-original="<?php echo $this->image_common->resize($carts_product[$key]['products'][$b]['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $carts_product[$key]['products'][$b]['name']; ?>">
 												</a>
 											</div>
 											<div class="media-body">
-												<a class="cart-table-product-name" target="_blank" href="<?php echo site_url('product?product_id='.$carts_product[$key]['products'][$b]['id']);?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
+												<a class="cart-table-product-name" target="_blank" href="<?php echo $this->config->item('catalog').'product?product_id='.$carts_product[$key]['products'][$b]['id'];?>"><?php echo $carts_product[$key]['products'][$b]['name']; ?></a>
 											</div>
 										</div>
 									</td>
@@ -87,7 +87,7 @@
 										</div>
 									</td>
 									<td class="subtotal-<?php echo $key.$b;?> all-price" style="width: 10%;color: #f40;font-size: 18px"><?php echo $this->currency->Compute($carts_product[$key]['products'][$b]['subtotal']);?></td>
-									<td style="width: 10%" class="text-center cart-operating"><a>移到收藏夹</a><br/><a onclick="remove_cart('<?php echo $carts_product[$key]['products'][$b]['rowid']; ?>');">删除</a></td>
+									<td style="width: 10%" class="text-center cart-operating"><a style="cursor: pointer;">移到收藏夹</a><br/><a style="cursor: pointer;" onclick="remove_cart('<?php echo $carts_product[$key]['products'][$b]['rowid']; ?>');">删除</a></td>
 								</tr>
 				    	
 								<?php endforeach;?>
@@ -146,7 +146,7 @@
 		}else{
 			$('.cart-confirm').attr("disabled","disabled");
 		}
-		$.get("common/currency/compute.html?currency="+t_all, function(data){
+		$.get("<?php echo $this->config->item('catalog').'common/currency/compute?currency='?>"+t_all, function(data){
 			$('.carts-top-info .value-').text(data.value);
 		});
 	}
@@ -193,7 +193,7 @@
 		function qty_change(qty, price, rowid, key){
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>user/cart/update.html',
+					url: '<?php echo $this->config->item('catalog').'user/cart/update';?>',
 					type: 'post',
 					dataType: 'json',
 					data: {qty:qty, price:price, rowid:rowid},
@@ -212,7 +212,7 @@
 							$('input[rowid=\''+rowid+'\']').attr('value',qty);
 							change_price();
 						}else{
-							$.notify({message: data.error },{type: 'warning'});
+							$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 						}
 				
 					},
@@ -226,7 +226,7 @@
 		function edit_options(id, rowid){
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>product/option/cart_option.html?product_id='+id,
+					url: '<?php echo $this->config->item('catalog').'product/option/cart_option?product_id=';?>'+id,
 					type: 'post',
 					dataType: 'html',
 					data: {product_id:id, rowid:rowid},
@@ -256,7 +256,7 @@
 		function remove_cart(rowid){
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>product/option/remove_cart.html',
+					url: '<?php echo $this->config->item('catalog').'product/option/remove_cart';?>',
 					type: 'post',
 					dataType: 'json',
 					data: {rowid:rowid},
@@ -271,17 +271,18 @@
 					success: function(data)
 					{
 						if(data.success){
-							$.notify({message: data.success },{type: 'success'});
+							$.notify({message: data.success },{type: 'success',offset: {x: 0,y: 52}});
+							$('#cart_quantity').html($('#cart_quantity').html() - 1);
 							if($('input[rowid=\''+rowid+'\']').parent().parent().parent().prev('tr').hasClass('cart-table-store')){
 								$('input[rowid=\''+rowid+'\']').parent().parent().parent().prev('tr').remove();
 							}
 							$('input[rowid=\''+rowid+'\']').parent().parent().parent().remove();
-							$.get("product/update_cart.html",function(data){
+							$.get("product/update_cart",function(data){
 									$('#page-cart').parent().html(data);
 									change_price();
 								});
 						}else{
-							$.notify({message: data.error },{type: 'warning'});
+							$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError)

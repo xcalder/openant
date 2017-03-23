@@ -7,6 +7,7 @@ class Wecome extends CI_Controller{
 		parent::__construct();
 		$this->load->common(array('cart_module'));//装载公共类
 		$this->lang->load('product/wecome', $_SESSION['language_name']);
+		$this->lang->load('product/category', $_SESSION['language_name']);
 		
 		$this->load->library(array('currency'));
 		$this->load->model(array('product/product_model'));
@@ -38,8 +39,8 @@ class Wecome extends CI_Controller{
 		
 		$this->document->setDescription($product_info['meta_description']);
 		
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/spinner/jquery.spinner.min.js');
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/spinner/bootstrap-spinner.css');
+		$this->document->addScript(base_url('resources/public/resources/default/js/spinner/jquery.spinner.min.js'));
+		$this->document->addStyle(base_url('resources/public/resources/default/css/spinner/bootstrap-spinner.css'));
 
 		if(isset($product_info['attribute'])){
 			foreach($product_info['attribute'] as $key=>$value){
@@ -60,7 +61,7 @@ class Wecome extends CI_Controller{
 		}
 		
 		$this->load->common('qr_code');
-		$data['qr_code']=$this->qr_code->add_logo('product-'.$this->input->get('product_id').'.jpg', site_url('product?product_id=').$this->input->get('product_id'), 'H', 2);
+		$data['qr_code']=$this->qr_code->add_logo('product-'.$this->input->get('product_id').'.jpg', $this->config->item('catalog').'product?product_id='.$this->input->get('product_id'), 'H', 2);
 		
 		//判断打折和会员价的时限，如果不在时间范围删掉
 		if(!isset($product_info['discount']) || $product_info['discount']['date_start'] > date("Y-m-d H:i:s") || $product_info['discount']['date_end'] < date("Y-m-d H:i:s")){
@@ -111,5 +112,13 @@ class Wecome extends CI_Controller{
 		$data['footer']=$this->footer->index();
 		
 		$this->load->view('theme/default/template/product/wecome',$data);
+	}
+	
+	//统计访问量
+	public function total(){
+		if($this->input->get('product_id') != null){
+			$this->load->model('common/page_access_total_model');
+			$this->page_access_total_model->add('product', $this->input->get('product_id'));
+		}
 	}
 }

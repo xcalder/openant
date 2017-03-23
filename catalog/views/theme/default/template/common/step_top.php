@@ -1,27 +1,28 @@
 <body id="<?php echo $css;?>">
 	<div id="header">
 	<!-- Start Navigation -->
-		<nav class="navbar brand-center center-side bootsnav" id="nav-top">
+		<nav class="navbar center-side bootsnav" id="nav-top">
 			<div class="container">
-
-				<!-- Start Header Navigation -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#navbar-menu-top">
-						<i class="glyphicon glyphicon-menu-hamburger"></i>
-					</button>
-				</div>
-				<!-- End Header Navigation -->
-
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu-top">
-					<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-						<li><a class="navbar-brand navbar-brand-logo" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="46px" height="46px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 46, 46, 'h') : 'public/resources/default/image/logo-menu.jpg';?>" class="lazy" alt="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"></a></li>
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+						<li><a class="navbar-brand navbar-brand-logo" href="<?php echo base_url();?>" title="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"><img width="46px" height="46px" data-original="<?php echo $this->config->get_config('site_image') !== FALSE ? $this->image_common->resize($this->config->get_config('site_image'), 46, 46, 'h') : 'resources/public/resources/default/image/logo-menu.jpg';?>" class="lazy" alt="<?php echo unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]?>"></a></li>
 						<?php echo $language;?>
 						<?php echo $currency;?>
 						
+					</ul>
+					
+					<form class="navbar-form navbar-left" role="search" action="product/category" method="get" id="openant-search">
+						<div class="input-group input-group-sm">
+						  <span class="input-group-addon">商城</span>
+						  <input type="text" class="form-control" name="search" id="search" value="<?php echo !empty($action_search) ? $action_search : '';?>">
+						</div>
+					</form>
+					
+					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">	
+					
 						<?php echo $cart_module;?>
-						<li><a href="<?php echo site_url('user/wishlist');?>"><i class="glyphicon glyphicon-star"></i><?php echo lang_line('favorites');?><span id="wishlist-count" class="badge"><?php echo $wishlist_count;?></span></a></li>
+						<li><a href="<?php echo $this->config->item('catalog').'user/wishlist';?>"><i class="glyphicon glyphicon-star"></i><?php echo lang_line('favorites');?><span id="wishlist-count" class="badge"><?php echo $wishlist_count;?></span></a></li>
 		
 						<li class="dropdown megamenu-fw">
 							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i><?php echo lang_line('site_map');?></a>
@@ -31,10 +32,10 @@
 										<h6 class="title"><?php echo lang_line('self');?></h6>
 										<ul class="menu-col">
 											<li>
-												<a href="<?php echo site_url('user/forget');?>"><?php echo lang_line('forget');?></a>
-											</li>
+												<a href="<?php echo $this->config->item('catalog').'user/forget';?>"><?php echo lang_line('forget');?></a>
+											</li><hr>
 											<li>
-												<a href="<?php echo site_url('user/new_store');?>"><?php echo lang_line('business_in');?></a>
+												<a href="<?php echo $this->config->item('catalog').'user/new_store';?>"><?php echo lang_line('business_in');?></a>
 											</li>
 										</ul>
 									</div>
@@ -45,11 +46,11 @@
 											<?php if($categorys):?>
 											<?php foreach($categorys as $category):?>
 											<li>
-												<a href="<?php echo site_url('product/category?id='.$category['category_id']);?>><?php echo $category['name'];?></a>
-											</li>
+												<a href="<?php echo $this->config->item('catalog').'product/category?id='.$category['category_id'];?>><?php echo $category['name'];?></a>
+											</li><hr>
 											<?php endforeach;?>
 											<?php endif;?>
-										<li><a href="<?php echo site_url('product/category/category_all');?>">所有分类</a></li>
+										<li><a href="<?php echo $this->config->item('catalog').'product/category/category_all';?>">所有分类</a></li>
 										</ul>
 									</div>
 									<!-- end col-3 -->
@@ -60,10 +61,10 @@
 											<?php foreach($manufacturers as $manufacturer):?>
 											<li>
 												<a href="#"><?php echo $manufacturer['name'];?>u</a>
-											</li>
+											</li><hr>
 											<?php endforeach;?>
 											<?php endif;?>
-											<li><a href="<?php echo site_url('product/manufacturer/manufacturer_all');?>">所有品牌</a></li>
+											<li><a href="<?php echo $this->config->item('catalog').'product/manufacturer/manufacturer_all';?>">所有品牌</a></li>
 										</ul>
 									</div>
 									<div class="col-menu col-md-3">
@@ -74,8 +75,8 @@
                                             	<?php foreach($nav_infomation['informations'] as $information):?>
                                                 <li>
 												<a
-													href="<?php echo site_url('helper/faq?inforation_id='.$information['information_id']);?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a>
-											</li>
+													href="<?php echo $this->config->item('catalog').'helper/faq?inforation_id='.$information['information_id'];?>#inforation-<?php echo $information['information_id'];?>"><?php echo $information['title'];?></a>
+												</li><hr>
                                                 <?php endforeach;?>
                                             </ul>
                                         <?php endif;?>
@@ -85,6 +86,7 @@
 								</li>
 							</ul>
 						</li>
+						<li><a href="<?php echo $this->config->item('bbs');?>"><i class="glyphicon glyphicon-tree-deciduous"></i><?php echo lang_line('community');?></a></li>
 						<!--如果已经登陆不显示-->
 						<?php if(!$this->user->isLogged()):?>
 						
@@ -98,10 +100,10 @@
 						</li>
 						<?php else:?>
 						<li>
-							<a href="<?php echo site_url('user/signin/login?url='.rawurlencode(all_current_url()))?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
+							<a href="<?php echo $this->config->item('catalog').'user/signin/login?url='.rawurlencode(all_current_url())?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('user/signin/signinup')?>"><i class="glyphicon glyphicon-pencil"></i><?php echo lang_line('register');?></a>
+							<a href="<?php echo $this->config->item('catalog').'user/signin/signinup'?>"><i class="glyphicon glyphicon-pencil"></i><?php echo lang_line('register');?></a>
 						</li>
 						<?php endif;?>
 						
@@ -112,11 +114,14 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="<?php echo site_url('user/notice');?>"><?php echo lang_line('news');?><span class="badge"><?php echo $activity_count;?></span></a>
+									<a href="<?php echo $this->config->item('catalog').'user/notice';?>"><?php echo lang_line('news');?><span class="badge"><?php echo $activity_count;?></span></a>
 								</li>
 								<li>
-									<a href="<?php echo site_url('user');?>"><?php echo lang_line('user_center');?></a>
+									<a href="<?php echo $this->config->item('catalog').'user';?>"><?php echo lang_line('user_center');?></a>
 								</li>
+								<?php if(!isset($access_sale)):?>
+								<li><a target="_black" href="<?php $this->config->item('catalog').'user/new_store';?>" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><?php echo lang_line('business_in');?></a></li>
+								<?php endif;?>
 								<?php if(isset($access_admin)):?>
 								<li>
 									<a onclick="window.open('<?php echo $url_admin;?>');"><?php echo lang_line('control_center');?></a>
@@ -181,7 +186,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane login-botton" id="login-tab">
-							<form action="<?php echo site_url('user/signin/login');?>" method="post" enctype="multipart/form-data" id="login">
+							<form action="<?php echo $this->config->item('catalog').'user/signin/login';?>" method="post" enctype="multipart/form-data" id="login">
 								<div class="form-group error"></div>
 								<div class="form-group">
 									<input type="text" id="email" name="email" value=""
@@ -196,7 +201,7 @@
 								</div>
 								<!-- /password -->
 								<div class="form-group">
-									<a href="<?php site_url('user/forget');?>"><?php echo lang_line('forget');?></a>
+									<a href="<?php $this->config->item('catalog').'user/forget';?>"><?php echo lang_line('forget');?></a>
 								</div>
 								<div class="form-group">
 									<input type="hidden" name="is_view" value="1"/>
@@ -207,7 +212,7 @@
 						</div>
 						<div role="tabpanel" class="tab-pane register-botton"
 							id="register-tab">
-							<form action="<?php echo site_url('user/signin/signinup');?>" method="post" enctype="multipart/form-data" id="regist">
+							<form action="<?php echo $this->config->item('catalog').'user/signin/signinup';?>" method="post" enctype="multipart/form-data" id="regist">
 								<div class="form-group error"></div>
 								<div class="form-group">
 									<input type="text" id="email" name="email" value=""
@@ -232,9 +237,9 @@
 										placeholder="<?php echo lang_line('captcha');?>"
 										class="form-control" />
 									<img title="<?php echo lang_line('refresh');?>"
-										src="<?php echo site_url('common/captcha');?>"
+										src="<?php echo $this->config->item('catalog').'common/captcha';?>"
 										align="absbottom"
-										onclick="this.src='index.php/common/captcha.html?'+Math.random();"></img>
+										onclick="this.src='<?php echo $this->config->item('catalog');?>/common/captcha?'+Math.random();"></img>
 								</div>
 								<!-- /field -->
 								<div class="form-group">
@@ -244,7 +249,7 @@
 
 										<label class="login-forget">
 											<a
-												onclick="window.open('<?php echo site_url('helper/faq?id=').$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
+												onclick="window.open('<?php echo $this->config->item('catalog').'helper/faq?id='.$this->config->get_config('registration_terms');?>');"><?php echo lang_line('registration_terms');?></a>
 										</label>
 									</div>
 								</div>
@@ -259,7 +264,7 @@
 						<?php foreach($sign_ins as $key=>$value):?>
 						<a onclick="with_login('<?php echo $key;?>');">
 							<img width="32px" height="32px" class="lazy"
-								data-original="public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
+								data-original="resources/public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
 								data-toggle="tooltip" data-placement="top"
 								title="<?php echo $value['setting']['extra'];?>">
 						</a>
@@ -272,7 +277,7 @@
 		<script>
 		//第三方登陆
 		function with_login(key){
-			window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+			window.open ('<?php echo $this->config->item('catalog');?>/user/sns/session/'+key,'newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 		}
 		//登陆
 		$(document).ready(function(){
@@ -323,7 +328,7 @@
 							email: {
 								required: true,
 								email: true,
-								remote: "user/signin/check_email_web.html"
+								remote: "user/signin/check_email_web"
 							},
 							password: {
 								required: true,
@@ -337,7 +342,7 @@
 							captcha: {
 								required: true,
 								rangelength:[4,4],
-								remote: "index.php/common/captcha/veri.html"
+								remote: "<?php echo $this->config->item('catalog');?>/common/captcha/veri"
 							},
 							agree: {
 								required: true,
@@ -392,14 +397,20 @@
 			});
 	</script>
 	<?php endif;?>
+	
+	<script type="text/javascript">
+		$('#search').placeholderTypewriter({
+			text: ["www.openant.com/bbs.php", "蚂蚁开源论坛", "如果你有什么问题？", "可以在这里得到解答", "用简单的方式描述它"]
+		});
+	</script>
 
 	<div id="mobile-menu" class="well">
 		<ul>
 			<li class="text-center" style="width: 20%"><a href="<?php echo base_url();?>"><i class="glyphicon glyphicon-home"></i>首页</a></li>
 			<li class="text-center" style="width: 20%"><a href="<?php echo base_url();?>"><i class="glyphicon glyphicon-briefcase"></i>商城</a></li>
 			<li class="text-center" style="width: 20%"><a href="<?php echo base_url();?>"><i class="glyphicon glyphicon-ok"></i>订单</a></li>
-			<li class="text-center" style="width: 20%"><a href="<?php echo site_url('common/mobile_nav');?>"><i class="glyphicon glyphicon-th-list"></i>购物车</a></li>
-			<li class="text-center" style="width: 20%"><a href="<?php echo site_url('user/wecome');?>"><i class="glyphicon glyphicon-user"></i>我的</a></li>
+			<li class="text-center" style="width: 20%"><a href="<?php echo $this->config->item('catalog').'common/mobile_nav';?>"><i class="glyphicon glyphicon-th-list"></i>购物车</a></li>
+			<li class="text-center" style="width: 20%"><a href="<?php echo $this->config->item('catalog').'user/wecome';?>"><i class="glyphicon glyphicon-user"></i>我的</a></li>
 		</ul>
 	</div>
 

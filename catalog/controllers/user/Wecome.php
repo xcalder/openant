@@ -20,7 +20,7 @@ class Wecome extends MY_Controller {
 		if(!empty($user['image'])){
 			$user['image']=$this->image_common->resize($user['image'], 50 , 50);
 		}else{
-			$user['image']='public/resources/default/image/logo.jpg';
+			$user['image']='resources/public/resources/default/image/logo.jpg';
 		}
 		
 		$data['user']=$user;

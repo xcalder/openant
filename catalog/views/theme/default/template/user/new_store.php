@@ -9,18 +9,18 @@
 	        <h4 class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;开店申请</h4>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
 			  <button type="button" onclick="submit('form-download')" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo site_url('product/download');?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <a href="<?php echo $this->config->item('catalog').'product/download';?>" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->
         <div class="panel-body page-tab">
-          <form action="user/new_store/add.html" method="post" enctype="multipart/form-data" id="form-download" class="form-horizontal">
+          <form action="user/new_store/add" method="post" enctype="multipart/form-data" id="form-download" class="form-horizontal">
           	<div class="form-group" id="language">
 				<label class="col-sm-2 control-label" for="store-name"><span style="color: red">*&nbsp;</span>店铺名称</label>
 				<div class="col-sm-10">
 				<?php foreach($languages as $language):?>
 					<div class="input-group">
-					  <span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image']?>"></span>
+					  <span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="resources/public/flags/<?php echo $language['image']?>"></span>
 					  <input type="text" name="description[<?php echo $language['language_id']?>][store_name]" class="form-control" placeholder="店铺名称" value="<?php echo isset($description[$language['language_id']]['stoer_name']) ? $description[$language['language_id']]['store_name'] : '';?>" id="store_name">
 					</div>
 					<?php if(isset($error_description[$language['language_id']]['error_store_name'])):?><label class="text-danger"><?php echo $error_description[$language['language_id']]['error_store_name'];?></label><?php endif;?>
@@ -33,7 +33,7 @@
 				<div class="col-sm-10">
 				<?php foreach($languages as $language):?>
 					<div class="input-group">
-					  <span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image']?>"></span>
+					  <span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="resources/public/flags/<?php echo $language['image']?>"></span>
 					  <input type="text" name="description[<?php echo $language['language_id']?>][description]" class="form-control" placeholder="店铺描述" value="<?php echo isset($description[$language['language_id']]['description']) ? $description[$language['language_id']]['description'] : '';?>" id="description">
 					</div>
 				<?php endforeach;?>
@@ -44,7 +44,7 @@
 				<?php foreach($languages as $language):?>
 				<div class="col-sm-2">
 					<div class="input-group" for="store-description-<?php echo $language['language_id'];?>">
-						<span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="public/flags/<?php echo $language['image']?>"></span>
+						<span class="input-group-addon"><img  width="16px" height="11px" class="lazy" data-original="resources/public/flags/<?php echo $language['image']?>"></span>
 						  	<span style="cursor: pointer" id="thmb-map<?php echo $language['language_id'];?>" data-toggle="image" class="img-thumbnail"><img  width="100px" height="100px" class="lazy" data-original="<?php echo $placeholder_image;?>" width="100%" alt="主图" title="主图" data-placeholder="<?php echo $placeholder_image;?>" /></span>
 							<input type="hidden" name="description[<?php echo $language['language_id'];?>][logo]" value="" id="store-description-<?php echo $language['language_id'];?>" />
 					</div>

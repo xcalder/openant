@@ -15,6 +15,6 @@ $lang['total_number']								= '<h1 style="float: right;margin-bottom: 0; paddin
 $lang['classification']								= '%s下的分类：';
 $lang['sales']										= '销量：%s件';
 $lang['reviews']									= '评价：%s';
-$lang['text_business']								= '商家：';
+$lang['business']								= '商家：';
 $lang['refund']										= '退款：';
 $lang['transactions']								= '成交：';

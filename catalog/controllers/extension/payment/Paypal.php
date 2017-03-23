@@ -65,13 +65,13 @@ class Paypal extends MY_Controller {
 		$data = array(
 			'METHOD'             => 'SetExpressCheckout',
 			'MAXAMT'             => (float)$max_amount,
-			'RETURNURL'          => site_url('extension/payment/paypal/checkoutreturn'),
-			'CANCELURL'          => site_url('user/confirm/payment?order_ids='.$this->input->get('order_ids')),
+			'RETURNURL'          => $this->config->item('catalog').'extension/payment/paypal/checkoutreturn',
+			'CANCELURL'          => $this->config->item('catalog').'user/confirm/payment?order_ids='.$this->input->get('order_ids'),
 			'REQCONFIRMSHIPPING' => 0,
 			'NOSHIPPING'         => 0,
 			'LOCALECODE'         => 'EN',
 			'LANDINGPAGE'        => 'Login',
-			'HDRIMG'             => 'public/resources/default/image/payment_ico/paypal.jpg',
+			'HDRIMG'             => 'resources/public/resources/default/image/payment_ico/paypal.jpg',
 			'PAYFLOWCOLOR'       => '',
 			'CHANNELTYPE'        => 'Merchant',
 			'ALLOWNOTE'          => '0'
@@ -80,9 +80,9 @@ class Paypal extends MY_Controller {
 		$data = array_merge($data, $data_shipping);
 
 		$data = array_merge($data, $this->paypal_model->paymentRequestInfo($order_ids));
-//var_dump($data);echo '<br/><br/>';
+
 		$result = $this->paypal_model->call($data);
-//var_dump($result);
+
 		/**
 		 * If a failed PayPal setup happens, handle it.
 		 */
@@ -118,7 +118,7 @@ class Paypal extends MY_Controller {
 			'TOKEN'                      => $_SESSION['paypal']['token'],
 			'PAYERID'                    => $_SESSION['paypal']['payerid'],
 			'METHOD'                     => 'DoExpressCheckoutPayment',
-			'PAYMENTREQUEST_0_NOTIFYURL' => site_url('user/confirm/payment?order_ids='.$_SESSION['paypal']['order_ids']),
+			'PAYMENTREQUEST_0_NOTIFYURL' => $this->config->item('catalog').'user/confirm/payment?order_ids='.$_SESSION['paypal']['order_ids'],
 			'RETURNFMFDETAILS'           => 1
 		);
 

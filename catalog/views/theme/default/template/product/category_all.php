@@ -20,24 +20,24 @@
 			<?php foreach($categorys as $category):?>
 			<div class="media">
 			  <div class="media-left media-middle">
-			    <a href="<?php echo site_url('product/category?id='.$category['category_id']);?>">
+			    <a href="<?php echo $this->config->item('catalog').'product/category?id='.$category['category_id'];?>">
 			      <img class="lazy media-object" data-original="<?php echo $this->image_common->resize($category['image'], 150, 150);?>" alt="<?php echo $category['name'];?>" width="150px" height="150px" style="max-width:150px">
 			    </a>
 			  </div>
 			  <div class="media-body">
-			    <a href="<?php echo site_url('product/category?id='.$category['category_id']);?>"><h5 class="media-heading"><?php echo $category['name'];?></h5></a>
+			    <a href="<?php echo $this->config->item('catalog').'product/category?id='.$category['category_id'];?>"><h5 class="media-heading"><?php echo $category['name'];?></h5></a>
 			    <?php echo $category['description'];?>
 			    
 			    <?php if($category['child']):?>
 			    <?php foreach($category['child'] as $child):?>
 			    <div class="media">
 				  <div class="media-left media-middle">
-				    <a href="<?php echo site_url('product/category?id='.$category['category_id'].'_'.$child['category_id']);?>">
+				    <a href="<?php echo $this->config->item('catalog').'product/category?id='.$category['category_id'].'_'.$child['category_id'];?>">
 				      <img class="media-object lazy" data-original="<?php echo $this->image_common->resize($child['image'], 100, 100);?>" alt="<?php echo $child['name'];?>" style="max-width: 100px">
 				    </a>
 				  </div>
 				  <div class="media-body">
-				    <a href="<?php echo site_url('product/category?id='.$category['category_id'].'_'.$child['category_id']);?>"><h6 class="media-heading"><?php echo $child['name'];?></h6></a>
+				    <a href="<?php echo $this->config->item('catalog').'product/category?id='.$category['category_id'].'_'.$child['category_id'];?>"><h6 class="media-heading"><?php echo $child['name'];?></h6></a>
 				    <?php echo $child['description'];?>
 				  </div>
 				</div>

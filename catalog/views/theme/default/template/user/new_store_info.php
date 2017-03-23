@@ -23,7 +23,7 @@
 					<div class="panel-body">
 				<h4 class="text-center">入驻申请成功!</h4><hr>
 				<p>入驻申请期间，信息装不能修改，如有问题资料装会驳回重新提交，审核通过将会以邮件和站内信通知你，请留意！</p><hr>
-				<a href="<?php echo site_url('user/forget');?>">回首页</a>
+				<a href="<?php echo $this->config->item('catalog');?>">回首页</a>
 			</div>
 				</div>
 			</div>

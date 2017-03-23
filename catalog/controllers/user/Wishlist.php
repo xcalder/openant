@@ -67,10 +67,10 @@ class Wishlist extends MY_Controller {
 	
 	public function add(){
 		if($this->wishlist_model->add($this->input->post('product_id'))){
-			$json['success']='添加<a href="'.site_url('user/wishlist').'">收藏夹</a>成功';
+			$json['success']='添加<a href="'.$this->config->item('catalog').'user/wishlist'.'">收藏夹</a>成功';
 			$json['count']=$this->wishlist_model->get_wishlist_count();
 		}else{
-			$json['error']='添加<a href="'.site_url('user/wishlist').'">收藏夹</a>不成功';
+			$json['error']='添加<a href="'.$this->config->item('catalog').'user/wishlist'.'">收藏夹</a>不成功';
 		}
 		
 		$this->output

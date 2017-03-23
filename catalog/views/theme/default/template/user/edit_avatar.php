@@ -49,7 +49,6 @@
 					thumbBox: '.thumbBox',
 					spinner: '.spinner',
 					imgSrc: '<?php echo $image?>'
-					//imgSrc: 'public/head_portrait_update/images/avatar.png'
 				}
 				var cropper = $('.imageBox').cropbox(options);
 				$('#upload-file').on('change', function(){
@@ -82,7 +81,7 @@
 				
 				$.ajax(
 					{
-						url: '<?php echo site_url();?>user/edit/upload_avatar.html',
+						url: '<?php echo $this->config->item('catalog').'user/edit/upload_avatar';?>',
 						type: 'post',
 						dataType: 'json',
 						data: {img:img},

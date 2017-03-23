@@ -20,7 +20,19 @@ class Category extends CI_Controller {
 		}
 		
 		if($this->input->get('search') != NULL){
-			$data['search']=$this->input->get('search');
+			$search = $this->input->get('search');
+			$search = str_replace('？', '', $search);
+			$search=str_replace('?', '', $search);
+			$search=utf8_substr($search, 0, 30);
+			
+			$this->load->helper('text');
+			$this->load->model('common/search_model');
+			
+			$data['search']=$search;
+			
+			$data['search_key_words']=$this->search_model->get_top();
+			$data['search_abouts']=$this->search_model->get_about($search);
+			$data['label']=array('primary', 'success', 'info', 'warning', 'danger');
 		}
 		
 		if($this->input->get('id')){
@@ -34,6 +46,7 @@ class Category extends CI_Controller {
 		
 		$category_info=$this->category_model->get_category_to_category($this->input->get('id'));
 		
+		
 		$data['categorys']=$category_info;
 		
 		$products_info=$this->product_model->get_products_to_category($data);
@@ -44,7 +57,7 @@ class Category extends CI_Controller {
 		}
 		
 		//分页
-		$config['base_url'] 			= site_url('product/category').'?id='.$this->input->get('id');
+		$config['base_url'] 			= $this->config->item('catalog').'product/category?id='.$this->input->get('id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -146,7 +159,7 @@ class Category extends CI_Controller {
 		$data['categorys']=$row['categorys'];
 		
 		//分页
-		$config['base_url'] 			= site_url('product/category/category_all');
+		$config['base_url'] 			= $this->config->item('catalog').'product/category/category_all';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -183,5 +196,14 @@ class Category extends CI_Controller {
 		$data['footer']=$this->footer->index();
 		
 		$this->load->view('theme/default/template/product/category_all',$data);
+	}
+	
+	//添加搜索词
+	public function add_search_keyword(){
+		$search=$this->input->get('search');
+		if(preg_match('/^[\x{4e00}-\x{9fa5}\w-]+$/u', $search) && mb_strlen($search,'UTF8') > 3 && mb_strlen($search,'UTF8') <= 30){
+			$this->load->model('common/search_model');
+			$this->search_model->add($search);
+		}
 	}
 }

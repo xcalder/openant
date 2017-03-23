@@ -24,6 +24,14 @@ $lang['date_minutes'] = '分';
 $lang['date_second'] = '秒';
 $lang['date_seconds'] = '秒';
 
+$lang['years'] = '年前';
+$lang['months'] = '月前';
+$lang['weeks'] = '周前';
+$lang['days'] = '天前';
+$lang['hours'] = '小时前';
+$lang['mins'] = '分钟前';
+$lang['secs'] = '秒前';
+
 $lang['UM12']	= '(UTC -12:00) 贝克 / 霍德兰岛';
 $lang['UM11']	= '(UTC -11:00) 纽埃';
 $lang['UM10']	= '(UTC -10:00) 夏威夷-阿留申标准时间，库克群岛、塔希提岛';

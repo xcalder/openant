@@ -88,8 +88,8 @@ class FileManager extends CI_Controller {
 					'name'  => implode(' ', $name),
 					'type'  => 'directory',
 					'path'  => utf8_substr($image, utf8_strlen(IMGPATH)),
-					'href'  => site_url().'/common/filemanager?directory=' . end($directory_name) . $url
-				);
+					'href'  => $this->config->item('catalog').'common/filemanager?directory=' . end($directory_name) . $url)
+				;
 			} elseif (is_file($image)) {
 				// Find which protocol to use to pass the full image link back
 
@@ -98,7 +98,7 @@ class FileManager extends CI_Controller {
 					'name'  => implode(' ', $name),
 					'type'  => 'image',
 					'path'  => utf8_substr($image, utf8_strlen(IMGPATH)),
-					'href'  => '/image'.utf8_substr($image, utf8_strlen(IMGPATH))
+					'href'  => 'resources/image'.utf8_substr($image, utf8_strlen(IMGPATH))
 				);
 			}
 		}
@@ -151,7 +151,7 @@ class FileManager extends CI_Controller {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
-		$data['parent'] = site_url().'/common/filemanager?token=' . $_SESSION['token'] . $url;
+		$data['parent'] = $this->config->item('catalog').'common/filemanager?token=' . $_SESSION['token'] . $url;
 
 		// Refresh
 		$url = '';
@@ -169,7 +169,7 @@ class FileManager extends CI_Controller {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
-		$data['refresh'] = site_url().'/common/filemanager?token=' . $_SESSION['token'] . $url;
+		$data['refresh'] = $this->config->item('catalog').'common/filemanager?token=' . $_SESSION['token'] . $url;
 
 		$url = '';
 
@@ -190,7 +190,7 @@ class FileManager extends CI_Controller {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 		
-		$config['base_url'] 					= site_url().'/common/filemanager?token='.$_SESSION['token'].$url;
+		$config['base_url'] 					= $this->config->item('catalog').'common/filemanager?token='.$_SESSION['token'].$url;
 		$config['page_query_string']			= TRUE;
 		$config['query_string_segment']			= 'page';
 		//样式

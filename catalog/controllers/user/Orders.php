@@ -27,7 +27,6 @@ class Orders extends MY_Controller {
 		}
 		
 		$orders=$this->order_model->get_orders($data);
-		//var_dump($orders['order']);
 		
 		if ($orders) {
 			$data['orders']=$orders['order'];

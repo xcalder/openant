@@ -64,16 +64,16 @@ class Order_model extends CI_Model {
 	}
 	
 	public function get_order($order_id){
-		$this->db->select('order.order_id, order.invoice_no, order.invoice_prefix, order.store_id, order.user_id, order.firstname, order.lastname, order.email, order.telephone, order.payment_firstname, order.payment_lastname, order.payment_address, order.payment_city, order.payment_postcode, order.payment_country, order.payment_country_id, order.payment_zone, order.payment_zone_id, order.payment_address_format, order.payment_method, order.payment_code, order.shipping_firstname, order.shipping_lastname, order.shipping_address, order.shipping_city, order.shipping_postcode, order.shipping_country, order.shipping_country_id, order.shipping_zone, order.shipping_zone_id, order.shipping_address_format, order.shipping_method, order.shipping_code, order.comment, order.total, order.order_status_id, order.language_id, order.currency_id, order.currency_code, order.currency_value, order.date_added, order.date_modified, store_description.store_name, store_description.description, store_description.logo, order_status_description.status_name, order_status_description.order_status_id, user.firstname AS u_firstname, user.lastname AS u_lastname, user.nickname AS u_nickname, user.email AS u_email, user.telephone AS u_telephone');
-		$this->db->where('order.order_id', $order_id);
-		$this->db->join('store', 'store.store_id = order.store_id');
-		$this->db->join('user', 'user.store_id = order.store_id');
-		$this->db->where('store_description.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
-		$this->db->join('store_description','store_description.store_id = store.store_id');
-		$this->db->where('order_status_description.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
-		$this->db->join('order_status_description', 'order_status_description.order_status_id = order.order_status_id');
+		$this->db->select('o.order_id, o.invoice_no, o.invoice_prefix, o.store_id, o.user_id, o.firstname, o.lastname, o.email, o.telephone, o.payment_firstname, o.payment_lastname, o.payment_address, o.payment_city, o.payment_postcode, o.payment_country, o.payment_country_id, o.payment_zone, o.payment_zone_id, o.payment_address_format, o.payment_method, o.payment_code, o.shipping_firstname, o.shipping_lastname, o.shipping_address, o.shipping_city, o.shipping_postcode, o.shipping_country, o.shipping_country_id, o.shipping_zone, o.shipping_zone_id, o.shipping_address_format, o.shipping_method, o.shipping_code, o.comment, o.total, o.order_status_id, o.language_id, o.currency_id, o.currency_code, o.currency_value, o.date_added, sd.store_name, sd.description, sd.logo, osd.status_name, osd.order_status_id, u.firstname AS u_firstname, u.lastname AS u_lastname, u.nickname AS u_nickname, u.email AS u_email, u.telephone AS u_telephone');
+		$this->db->where('o.order_id', $order_id);
+		$this->db->join('store AS s', 's.store_id = o.store_id');
+		$this->db->join('user as u', 'u.store_id = o.store_id');
+		$this->db->where('sd.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
+		$this->db->join('store_description AS sd','sd.store_id = s.store_id');
+		$this->db->where('osd.language_id', isset($_SESSION['language_id']) ? $_SESSION['language_id'] : '1');
+		$this->db->join('order_status_description AS osd', 'osd.order_status_id = o.order_status_id');
 		
-		$this->db->from($this->db->dbprefix('order'));
+		$this->db->from($this->db->dbprefix('order') . ' AS o');
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0){
@@ -107,6 +107,14 @@ class Order_model extends CI_Model {
 			
 			$orders['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '', trim(str_replace($find, $replace, $format))));
 			
+			unset($orders['payment_firstname']);
+			unset($orders['payment_lastname']);
+			unset($orders['payment_address_format']);
+			unset($orders['payment_city']);
+			unset($orders['payment_postcode']);
+			unset($orders['payment_zone']);
+			unset($orders['payment_country']);
+			
 			if (!empty($orders['shipping_address_format'])) {
 				$format = $orders['shipping_address_format'];
 			} else {
@@ -135,12 +143,35 @@ class Order_model extends CI_Model {
 			
 			$orders['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '', trim(str_replace($find, $replace, $format))));
 			
+			unset($orders['shipping_firstname']);
+			unset($orders['shipping_lastname']);
+			unset($orders['shipping_address_format']);
+			unset($orders['shipping_city']);
+			unset($orders['shipping_postcode']);
+			unset($orders['shipping_zone']);
+			unset($orders['shipping_country']);
+			
 			$this->db->where('order_id', $order_id);
 			$this->db->from($this->db->dbprefix('order_product'));
 			$query = $this->db->get();
 			
 			if($query->num_rows() > 0){
-				$orders['products']=$query->result_array();
+				$products=$query->result_array();
+				
+				foreach ($products as $k=>$product){
+					$this->db->select('rsd.name as return');
+					$this->db->where('r.rowid', $product['rowid']);
+					$this->db->join('return_status_description as rsd', 'rsd.return_status_id = r.return_status_id');
+					
+					$this->db->from($this->db->dbprefix('return') . ' AS r');
+					$query = $this->db->get();
+						
+					if($query->num_rows() > 0){
+						$products[$k]['return']=$query->row_array()['return'];
+					}
+				}
+				
+				$orders['products']=$products;
 			}
 			
 			return $orders;

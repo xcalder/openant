@@ -52,6 +52,14 @@ $lang['date_minutes'] = 'Minutes';
 $lang['date_second'] = 'Second';
 $lang['date_seconds'] = 'Seconds';
 
+$lang['years'] = 'years ago';
+$lang['months'] = 'months ago';
+$lang['weeks'] = 'weeks ago';
+$lang['days'] = 'days ago';
+$lang['hours'] = 'hours ago';
+$lang['mins'] = 'mins ago';
+$lang['secs'] = 'secs ago';
+
 $lang['UM12']	= '(UTC -12:00) Baker/Howland Island';
 $lang['UM11']	= '(UTC -11:00) Niue';
 $lang['UM10']	= '(UTC -10:00) Hawaii-Aleutian Standard Time, Cook Islands, Tahiti';

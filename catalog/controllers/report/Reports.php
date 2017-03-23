@@ -12,7 +12,7 @@ class Reports extends CI_Controller {
 	public function index()
 	{
 		$this->document->setTitle('数据报表');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/chart.min.js');
+		$this->document->addScript(base_url('resources/public/resources/default/js/chart.min.js'));
 		
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();

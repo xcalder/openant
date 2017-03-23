@@ -6,7 +6,7 @@ class Edit extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper(array('utf8'));
-		$this->load->language('wecome');
+		$this->lang->load('user/edit',$_SESSION['language_name']);
 		$this->load->model(array('common/user_model'));
 	}
 
@@ -23,15 +23,15 @@ class Edit extends MY_Controller {
 				if($this->user_model->edit_user($updata)){
 					
 					$this->session->set_flashdata('success', '新密码修改成功！');
-					redirect(site_url('user'), 'location', 301);
+					redirect($this->config->item('catalog').'user', 'location', 301);
 				}else{
 					$this->session->set_flashdata('fali', '密码修改失败！');
-					redirect(site_url('user/edit/edit_paswd'), 'location', 301);
+					redirect($this->config->item('catalog').'user/edit/edit_paswd', 'location', 301);
 				}
 				
 			}else{
 				$this->session->set_flashdata('fali', '密码修改失败！');
-				redirect(site_url('user/edit/edit_paswd'), 'location', 301);
+				redirect($this->config->item('catalog').'user/edit/edit_paswd', 'location', 301);
 			}
 			exit;
 		}
@@ -74,10 +74,10 @@ class Edit extends MY_Controller {
 			if($this->user_model->edit_user($data)){
 					
 				$this->session->set_flashdata('success', '个人资料修改成功！');
-				redirect(site_url('user'), 'location', 301);
+				redirect($this->config->item('catalog').'user', 'location', 301);
 			}else{
 				$this->session->set_flashdata('fali', '个人资料修改失败！');
-				redirect(site_url('user/edit/edit_user_info'), 'location', 301);
+				redirect($this->config->item('catalog').'user/edit/edit_user_info', 'location', 301);
 			}
 			exit;
 		}
@@ -155,13 +155,13 @@ class Edit extends MY_Controller {
 			$user_info=$this->user_model->get_user_info($this->user->getId());
 			if($this->input->post('current_password') == NULL || md5($this->input->post('current_password')) != $user_info['password']){
 				$this->session->set_flashdata('fali', '信息验证失败，不能修改密码！');
-				redirect(site_url('user/edit/edit_pay_password'), 'location', 301);
+				redirect($this->config->item('catalog').'user/edit/edit_pay_password', 'location', 301);
 				exit;
 			}
 			
 			if($this->input->post('new_password') == NULL || $this->input->post('new_password') != $this->input->post('confirm_password')){
 				$this->session->set_flashdata('fali', '新密码为空或两次输入密码不一致，不能修改密码！');
-				redirect(site_url('user/edit/edit_pay_password'), 'location', 301);
+				redirect($this->config->item('catalog').'user/edit/edit_pay_password', 'location', 301);
 				exit;
 			}
 			
@@ -170,10 +170,10 @@ class Edit extends MY_Controller {
 			$update['pay_password']=md5($this->input->post('new_password'));
 			if($this->user_balances_model->edit_pay_password($update)){
 				$this->session->set_flashdata('success', '支付密码修改成功！');
-				redirect(site_url('user'), 'location', 301);
+				redirect($this->config->item('catalog').'user', 'location', 301);
 			}else{
 				$this->session->set_flashdata('fali', '支付密码修改失败！');
-				redirect(site_url('user/edit/edit_pay_password'), 'location', 301);
+				redirect($this->config->item('catalog').'user/edit/edit_pay_password', 'location', 301);
 			}
 		}
 		
@@ -192,15 +192,15 @@ class Edit extends MY_Controller {
 	{
 		$this->document->setTitle('修改头像');
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/head_portrait_update/css/style.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/head_portrait_update/js/cropbox.js');
+		$this->document->addStyle(base_url('resources/public/head_portrait_update/css/style.css'));
+		$this->document->addScript(base_url('resources/public/head_portrait_update/js/cropbox.js'));
 		
 		$user=$this->user_model->get_user($_SESSION['user_id']);
 		
 		if(!empty($user['image'])){
 			$data['image']=$this->image_common->resize($user['image'], 400 , 400);
 		}else{
-			$data['image']='public/resources/default/image/logo.jpg';
+			$data['image']='resources/public/resources/default/image/logo.jpg';
 		}
 		
 		//$data['user']=$user;
@@ -230,14 +230,14 @@ class Edit extends MY_Controller {
 			$user_added_date=$this->user->getDate_added();
 			$user_directory=date("Y",strtotime($user_added_date)).'/'.date("m",strtotime($user_added_date)).'/'.date("d",strtotime($user_added_date)).'/'.$this->user->getId();
 			
-			if (!is_dir(FCPATH . 'image/users/'.$user_directory)) {
-				@mkdir(FCPATH . 'image/users/'.$user_directory, 0777,true);
+			if (!is_dir(FCPATH . 'resources/image/users/'.$user_directory)) {
+				@mkdir(FCPATH . 'resources/image/users/'.$user_directory, 0777,true);
 			}
 			
 			if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $img, $result)){
 				$type = $result[2];
 				$path='/users/'.$user_directory.'/'.random_string('alnum', 16).'.'.$type;
-				$new_file = FCPATH . 'image'.$path;
+				$new_file = FCPATH . 'resources/image'.$path;
 				if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $img)))){
 					$json['status']='0';
 					$json['message'] = '头像修改成功！';
@@ -280,7 +280,7 @@ class Edit extends MY_Controller {
 		if(!empty($user['image'])){
 			$user['image']=$this->image_common->resize($user['image'], 50 , 50);
 		}else{
-			$user['image']='public/resources/default/image/logo.jpg';
+			$user['image']='resources/public/resources/default/image/logo.jpg';
 		}
 		
 		$data['user']=$user;
@@ -306,11 +306,15 @@ class Edit extends MY_Controller {
 		if(!empty($user['image'])){
 			$user['image']=$this->image_common->resize($user['image'], 50 , 50);
 		}else{
-			$user['image']='public/resources/default/image/logo.jpg';
+			$user['image']='resources/public/resources/default/image/logo.jpg';
 		}
 		
 		$data['user']=$user;
-		//var_dump($user);
+		
+		$this->load->model('setting/sign_in_with_model');
+		
+		$data['withs']=$this->sign_in_with_model->get_sign_with_toedit();
+		$data['sgin_withs']=$this->sign_in_with_model->get_sign_withs();
 		
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();
@@ -321,5 +325,22 @@ class Edit extends MY_Controller {
 		$data['top']=$this->header->user_top();
 		$data['footer']=$this->footer->index();
 		$this->load->view('theme/default/template/user/edit_account_binding',$data);
+	}
+	
+	public function unbundling(){
+		$via=$this->input->post('via');
+		$nickname=$this->input->post('nickname');
+		if(!$this->sign_in_with_model->unbundling($via, $nickname)){
+			$data['success']=sprintf(lang_line('success_unbundling'), $via);
+		}else{
+			$data['error']=sprintf(lang_line('error_unbundling'), $via);
+		}
+		
+		$this->load->model('common/user_activity_model');
+		$this->user_activity_model->add_activity($_SESSION['user_id'], 'unbundling', array('title'=>isset($data['success']) ? $data['success'] : $data['error'], 'msg'=>''));
+		
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($data));
 	}
 }

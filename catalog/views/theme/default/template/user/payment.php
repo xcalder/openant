@@ -20,7 +20,7 @@
 				<div class="media">
 				  <div class="media-left media-middle">
 				    <a>
-				      <img class="media-object" src="public/resources/default/image/error.jpg" alt="...">
+				      <img class="media-object" src="resources/public/resources/default/image/error.jpg" alt="...">
 				    </a>
 				  </div>
 				  <div class="media-body">
@@ -38,9 +38,9 @@
 				<?php foreach($payment_methods as $payment_method):?>
 				<?php $payment_method['value']=unserialize($payment_method['value']);?>
 				
-				<?php if($payment_method['value']['status'] == '1'):?>
+				<?php if($payment_method['value']['status'] == '1' && $payment_method['value']['minimum_amount'] < $payment_total):?>
 				<div class="col-md-2 payment-list <?php echo $payment_method['key']?>" onclick="change_paymethod('<?php echo $payment_method['key']?>');">
-					<img src="public/resources/default/image/payment_ico/<?php echo $payment_method['key']?>.jpg" title="<?php echo $payment_method['value']['vname'];?>"/>
+					<img src="resources/public/resources/default/image/payment_ico/<?php echo $payment_method['key']?>.jpg" title="<?php echo $payment_method['value']['vname'];?>"/>
 				</div>
 				<?php endif;?>
 				
@@ -48,7 +48,7 @@
 			</div>
 			
 			<strong>余额付款</strong><hr style="margin: 15px 0;border-top: 2px solid #5bc0de">
-			<form action="<?php echo site_url('user/confirm/payment_operation?encrypt=').$encrypt;?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="pay_form">
+			<form action="<?php echo $this->config->item('catalog').'user/confirm/payment_operation?encrypt='.$encrypt;?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="pay_form">
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label">帐户余额</label>
 			    <div class="col-sm-10">

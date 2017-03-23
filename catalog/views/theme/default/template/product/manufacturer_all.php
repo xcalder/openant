@@ -20,12 +20,12 @@
 			<?php foreach($manufacturers as $manufacturer):?>
 			<div class="media">
 			  <div class="media-left media-middle">
-			    <a href="<?php echo site_url('product/manufacturer?id='.$manufacturer['manufacturer_id']);?>"">
+			    <a href="<?php echo $this->config->item('catalog').'product/manufacturer?id='.$manufacturer['manufacturer_id'];?>"">
 			      <img class="lazy media-object" data-original="<?php echo $this->image_common->resize($manufacturer['image'], 100, 100);?>" alt="<?php echo $manufacturer['name'];?>" width="150px" height="150px" style="max-width:150px">
 			    </a>
 			  </div>
 			  <div class="media-body">
-			    <a href="<?php echo site_url('product/manufacturer?id='.$manufacturer['manufacturer_id']);?>"><h5 class="media-heading"><?php echo $manufacturer['name'];?></h5></a>
+			    <a href="<?php echo $this->config->item('catalog').'product/manufacturer?id='.$manufacturer['manufacturer_id'];?>"><h5 class="media-heading"><?php echo $manufacturer['name'];?></h5></a>
 			    <?php echo $manufacturer['description'];?>
 			    
 			  </div>

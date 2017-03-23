@@ -6,15 +6,15 @@ class Confirm extends MY_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->language('wecome');
-		$this->load->library(array('cart', 'currency'));
+		$this->load->library(array('currency'));
 		$this->load->model(array('product/product_model', 'product/cart_model', 'localisation/address_model', 'localisation/location_model'));
 	}
 
 	public function index(){
 		$this->document->setTitle('确认订单');
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 		
 		$data['addresss']=$this->address_model->get_addresss($this->user->getId());
 		
@@ -26,8 +26,9 @@ class Confirm extends MY_Controller{
 		
 		$data['total']='';
 		
-		if(isset($_SESSION['cart_contents'])){
-			$carts=$_SESSION['cart_contents'];
+		$carts=$this->cart_model->get_carts();
+		
+		if($carts){
 			$selected=$this->input->post('selected');
 
 			foreach($carts as $key=>$value){
@@ -86,8 +87,8 @@ class Confirm extends MY_Controller{
 	public function payment(){
 		$this->document->setTitle('支付页面');
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 		
 		$order_ids=$this->input->get('order_ids');
 		$order_ids=explode(',', $order_ids);
@@ -230,8 +231,8 @@ class Confirm extends MY_Controller{
 	public function payment_info(){
 		$this->document->setTitle('支付信息返回页面');
 		
-		$this->document->addStyle('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/css/ystep/ystep.css');
-		$this->document->addScript('public/min?f='.(SUBPATH == '/' ? '' : SUBPATH).'public/resources/default/js/ystep/ystep.js');
+		$this->document->addStyle(base_url('resources/public/resources/default/css/ystep/ystep.css'));
+		$this->document->addScript(base_url('resources/public/resources/default/js/ystep/ystep.js'));
 		
 		$data['position_top']=$this->position_top->index();
 		$data['position_left']=$this->position_left->index();
@@ -246,8 +247,9 @@ class Confirm extends MY_Controller{
 	}
 	
 	public function checkout(){
-		if(isset($_SESSION['cart_contents']) && $this->input->post('rowid') != NULL){
-			$carts=$_SESSION['cart_contents'];
+		$carts=$this->cart_model->get_carts();
+		if($carts && $this->input->post('rowid') != NULL){
+			
 			$selected=$this->input->post('rowid');
 
 			foreach($carts as $key=>$value){
@@ -388,14 +390,21 @@ class Confirm extends MY_Controller{
 							$products[$key][$k]['tax']='0';
 						}
 						
-						$this->cart->remove($carts_product[$key]['products'][$k]['rowid']);
 						$this->cart_model->delete($carts_product[$key]['products'][$k]['rowid']);
 						
 					}
 					unset($carts_product[$key]['products']);
 					if(isset($products[$key])){
 						$this->order_model->add_order_product($products[$key]);
+						
+						//更新session
+						$str = uniqid(mt_rand(),1);
+						$this->session->set_userdata('cart_id', md5($str));
 					}
+					
+					//添加动态
+					$this->load->model('common/user_activity_model');
+					$this->user_activity_model->add_activity($_SESSION['user_id'], 'order', array('title'=>'添加了一个新订单！', 'msg'=>'你添加了一个<a href="'.$this->config->item('catalog').'user/orders/order_info?order_id='.$order_id).'">新订单</a>');
 				}else{
 					echo '数据错误！';
 				}

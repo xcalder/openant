@@ -10,7 +10,7 @@
 			<?php echo $position_left;?>
 			<div class="col-sm-3 panel panel-default middle-flat-left">
 				<div class="panel-body">
-					<form action="<?php echo site_url('user/signin/login?url='.$this->input->get('url'));?>" method="post" enctype="multipart/form-data" id="signin">
+					<form action="<?php echo $this->config->item('catalog').'user/signin/login?url='.$this->input->get('url');?>" method="post" enctype="multipart/form-data" id="signin">
 						<p class="text-center login-title">
 						<strong><?php echo lang_line('login');?></strong><hr style="margin: 10px 0">
 						<div class="form-group error">
@@ -28,7 +28,7 @@
 						</div>
 						<!-- /password -->
 						<div class="form-group">
-							<a href="user/forget.html">
+							<a href="user/forget">
 								<?php echo lang_line('forget');?>
 							</a>
 						</div>
@@ -45,7 +45,7 @@
 					foreach($sign_ins as $key=>$value):?>
 					<a onclick="with_login('<?php echo $key;?>');">
 						<img width="32px" height="32px" class="lazy"
-						data-original="public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
+						data-original="resources/public/resources/default/image/login_ico/<?php echo $value['setting']['image'];?>"
 						data-toggle="tooltip" data-placement="top"
 						title="<?php echo $value['setting']['extra'];?>">
 					</a>
@@ -60,22 +60,22 @@
 <?php
 if(isset($error_times)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $error_times;?>' },{type: 'danger',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($message)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $message;?>' },{type: 'message',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($error_check)):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $error_check;?>' },{type: 'warning',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 <?php
 if(isset($_SESSION['warning'])):?>
 <script type="text/javascript">
-	$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning'});});
+	$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['warning'];?>' },{type: 'warning',offset: {x: 0,y: 52}});});
 </script><?php endif;?>
 
 <?php echo $login_footer;?>
@@ -83,7 +83,7 @@ if(isset($_SESSION['warning'])):?>
 	//第三方登陆
 	function with_login(key)
 	{
-		window.open ('index.php/user/sns/session/'+key+'.html','newwindow','height=500,width=500,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+		window.open ('<?php echo $this->config->item('catalog');?>/user/sns/session/'+key,'newwindow','height=500,width=500,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 	}
 
 	//登陆

@@ -23,7 +23,7 @@
 					<div class="panel-body">
 				<h4 class="text-center">重复申请!</h4><hr style="margin: 10px 0">
 				<h4>你已经是商家或已经提交了申请，请不要重复提交，审核通过将会以邮件和站内信通知你，请留意！</h4><hr>
-				<a href="<?php echo site_url();?>">回首页</a>
+				<a href="<?php echo $this->config->item('catalog');?>">回首页</a>
 			</div>
 				</div>
 			</div>

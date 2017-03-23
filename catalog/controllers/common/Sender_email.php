@@ -19,6 +19,7 @@ class Sender_email extends CI_Common {
     	$config['smtp_timeout'] = $this->config->get_config('email_smtp_timeout');
     	$config['newline'] = "\r\n";
 		$config['crlf'] = "\r\n";
+		$config['mailtype'] = "text";
 		$this->load->library(array('email'));//加载email类
     	$this->email->initialize($config);//参数配置
 	}

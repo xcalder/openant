@@ -259,7 +259,7 @@
 								<td><?php echo $download['mask'];?></td>
 								<td><?php echo $download['description'];?></td>
 								<td><?php echo $download['date_added'];?></td>
-								<td><a href="<?php echo site_url('product/download?name=').$download['mask'].'&filename='.$download['filename'];?>"><?php echo lang_line('dwonload');?></a></td>
+								<td><a href="<?php echo $this->config->item('catalog').'product/download?name='.$download['mask'].'&filename='.$download['filename'];?>"><?php echo lang_line('dwonload');?></a></td>
 							</tr>
 							<?php endforeach;?>
 						</tbody>
@@ -312,7 +312,7 @@
 						</div>
 					</div>
 					<?php endif;?>
-					<?php echo html_entity_decode($product['description']);?>
+					<?php echo html_entity_decode(str_ireplace('href="', 'href="'.base_url('errors/page_missing/go_to?go_to='), $product['description']));?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="profile">
 					<?php
@@ -344,7 +344,6 @@
 	</div>
 	<!-- /row -->
 	<script>
-		$("#description a[href]").removeAttr("href");
 		$("#description img").attr("style", "max-width: 100%;overflow:hidden");
 	
 		function option_price(id, group_id, cl, taxs){
@@ -379,7 +378,7 @@
 		{
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>product/option.html?product_id=<?php echo $this->input->get('product_id');?>',
+					url: '<?php echo $this->config->item('catalog').'product/option?product_id='.$this->input->get('product_id');?>',
 					type: 'post',
 					dataType: 'json',
 					data: {arr:a, taxs:taxs},
@@ -448,10 +447,10 @@
 					})
 				$('#mylogin .login-botton').addClass('active');
 				<?php else:?>
-					window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
+					window.location.href="<?php echo $this->config->item('catalog').'user/signin/login?url=';?>"+window.location.href;
 				<?php endif;?>
 			}else{
-				$.notify({message: "<?php echo lang_line('select_product');?>" },{type: 'warning'});
+				$.notify({message: "<?php echo lang_line('select_product');?>" },{type: 'warning',offset: {x: 0,y: 52}});
 				$('#product-options').attr('style','border-color: red');
 				setTimeout(function () { 
 						$('#product-options').removeAttr('style');
@@ -468,7 +467,7 @@
 				})
 			$('#mylogin .login-botton').addClass('active');
 			<?php else:?>
-				window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
+				window.location.href="<?php echo $this->config->item('catalog').'user/signin/login?url=';?>"+window.location.href;
 			<?php endif;?>
 			<?php endif;?>
 		}
@@ -476,7 +475,7 @@
 		{
 			$.ajax(
 				{
-					url: '<?php echo site_url();?>user/cart/add.html',
+					url: '<?php echo $this->config->item('catalog').'user/cart/add';?>',
 					type: 'post',
 					dataType: 'json',
 					data: {option_id:options, qtys:qty, product_ids:productid, names:name},
@@ -491,8 +490,8 @@
 					success: function(data)
 					{
 						if(data.success){
-							$.notify({message: data.success,},{type: 'success',});
-							$.get("product/update_cart.html",function(data){
+							$.notify({message: data.success,},{type: 'success',offset: {x: 0,y: 52}});
+							$.get("product/update_cart",function(data){
 									$('#page-cart').parent().html(data);
 									lazy_load();
 								});
@@ -501,7 +500,7 @@
 								submit('buy_now');
 							}
 						}else{
-							$.notify({message: data.error },{type: 'warning'});
+							$.notify({message: data.error },{type: 'warning',offset: {x: 0,y: 52}});
 						}
 				
 					},
@@ -517,7 +516,7 @@
 				//添加到收藏夹
 				$.ajax(
 					{
-						url: '<?php echo site_url();?>user/wishlist/add.html',
+						url: '<?php echo $this->config->item('catalog').'user/wishlist/add';?>',
 						type: 'post',
 						dataType: 'json',
 						data: {product_id:<?php echo $product_id;?>},
@@ -532,10 +531,10 @@
 						success: function(data)
 						{
 							if(data.success){
-								$.notify({message: name + data.success,},{type: 'success',});
+								$.notify({message: name + data.success,},{type: 'success',offset: {x: 0,y: 52}});
 								$('#wishlist-count').text(data.count);
 							}else{
-								$.notify({message: name + data.error },{type: 'warning'});
+								$.notify({message: name + data.error },{type: 'warning',offset: {x: 0,y: 52}});
 							}
 					
 						},
@@ -551,7 +550,7 @@
 				})
 			$('#mylogin .login-botton').addClass('active');
 			<?php else:?>
-				window.location.href="<?php echo site_url('user/signin/login?url=');?>"+window.location.href;
+				window.location.href="<?php echo $this->config->item('catalog').'user/signin/login?url=';?>"+window.location.href;
 			<?php endif;?>
 		}
 
@@ -559,18 +558,22 @@
 
 		$('#product-image').hammer().on('swipeleft', function(){
 
-				$(this).carousel('next');
+			$(this).carousel('next');
 
-			});
+		});
 
 		$('#product-image').hammer().on('swiperight', function(){
 
-				$(this).carousel('prev');
+			$(this).carousel('prev');
 
-			});
- 
+		});
+
+		$(document).ready(function (){
+			//统计商品访问量
+			$.get('<?php echo $this->config->item('catalog').'product/wecome/total?product_id='.$this->input->get('product_id')?>');
+		});
 	</script>
-	<form action="<?php echo site_url('user/confirm');?>" method="post" enctype="multipart/form-data" id="buy_now">
+	<form action="<?php echo $this->config->item('catalog').'user/confirm';?>" method="post" enctype="multipart/form-data" id="buy_now">
 		<input type="hidden" name="selected[]" id="buy_now_value" value="">
 	</form>
 </div>

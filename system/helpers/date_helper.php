@@ -178,7 +178,7 @@ if ( ! function_exists('timespan'))
 	function timespan($seconds = 1, $time = '', $units = 7)
 	{
 		$CI =& get_instance();
-		$CI->lang->load('date');
+		$CI->lang->load('date', $_SESSION['language_name']);
 
 		is_numeric($seconds) OR $seconds = 1;
 		is_numeric($time) OR $time = time();
@@ -571,7 +571,7 @@ if ( ! function_exists('timezone_menu'))
 	function timezone_menu($default = 'UTC', $class = '', $name = 'timezones', $attributes = '')
 	{
 		$CI =& get_instance();
-		$CI->lang->load('date');
+		$CI->lang->load('date', $_SESSION['language_name']);
 
 		$default = ($default === 'GMT') ? 'UTC' : $default;
 
@@ -800,6 +800,9 @@ if ( ! function_exists('timediff'))
 {
 	function timediff( $begin_time, $end_time )
 	{
+		$CI =& get_instance();
+		$CI->lang->load('date', $_SESSION['language_name']);
+		
 	  if ( $begin_time < $end_time ) {
 	    $starttime = $begin_time;
 	    $endtime = $end_time;
@@ -808,25 +811,38 @@ if ( ! function_exists('timediff'))
 	    $endtime = $begin_time;
 	  }
 	  $timediff = $endtime - $starttime;
+	  $years = intval( $timediff / 31536000 );
+	  $months = intval( $timediff / 2592000 );
+	  $weeks = intval( $timediff / 604800 );
 	  $days = intval( $timediff / 86400 );
 	  $remain = $timediff % 86400;
 	  $hours = intval( $remain / 3600 );
 	  $remain = $remain % 3600;
 	  $mins = intval( $remain / 60 );
 	  $secs = $remain % 60;
-	  //$res = array( "day" => $days, "hour" => $hours, "min" => $mins, "sec" => $secs );
-	  if($days > 1){
+	  //$res = array("years"=>$years, "months"=>$months, "weeks"=>$weeks, "day" => $days, "hour" => $hours, "min" => $mins, "sec" => $secs );
+	  //var_dump($res);
+	  if($years >= 1){
+	  	$res['time']=$years;
+	  	$res['unit']=$CI->lang->line('years');
+	  }elseif($months >= 1){
+	  	$res['time']=$months;
+	  	$res['unit']=$CI->lang->line('months');
+	  }elseif($weeks >= 1){
+	  	$res['time']=$weeks;
+	  	$res['unit']=$CI->lang->line('weeks');
+	  }elseif($days >= 1){
 	  	$res['time']=$days;
-	  	$res['unit']='days ago';
-	  }elseif($hours > 1){
+	  	$res['unit']=$CI->lang->line('days');
+	  }elseif($hours >= 1){
 	  	$res['time']=$hours;
-	  	$res['unit']='hours ago';
-	  }elseif($mins > 1){
+	  	$res['unit']=$CI->lang->line('hours');
+	  }elseif($mins >= 1){
 	  	$res['time']=$mins;
-	  	$res['unit']='mins ago';
+	  	$res['unit']=$CI->lang->line('mins');
 	  }else{
 	  	$res['time']=$secs;
-	  	$res['unit']='secs ago';
+	  	$res['unit']=$CI->lang->line('secs');
 	  }
 	  
 	  return $res;

@@ -56,4 +56,10 @@ class User_activity_model extends CI_Model {
 		
 		return false;
 	}
+	
+	public function o_read($id){
+		$this->db->set('read', '1');
+		$this->db->where('activity_id', $id);
+		return $this->db->update($this->db->dbprefix('user_activity'));
+	}
 }

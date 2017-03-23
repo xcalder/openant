@@ -16,32 +16,14 @@
 			<?php echo $position_top; ?>
 			<?php echo $pagination;?>
 			
-			<div class="row" style="margin: 0" id="category-product-list">
+			<div class="row" style="margin: 0">
 				<?php if(isset($notices)):?>
-				
-				<?php if($position_left && $position_right):?>
-				<?php $class = 'col-sm-6'; ?>
-				<?php elseif($position_left || $position_right):?>
-				<?php $class = 'col-sm-4'; ?>
-				<?php else:?>
-				<?php $class = 'col-sm-3'; ?>
-				<?php endif;?>
-				
-				<table class="<?php echo $class;?> table">
-					<tbody>
-					<?php foreach($notices as $notice):?>
-						<tr>
-							<?php if($notice['read'] == '1'):?>
-							<td><span class="label label-default">已读</span></td>
-							<?php else:?>
-							<td><span class="label label-info">未读</span></td>
-							<?php endif;?>
-							<td><?php echo $notice['message'];?></td>
-							<td><?php echo $notice['date_added'];?></td>
-						</tr>
+				<div id="accordion" class="text-left">
+					<?php foreach ($notices as $notice):?>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?php echo $notice['id'];?>" <?php echo ($notice['read'] == '0') ? "onclick="."o_read('".$notice['id']."')" : '';?>><?php echo ($notice['read'] == '1') ? '<i class="glyphicon glyphicon-eye-open"></i>' : '<i class="glyphicon glyphicon-eye-close"></i>'?>&nbsp;&nbsp;&nbsp;<?php echo $notice['title'];?><span class="pull-right"><?php echo $notice['date_added'];?>&nbsp;&nbsp;<span class="caret"></span></span></a>
+					<div id="collapse-<?php echo $notice['id'];?>" class="panel-collapse collapse" style="text-indent: 2em;"><?php echo $notice['msg'];?></div><hr style="margin: 4px 0">
 					<?php endforeach;?>
-					</tbody>
-				</table>
+				</div>
 				<?php endif;?>
 				
 				<?php echo $pagination;?>
@@ -52,6 +34,12 @@
 		</div>
 		<?php echo $position_right; ?>
 	</div>
+	<script type="text/javascript">
+		function o_read(id){
+			//已读
+			$.get('<?php echo $this->config->item('catalog').'user/notice/o_read?id='?>' + id);
+		}
+	</script>
 	<!-- /row --> 
 </div>
 <!-- /container -->

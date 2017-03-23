@@ -7,15 +7,17 @@ class Cart_module extends CI_Common {
 		parent::__construct();
 		$this->load->helper(array('utf8'));
 		$this->load->language('common/header');
-		$this->load->library(array('currency', 'cart'));
+		$this->load->library(array('currency'));
 		$this->load->model(array('product/cart_model'));
 		$this->lang->load('common/header',$_SESSION['language_name']);
 	}
 
 	public function index($request='')
 	{
-		if(isset($_SESSION['cart_contents'])){
-			$data['carts']=$_SESSION['cart_contents'];
+		$carts=$this->cart_model->get_carts();
+		
+		if($carts){
+			$data['carts']=$carts;
 		}else{
 			$data['carts']=FALSE;
 		}

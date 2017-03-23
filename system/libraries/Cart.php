@@ -249,14 +249,14 @@ class CI_Cart {
 		// This becomes the unique "row ID"
 		if (isset($items['options']) && count($items['options']) > 0)
 		{
-			$rowid = md5($items['id'].serialize($items['options']));
+			$rowid = md5($items['id'].serialize($items['options']).$_SESSION['cart_id']);
 		}
 		else
 		{
 			// No options were submitted so we simply MD5 the product ID.
 			// Technically, we don't need to MD5 the ID in this case, but it makes
 			// sense to standardize the format of array indexes for both conditions
-			$rowid = md5($items['id']);
+			$rowid = md5($items['id'].$_SESSION['cart_id']);
 		}
 
 		// --------------------------------------------------------------------

@@ -6,38 +6,89 @@ class Cart_model extends CI_Model{
 	}
 
 	public function add_cart($data){
-		if($data){
-			if($this->user->isLogged()){
-				$user_id=$this->user->getId();
-			}else{
-				$user_id='0';
-			}
-			foreach($data as $key=>$value){
-				$cart=array();
-				$cart['id']=$data[$key]['id'];
-				$cart['user_id']=$user_id;
-				$cart['qty']=$data[$key]['qty'];
-				$cart['price']=$data[$key]['price'];
-				$cart['name']=$data[$key]['name'];
-				$cart['rowid']=$data[$key]['rowid'];
-				$cart['points']=$data[$key]['points'];
-				
-				if(isset($data[$key]['preferential_type'])){
-					$cart['preferential_type']=$data[$key]['preferential_type'];
-				}
-				if(isset($data[$key]['preferential_value'])){
-					$cart['preferential_value']=$data[$key]['preferential_value'];
-				}
-				
-				if(isset($data[$key]['options'])){
-					$cart['options']= implode('.', $data[$key]['options']);
-				}
-				
-				$this->db->replace($this->db->dbprefix('user_cart'), $cart);
-			}
+		
+		if($this->user->isLogged()){
+			$user_id=$this->user->getId();
 		}else{
-			return FALSE;
+			$user_id='0';
 		}
+		foreach($data as $key=>$value){
+			$cart=array();
+			if(isset($data[$key]['options'])){
+				$cart['options']= implode('.', $data[$key]['options']);
+			}else{
+				$cart['options']='';
+			}
+			
+			$cart['id']=$data[$key]['id'];
+			$cart['user_id']=$user_id;
+			$cart['qty']=$data[$key]['qty'];
+			$cart['price']=$data[$key]['price'];
+			$cart['name']=$data[$key]['name'];
+			$cart['rowid']=md5($cart['id'].serialize($cart['options']).$_SESSION['cart_id']);
+			$cart['points']=$data[$key]['points'];
+			
+			if(isset($data[$key]['preferential_type'])){
+				$cart['preferential_type']=$data[$key]['preferential_type'];
+			}
+			if(isset($data[$key]['preferential_value'])){
+				$cart['preferential_value']=$data[$key]['preferential_value'];
+			}
+			
+			$this->db->select('rowid');
+			$this->db->where($cart);
+			$this->db->from($this->db->dbprefix('user_cart'));
+			$query=$this->db->get();
+			if($query->num_rows() > 0){
+				$this->db->where('rowid', $cart['rowid']);
+				$this->db->update($this->db->dbprefix('user_cart'), $cart);
+			}else{
+				$this->db->insert($this->db->dbprefix('user_cart'), $cart);
+			}
+			
+			return $cart['rowid'];
+		}
+		return FALSE;
+	}
+	
+	public function get_carts(){
+		$this->db->select('rowid, id, qty, price, name, options, points');
+		$this->db->where('user_id', (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '0'));
+		$this->db->order_by('date_added', 'DESC');
+		$this->db->from($this->db->dbprefix('user_cart'));
+		$cart_query=$this->db->get();
+		if($cart_query->num_rows() > 0){
+			$cart_contents=array();
+			$cart_arr=$cart_query->result_array();
+			foreach($cart_arr as $key=>$value){
+				$cart_arr[$key]['options']=explode('.', $cart_arr[$key]['options']);
+				$cart_contents[$cart_arr[$key]['rowid']]=$cart_arr[$key];
+				$cart_contents[$cart_arr[$key]['rowid']]['subtotal']=$cart_arr[$key]['qty'] * $cart_arr[$key]['price'];
+			}
+			$cart_contents['cart_total']=array_sum(array_column($cart_contents,'price'));
+			$cart_contents['total_items']=array_sum(array_column($cart_contents,'qty'));
+			return $cart_contents;
+		}
+		return FALSE;
+	}
+	
+	public function get_cart_for_rowid($rowid){
+		$this->db->select('rowid, id, qty, price, name, options, points');
+		$this->db->where('user_id', $_SESSION['user_id']);
+		$this->db->where('rowid', $rowid);
+		$this->db->from($this->db->dbprefix('user_cart'));
+		$query=$this->db->get();
+		if($query->num_rows() > 0){
+			$cart_product=$query->row_array();
+			
+			$data['options']=explode('.', $cart_product['options']);
+			$data['rowid']=$cart_product['rowid'];
+			$data['subtotal']=$cart_product['qty'] * $cart_product['price'];
+			$data['cart_total']=array_sum(array_column($cart_product,'price'));
+			$data['total_items']=array_sum(array_column($cart_product,'qty'));
+			return $data;
+		}
+		return FALSE;
 	}
 	
 	//用购物车数据取商店数据
@@ -64,7 +115,18 @@ class Cart_model extends CI_Model{
 		if($query->num_rows() > 0){
 			return $query->row_array();
 		}
-		return;
+		return false;
+	}
+	
+	public function get_product_name($rowid){
+		$this->db->select('name');
+		$this->db->where('rowid', $rowid);
+		$this->db->from($this->db->dbprefix('user_cart'));
+		$query=$this->db->get();
+		if($query->num_rows() > 0){
+			return $query->row_array()['name'];
+		}
+		return false;
 	}
 	
 	public function get_tax_for_cart($tax_class_id){
@@ -132,11 +194,10 @@ class Cart_model extends CI_Model{
 	
 	public function update_cart($data){
 		$this->db->where('rowid', $data['rowid']);
-		$this->db->update($this->db->dbprefix('user_cart'), $data);
-		return;
+		return $this->db->update($this->db->dbprefix('user_cart'), $data);
 	}
 	
 	public function delete($rowid){
-		$this->db->delete($this->db->dbprefix('user_cart'), array('rowid' => $rowid));
+		return $this->db->delete($this->db->dbprefix('user_cart'), array('rowid' => $rowid));
 	}
 }

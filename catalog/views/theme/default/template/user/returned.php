@@ -30,24 +30,24 @@
 			 		<tr>
 			 			<td><img src="<?php echo $this->image_common->resize($order_product['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>"></td>
 			 			<td><?php echo $order_product['name'];?><?php if(!empty($order_product['value'])):?><br/><span style="color:#9e9e9e"><?php echo $order_product['value'];?></span><?php endif;?></td>
-			 			<td><?php echo $this->currency->Compute($order_product['price']);?>
+			 			<td><?php echo $this->currency->Compute($order_product['price'] * $order_product['currency_value']);?>
 			 				<?php if($order_product['tax'] != 0):?>
-							<br/><span>含税（<?php echo $this->currency->Compute($order_product['tax']);?>）</span>
+							<br/><span>含税（<?php echo $this->currency->Compute($order_product['tax'] * $order_product['currency_value']);?>）</span>
 							<?php endif;?>
 			 			</td>
 			 			<td><?php echo $order_product['quantity'];?></td>
-			 			<td><?php echo $this->currency->Compute($order_product['total']);?>
+			 			<td><?php echo $this->currency->Compute($order_product['total']  * $order_product['currency_value']);?>
 			 				<?php if($order_product['tax'] != 0):?>
-							<br/><span>含税（<?php echo $this->currency->Compute($order_product['tax'] * $order_product['quantity']);?>）</span>
+							<br/><span>含税（<?php echo $this->currency->Compute($order_product['tax'] * $order_product['quantity']  * $order_product['currency_value']);?>）</span>
 							<?php endif;?>
 			 			</td>
-			 			<td><?php echo $this->currency->Compute($order_product['total'] - ($order_product['tax'] * $order_product['quantity']));?></td>
+			 			<td><?php echo $this->currency->Compute($order_product['total'] * $order_product['currency_value'] - ($order_product['tax'] * $order_product['quantity'] * $order_product['currency_value']));?></td>
 			 			<td>-<?php echo $order_product['points'];?></td>
 			 		</tr>
 			 	</tbody>
 			 </table>
 			
-			 <form class="form-horizontal" action="<?php echo site_url('user/returned?token=' . $_SESSION['token'] . '&rowid=' . $this->input->get('rowid'));?>" method="post" style="padding: 15px;border:1px solid rgb(222, 221, 221)">
+			 <form class="form-horizontal" action="<?php echo $this->config->item('catalog').'user/returned?token=' . $_SESSION['token'] . '&rowid=' . $this->input->get('rowid');?>" method="post" style="padding: 15px;border:1px solid rgb(222, 221, 221)">
 				<div class="form-group">
 					<label for="return_action" class="col-sm-2 control-label">退换货方式</label>
 					<div class="col-sm-10">
@@ -72,6 +72,13 @@
 					<label for="return_amount" class="col-sm-2 control-label">退款金额</label>
 					<div class="col-sm-10">
 						<input type="text" name="return_amount" class="form-control" id="return_amount" placeholder="退款金额" value="<?php echo $order_product['total'] - ($order_product['tax'] * $order_product['quantity']);?>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="return_opened" class="col-sm-2 control-label">是否打开包装</label>
+					<div class="col-sm-10">
+						<input type="radio" name="opened" id="return_opened" value="1"> 是
+						<input type="radio" name="opened" id="return_opened" value="0" checked> 否
 					</div>
 				</div>
 				<div class="form-group">
