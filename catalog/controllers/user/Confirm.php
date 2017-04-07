@@ -66,7 +66,7 @@ class Confirm extends MY_Controller{
 		}
 		
 		if(!$carts_product || empty($carts_product)){
-			redirect('/user/cart', 'location', 301);
+			redirect($this->config->item('catalog').'/user/cart', 'location', 301);
 		}
 		
 		//var_dump($carts_product);
@@ -127,7 +127,7 @@ class Confirm extends MY_Controller{
 				$resule['msg']='付款不成功，付款订单中有已付款订单，请不要重复为相同订单付费，谢谢！';
 				$this->session->set_flashdata('result', $resule);
 				
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 				exit;
 			}else{
 				$data['payment_total']=$payment_total;
@@ -161,7 +161,7 @@ class Confirm extends MY_Controller{
 			$resule['msg']='付款不成功，请选择一个支付方式！';
 			$this->session->set_flashdata('result', $resule);
 			
-			redirect('user/confirm/payment_info');
+			redirect($this->config->item('catalog').'user/confirm/payment_info');
 			exit;
 		}
 		
@@ -190,10 +190,10 @@ class Confirm extends MY_Controller{
 				
 				$resule['order_ids']=implode(',', $order_ids);
 				$this->session->set_flashdata('result', $resule);
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 			}else{
 				$this->session->set_flashdata('result', $resule);
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 			}
 		}else{
 			//支付接口付款
@@ -204,7 +204,7 @@ class Confirm extends MY_Controller{
 				$resule['msg']='付款不成功，请先设置支付密码！';
 				$this->session->set_flashdata('result', $resule);
 				
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 				exit;
 			}
 			if($blances['pay_password'] != $pay_password){
@@ -212,7 +212,7 @@ class Confirm extends MY_Controller{
 				$resule['msg']='付款不成功，支付密码错误！';
 				$this->session->set_flashdata('result', $resule);
 				
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 				exit;
 			}
 			if(empty($payment_method)){
@@ -220,11 +220,11 @@ class Confirm extends MY_Controller{
 				$resule['msg']='付款不成功，请选择一个支付方式！';
 				$this->session->set_flashdata('result', $resule);
 				
-				redirect('user/confirm/payment_info');
+				redirect($this->config->item('catalog').'user/confirm/payment_info');
 				exit;
 			}
 			
-			redirect('extension/payment/'.$payment_method.'?encrypt='.$encrypt.'&order_ids='.$this->input->post('order_ids').'&payment_total='.$payment_total);
+			redirect($this->config->item('catalog').'extension/payment/'.$payment_method.'?encrypt='.$encrypt.'&order_ids='.$this->input->post('order_ids').'&payment_total='.$payment_total);
 		}
 	}
 	
@@ -410,9 +410,9 @@ class Confirm extends MY_Controller{
 				}
 			}
 		}else{
-			redirect('/user/cart', 'location', 301);
+			redirect($this->config->item('catalog').'/user/cart', 'location', 301);
 		}
-		redirect('/user/confirm/payment?order_ids='.implode(',', $order_ids), 'location', 301);
+		redirect($this->config->item('catalog').'/user/confirm/payment?order_ids='.implode(',', $order_ids), 'location', 301);
 	}
 	
 	//更新修改地址
