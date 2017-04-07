@@ -12,8 +12,18 @@ class Release extends MY_Controller {
 	{
 		$this->load->model('bbs/bbs_model');
 		
+		if($this->input->get('posting_id') != NULL){
+			$data['action']														=$this->config->item('bbs').'community/release?posting_id='.$this->input->get('posting_id');
+			$data['plate_id']													=$this->input->get('posting_id');
+				
+			$posting															=$this->bbs_model->get_posting_release($this->input->get('posting_id'));
+				
+		}else{
+			$data['action']														=$this->config->item('bbs').'community/release';
+		}
+		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->user->isLogged()){
-			if(utf8_strlen($this->input->post('description')) > 50 && utf8_strlen($this->input->post('description')) < 20000){
+			if(utf8_strlen(strip_tags($this->input->post('description'))) > 20 && utf8_strlen(strip_tags($this->input->post('description'))) < 20000){
 				if($this->input->get('posting_id') != NULL){
 					$data['base']['posting_id']=$this->input->get('posting_id');
 					$data['base']['plate_id']=$this->input->post('plate_id');
@@ -27,9 +37,11 @@ class Release extends MY_Controller {
 					if($re){
 						$this->session->set_flashdata('success', '帖子编辑成功！');
 						redirect($this->config->item('bbs').'community/posting?posting_id='.$this->input->get('posting_id'));
+						exit();
 					}else{
 						$this->session->set_flashdata('fali', '帖子编辑失败！');
 						redirect(all_current_url());
+						exit();
 					}
 					
 				}else{
@@ -53,21 +65,15 @@ class Release extends MY_Controller {
 					}
 				}
 			}else{
-				$this->session->set_flashdata('fali', '帖子内容50——20000字符之间！');
+				$this->session->set_flashdata('fali', '帖子内容20——20000字符之间！');
+				$posting['posting_id'] 											= $this->input->get('posting_id');
+				$posting['title'] 												= utf8_substr($this->input->post('title'), 0, 35);
+				$posting['description'] 										= $this->input->post('description');
+				$posting['plate_id']											= $this->input->post('plate_id');
 			}
 		}
 		
 		$data['plates']=$this->bbs_model->get_plates();
-		
-		if($this->input->get('posting_id') != NULL){
-			$data['action']=$this->config->item('bbs').'community/release?posting_id='.$this->input->get('posting_id');
-			$data['plate_id']=$this->input->get('posting_id');
-			
-			$posting=$this->bbs_model->get_posting_release($this->input->get('posting_id'));
-			
-		}else{
-			$data['action']=$this->config->item('bbs').'community/release';
-		}
 		
 		if(isset($posting) && $posting){
 			$this->lang->load('wecome', $_SESSION['language_name']);

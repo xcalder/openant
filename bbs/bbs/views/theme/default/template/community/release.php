@@ -20,7 +20,7 @@
 	    <select class="form-control" name="plate_id" id="re-plate">
 	    	<?php if($plates):?>
 	    	<?php foreach($plates as $plate):?>
-	    	<?php if(isset($plate_id) && $plate_id == $plate['plate_id']):?>
+	    	<?php if(isset($posting['plate_id']) && $plate['plate_id'] == $posting['plate_id']):?>
 	    	<option value="<?php echo $plate['plate_id'];?>" selected><?php echo $plate['title'];?></option>
 	    	<?php else:?>
 	    	<option value="<?php echo $plate['plate_id'];?>"><?php echo $plate['title'];?></option>
@@ -34,7 +34,7 @@
 	  	<label for="re-plate" style="font-weight: 100;">请输入一个概括性的标题</label>
 	    <input type="text" class="form-control" name="title" id="re-title" placeholder="请输入一个概括性的标题" value="<?php echo isset($posting) ? $posting['title'] : '';?>">
 	  </div>
-	  <div class="well well-sm" style="color: #b7b7b7">*请文明回帖，激烈讨论！<br/>*单张图片上传最大200kb<br/>*回帖内容2000字符内</div>
+	  <div class="well well-sm" style="color: #b7b7b7">*请文明回帖，激烈讨论！<br/>*单张图片上传最大200kb<br/>*回帖内容10——2000字符内</div>
 	  <div class="form-group">
 	    <label for="re_description" style="font-weight: 100;color: #b7b7b7">描述你的内容</label>
 	    <textarea rows="10" id="re_description" name="description" class="form-control" placeholder="<?php echo ($this->user->isLogged() == TRUE) ? '描述内容，最多2000个字"' : '请先登陆！" disabled="disabled"';?>"><?php echo isset($posting) ? htmlspecialchars_decode($posting['description']) : '';?></textarea>

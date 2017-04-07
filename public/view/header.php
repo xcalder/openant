@@ -72,12 +72,12 @@
 	<![endif]-->
 	<?php if(isset($_SESSION['success'])):?>
 	<script type="text/javascript">
-		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['success'];?>',},{type: 'success',offset: {x: 0,y: 52}});});
+		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['success'];?>'},{type: 'success',offset: {x: 0,y: 52}});});
 	</script>
 	<?php endif;?>
 	<?php if(isset($_SESSION['fali'])):?>
 	<script type="text/javascript">
-		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['fali'];?>' },{type: 'warning',offset: {x: 0,y: 52}});
+		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['fali'];?>' },{type: 'warning',offset: {x: 0,y: 52}});});
 	</script>
 	<?php endif;?>
 	
