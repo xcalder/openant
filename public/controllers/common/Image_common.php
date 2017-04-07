@@ -9,8 +9,9 @@ class Image_common extends CI_Common {
 	}
 	
 	public function resize($filename, $width, $height, $master_dim='h') {
-		if(strstr($filename, 'http://')){
+		if(strstr($filename, 'http://') || strstr($filename, 'https://')){
 			return $filename;
+			exit();
 		}
 		
 		if(empty($width)){
@@ -39,11 +40,11 @@ class Image_common extends CI_Common {
 				@mkdir(IMGPATH . '/cache/no_image', 0777);
 			}
 			
-			$no_image						 = 'no_image-'.$width.'-'.$height.'-'.$master_dim.'.png';
+			$no_image						 = 'no-image-'.$width.'-'.$height.'-'.$master_dim.'.png';
 			
-			$config['source_image']			 = 'resources/public/resources/default/image/no_image.jpg';
+			$config['source_image']			 = IMGPATH . '/../public/resources/default/image/no_image.jpg';
 			$config['file_permissions'] 	 = '0777';
-			$config['new_image'] 	 		 = IMGPATH .'/cache/no_image/' . $no_image;
+			$config['new_image'] 	 		 = IMGPATH.'/cache/no_image/'.$no_image;
 			$config['width'] 	 		 	 = $width;
 			$config['height'] 	 		 	 = $height;
 			$config['maintain_ratio'] 	 	 = isset($maintain_ratio) ? $maintain_ratio : FALSE;

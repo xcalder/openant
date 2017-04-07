@@ -52,6 +52,16 @@
 	<script src="resources/public/resources/default/js/placeholderTypewriter.js"></script>
 	<script src="resources/public/resources/default/js/base.js"></script>
 
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		NProgress.start();
+	});
+
+	window.onload = function() { 
+		NProgress.done();
+	}; 
+	</script>
+	
 	<?php foreach($scripts as $script):?>
 	<script type="text/javascript" src="<?php echo $script; ?>"></script>
 	<?php endforeach; ?>
@@ -68,8 +78,6 @@
 	<?php if(isset($_SESSION['fali'])):?>
 	<script type="text/javascript">
 		$(document).ready(function () {$.notify({message: '<?php echo $_SESSION['fali'];?>' },{type: 'warning',offset: {x: 0,y: 52}});
-		//统计在线
-		$.get('<?php echo $this->config->item('catalog');?>/common/count/add_useronline');});
 	</script>
 	<?php endif;?>
 	
@@ -104,7 +112,8 @@
 	   var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?ecbfde9f22019c7aa45676c0b88c0f10":"https://jspassport.ssl.qhimg.com/11.0.1.js?ecbfde9f22019c7aa45676c0b88c0f10";
 	   document.write('<script src="' + src + '" id="sozz"><\/script>');
 	})();
+
+	//统计在线
+	$.get('<?php echo $this->config->item('catalog');?>/common/count/add_useronline');
 	</script>
-	
-	
 </head>
