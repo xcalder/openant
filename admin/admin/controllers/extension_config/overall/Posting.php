@@ -32,7 +32,7 @@ class Posting extends MY_Controller{
 			$page = $this->input->get('page');
 		}
 		
-		$config['base_url'] 			= $this->config->item('admin').'posting/posting';
+		$config['base_url'] 			= $this->config->item('admin').'extension_config/overall/posting';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

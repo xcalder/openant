@@ -181,11 +181,11 @@ class User_group extends MY_Controller {
 		
 		$unset_maps=array('common/scheduling_module.php', 'common/language_module.php', 'common/language.php', 'common/position_top.php', 'common/position_right.php', 'common/position_left.php', 'errors/page_missing.php', 'common/currency_common.php', 'common/currency.php', 'common/footer.php', 'common/position_above.php', 'common/position_bottom.php', 'common/header.php', 'common/image_common.php');
 		//遍历后台目录
-		$admin_maps						=$this->file_list(FCPATH.'application/admin/controllers');
+		$admin_maps						=$this->file_list(FCPATH.'admin/controllers');
 		$this->files=array();
 		foreach($admin_maps as $key=>$value){
 			if(isset($admin_maps[$key])){
-				$admin_maps[$key] = str_replace(FCPATH.'application/admin/controllers/', '', $admin_maps[$key]);
+				$admin_maps[$key] = str_replace(FCPATH.'admin/controllers/', '', $admin_maps[$key]);
 				$admin_maps[$key] = str_replace('\\', '/', strtolower($admin_maps[$key]));
 			}
 			if(isset($admin_maps[$key]) && strstr($admin_maps[$key], 'extension/')){
@@ -206,11 +206,11 @@ class User_group extends MY_Controller {
 		$data['admin_maps']=$admin_maps;
 		
 		//遍历商家中心目录
-		$sale_maps						=$this->file_list(FCPATH.'application/sale/controllers');
+		$sale_maps						=$this->file_list(FCPATH.'../sale/sale/controllers');
 		$this->files=array();
 		foreach($sale_maps as $key=>$value){
 			if(isset($sale_maps[$key])){
-				$sale_maps[$key] = str_replace(FCPATH.'application/sale/controllers/', '', $sale_maps[$key]);
+				$sale_maps[$key] = str_replace(FCPATH.'../sale/sale/controllers/', '', $sale_maps[$key]);
 				$sale_maps[$key] = str_replace('\\', '/', strtolower($sale_maps[$key]));
 			}
 			if(isset($sale_maps[$key]) && strstr($sale_maps[$key], 'extension/')){
