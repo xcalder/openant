@@ -69,6 +69,14 @@ class Wecome extends CI_Controller {
 		
 		$postings=$this->bbs_model->get_postings($data);
 		
+		if(!$postings){
+		    $msg = '没有找到答案？去提问';
+		    $msg_url = $this->config->item('bbs').'community/release';
+		    $this->document->setTitle('页面不存在');
+		    $this->header->no_find($msg, $msg_url);
+		    exit();
+		}
+		
 		if(isset($url) && !empty($url)){
 			$url='?'.http_build_query($url);
 		}else{
@@ -118,7 +126,7 @@ class Wecome extends CI_Controller {
 		}
 		
 		if(isset($plate) && $plate){
-			$this->document->setTitle($plate['title'].'-'.$title_);
+			//$this->document->setTitle($plate['title'].'-'.$title_);
 		
 			$title .= $plate['description'];
 		}else{
@@ -137,8 +145,10 @@ class Wecome extends CI_Controller {
 		
 		$this->document->setKeywords($tags);
 		//提取关键词key
+		$description = utf8_substr(DeleteHtml($title), 0, 200);
+		$this->document->setTitle($description);
 		
-		$this->document->setDescription(utf8_substr(DeleteHtml($title), 0, 200));
+		$this->document->setDescription($description);
 		
 		$this->document->setCopyright(unserialize($this->config->get_config('site_abbreviation'))[$_SESSION['language_id']]);
 		

@@ -126,7 +126,7 @@
 							</ul>
 						</li>
 						<?php endif;?>
-						<li><a href="<?php echo $this->config->item('bbs').'community/release';?>">发帖<i class="glyphicon glyphicon-plus"></i></a></li>
+						<li><a href="<?php echo $this->config->item('bbs').'community/release';?>">提问<i class="glyphicon glyphicon-edit"></i></a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

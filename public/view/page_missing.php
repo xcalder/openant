@@ -12,6 +12,9 @@
 		或<a class="text-primary"
 				href="<?php echo $this->config->item('catalog').'user/signin/login';?>">登陆</a>
 		<?php endif;?>
+		<?php if(isset($msg) && !empty($msg)):?>
+		或&nbsp;<a <?php echo (isset($msg_url) && !empty($msg_url)) ? 'class="text-primary" href="'.$msg_url.'"' : '';?>><?php echo $msg;?></a>
+		<?php endif;?>
 		</p>
 	</div>
 </body>

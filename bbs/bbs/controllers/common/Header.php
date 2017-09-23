@@ -71,12 +71,11 @@ class Header extends CI_Common {
 		return $this->load->view('theme/default/template/common/top',$data,TRUE);
 	}
 	
-	public function no_find(){
+	public function no_find($msg = '', $msg_url = ''){
 		$this->output->set_status_header(404);
 		
 		$header												=$this->header->index();
-		
-		require_once(FCPATH.'public/view/page_missing.php');
+		require_once(FCPATH.'../public/view/page_missing.php');
 		exit();
 	}
 }
