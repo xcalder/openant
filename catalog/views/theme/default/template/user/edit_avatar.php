@@ -96,7 +96,7 @@
 						success: function(data)
 						{
 							if(data.status == '0'){
-								window.location.replace("user");
+								window.location.replace("<?php echo $this->config->item('catalog');?>user");
 							}else{
 								 window.location.reload();
 							}

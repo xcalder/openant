@@ -83,6 +83,7 @@
 	
 	<script>
 	//百度统计
+	/*
 	var _hmt = _hmt || [];
 	(function() {
 	  var hm = document.createElement("script");
@@ -90,9 +91,11 @@
 	  var s = document.getElementsByTagName("script")[0]; 
 	  s.parentNode.insertBefore(hm, s);
 	})();
+	*/
 	</script>
 	<script>
 	//百度推送
+	/*
 	(function(){
 	    var bp = document.createElement('script');
 	    var curProtocol = window.location.protocol.split(':')[0];
@@ -105,14 +108,16 @@
 	    var s = document.getElementsByTagName("script")[0];
 	    s.parentNode.insertBefore(bp, s);
 	})();
+	*/
 	</script>
 	<script>
 	//360推送
+	/*
 	(function(){
 	   var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?ecbfde9f22019c7aa45676c0b88c0f10":"https://jspassport.ssl.qhimg.com/11.0.1.js?ecbfde9f22019c7aa45676c0b88c0f10";
 	   document.write('<script src="' + src + '" id="sozz"><\/script>');
 	})();
-
+*/
 	//统计在线
 	$.get('<?php echo $this->config->item('catalog');?>/common/count/add_useronline');
 	</script>

@@ -5,6 +5,9 @@ body{
 	font-size: 16px;
 	line-height: 16px;
 }
+#bbs .bbs-list{
+	display: flex;
+}
 #catalog h1{
 	font-weight: 100;
 }

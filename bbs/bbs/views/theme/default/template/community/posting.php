@@ -12,7 +12,7 @@
 	<?php endif;?>
     <div id="middle" class="<?php echo $class; ?>">
 	    <?php echo $position_top; ?>
-	    <div class="<?php echo $class;?>" style="padding: 0">
+	    <div class="col-sm-12" style="padding: 0">
 		    <div class="panel panel-default" id="posting-content">
 			  <div class="panel-heading">
 			  	
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 		
-		<div class="<?php echo $class;?>" style="padding: 0">
+		<div class="col-sm-12" style="padding: 0">
 		
 			<div class="panel panel-default" id="posting-attention"></div>
 			
@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		
-		<div class="<?php echo $class;?>" style="padding: 0">
+		<div class="col-sm-12" style="padding: 0">
 			<div class="panel panel-default">
 				<div class="panel-heading padding-left">相关推荐</div>
 				<div class="panel-body" id="posting-list">
@@ -124,7 +124,7 @@
 			    		<?php foreach($about_postings as $posting):?>
 			    		<?php $time=timediff((!empty($posting['re_date']) ? human_to_unix($posting['re_date']) : human_to_unix($posting['date_added'])), human_to_unix(date("Y-m-d H:i:s")));?>
 					   	<li>
-					   		<div class="col-sm-2 hidden-xs">
+					   		<div class="col-sm-2 hidden-xs" style="display: flex;">
 					   			<a href="<?php echo $this->config->item('bbs');?>community/user?user_id=<?php echo $posting['user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize($posting['image'], 30, 30);?>" alt="<?php echo $posting['nickname'];?>" title="<?php echo $posting['nickname'];?>"></a>
 					   			<strong class="text-primary hidden-xs" style="padding: 0 15px;font-weight: normal;"><span style="font-size: 24px;"><?php echo $posting['count'];?></span><span style="color: #868686;font-size: 22px">/</span><span style="color: #bfbfbf;font-size: 14px;"><?php echo $posting['access_count'];?></span></strong>
 					   		</div>
@@ -151,11 +151,11 @@
 			</div>
 		</div>
 		
-		<div class="<?php echo $class;?>" style="padding: 0">
+		<div class="col-sm-12" style="padding: 0">
 			<div class="well well-sm" style="color: #b7b7b7">*请文明回帖，激烈讨论！<br/>*单张图片上传最大200kb<br/>*回帖内容2000字符内<br/>*链接请直接输入"href"标签将会被过滤</div>
 		</div>
 		
-		<div class="<?php echo $class;?>" style="padding: 0">
+		<div class="col-sm-12" style="padding: 0">
 			<form action="<?php echo $this->config->item('bbs').'community/posting?posting_id='.$this->input->get('posting_id');?>" method="post" enctype="multipart/form-data">
 			  <div class="form-group">
 				<textarea rows="5" id="posting-reply" name="content" class="form-control" placeholder="<?php echo ($this->user->isLogged() == TRUE) ? '回复内容，最多2000个字"' : '请先登陆！" disabled="disabled"';?>"></textarea>

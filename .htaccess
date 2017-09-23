@@ -1,0 +1,25 @@
+RewriteEngine on
+
+Header set Access-Control-Allow-Origin "*"
+
+RewriteCond %{HTTP_HOST} ^(openant\.com)(:80)? [NC]
+RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
+
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^(index\.php|images|resources|robots\.txt)
+
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+
+
+<ifmodule mod_deflate.c>
+
+SetOutputFilter DEFLATE
+
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-httpd-php application/x-javascript image/gif image/png  image/jpe image/swf image/jpeg image/bmp
+</ifmodule>

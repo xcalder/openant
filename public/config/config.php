@@ -398,7 +398,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix'] = '';
+$config['cookie_prefix'] = 'op_';
 $config['cookie_domain'] = 'openant.com';
 $config['cookie_path'] = '/';
 $config['cookie_secure'] = FALSE;

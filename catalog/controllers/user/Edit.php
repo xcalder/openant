@@ -230,14 +230,14 @@ class Edit extends MY_Controller {
 			$user_added_date=$this->user->getDate_added();
 			$user_directory=date("Y",strtotime($user_added_date)).'/'.date("m",strtotime($user_added_date)).'/'.date("d",strtotime($user_added_date)).'/'.$this->user->getId();
 			
-			if (!is_dir(FCPATH . 'resources/image/users/'.$user_directory)) {
-				@mkdir(FCPATH . 'resources/image/users/'.$user_directory, 0777,true);
+			if (!is_dir(IMGPATH.'/users/'.$user_directory)) {
+			    @mkdir(IMGPATH.'/users/'.$user_directory, 0777,true);
 			}
 			
 			if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $img, $result)){
 				$type = $result[2];
 				$path='/users/'.$user_directory.'/'.random_string('alnum', 16).'.'.$type;
-				$new_file = FCPATH . 'resources/image'.$path;
+				$new_file =  IMGPATH.$path;
 				if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $img)))){
 					$json['status']='0';
 					$json['message'] = '头像修改成功！';
@@ -245,7 +245,7 @@ class Edit extends MY_Controller {
 					
 					$user=$this->user_model->get_user($_SESSION['user_id']);
 					if(!empty($user['image'])){
-						@unlink(FCPATH . 'image'.$user['image']);
+					    @unlink(IMGPATH.'../'.$user['image']);
 					}
 					
 					$up_data['user_id']=$this->user->getId();
