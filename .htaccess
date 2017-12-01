@@ -2,11 +2,11 @@ RewriteEngine on
 
 Header set Access-Control-Allow-Origin "*"
 
-RewriteCond %{HTTP_HOST} ^(openant\.com)(:80)? [NC]
-RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} ^(openant\.com)(:80)? [NC]
+#RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
 
-RewriteCond %{SERVER_PORT} !^443$
-RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
+#RewriteCond %{SERVER_PORT} !^443$
+#RewriteRule ^(.*) https://www.openant.com/$1 [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
