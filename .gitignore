@@ -48,3 +48,6 @@ Temporary Items
 
 *.png
 *.jpg
+
+public/config/config.php
+public/config/database.php
