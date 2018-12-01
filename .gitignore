@@ -51,3 +51,7 @@ Temporary Items
 
 public/config/config.php
 public/config/database.php
+
+.setting
+.project
+.buildpath
