@@ -13,13 +13,13 @@ class Release extends MY_Controller {
 		$this->load->model('bbs/bbs_model');
 		
 		if($this->input->get('posting_id') != NULL){
-			$data['action']														=$this->config->item('bbs').'community/release?posting_id='.$this->input->get('posting_id');
+			$data['action']														=$this->config->item('bbs').'/community/release?posting_id='.$this->input->get('posting_id');
 			$data['plate_id']													=$this->input->get('posting_id');
 				
 			$posting															=$this->bbs_model->get_posting_release($this->input->get('posting_id'));
 				
 		}else{
-			$data['action']														=$this->config->item('bbs').'community/release';
+			$data['action']														=$this->config->item('bbs').'/community/release';
 		}
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->user->isLogged()){
@@ -36,7 +36,7 @@ class Release extends MY_Controller {
 					$re=$this->bbs_model->edit_posting($data);
 					if($re){
 						$this->session->set_flashdata('success', '帖子编辑成功！');
-						redirect($this->config->item('bbs').'community/posting?posting_id='.$this->input->get('posting_id'));
+						redirect($this->config->item('bbs').'/community/posting?posting_id='.$this->input->get('posting_id'));
 						exit();
 					}else{
 						$this->session->set_flashdata('fali', '帖子编辑失败！');
@@ -58,7 +58,7 @@ class Release extends MY_Controller {
 					$re=$this->bbs_model->add_posting($data);
 					if($re){
 						$this->session->set_flashdata('success', '帖子发布成功！');
-						redirect($this->config->item('bbs').'community/posting?posting_id='.$re);
+						redirect($this->config->item('bbs').'/community/posting?posting_id='.$re);
 					}else{
 						$this->session->set_flashdata('fali', '帖子发布失败！');
 						redirect(all_current_url());

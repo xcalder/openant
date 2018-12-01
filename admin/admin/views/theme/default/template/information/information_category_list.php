@@ -11,7 +11,7 @@
 						</i>&nbsp;文章分类列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="<?php echo $this->config->item('admin').'information/information_category/add';?>" class="btn btn-sm btn-default">
+						<a href="<?php echo $this->config->item('admin').'/information/information_category/add';?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
@@ -56,7 +56,7 @@
 									<?php echo $information_category['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo $this->config->item('admin').'information/information_category/edit?information_category_id='.$information_category['information_category_id'];?>" class="btn btn-sm btn-info">
+									<a href="<?php echo $this->config->item('admin').'/information/information_category/edit?information_category_id='.$information_category['information_category_id'];?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>
@@ -77,7 +77,7 @@
 									<?php echo $child['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo $this->config->item('admin').'information/information_category/edit?information_category_id='.$child['information_category_id'];?>" class="btn btn-sm btn-info">
+									<a href="<?php echo $this->config->item('admin').'/information/information_category/edit?information_category_id='.$child['information_category_id'];?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>
@@ -100,7 +100,7 @@
 									<?php echo $information_category['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo $this->config->item('admin').'information/information_category/edit?information_category_id='.$information_category['information_category_id'];?>" class="btn btn-sm btn-info">
+									<a href="<?php echo $this->config->item('admin').'/information/information_category/edit?information_category_id='.$information_category['information_category_id'];?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>

@@ -6,7 +6,7 @@
     		<?php $time=timediff((!empty($posting['re_date']) ? human_to_unix($posting['re_date']) : human_to_unix($posting['date_added'])), human_to_unix(date("Y-m-d H:i:s")));?>
 		   	<li>
 		   		<div class="col-sm-2 hidden-xs">
-		   			<a href="<?php echo $this->config->item('bbs');?>community/user?user_id=<?php echo $posting['user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize($posting['image'], 30, 30);?>" alt="<?php echo $posting['nickname'];?>" title="<?php echo $posting['nickname'];?>"></a>
+		   			<a href="<?php echo $this->config->item('bbs');?>/community/user?user_id=<?php echo $posting['user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize($posting['image'], 30, 30);?>" alt="<?php echo $posting['nickname'];?>" title="<?php echo $posting['nickname'];?>"></a>
 		   			<strong class="text-primary hidden-xs" style="padding: 0 15px;font-weight: normal;"><span style="font-size: 24px;"><?php echo $posting['count'];?></span><span style="color: #868686;font-size: 22px">/</span><span style="color: #bfbfbf;font-size: 14px;"><?php echo $posting['access_count'];?></span></strong>
 		   		</div>
 		   		<div class="col-sm-8 col-xs-12">
@@ -23,7 +23,7 @@
 			   		<?php endif;?>
 		   		</div>
 		   		<div class="col-sm-2 col-xs-12">
-		   			<a class="hidden-xs info-right" href="<?php echo $this->config->item('bbs');?>community/user?user_id=<?php echo $posting['re_user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize((!empty($posting['re_image']) ? $posting['re_image'] : $posting['image']), 25, 25);?>" alt="<?php echo (!empty($posting['re_nickname'])) ? $posting['re_nickname'] : $posting['nickname'];?>" title="<?php echo (!empty($posting['re_nickname'])) ? $posting['re_nickname'] : $posting['nickname'];?>" style="padding: 0"></a>
+		   			<a class="hidden-xs info-right" href="<?php echo $this->config->item('bbs');?>/community/user?user_id=<?php echo $posting['re_user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize((!empty($posting['re_image']) ? $posting['re_image'] : $posting['image']), 25, 25);?>" alt="<?php echo (!empty($posting['re_nickname'])) ? $posting['re_nickname'] : $posting['nickname'];?>" title="<?php echo (!empty($posting['re_nickname'])) ? $posting['re_nickname'] : $posting['nickname'];?>" style="padding: 0"></a>
 		   			
 		   			<span class="visible-xs info-left"><?php echo $posting['nickname'];?></span>
 		   			<span class="info-right"><?php echo $time['time'].$time['unit'];?></span>
@@ -39,7 +39,7 @@
 //取消关注
 function unattention(id){
 	$.ajax({
-		url: '<?php echo $this->config->item('bbs').'community/posting/unattention_position';?>',
+		url: '<?php echo $this->config->item('bbs').'/community/posting/unattention_position';?>',
 		type: 'post',
 		dataType: 'json',
 		data: {posting_id: id},

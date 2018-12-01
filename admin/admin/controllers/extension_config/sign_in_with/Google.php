@@ -28,7 +28,7 @@ class Google extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->sign_in_with_model->add($this->input->post(), 'sign_in_with', 'google');
 			
-			redirect($this->config->item('admin').'common/extension/sign_in_with');
+			redirect($this->config->item('admin').'/common/extension/sign_in_with');
 		}
 		
 		$this->get_form();

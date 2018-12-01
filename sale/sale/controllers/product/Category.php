@@ -28,7 +28,7 @@ class Category extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->product_model->edit_category($this->input->post());
 			
-			redirect($this->config->item('sale').'product/category');
+			redirect($this->config->item('sale').'/product/category');
 		}
 		
 		$this->get_form();
@@ -41,7 +41,7 @@ class Category extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->product_model->add_category($this->input->post());
 			
-			redirect($this->config->item('sale').'product/category');
+			redirect($this->config->item('sale').'/product/category');
 		}
 		
 		$this->get_form();
@@ -53,7 +53,7 @@ class Category extends MY_Controller {
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->product_model->delete_category($this->input->post('selected'));
 			
-			redirect($this->config->item('sale').'product/category');
+			redirect($this->config->item('sale').'/product/category');
 		}
 		$this->get_list();
 	}
@@ -62,7 +62,7 @@ class Category extends MY_Controller {
 	protected function get_list(){
 		$data=array();
 		
-		$data['delete']					=$this->config->item('sale').'product/category/delete';
+		$data['delete']					=$this->config->item('sale').'/product/category/delete';
 		
 		$categorys = $this->product_model->get_categorys($this->input->get('limit'));
 		$data['categorys']=$categorys['categorys'];
@@ -75,7 +75,7 @@ class Category extends MY_Controller {
 			$limit = $this->input->get('limit');
 		}
 		
-		$config['base_url'] 			= $this->config->item('sale').'product/category';
+		$config['base_url'] 			= $this->config->item('sale').'/product/category';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'limit';
@@ -196,9 +196,9 @@ class Category extends MY_Controller {
 		}
 		
 		if($this->input->get('category_id')){
-			$data['action'] = $this->config->item('sale').'product/category/edit?category_id='.$this->input->get('category_id');
+			$data['action'] = $this->config->item('sale').'/product/category/edit?category_id='.$this->input->get('category_id');
 		}else{
-			$data['action'] = $this->config->item('sale').'product/category/add';
+			$data['action'] = $this->config->item('sale').'/product/category/add';
 		}
 		
 		$data['header']=$this->header->index();
@@ -212,7 +212,7 @@ class Category extends MY_Controller {
 	private function validateForm(){
 		if (!$this->user->hasPermission('modify', 'sale/product/category')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'product/category');
+			redirect($this->config->item('sale').'/product/category');
 			exit();
 		}
 		
@@ -234,7 +234,7 @@ class Category extends MY_Controller {
 	{
 		if (!$this->user->hasPermission('modify', 'sale/product/category')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'product/category');
+			redirect($this->config->item('sale').'/product/category');
 			exit();
 		}
 		

@@ -37,7 +37,7 @@ public function __construct() {
 				
 			}
 			var_dump($this->input->post()['menu']);
-			//redirect($this->config->item('admin').'common/extension/overall');
+			//redirect($this->config->item('admin').'/common/extension/overall');
 			exit;
 		}
 		
@@ -66,7 +66,7 @@ public function __construct() {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/overall/wechat_menu')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/extension/overall');
+			redirect($this->config->item('admin').'/common/extension/overall');
 			exit();
 		}else {
 			return true;

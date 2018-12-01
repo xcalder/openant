@@ -28,7 +28,7 @@ class Product extends MY_Controller {
 			$this->module_model->update($this->input->post(),'product');
 			
 			$this->session->set_flashdata('success','商品模块修改成功！');
-			redirect($this->config->item('admin').'extension_config/module/product');
+			redirect($this->config->item('admin').'/extension_config/module/product');
 		}
 		
 		$this->get_form();
@@ -42,7 +42,7 @@ class Product extends MY_Controller {
 			$this->module_model->add($this->input->post(),'product');
 			
 			$this->session->set_flashdata('success','商品模块添加成功！');
-			redirect($this->config->item('admin').'extension_config/module/product');
+			redirect($this->config->item('admin').'/extension_config/module/product');
 		}
 		
 		$this->get_form();
@@ -53,12 +53,12 @@ class Product extends MY_Controller {
 		
 		if($this->input->get('module_id') == NULL){
 			$this->session->set_flashdata('fali','商品模块删除失败！');
-			redirect($this->config->item('admin').'extension_config/module/product');
+			redirect($this->config->item('admin').'/extension_config/module/product');
 			return;
 		}
 		if($this->check_modify() && $this->module_model->delete($this->input->get('module_id'))){
 			$this->session->set_flashdata('success','商品模块删除成功！');
-			redirect($this->config->item('admin').'extension_config/module/product');
+			redirect($this->config->item('admin').'/extension_config/module/product');
 		}
 		
 		$this->get_list();
@@ -88,13 +88,13 @@ class Product extends MY_Controller {
 		$data['cotegorys_select'] = $cotegorys_select;
 		
 		if($this->input->get('module_id') != NULL){
-			$data['action']=$this->config->item('admin').'extension_config/module/product/edit?module_id='.$this->input->get('module_id');
+			$data['action']=$this->config->item('admin').'/extension_config/module/product/edit?module_id='.$this->input->get('module_id');
 			//查数据
 			$module=$this->module_model->get_modules_for_module_id($this->input->get('module_id'));
 			//var_dump($data['module']);
 			
 		}else{
-			$data['action']=$this->config->item('admin').'extension_config/module/product/add';
+			$data['action']=$this->config->item('admin').'/extension_config/module/product/add';
 		}
 		
 		if($this->input->post() != NULL){
@@ -113,7 +113,7 @@ class Product extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/module/product')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'extension_config/module/product');
+			redirect($this->config->item('admin').'/extension_config/module/product');
 			exit();
 		}else {
 			return true;

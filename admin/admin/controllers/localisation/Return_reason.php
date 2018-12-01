@@ -30,7 +30,7 @@ class Return_reason extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->return_reason_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/return_reason');
+			redirect($this->config->item('admin').'/localisation/return_reason');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Return_reason extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->return_reason_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/return_reason');
+			redirect($this->config->item('admin').'/localisation/return_reason');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Return_reason extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->return_reason_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/return_reason');
+			redirect($this->config->item('admin').'/localisation/return_reason');
 		}
 		
 		$this->get_list();
@@ -83,9 +83,9 @@ class Return_reason extends MY_Controller {
 		}
 		
 		if($this->input->get('return_reason_id')){
-			$data['action']					=$this->config->item('admin').'localisation/return_reason/edit?return_reason_id='.$this->input->get('return_reason_id');
+			$data['action']					=$this->config->item('admin').'/localisation/return_reason/edit?return_reason_id='.$this->input->get('return_reason_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/return_reason/add';
+			$data['action']					=$this->config->item('admin').'/localisation/return_reason/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -116,7 +116,7 @@ class Return_reason extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/return_reason';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/return_reason';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -143,7 +143,7 @@ class Return_reason extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/return_reason/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/return_reason/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

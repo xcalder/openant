@@ -50,9 +50,9 @@
 								<td class="text-left"><?php echo ($posting['very_good'] == '1') ? '是' : '否';?></td>
 								<td class="text-right">
 									<div class="btn-group">
-									  <a href="<?php echo $this->config->item('admin').'extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&is_view=<?php echo ($posting['is_view'] == '1') ? '0' : '1';?>" class="btn btn-danger btn-sm"><i class="<?php echo ($posting['is_view'] == '1') ? 'glyphicon glyphicon-eye-open' : 'glyphicon glyphicon-eye-close';?>"></i></a>
-									  <a href="<?php echo $this->config->item('admin').'extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&very_good=<?php echo ($posting['very_good'] == '1') ? '0' : '1';?>" class="btn btn-primary btn-sm"><i class="<?php echo ($posting['very_good'] == '1') ? 'glyphicon glyphicon-thumbs-up' : 'glyphicon glyphicon-thumbs-down';?>"></i></a>
-									  <a href="<?php echo $this->config->item('admin').'extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&is_top=<?php echo ($posting['is_top'] == '1') ? '0' : '1';?>" class="btn btn-info btn-sm"><i class="<?php echo ($posting['is_top'] == '1') ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down';?>"></i></a>
+									  <a href="<?php echo $this->config->item('admin').'/extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&is_view=<?php echo ($posting['is_view'] == '1') ? '0' : '1';?>" class="btn btn-danger btn-sm"><i class="<?php echo ($posting['is_view'] == '1') ? 'glyphicon glyphicon-eye-open' : 'glyphicon glyphicon-eye-close';?>"></i></a>
+									  <a href="<?php echo $this->config->item('admin').'/extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&very_good=<?php echo ($posting['very_good'] == '1') ? '0' : '1';?>" class="btn btn-primary btn-sm"><i class="<?php echo ($posting['very_good'] == '1') ? 'glyphicon glyphicon-thumbs-up' : 'glyphicon glyphicon-thumbs-down';?>"></i></a>
+									  <a href="<?php echo $this->config->item('admin').'/extension_config/overall/posting/edit_show';?>?posting_id=<?php echo $posting['posting_id'];?>&is_top=<?php echo ($posting['is_top'] == '1') ? '0' : '1';?>" class="btn btn-info btn-sm"><i class="<?php echo ($posting['is_top'] == '1') ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down';?>"></i></a>
 									</div>
 								</td>
 							</tr>

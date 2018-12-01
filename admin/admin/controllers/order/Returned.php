@@ -111,8 +111,8 @@ class returned extends MY_Controller {
 	
 				$a_title=$this->user->getnickname().'拒绝了一个商品退换';
 				$u_title='平台拒绝了商品退换申请';
-				$a_msg=$this->user->getnickname().'拒绝了一个<a href="'.$this->config->item('admin').'user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
-				$u_msg='平台拒绝了<a href="'.$this->config->item('admin').'user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
+				$a_msg=$this->user->getnickname().'拒绝了一个<a href="'.$this->config->item('admin').'/user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
+				$u_msg='平台拒绝了<a href="'.$this->config->item('admin').'/user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
 				
 				//修改订单状态
 				$this->load->model('order/order_model');
@@ -128,8 +128,8 @@ class returned extends MY_Controller {
 	
 				$a_title='你申请平台介入了一个商品退换';
 				$u_title='客户申请平台介入了你的商品退换申请';
-				$a_msg='你申请平台介入了一个<a href="'.$this->config->item('admin').'user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
-				$u_msg='客户申请平台介入了你的<a href="'.$this->config->item('admin').'user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
+				$a_msg='你申请平台介入了一个<a href="'.$this->config->item('admin').'/user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
+				$u_msg='客户申请平台介入了你的<a href="'.$this->config->item('admin').'/user/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
 			}
 	
 	
@@ -148,7 +148,7 @@ class returned extends MY_Controller {
 			
 			$this->user_activity_model->add_activity($this->input->post('o_user_id'), 'return', array('title'=>$u_title, 'msg'=>$u_msg));
 	
-			redirect($this->config->item('admin').'order/returned');
+			redirect($this->config->item('admin').'/order/returned');
 		}
 	}
 	

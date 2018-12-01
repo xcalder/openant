@@ -9,7 +9,7 @@
 					<p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑商品选项</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
 						<button type="button" onclick="submit('form-edit-option')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-						<a href="<?php echo $this->config->item('admin').'product/option';?>#option-list" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+						<a href="<?php echo $this->config->item('admin').'/product/option';?>#option-list" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 					</div>
 				</div>
 				<!-- /widget-header -->
@@ -61,7 +61,7 @@
 				<p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑商品选项组</p>
 				<div class="navbar-right btn-group" style="margin-right: 0">
 					<button type="button" onclick="submit('form-edit-option-group')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-					<a href="<?php echo $this->config->item('admin').'product/option';?>#option-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+					<a href="<?php echo $this->config->item('admin').'/product/option';?>#option-group" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 				</div>
 			</div>
 			<!-- /widget-header -->

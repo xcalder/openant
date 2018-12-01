@@ -157,7 +157,7 @@ class FileManager extends CI_Controller {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
-		$data['parent'] = $this->config->item('sale').'common/filemanager?token=' . $_SESSION['token'] . $url;
+		$data['parent'] = $this->config->item('sale').'/common/filemanager?token=' . $_SESSION['token'] . $url;
 
 		// Refresh
 		$url = '';
@@ -196,7 +196,7 @@ class FileManager extends CI_Controller {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 		
-		$config['base_url'] 					= $this->config->item('sale').'common/filemanager?token='.$_SESSION['token'].$url;
+		$config['base_url'] 					= $this->config->item('sale').'/common/filemanager?token='.$_SESSION['token'].$url;
 		$config['page_query_string']			= TRUE;
 		$config['query_string_segment']			= 'page';
 		//样式

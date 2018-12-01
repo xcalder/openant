@@ -165,7 +165,7 @@ class Banner extends MY_Controller {
 	public function validate_form() {
 		if (!$this->user->hasPermission('modify', 'admin/common/banner')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/banner');
+			redirect($this->config->item('admin').'/common/banner');
 			exit();
 		}
 		
@@ -179,14 +179,14 @@ class Banner extends MY_Controller {
 	public function check_delete($data){
 		if (!$this->user->hasPermission('modify', 'admin/common/banner')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/banner');
+			redirect($this->config->item('admin').'/common/banner');
 			exit();
 		}
 		$this->load->model('common/banner_model');
 		
 		if($this->banner_model->check_delete($data)){
 			$this->session->set_flashdata('danger', 'banner正在被使用，不能删除！');
-			redirect($this->config->item('admin').'common/banner');
+			redirect($this->config->item('admin').'/common/banner');
 			exit();
 		}
 		

@@ -31,7 +31,7 @@ class Manufacturer extends MY_Controller {
 			
 			$this->manufacturer_model->add_manufacturer($data);
 			
-			redirect($this->config->item('sale').'product/manufacturer');
+			redirect($this->config->item('sale').'/product/manufacturer');
 		}
 		
 		$this->get_form();
@@ -48,7 +48,7 @@ class Manufacturer extends MY_Controller {
 			
 			$this->manufacturer_model->edit_manufacturer($data);
 			
-			redirect($this->config->item('sale').'product/manufacturer');
+			redirect($this->config->item('sale').'/product/manufacturer');
 		}
 		
 		$this->get_form();
@@ -62,7 +62,7 @@ class Manufacturer extends MY_Controller {
 			
 			$this->manufacturer_model->delete_manufacturer($this->input->post('selected'));
 			
-			redirect($this->config->item('sale').'product/manufacturer');
+			redirect($this->config->item('sale').'/product/manufacturer');
 		}
 		
 		$this->get_list();
@@ -98,9 +98,9 @@ class Manufacturer extends MY_Controller {
 		$data['footer']=$this->footer->index();
 		
 		if($this->input->get('manufacturer_id')){
-			$data['action']=$this->config->item('sale').'product/manufacturer/edit?manufacturer_id='.$this->input->get('manufacturer_id');
+			$data['action']=$this->config->item('sale').'/product/manufacturer/edit?manufacturer_id='.$this->input->get('manufacturer_id');
 		}else{
-			$data['action']=$this->config->item('sale').'product/manufacturer/add';
+			$data['action']=$this->config->item('sale').'/product/manufacturer/add';
 		}
 		
 		$this->load->view('theme/default/template/product/manufacturer_form',$data);
@@ -117,10 +117,10 @@ class Manufacturer extends MY_Controller {
 		$manufacturers=$this->manufacturer_model->get_manufacturers($data);
 		$data['manufacturers']=$manufacturers['manufacturer'];
 		
-		$data['delete']=$this->config->item('sale').'product/manufacturer/delete';
+		$data['delete']=$this->config->item('sale').'/product/manufacturer/delete';
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('sale').'product/manufacturer';
+		$config['base_url'] 			= $this->config->item('sale').'/product/manufacturer';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -159,7 +159,7 @@ class Manufacturer extends MY_Controller {
 	{
 		if (!$this->user->hasPermission('modify', 'sale/product/manufacturer')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'product/manufacturer');
+			redirect($this->config->item('sale').'/product/manufacturer');
 			exit();
 		}
 		
@@ -178,7 +178,7 @@ class Manufacturer extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'sale/product/manufacturer')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'product/manufacturer');
+			redirect($this->config->item('sale').'/product/manufacturer');
 			exit();
 		}else {
 			return true;

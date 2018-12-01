@@ -30,7 +30,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->language_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/language');
+			redirect($this->config->item('admin').'/localisation/language');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->language_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/language');
+			redirect($this->config->item('admin').'/localisation/language');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Language extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->language_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/language');
+			redirect($this->config->item('admin').'/localisation/language');
 		}
 		
 		$this->get_list();
@@ -125,9 +125,9 @@ class Language extends MY_Controller {
 		}
 		
 		if($this->input->get('language_id')){
-			$data['action']					=$this->config->item('admin').'localisation/language/edit?language_id='.$this->input->get('language_id');
+			$data['action']					=$this->config->item('admin').'/localisation/language/edit?language_id='.$this->input->get('language_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/language/add';
+			$data['action']					=$this->config->item('admin').'/localisation/language/add';
 		}
 		
 		if(isset($this->error['error_name'])){
@@ -169,7 +169,7 @@ class Language extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/language';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/language';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -196,7 +196,7 @@ class Language extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/language/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/language/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

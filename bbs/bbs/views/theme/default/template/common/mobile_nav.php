@@ -25,13 +25,13 @@
 							<?php foreach(array_chunk($menu['child'], ceil(count($menu['child']) / $menu['column'])) as $child):?>
 							<ul>
 								<?php foreach($child as $child_):?>
-								<li><a href="<?php echo $this->config->item('bbs').'product/category?id='.$menu['category_id'].'_'.$child_['category_id'];?>"><?php echo $child_['name']; ?></a></li>
+								<li><a href="<?php echo $this->config->item('bbs').'/product/category?id='.$menu['category_id'].'_'.$child_['category_id'];?>"><?php echo $child_['name']; ?></a></li>
 								<?php endforeach; ?>
 							</ul>
 							<?php endforeach; ?>
 						</li>
 						<?php else:?>
-						<li><a href="<?php echo $this->config->item('bbs').'product/category?id='.$menu['category_id'];?>"><?php echo $menu['name'];?></a></li>
+						<li><a href="<?php echo $this->config->item('bbs').'/product/category?id='.$menu['category_id'];?>"><?php echo $menu['name'];?></a></li>
 						<?php endif;?>
 						<?php endforeach;?>
 						<?php endif;?>

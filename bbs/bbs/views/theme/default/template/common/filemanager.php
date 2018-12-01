@@ -101,7 +101,7 @@ $('input[name=\'search\']').on('keydown', function(e) {
 });
 
 $('#button-search').on('click', function(e) {
-	var url = '<?php echo $this->config->item('bbs').'common/filemanager?directory='.$directory;?>';
+	var url = '<?php echo $this->config->item('bbs').'/common/filemanager?directory='.$directory;?>';
 		
 	var filter_name = $('input[name=\'search\']').val();
 	
@@ -137,7 +137,7 @@ $('#button-upload').on('click', function() {
 			clearInterval(timer);
 			
 			$.ajax({
-				url: '<?php echo $this->config->item('bbs').'common/filemanager/upload?directory='.$directory;?>',
+				url: '<?php echo $this->config->item('bbs').'/common/filemanager/upload?directory='.$directory;?>',
 				type: 'post',		
 				dataType: 'json',
 				data: new FormData($('#form-upload')[0]),
@@ -189,7 +189,7 @@ $('#button-folder').popover({
 $('#button-folder').on('shown.bs.popover', function() {
 	$('#button-create').on('click', function() {
 		$.ajax({
-			url: '<?php echo $this->config->item('bbs').'common/filemanager/folder?directory='.$directory;?>',
+			url: '<?php echo $this->config->item('bbs').'/common/filemanager/folder?directory='.$directory;?>',
 			type: 'post',		
 			dataType: 'json',
 			data: 'folder=' + encodeURIComponent($('input[name=\'folder\']').val()),
@@ -220,7 +220,7 @@ $('#button-folder').on('shown.bs.popover', function() {
 $('#modal-image #button-delete').on('click', function(e) {
 	if (confirm("<?php echo lang_line('text_confirm');?>")) {
 		$.ajax({
-			url: '<?php echo $this->config->item('bbs').'common/filemanager/delete';?>',
+			url: '<?php echo $this->config->item('bbs').'/common/filemanager/delete';?>',
 			type: 'post',		
 			dataType: 'json',
 			data: $('input[name^=\'path\']:checked'),

@@ -39,7 +39,7 @@ class Check extends MY_Controller {
 			$data['count']				=$stores['count'];
 		}
 		
-		$config['base_url'] 			= $this->config->item('admin').'sale/sale';
+		$config['base_url'] 			= $this->config->item('admin').'/sale/sale';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -76,7 +76,7 @@ class Check extends MY_Controller {
 	public function pass(){
 		if (!$this->user->hasPermission('modify', 'admin/sale/check')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'sale/check');
+			redirect($this->config->item('admin').'/sale/check');
 			exit();
 		}
 		

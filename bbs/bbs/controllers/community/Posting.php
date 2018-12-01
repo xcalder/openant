@@ -87,7 +87,7 @@ class Posting extends CI_Controller {
 		
 		$this->document->setCopyright(lang_line('meta_copyright'));
 		
-		$config['base_url'] 			= $this->config->item('bbs').'community/posting?posting_id='.$this->input->get('posting_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/posting?posting_id='.$this->input->get('posting_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -196,7 +196,7 @@ class Posting extends CI_Controller {
 			$data['users']=false;
 		}
 		
-		$config['base_url'] 			= $this->config->item('bbs').'community/posting/attention_page?posting_id='.$this->input->get('posting_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/posting/attention_page?posting_id='.$this->input->get('posting_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

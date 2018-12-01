@@ -44,7 +44,7 @@
 							$(this).parents('.note-editor').find('.note-editable').focus();
 			
 							$.ajax({
-									url: '<?php echo $this->config->item('bbs').'common/filemanager';?>',
+									url: '<?php echo $this->config->item('bbs').'/common/filemanager';?>',
 									dataType: 'html',
 									beforeSend: function() {
 										NProgress.start();
@@ -85,7 +85,7 @@
 									$('#modal-image').remove();
 			
 									$.ajax({
-											url: '<?php echo $this->config->item('bbs').'common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+											url: '<?php echo $this->config->item('bbs').'/common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
 											dataType: 'html',
 											beforeSend: function() {
 												NProgress.start();
@@ -152,7 +152,7 @@
 			});
 			$(document).ready(function(){
 				//登陆送积分
-				$.get("<?php echo $this->config->item('bbs').'wecome/give_points'?>",function(data,status){
+				$.get("<?php echo $this->config->item('bbs').'/wecome/give_points'?>",function(data,status){
 					if(data.status == 'success'){
 						$.notify({message: data.msg,},{type: 'success',offset: {x: 0,y: 52}});
 					}

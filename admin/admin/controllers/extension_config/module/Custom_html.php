@@ -28,7 +28,7 @@ class Custom_html extends MY_Controller {
 			$this->module_model->update($this->input->post(),'custom_html');
 			
 			$this->session->set_flashdata('success','自定义HTML修改成功！');
-			redirect($this->config->item('admin').'extension_config/module/custom_html');
+			redirect($this->config->item('admin').'/extension_config/module/custom_html');
 		}
 		
 		$this->get_form();
@@ -42,7 +42,7 @@ class Custom_html extends MY_Controller {
 			$this->module_model->add($this->input->post(),'custom_html');
 			
 			$this->session->set_flashdata('success','自定义HTML添加成功！');
-			redirect($this->config->item('admin').'extension_config/module/custom_html');
+			redirect($this->config->item('admin').'/extension_config/module/custom_html');
 		}
 		
 		$this->get_form();
@@ -53,12 +53,12 @@ class Custom_html extends MY_Controller {
 		
 		if($this->input->get('module_id') == NULL){
 			$this->session->set_flashdata('fali','自定义HTML删除失败！');
-			redirect($this->config->item('admin').'extension_config/module/custom_html');
+			redirect($this->config->item('admin').'/extension_config/module/custom_html');
 			return;
 		}
 		if($this->check_modify() && $this->module_model->delete($this->input->get('module_id'))){
 			$this->session->set_flashdata('success','自定义HTML删除成功！');
-			redirect($this->config->item('admin').'extension_config/module/custom_html');
+			redirect($this->config->item('admin').'/extension_config/module/custom_html');
 		}
 		
 		$this->get_list();
@@ -78,13 +78,13 @@ class Custom_html extends MY_Controller {
 	public function get_form()
 	{
 		if($this->input->get('module_id') != NULL){
-			$data['action']=$this->config->item('admin').'extension_config/module/custom_html/edit?module_id='.$this->input->get('module_id');
+			$data['action']=$this->config->item('admin').'/extension_config/module/custom_html/edit?module_id='.$this->input->get('module_id');
 			//查数据
 			$module=$this->module_model->get_modules_for_module_id($this->input->get('module_id'));
 			//var_dump($data['module']);
 			
 		}else{
-			$data['action']=$this->config->item('admin').'extension_config/module/custom_html/add';
+			$data['action']=$this->config->item('admin').'/extension_config/module/custom_html/add';
 		}
 		
 		if($this->input->post() != NULL){
@@ -105,7 +105,7 @@ class Custom_html extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/module/custom_html')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'extension_config/module/custom_html');
+			redirect($this->config->item('admin').'/extension_config/module/custom_html');
 			exit();
 		}else {
 			return true;

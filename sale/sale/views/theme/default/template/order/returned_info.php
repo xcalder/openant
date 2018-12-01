@@ -47,8 +47,8 @@
 				<tbody>
 				
 					<tr>
-						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo $this->config->item('sale').'product?product_id='.$return_info['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($return_info['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $return_info['name']; ?>"></a></td>
-						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('sale').'product?product_id='.$return_info['product_id'];?>"><?php echo $return_info['name']; ?></a></span><span class="value"><?php echo !empty($return_info['option']) ? $return_info['option'] : '';?></span></td>
+						<td class="col-md-1 col-sm-1 col-xs-2 text-left border-right"><a target="_blank" href="<?php echo $this->config->item('sale').'/product?product_id='.$return_info['product_id'];?>"><img width="<?php echo $this->config->get_config('wish_cart_image_size_b_w');?>px" height="<?php echo $this->config->get_config('wish_cart_image_size_b_h');?>px" class="media-object lazy" data-original="<?php echo $this->image_common->resize($return_info['image'], $this->config->get_config('wish_cart_image_size_b_w'), $this->config->get_config('wish_cart_image_size_b_h'));?>" alt="<?php echo $return_info['name']; ?>"></a></td>
+						<td class="text-left col-md-3 col-sm-3 col-xs-4 border-right"><span><a target="_blank" href="<?php echo $this->config->item('sale').'/product?product_id='.$return_info['product_id'];?>"><?php echo $return_info['name']; ?></a></span><span class="value"><?php echo !empty($return_info['option']) ? $return_info['option'] : '';?></span></td>
 						<td class="col-md-2 col-sm-2 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($return_info['price'] * $return_info['currency_value']);?></b></strong></td>
 						<td class="col-md-2 col-sm-2 col-xs-2 text-center border-right"><?php echo $return_info['quantity']; ?></td>
 						<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><strong style="color: red"><?php echo $this->currency->Compute($return_info['return_amount']  * $return_info['currency_value']); ?></b></strong></td>
@@ -82,7 +82,7 @@
 			<?php if($return_info['return_history'][0]['return_status_id'] == $this->config->get_config('request_refund')):?>
 			退款处理
 			<hr>
-			<form action="<?php echo $this->config->item('sale').'order/returned/action?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<form action="<?php echo $this->config->item('sale').'/order/returned/action?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-12" for="comment">退款说明</div>
 				<div class="col-sm-12">
@@ -122,7 +122,7 @@
 		<?php if($return_info['return_history'][0]['return_status_id'] == $this->config->get_config('wait_m_returns')):?>
 			退款处理
 			<hr>
-			<form action="<?php echo $this->config->item('sale').'order/returned/mode?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<form action="<?php echo $this->config->item('sale').'/order/returned/mode?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 				<div class="form-group">
 					<div class="col-sm-12" for="return_mode">退款方式</div>
 					<div class="col-sm-12">

@@ -8,7 +8,7 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;税率列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'localisation/tax_rate/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/localisation/tax_rate/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除税率参数吗？') ? $('#form-tax_rate').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -39,7 +39,7 @@
 						<td><?php echo $tax_rate['geo_zone_name'];?></td>
 						<td><?php echo $tax_rate['date_added'];?></td>
 						<td><?php echo $tax_rate['date_modified'];?></td>
-						<td class="text-right"><a href="<?php echo $this->config->item('admin').'localisation/tax_rate/edit?tax_rate_id='.$tax_rate['tax_rate_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo $this->config->item('admin').'/localisation/tax_rate/edit?tax_rate_id='.$tax_rate['tax_rate_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

@@ -12,7 +12,7 @@
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo $this->config->item('admin').'user/user';?>" class="btn btn-sm btn-default">
+						<a href="<?php echo $this->config->item('admin').'/user/user';?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>
@@ -764,7 +764,7 @@
 	{
 		$.ajax(
 			{
-				url: "<?php echo $this->config->item('admin').'localisation/country/get_country?country_id=';?>" + element.value,
+				url: "<?php echo $this->config->item('admin').'/localisation/country/get_country?country_id=';?>" + element.value,
 				dataType: 'json',
 				beforeSend: function()
 				{
@@ -820,7 +820,7 @@
 	{
 		$.ajax(
 			{
-				url: '<?php echo $this->config->item('admin').'user/user/add_history?user_id='.$user_id;?>',
+				url: '<?php echo $this->config->item('admin').'/user/user/add_history?user_id='.$user_id;?>',
 				type: 'post',
 				dataType: 'html',
 				data: 'comment=' + encodeURIComponent($('#tab-history textarea[name=\'user_history[comment]\']').val()),
@@ -847,7 +847,7 @@
 	{
 		$.ajax(
 			{
-				url: '<?php echo $this->config->item('admin').'user/user/add_transaction?user_id='.$user_id;?>',
+				url: '<?php echo $this->config->item('admin').'/user/user/add_transaction?user_id='.$user_id;?>',
 				type: 'post',
 				dataType: 'html',
 				data: 'description=' + encodeURIComponent($('#tab-transaction input[name=\'transaction[description]\']').val())+'&amount=' + encodeURIComponent($('#tab-transaction input[name=\'transaction[amount]\']').val()),
@@ -875,7 +875,7 @@
 	{
 		$.ajax(
 			{
-				url: '<?php echo $this->config->item('admin').'user/user/add_reward?user_id='.$user_id;?>',
+				url: '<?php echo $this->config->item('admin').'/user/user/add_reward?user_id='.$user_id;?>',
 				type: 'post',
 				dataType: 'html',
 				data: 'description=' + encodeURIComponent($('#tab-reward input[name=\'reward[description]\']').val())+'&points=' + encodeURIComponent($('#tab-reward input[name=\'reward[points]\']').val()),

@@ -71,7 +71,7 @@ class Wecome extends CI_Controller {
 		
 		if(!$postings){
 		    $msg = '没有找到答案？去提问';
-		    $msg_url = $this->config->item('bbs').'community/release';
+		    $msg_url = $this->config->item('bbs').'/community/release';
 		    $this->document->setTitle('页面不存在');
 		    $this->header->no_find($msg, $msg_url);
 		    exit();

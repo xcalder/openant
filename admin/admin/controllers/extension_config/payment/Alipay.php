@@ -23,7 +23,7 @@ class Alipay extends MY_Controller {
 			$this->setting_model->edit($this->input->post(),'payment');
 			
 			$this->session->set_flashdata('success','支付宝支付接口修改成功！');
-			redirect($this->config->item('admin').'common/extension/payment');
+			redirect($this->config->item('admin').'/common/extension/payment');
 		}
 		
 		$value=$this->setting_model->get_setting('payment', 'alipay');
@@ -39,7 +39,7 @@ class Alipay extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/payment/alipay')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/extension/payment');
+			redirect($this->config->item('admin').'/common/extension/payment');
 			exit();
 		}else {
 			return true;

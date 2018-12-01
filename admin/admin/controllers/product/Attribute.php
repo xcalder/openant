@@ -36,7 +36,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->edit_attribute($data);
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->add_attribute($data);
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 		}
 		
 		$this->get_form();
@@ -69,7 +69,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->edit_attribute_group($data);
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 		}
 		
 		$this->get_form();
@@ -85,7 +85,7 @@ class Attribute extends MY_Controller {
 			
 			$this->attribute_model->add_attribute_group($data);
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 		}
 		
 		$this->get_form();
@@ -98,7 +98,7 @@ class Attribute extends MY_Controller {
 		if(!empty($this->input->post('selected')) && $this->validate_delete_attribute($this->input->post('selected'))){
 			$this->attribute_model->delete_attribute($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 			
 		}
 		$this->get_list();
@@ -111,7 +111,7 @@ class Attribute extends MY_Controller {
 		if(!empty($this->input->post('selected_group')) && $this->validate_delete_attribute_group($this->input->post('selected_group'))){
 			$this->attribute_model->delete_attribute_group($this->input->post('selected_group'));
 			
-			redirect($this->config->item('admin').'product/attribute');
+			redirect($this->config->item('admin').'/product/attribute');
 			
 		}
 		$this->get_list();
@@ -170,15 +170,15 @@ class Attribute extends MY_Controller {
 		
 		
 		if($this->input->get('attribute_id')){
-			$data['attribute_action']	=$this->config->item('admin').'product/attribute/edit_attribute?attribute_id='.$this->input->get('attribute_id');
+			$data['attribute_action']	=$this->config->item('admin').'/product/attribute/edit_attribute?attribute_id='.$this->input->get('attribute_id');
 		}else{
-			$data['attribute_action']	=$this->config->item('admin').'product/attribute/add_attribute';
+			$data['attribute_action']	=$this->config->item('admin').'/product/attribute/add_attribute';
 		}
 		
 		if($this->input->get('attribute_group_id')){
-			$data['attribute_group_action']	=$this->config->item('admin').'product/attribute/edit_attribute_group?attribute_group_id='.$this->input->get('attribute_group_id');
+			$data['attribute_group_action']	=$this->config->item('admin').'/product/attribute/edit_attribute_group?attribute_group_id='.$this->input->get('attribute_group_id');
 		}else{
-			$data['attribute_group_action']	=$this->config->item('admin').'product/attribute/add_attribute_group';
+			$data['attribute_group_action']	=$this->config->item('admin').'/product/attribute/add_attribute_group';
 		}
 		
 		if(isset($this->error['attribute_description'])){
@@ -221,7 +221,7 @@ class Attribute extends MY_Controller {
 		$data['attribute_groups']		=$attribute_groups['attribute_groups'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/attribute';
+		$config['base_url'] 			= $this->config->item('admin').'/product/attribute';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'attribute_page';
@@ -249,7 +249,7 @@ class Attribute extends MY_Controller {
 		$data['attributes_pagination'] = $this->pagination->create_links();
 		
 		//分页
-		$config1['base_url'] 			= $this->config->item('admin').'product/attribute';
+		$config1['base_url'] 			= $this->config->item('admin').'/product/attribute';
 		$config1['num_links'] 			= 2;
 		$config1['page_query_string'] 	= TRUE;
 		$config1['query_string_segment'] = 'attribute_group_page';
@@ -276,8 +276,8 @@ class Attribute extends MY_Controller {
 
 		$data['attribute_group_pagination'] = $this->pagination->create_links();
 		
-		$data['attribute_delete']		=$this->config->item('admin').'product/attribute/delete_attribute';
-		$data['attribute_group_delete']	=$this->config->item('admin').'product/attribute/delete_attribute_group';
+		$data['attribute_delete']		=$this->config->item('admin').'/product/attribute/delete_attribute';
+		$data['attribute_group_delete']	=$this->config->item('admin').'/product/attribute/delete_attribute_group';
 		
 		$data['header']					=$this->header->index();
 		$data['top']					=$this->header->top();

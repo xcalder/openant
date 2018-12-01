@@ -30,7 +30,7 @@ class Country extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->country_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/country');
+			redirect($this->config->item('admin').'/localisation/country');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Country extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->country_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/country');
+			redirect($this->config->item('admin').'/localisation/country');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Country extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->country_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/country');
+			redirect($this->config->item('admin').'/localisation/country');
 		}
 		
 		$this->get_list();
@@ -115,9 +115,9 @@ class Country extends MY_Controller {
 		}
 		
 		if($this->input->get('country_id')){
-			$data['action']					=$this->config->item('admin').'localisation/country/edit?country_id='.$this->input->get('country_id');
+			$data['action']					=$this->config->item('admin').'/localisation/country/edit?country_id='.$this->input->get('country_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/country/add';
+			$data['action']					=$this->config->item('admin').'/localisation/country/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -148,7 +148,7 @@ class Country extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/country';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/country';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -175,7 +175,7 @@ class Country extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/country/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/country/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

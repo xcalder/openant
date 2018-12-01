@@ -50,7 +50,7 @@
 									<button type="button" class="btn btn-success btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="上架" <?php echo ($product['status'] == '0' && $product['invalid'] == '0' && $product['date_invalid'] < date("Y-m-d H:i:s")) ? '' : 'disabled="disabled"';?> onclick="added('<?php echo $product['product_id'];?>');"><i class="glyphicon glyphicon-arrow-up"></i></button>
 									<button type="button" class="btn btn-warning btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="下架" <?php echo ($product['status'] == '1' && $product['invalid'] == '0' && $product['date_invalid'] < date("Y-m-d H:i:s")) ? '' : 'disabled="disabled"';?> onclick="shelves('<?php echo $product['product_id'];?>');"><i class="glyphicon glyphicon-arrow-down"></i></button>
 									<button type="button" class="btn btn-danger hidden-xs btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="删除" onclick="product_delete('<?php echo $product['product_id'];?>');"><i class="glyphicon glyphicon-remove"></i></button>
-									<a class="btn btn-info hidden-xs btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑" <?php echo ($product['invalid'] == '0' && $product['date_invalid'] < date("Y-m-d H:i:s")) ? 'href="'.$this->config->item('sale').'product/product/edit?product_id='.$product['product_id'].'"' : 'disabled="disabled"';?> onclick="invalid('<?php echo $product['product_id'];?>','always');"><i class="glyphicon glyphicon-edit"></i></a>
+									<a class="btn btn-info hidden-xs btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑" <?php echo ($product['invalid'] == '0' && $product['date_invalid'] < date("Y-m-d H:i:s")) ? 'href="'.$this->config->item('sale').'/product/product/edit?product_id='.$product['product_id'].'"' : 'disabled="disabled"';?> onclick="invalid('<?php echo $product['product_id'];?>','always');"><i class="glyphicon glyphicon-edit"></i></a>
 								</div>
 							</td>
 						</tr>
@@ -79,7 +79,7 @@
 <script>     
 function added(product_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('sale').'product/product/added';?>',
+		url: '<?php echo $this->config->item('sale').'/product/product/added';?>',
 		type: 'post',
 		data: 'selected=' + product_id,
 		beforeSend: function() {
@@ -96,7 +96,7 @@ function added(product_id){
 
 function shelves(product_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('sale').'product/product/shelves';?>',
+		url: '<?php echo $this->config->item('sale').'/product/product/shelves';?>',
 		type: 'post',
 		data: 'selected=' + product_id,
 		beforeSend: function() {
@@ -113,7 +113,7 @@ function shelves(product_id){
 
 function product_delete(product_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('sale').'product/product/delete';?>',
+		url: '<?php echo $this->config->item('sale').'/product/product/delete';?>',
 		type: 'post',
 		data: 'selected=' + product_id,
 		beforeSend: function() {

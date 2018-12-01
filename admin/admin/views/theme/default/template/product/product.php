@@ -101,7 +101,7 @@
 <script>     
 function invalid(product_id,date){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'product/product/invalid';?>',
+		url: '<?php echo $this->config->item('admin').'/product/product/invalid';?>',
 		type: 'post',
 		data: 'product_id=' + product_id +'&date_invalid=' + date,
 		beforeSend: function() {
@@ -118,7 +118,7 @@ function invalid(product_id,date){
 
 function uninvalid(product_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'product/product/uninvalid';?>',
+		url: '<?php echo $this->config->item('admin').'/product/product/uninvalid';?>',
 		type: 'post',
 		data: 'product_id=' + product_id,
 		beforeSend: function() {

@@ -26,7 +26,7 @@ class Footer_html extends MY_Controller {
 				$this->overall_model->add($data, 'overall', 'footer_html');
 			}
 			
-			redirect($this->config->item('admin').'common/extension/overall');
+			redirect($this->config->item('admin').'/common/extension/overall');
 			exit;
 		}
 		
@@ -43,7 +43,7 @@ class Footer_html extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/overall/footer_html')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/extension/overall');
+			redirect($this->config->item('admin').'/common/extension/overall');
 			exit();
 		}else {
 			return true;

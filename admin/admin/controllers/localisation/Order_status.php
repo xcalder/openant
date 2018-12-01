@@ -30,7 +30,7 @@ class Order_status extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->order_status_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/order_status');
+			redirect($this->config->item('admin').'/localisation/order_status');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Order_status extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->order_status_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/order_status');
+			redirect($this->config->item('admin').'/localisation/order_status');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Order_status extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->order_status_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/order_status');
+			redirect($this->config->item('admin').'/localisation/order_status');
 		}
 		
 		$this->get_list();
@@ -83,9 +83,9 @@ class Order_status extends MY_Controller {
 		}
 		
 		if($this->input->get('order_status_id')){
-			$data['action']					=$this->config->item('admin').'localisation/order_status/edit?order_status_id='.$this->input->get('order_status_id');
+			$data['action']					=$this->config->item('admin').'/localisation/order_status/edit?order_status_id='.$this->input->get('order_status_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/order_status/add';
+			$data['action']					=$this->config->item('admin').'/localisation/order_status/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -116,7 +116,7 @@ class Order_status extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/order_status';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/order_status';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -143,7 +143,7 @@ class Order_status extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/order_status/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/order_status/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

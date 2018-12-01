@@ -27,7 +27,7 @@ class User_online extends MY_Controller {
 		
 		$user_onlines					=$this->user_online_model->get_user_onlines($data);
 		
-		$config['base_url'] 			= $this->config->item('admin').'user/user_online';
+		$config['base_url'] 			= $this->config->item('admin').'/user/user_online';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

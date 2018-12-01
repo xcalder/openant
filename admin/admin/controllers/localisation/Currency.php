@@ -30,7 +30,7 @@ class Currency extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->currency_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/currency');
+			redirect($this->config->item('admin').'/localisation/currency');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Currency extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->currency_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/currency');
+			redirect($this->config->item('admin').'/localisation/currency');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Currency extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->currency_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/currency');
+			redirect($this->config->item('admin').'/localisation/currency');
 		}
 		
 		$this->get_list();
@@ -125,9 +125,9 @@ class Currency extends MY_Controller {
 		}
 		
 		if($this->input->get('currency_id')){
-			$data['action']					=$this->config->item('admin').'localisation/currency/edit?currency_id='.$this->input->get('currency_id');
+			$data['action']					=$this->config->item('admin').'/localisation/currency/edit?currency_id='.$this->input->get('currency_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/currency/add';
+			$data['action']					=$this->config->item('admin').'/localisation/currency/add';
 		}
 		
 		if(isset($this->error['error_title'])){
@@ -161,7 +161,7 @@ class Currency extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/currency';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/currency';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -188,7 +188,7 @@ class Currency extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/currency/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/currency/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

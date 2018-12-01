@@ -32,7 +32,7 @@ class Bbs_setting extends MY_Controller{
 			$this->setting_model->edit($this->input->post(), 'config');
 			$this->session->set_flashdata('success', '成功：修改论坛配置成功！');
 			
-			redirect($this->config->item('admin').'common/extension/overall');
+			redirect($this->config->item('admin').'/common/extension/overall');
 			exit;
 		}
 
@@ -60,7 +60,7 @@ class Bbs_setting extends MY_Controller{
 			$data['bbs_login_points']=$this->config->get_config('bbs_login_points');
 		}
 		
-		$data['action'] = $this->config->item('admin').'extension_config/overall/bbs_setting';
+		$data['action'] = $this->config->item('admin').'/extension_config/overall/bbs_setting';
 		
 		$data['header']=$this->header->index();
 		$data['top_nav']=$this->header->top();

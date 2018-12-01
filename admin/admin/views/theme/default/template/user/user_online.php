@@ -48,7 +48,7 @@
 <script>
 	function add_ban_ip(ip,id){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'user/user/add_ban_ip';?>',
+		url: '<?php echo $this->config->item('admin').'/user/user/add_ban_ip';?>',
 		type: 'post',
 		data: 'ip=' + ip,
 		beforeSend: function() {

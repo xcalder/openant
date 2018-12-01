@@ -30,7 +30,7 @@ class User_activity extends MY_Controller {
 		
 		$user_activitys					=$this->user_activity_model->get_user_activetys($data);
 		
-		$config['base_url'] 			= $this->config->item('admin').'user/user_activity';
+		$config['base_url'] 			= $this->config->item('admin').'/user/user_activity';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

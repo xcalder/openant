@@ -30,7 +30,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->tax_rate_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/tax_rate');
+			redirect($this->config->item('admin').'/localisation/tax_rate');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->tax_rate_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/tax_rate');
+			redirect($this->config->item('admin').'/localisation/tax_rate');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Tax_rate extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->tax_rate_model->delete_tax_rate($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/tax_rate');
+			redirect($this->config->item('admin').'/localisation/tax_rate');
 		}
 		
 		$this->get_list();
@@ -107,9 +107,9 @@ class Tax_rate extends MY_Controller {
 		}
 		
 		if($this->input->get('tax_rate_id')){
-			$data['action']					=$this->config->item('admin').'localisation/tax_rate/edit?tax_rate_id='.$this->input->get('tax_rate_id');
+			$data['action']					=$this->config->item('admin').'/localisation/tax_rate/edit?tax_rate_id='.$this->input->get('tax_rate_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/tax_rate/add';
+			$data['action']					=$this->config->item('admin').'/localisation/tax_rate/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -145,7 +145,7 @@ class Tax_rate extends MY_Controller {
 		}
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/tax_rate';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/tax_rate';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -172,7 +172,7 @@ class Tax_rate extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/tax_rate/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/tax_rate/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

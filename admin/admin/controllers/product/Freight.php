@@ -39,7 +39,7 @@ class Freight extends MY_Controller
 
 			$this->freight_model->edit_freight($data);
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 		}
 
 		$this->get_form();
@@ -56,7 +56,7 @@ class Freight extends MY_Controller
 
 			$this->freight_model->add_freight($data);
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 		}
 
 		$this->get_form();
@@ -74,7 +74,7 @@ class Freight extends MY_Controller
 
 			$this->freight_model->edit_freight_template($data);
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 		}
 
 		$this->get_form();
@@ -91,7 +91,7 @@ class Freight extends MY_Controller
 
 			$this->freight_model->add_freight_template($data);
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 		}
 
 		$this->get_form();
@@ -105,7 +105,7 @@ class Freight extends MY_Controller
 		{
 			$this->freight_model->delete_freight($this->input->post('selected'));
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 
 		}
 		$this->get_list();
@@ -119,7 +119,7 @@ class Freight extends MY_Controller
 		{
 			$this->freight_model->delete_freight_template($this->input->post('selected_group'));
 
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 
 		}
 		$this->get_list();
@@ -235,20 +235,20 @@ class Freight extends MY_Controller
 
 		if($this->input->get('freight_id'))
 		{
-			$data['freight_action'] = $this->config->item('admin').'product/freight/edit_freight?freight_id='.$this->input->get('freight_id');
+			$data['freight_action'] = $this->config->item('admin').'/product/freight/edit_freight?freight_id='.$this->input->get('freight_id');
 		}
 		else
 		{
-			$data['freight_action'] = $this->config->item('admin').'product/freight/add_freight';
+			$data['freight_action'] = $this->config->item('admin').'/product/freight/add_freight';
 		}
 
 		if($this->input->get('freight_template_id'))
 		{
-			$data['freight_template_action'] = $this->config->item('admin').'product/freight/edit_freight_template?freight_template_id='.$this->input->get('freight_template_id');
+			$data['freight_template_action'] = $this->config->item('admin').'/product/freight/edit_freight_template?freight_template_id='.$this->input->get('freight_template_id');
 		}
 		else
 		{
-			$data['freight_template_action'] = $this->config->item('admin').'product/freight/add_freight_template';
+			$data['freight_template_action'] = $this->config->item('admin').'/product/freight/add_freight_template';
 		}
 
 		if(isset($this->error['freight_description']))
@@ -300,7 +300,7 @@ class Freight extends MY_Controller
 		$data['freight_templates'] = $freight_templates['freight_templates'];
 
 		//分页
-		$config['base_url'] = $this->config->item('admin').'product/freight';
+		$config['base_url'] = $this->config->item('admin').'/product/freight';
 		$config['num_links'] = 2;
 		$config['page_query_string'] = TRUE;
 		$config['query_string_segment'] = 'freight_page';
@@ -328,7 +328,7 @@ class Freight extends MY_Controller
 		$data['freights_pagination'] = $this->pagination->create_links();
 
 		//分页
-		$config1['base_url'] = $this->config->item('admin').'product/freight';
+		$config1['base_url'] = $this->config->item('admin').'/product/freight';
 		$config1['num_links'] = 2;
 		$config1['page_query_string'] = TRUE;
 		$config1['query_string_segment'] = 'freight_template_page';
@@ -355,8 +355,8 @@ class Freight extends MY_Controller
 
 		$data['freight_template_pagination'] = $this->pagination->create_links();
 
-		$data['freight_delete'] = $this->config->item('admin').'product/freight/delete_freight';
-		$data['freight_template_delete'] = $this->config->item('admin').'product/freight/delete_freight_template';
+		$data['freight_delete'] = $this->config->item('admin').'/product/freight/delete_freight';
+		$data['freight_template_delete'] = $this->config->item('admin').'/product/freight/delete_freight_template';
 
 		$data['header'] = $this->header->index();
 		$data['top'] = $this->header->top();
@@ -370,7 +370,7 @@ class Freight extends MY_Controller
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/freight')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 			exit();
 		}
 		
@@ -394,7 +394,7 @@ class Freight extends MY_Controller
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/freight')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 			exit();
 		}
 		
@@ -418,7 +418,7 @@ class Freight extends MY_Controller
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/freight')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 			exit();
 		}
 		
@@ -442,7 +442,7 @@ class Freight extends MY_Controller
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/freight')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/freight');
+			redirect($this->config->item('admin').'/product/freight');
 			exit();
 		}
 		

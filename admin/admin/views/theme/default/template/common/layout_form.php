@@ -15,7 +15,7 @@
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo $this->config->item('admin').'common/layout';?>" class="btn btn-sm btn-default">
+						<a href="<?php echo $this->config->item('admin').'/common/layout';?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>

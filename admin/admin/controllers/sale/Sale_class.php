@@ -32,7 +32,7 @@ class Sale_class extends MY_Controller {
 			
 			$this->sale_class_model->add_sale_class($this->input->post());
 			
-			redirect($this->config->item('admin').'sale/sale_class');
+			redirect($this->config->item('admin').'/sale/sale_class');
 		}
 		
 		$this->get_from();
@@ -58,7 +58,7 @@ class Sale_class extends MY_Controller {
 			
 			$this->sale_class_model->edit_sale_class_description($this->input->get('sale_class_id'), $description);
 			
-			redirect($this->config->item('admin').'sale/sale_class');
+			redirect($this->config->item('admin').'/sale/sale_class');
 		}
 		
 		$this->get_from();
@@ -72,7 +72,7 @@ class Sale_class extends MY_Controller {
 			$this->sale_class_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：商家组删除成功！');
-			redirect($this->config->item('admin').'sale/sale_class');
+			redirect($this->config->item('admin').'/sale/sale_class');
 		}
 		
 		$this->get_list();
@@ -92,7 +92,7 @@ class Sale_class extends MY_Controller {
 		$data['count']					=$sale_classs['count'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'sale/sale_class';
+		$config['base_url'] 			= $this->config->item('admin').'/sale/sale_class';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -119,7 +119,7 @@ class Sale_class extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'sale/sale_class/delete';
+		$data['delete']					=$this->config->item('admin').'/sale/sale_class/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
@@ -163,9 +163,9 @@ class Sale_class extends MY_Controller {
 		$data['error']					=$this->error;
 		
 		if($this->input->get('sale_class_id')){
-			$data['action']=$this->config->item('admin').'sale/sale_class/edit?sale_class_id='.$this->input->get('sale_class_id');
+			$data['action']=$this->config->item('admin').'/sale/sale_class/edit?sale_class_id='.$this->input->get('sale_class_id');
 		}else{
-			$data['action']=$this->config->item('admin').'sale/sale_class/add';
+			$data['action']=$this->config->item('admin').'/sale/sale_class/add';
 		}
 		
 		$this->load->view('theme/default/template/sale/sale_class_from',$data);

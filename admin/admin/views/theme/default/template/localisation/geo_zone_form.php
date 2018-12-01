@@ -9,7 +9,7 @@
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑区域设置</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
 			  <button type="button" onclick="submit('form-geo_zone')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo $this->config->item('admin').'localisation/geo_zone';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <a href="<?php echo $this->config->item('admin').'/localisation/geo_zone';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->
@@ -56,7 +56,7 @@
 							<?php foreach($zone_to_geo_zones as $zone_to_geo_zone):?>
 							<tr id="zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>">
 								<td>
-									<select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row;?>][country_id]" id="country<?php echo $zone_to_geo_zone_row; ?>" class="form-control" onchange="$('#zone<?php echo $zone_to_geo_zone_row; ?>').load('<?php echo $this->config->item('admin').'localisation/geo_zone/zone?country_id=';?>' + this.value + '&zone_id=0');">
+									<select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row;?>][country_id]" id="country<?php echo $zone_to_geo_zone_row; ?>" class="form-control" onchange="$('#zone<?php echo $zone_to_geo_zone_row; ?>').load('<?php echo $this->config->item('admin').'/localisation/geo_zone/zone?country_id=';?>' + this.value + '&zone_id=0');">
 										<?php foreach ($countrys as $country):?>
 										<?php if($zone_to_geo_zone['country_id'] == $country['country_id']):?>
 										<option value="<?php echo $country['country_id'];?>" selected><?php echo $country['name'];?></option>
@@ -100,13 +100,13 @@
 <!-- /container -->
 
 <script>
-$('#zone-id').load('<?php echo $this->config->item('admin').'localisation/geo_zone/zone?country_id=';?>' + $('#country-id').attr('value') + '&zone_id=0');
+$('#zone-id').load('<?php echo $this->config->item('admin').'/localisation/geo_zone/zone?country_id=';?>' + $('#country-id').attr('value') + '&zone_id=0');
 
 
 <?php $zone_to_geo_zone_row = 0; ?>
 <?php if(isset($zone_to_geo_zones) && is_array($zone_to_geo_zones)):?>
 <?php foreach ($zone_to_geo_zones as $zone_to_geo_zone):?>
-$('#zone<?php echo $zone_to_geo_zone_row; ?>').load('<?php echo $this->config->item('admin').'localisation/geo_zone/zone?country_id='.$zone_to_geo_zone['country_id'].'&zone_id='.$zone_to_geo_zone['zone_id'];?>');
+$('#zone<?php echo $zone_to_geo_zone_row; ?>').load('<?php echo $this->config->item('admin').'/localisation/geo_zone/zone?country_id='.$zone_to_geo_zone['country_id'].'&zone_id='.$zone_to_geo_zone['zone_id'];?>');
 <?php $zone_to_geo_zone_row++; ?>
 <?php endforeach;?>
 <?php endif;?>
@@ -116,7 +116,7 @@ var zone_to_geo_zone_row = <?php echo $zone_to_geo_zone_row; ?>;
 
 function addGeoZone() {
 	html  = '<tr id="zone-to-geo-zone-row' + zone_to_geo_zone_row + '">';
-	html += '  <td><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][country_id]" id="country' + zone_to_geo_zone_row + '" class="form-control" onchange="$(\'#zone' + zone_to_geo_zone_row + '\').load(\'<?php echo $this->config->item('admin').'localisation/geo_zone/zone?country_id='?>\' + this.value + \'&zone_id=0\');">';
+	html += '  <td><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][country_id]" id="country' + zone_to_geo_zone_row + '" class="form-control" onchange="$(\'#zone' + zone_to_geo_zone_row + '\').load(\'<?php echo $this->config->item('admin').'/localisation/geo_zone/zone?country_id='?>\' + this.value + \'&zone_id=0\');">';
 	<?php foreach ($countrys as $country):?>
 	html += '<option value="<?php echo $country['country_id']; ?>"><?php echo addslashes($country['name']); ?></option>';
 	<?php endforeach;?>   
@@ -127,7 +127,7 @@ function addGeoZone() {
 	
 	$('#zone-to-geo-zone tbody').append(html);
 		
-	$('#zone' + zone_to_geo_zone_row).load('<?php echo $this->config->item('admin').'localisation/geo_zone/zone?country_id=';?>' + $('#country' + zone_to_geo_zone_row).attr('value') + '&zone_id=0');
+	$('#zone' + zone_to_geo_zone_row).load('<?php echo $this->config->item('admin').'/localisation/geo_zone/zone?country_id=';?>' + $('#country' + zone_to_geo_zone_row).attr('value') + '&zone_id=0');
 	
 	zone_to_geo_zone_row++;
 } 

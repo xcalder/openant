@@ -15,7 +15,7 @@
 							<i class="glyphicon glyphicon-floppy-save">
 							</i>
 						</button>
-						<a href="<?php echo $this->config->item('admin').'common/banner';?>" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="返回">
+						<a href="<?php echo $this->config->item('admin').'/common/banner';?>" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="返回">
 							<i class="glyphicon glyphicon-share-alt">
 							</i>
 						</a>

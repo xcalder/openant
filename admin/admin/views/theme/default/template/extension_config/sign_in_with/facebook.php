@@ -9,12 +9,12 @@
 	        <p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>&nbsp;facebook登陆插件设置</p>
 	    	<div class="navbar-right btn-group" style="margin-right: 0">
 			  <button type="button" onclick="submit('form-download')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-			  <a href="<?php echo $this->config->item('admin').'common/extension/sign_in_with';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+			  <a href="<?php echo $this->config->item('admin').'/common/extension/sign_in_with';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->
         <div class="panel-body page-tab">
-          <form action="<?php echo $this->config->item('admin').'extension_config/sign_in_with/facebook/add';?>" method="post" enctype="multipart/form-data" id="form-download" class="form-horizontal">
+          <form action="<?php echo $this->config->item('admin').'/extension_config/sign_in_with/facebook/add';?>" method="post" enctype="multipart/form-data" id="form-download" class="form-horizontal">
           	<div class="form-group">
 				<label class="col-sm-2 control-label" for="appid"><span style="color: red">*&nbsp;</span>APP ID:</label>
 				<div class="col-sm-10">

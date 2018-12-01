@@ -32,10 +32,10 @@ class Review extends MY_Controller {
 		$reviews_nifo=$this->review_model->get_reviews($data);
 		$data['reviews']=$reviews_nifo['reviews'];
 		
-		$data['delete']=$this->config->item('sale').'product/review/delete';
+		$data['delete']=$this->config->item('sale').'/product/review/delete';
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('sale').'product/review';
+		$config['base_url'] 			= $this->config->item('sale').'/product/review';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';

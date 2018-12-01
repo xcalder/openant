@@ -30,7 +30,7 @@ class Competence extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->competence_model->add($this->input->post());
 			$this->session->set_flashdata('success', '新增成功！');
-			redirect($this->config->item('admin').'common/competence');
+			redirect($this->config->item('admin').'/common/competence');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Competence extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->competence_model->edit($this->input->post());
 			$this->session->set_flashdata('success', '修改成功！');
-			redirect($this->config->item('admin').'common/competence');
+			redirect($this->config->item('admin').'/common/competence');
 		}
 		
 		$this->get_form();
@@ -57,7 +57,7 @@ class Competence extends MY_Controller {
 			
 			$this->competence_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'common/competence');
+			redirect($this->config->item('admin').'/common/competence');
 		}
 		
 		$this->get_list();
@@ -100,9 +100,9 @@ class Competence extends MY_Controller {
 		}
 		
 		if($this->input->get('competence_id')){
-			$data['action']					=$this->config->item('admin').'common/competence/edit?competence_id='.$this->input->get('competence_id');
+			$data['action']					=$this->config->item('admin').'/common/competence/edit?competence_id='.$this->input->get('competence_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'common/competence/add';
+			$data['action']					=$this->config->item('admin').'/common/competence/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -133,7 +133,7 @@ class Competence extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'common/competence';
+		$config['base_url'] 			= $this->config->item('admin').'/common/competence';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -160,7 +160,7 @@ class Competence extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'common/competence/delete';
+		$data['delete']					=$this->config->item('admin').'/common/competence/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
@@ -172,7 +172,7 @@ class Competence extends MY_Controller {
 	public function validate_form(){
 		if (!$this->user->hasPermission('modify', 'admin/common/competence')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/competence');
+			redirect($this->config->item('admin').'/common/competence');
 			exit();
 		}
 		
@@ -189,7 +189,7 @@ class Competence extends MY_Controller {
 	public function check_delete(){
 		if (!$this->user->hasPermission('modify', 'admin/common/competence')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/competence');
+			redirect($this->config->item('admin').'/common/competence');
 			exit();
 		}
 	}

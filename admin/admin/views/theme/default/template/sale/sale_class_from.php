@@ -9,7 +9,7 @@
         	<h3 class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;修改商家组</h3>
         	<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
 				<button type="button" onclick="submit('form-sale-class-edit')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-				<a href="<?php echo $this->config->item('admin').'sale/sale_class';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/sale/sale_class';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 			</div>
         </div>
         <!-- /widget-header -->

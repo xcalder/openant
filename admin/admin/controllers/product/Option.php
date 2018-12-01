@@ -36,7 +36,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->edit_option($data);
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->add_option($data);
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 		}
 		
 		$this->get_form();
@@ -69,7 +69,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->edit_option_group($data);
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 		}
 		
 		$this->get_form();
@@ -85,7 +85,7 @@ class Option extends MY_Controller {
 			
 			$this->option_model->add_option_group($data);
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 		}
 		
 		$this->get_form();
@@ -98,7 +98,7 @@ class Option extends MY_Controller {
 		if(!empty($this->input->post('selected')) && $this->validate_delete_option($this->input->post('selected'))){
 			$this->option_model->delete_option($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			
 		}
 		$this->get_list();
@@ -111,7 +111,7 @@ class Option extends MY_Controller {
 		if(!empty($this->input->post('selected_group')) && $this->validate_delete_option_group($this->input->post('selected_group'))){
 			$this->option_model->delete_option_group($this->input->post('selected_group'));
 			
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			
 		}
 		$this->get_list();
@@ -176,15 +176,15 @@ class Option extends MY_Controller {
 		
 		
 		if($this->input->get('option_id')){
-			$data['option_action']	=$this->config->item('admin').'product/option/edit_option?option_id='.$this->input->get('option_id');
+			$data['option_action']	=$this->config->item('admin').'/product/option/edit_option?option_id='.$this->input->get('option_id');
 		}else{
-			$data['option_action']	=$this->config->item('admin').'product/option/add_option';
+			$data['option_action']	=$this->config->item('admin').'/product/option/add_option';
 		}
 		
 		if($this->input->get('option_group_id')){
-			$data['option_group_action']	=$this->config->item('admin').'product/option/edit_option_group?option_group_id='.$this->input->get('option_group_id');
+			$data['option_group_action']	=$this->config->item('admin').'/product/option/edit_option_group?option_group_id='.$this->input->get('option_group_id');
 		}else{
-			$data['option_group_action']	=$this->config->item('admin').'product/option/add_option_group';
+			$data['option_group_action']	=$this->config->item('admin').'/product/option/add_option_group';
 		}
 		
 		if(isset($this->error['option_description'])){
@@ -227,7 +227,7 @@ class Option extends MY_Controller {
 		$data['option_groups']		=$option_groups['option_groups'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/option';
+		$config['base_url'] 			= $this->config->item('admin').'/product/option';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'option_page';
@@ -255,7 +255,7 @@ class Option extends MY_Controller {
 		$data['options_pagination'] = $this->pagination->create_links();
 		
 		//分页
-		$config1['base_url'] 			= $this->config->item('admin').'product/option';
+		$config1['base_url'] 			= $this->config->item('admin').'/product/option';
 		$config1['num_links'] 			= 2;
 		$config1['page_query_string'] 	= TRUE;
 		$config1['query_string_segment'] = 'option_group_page';
@@ -282,8 +282,8 @@ class Option extends MY_Controller {
 
 		$data['option_group_pagination'] = $this->pagination->create_links();
 		
-		$data['option_delete']		=$this->config->item('admin').'product/option/delete_option';
-		$data['option_group_delete']	=$this->config->item('admin').'product/option/delete_option_group';
+		$data['option_delete']		=$this->config->item('admin').'/product/option/delete_option';
+		$data['option_group_delete']	=$this->config->item('admin').'/product/option/delete_option_group';
 		
 		$data['header']					=$this->header->index();
 		$data['top']					=$this->header->top();
@@ -296,7 +296,7 @@ class Option extends MY_Controller {
 	public function validate_delete_option($data){
 		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			exit();
 		}
 		
@@ -316,7 +316,7 @@ class Option extends MY_Controller {
 	public function validate_delete_option_group($data){
 		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			exit();
 		}
 		
@@ -337,7 +337,7 @@ class Option extends MY_Controller {
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			exit();
 		}
 		
@@ -358,7 +358,7 @@ class Option extends MY_Controller {
 	{
 		if (!$this->user->hasPermission('modify', 'admin/product/option')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/option');
+			redirect($this->config->item('admin').'/product/option');
 			exit();
 		}
 		

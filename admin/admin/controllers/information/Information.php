@@ -27,7 +27,7 @@ class information extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'information/information');
+			redirect($this->config->item('admin').'/information/information');
 		}
 		
 		$this->get_form();
@@ -40,7 +40,7 @@ class information extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'information/information');
+			redirect($this->config->item('admin').'/information/information');
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class information extends MY_Controller{
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->information_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'information/information');
+			redirect($this->config->item('admin').'/information/information');
 		}
 		$this->get_list();
 	}
@@ -61,7 +61,7 @@ class information extends MY_Controller{
 	protected function get_list(){
 		$data=array();
 		
-		$data['delete']					=$this->config->item('admin').'information/information/delete';
+		$data['delete']					=$this->config->item('admin').'/information/information/delete';
 		
 		$informations = $this->information_model->get_informations($this->input->get('limit'));
 		$data['informations']=$informations['informations'];
@@ -75,7 +75,7 @@ class information extends MY_Controller{
 		}
 		
 		
-		$config['base_url'] 			= $this->config->item('admin').'information/information';
+		$config['base_url'] 			= $this->config->item('admin').'/information/information';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'limit';
@@ -156,9 +156,9 @@ class information extends MY_Controller{
 		}
 		
 		if($this->input->get('information_id')){
-			$data['action'] = $this->config->item('admin').'information/information/edit?information_id='.$this->input->get('information_id');
+			$data['action'] = $this->config->item('admin').'/information/information/edit?information_id='.$this->input->get('information_id');
 		}else{
-			$data['action'] = $this->config->item('admin').'information/information/add';
+			$data['action'] = $this->config->item('admin').'/information/information/add';
 		}
 		
 		$data['header']=$this->header->index();

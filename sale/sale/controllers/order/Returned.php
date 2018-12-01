@@ -118,8 +118,8 @@ class returned extends MY_Controller {
 				}
 				$a_title='你同意了一个商品退换';
 				$u_title='商家同意了你的商品退换申请';
-				$a_msg='你同意了一个<a href="'.$this->config->item('sale').'order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
-				$u_msg='商家同意了你的<a href="'.$this->config->item('sale').'order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
+				$a_msg='你同意了一个<a href="'.$this->config->item('sale').'/order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
+				$u_msg='商家同意了你的<a href="'.$this->config->item('sale').'/order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
 			}
 			
 			if($this->input->post('action') == 'refuse'){
@@ -127,8 +127,8 @@ class returned extends MY_Controller {
 				
 				$a_title='你拒绝了一个商品退换';
 				$u_title='商家拒绝了你的商品退换申请';
-				$a_msg='你拒绝了一个<a href="'.$this->config->item('sale').'order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
-				$u_msg='商家拒绝了你的<a href="'.$this->config->item('sale').'order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
+				$a_msg='你拒绝了一个<a href="'.$this->config->item('sale').'/order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>';
+				$u_msg='商家拒绝了你的<a href="'.$this->config->item('sale').'/order/returned/info?rowid='.$this->input->get('rowid').'">商品退换</a>申请';
 			}
 			
 			
@@ -145,7 +145,7 @@ class returned extends MY_Controller {
 			
 			$this->user_activity_model->add_activity($this->input->post('user_id'), 'return', array('title'=>$u_title, 'msg'=>$u_msg));
 		
-			redirect($this->config->item('sale').'order/returned');
+			redirect($this->config->item('sale').'/order/returned');
 		}
 	}
 	
@@ -168,11 +168,11 @@ class returned extends MY_Controller {
 				
 			//添加动态
 			$this->load->model('common/user_activity_model');
-			$this->user_activity_model->add_activity($_SESSION['user_id'], 'return', array('title'=>'商家已经给你退款，请确认', 'msg'=>'商家已经给你<a href="'.$this->config->item('sale').'user/returned/info?rowid='.$this->input->get('rowid')).'">退款，请确认</a>');
+			$this->user_activity_model->add_activity($_SESSION['user_id'], 'return', array('title'=>'商家已经给你退款，请确认', 'msg'=>'商家已经给你<a href="'.$this->config->item('sale').'/user/returned/info?rowid='.$this->input->get('rowid')).'">退款，请确认</a>');
 				
-			$this->user_activity_model->add_activity($this->input->post('user_id'), 'return', array('title'=>$this->user->getnickname().'商家已经给你退款，请确认', 'msg'=>$this->user->getnickname().'商家已经给你<a href="'.$this->config->item('sale').'user/returned/info?rowid='.$this->input->get('rowid')).'">退款，请确认');
+			$this->user_activity_model->add_activity($this->input->post('user_id'), 'return', array('title'=>$this->user->getnickname().'商家已经给你退款，请确认', 'msg'=>$this->user->getnickname().'商家已经给你<a href="'.$this->config->item('sale').'/user/returned/info?rowid='.$this->input->get('rowid')).'">退款，请确认');
 				
-			redirect($this->config->item('sale').'order/returned');
+			redirect($this->config->item('sale').'/order/returned');
 		}
 	}
 }

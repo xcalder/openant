@@ -61,7 +61,7 @@
 							$(this).parents('.note-editor').find('.note-editable').focus();
 			
 							$.ajax({
-									url: '<?php echo $this->config->item('admin').'common/filemanager';?>',
+									url: '<?php echo $this->config->item('admin').'/common/filemanager';?>',
 									dataType: 'html',
 									beforeSend: function() {
 										$('#button-image i').replaceWith('<i class="glyphicon glyphicon-edit"></i>');
@@ -104,7 +104,7 @@
 									$('#modal-image').remove();
 			
 									$.ajax({
-											url: '<?php echo $this->config->item('admin').'common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+											url: '<?php echo $this->config->item('admin').'/common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
 											dataType: 'html',
 											beforeSend: function() {
 												$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');

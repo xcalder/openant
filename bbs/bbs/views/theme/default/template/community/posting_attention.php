@@ -4,7 +4,7 @@
   		<?php foreach ($users as $user):?>
   		<div class="col-sm-2 col-xs-6">
   			<div class="thumbnail">
-  				<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$user['user_id'];?>" class="text-center" target="_blank">
+  				<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$user['user_id'];?>" class="text-center" target="_blank">
 		      		<img src="<?php echo $this->image_common->resize($user['image'], 50, 50);?>" alt="<?php echo $user['nickname'];?>" title="<?php echo $user['date_added'];?>" class="img-circle">
 		      		<div><?php echo $user['nickname'];?></div>
 		      	</a>

@@ -29,7 +29,7 @@ class Layout extends MY_Controller{
 		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST"){
 			$this->layout_model->delete($this->input->post('selected'));
 			$this->session->set_flashdata('success', '成功：布局删除成功！');
-			redirect($this->config->item('admin').'common/layout');
+			redirect($this->config->item('admin').'/common/layout');
 		}
 		
 		$this->get_list();
@@ -42,7 +42,7 @@ class Layout extends MY_Controller{
 			//验证通过，更新表
 			$this->layout_model->edit($this->input->post());
 			$this->session->set_flashdata('success', '成功：布局修改成功！');
-			redirect($this->config->item('admin').'common/layout');
+			redirect($this->config->item('admin').'/common/layout');
 		}
 		$this->get_form();
 	}
@@ -54,7 +54,7 @@ class Layout extends MY_Controller{
 			//验证通过，更新表
 			$this->layout_model->add($this->input->post());
 			$this->session->set_flashdata('success', '成功：添加布局成功！');
-			redirect($this->config->item('admin').'common/layout');
+			redirect($this->config->item('admin').'/common/layout');
 		}
 		
 		$this->get_form();
@@ -66,9 +66,9 @@ class Layout extends MY_Controller{
 		}
 		
 		if($this->input->get('layout_id')){
-			$data['action']				=$this->config->item('admin').'common/layout/edit?layout_id='.$this->input->get('layout_id');
+			$data['action']				=$this->config->item('admin').'/common/layout/edit?layout_id='.$this->input->get('layout_id');
 		}else{
-			$data['action']				=$this->config->item('admin').'common/layout/add';
+			$data['action']				=$this->config->item('admin').'/common/layout/add';
 		}
 		
 		if(isset($this->error['error_name'])){
@@ -115,7 +115,7 @@ class Layout extends MY_Controller{
 		$data['layouts']				=$layouts['layouts'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'common/layout';
+		$config['base_url'] 			= $this->config->item('admin').'/common/layout';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -142,7 +142,7 @@ class Layout extends MY_Controller{
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'common/layout/delete';
+		$data['delete']					=$this->config->item('admin').'/common/layout/delete';
 		$data['header']					=$this->header->index();
 		$data['top']					=$this->header->top();
 		$data['footer']					=$this->footer->index();
@@ -153,7 +153,7 @@ class Layout extends MY_Controller{
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/common/layout')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/layout');
+			redirect($this->config->item('admin').'/common/layout');
 			exit();
 		}else{
 			return TRUE;
@@ -163,7 +163,7 @@ class Layout extends MY_Controller{
 	public function validate_form(){
 		if (!$this->user->hasPermission('modify', 'admin/common/layout')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/layout');
+			redirect($this->config->item('admin').'/common/layout');
 			exit();
 		}
 		

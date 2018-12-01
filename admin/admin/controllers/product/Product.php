@@ -49,10 +49,10 @@ class Product extends MY_Controller {
 			$data['products']					=$products;
 		}
 		
-		$data['invalid']					=$this->config->item('admin').'product/product/invalid';
+		$data['invalid']					=$this->config->item('admin').'/product/product/invalid';
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/product';
+		$config['base_url'] 			= $this->config->item('admin').'/product/product';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -89,7 +89,7 @@ class Product extends MY_Controller {
 	public function invalid(){
 		if (!$this->user->hasPermission('modify', 'admin/product/product')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/product');
+			redirect($this->config->item('admin').'/product/product');
 			exit();
 		}
 		
@@ -119,13 +119,13 @@ class Product extends MY_Controller {
 			$this->product_model->invalid($this->input->post('product_id'), $data);
 		}
 		
-		redirect($this->config->item('admin').'product/product');
+		redirect($this->config->item('admin').'/product/product');
 	}
 	
 	public function uninvalid(){
 		if (!$this->user->hasPermission('modify', 'admin/product/product')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/product');
+			redirect($this->config->item('admin').'/product/product');
 			exit();
 		}
 		
@@ -140,6 +140,6 @@ class Product extends MY_Controller {
 			$this->product_model->invalid($this->input->post('product_id'), $data);
 		}
 		
-		redirect($this->config->item('admin').'product/product');
+		redirect($this->config->item('admin').'/product/product');
 	}
 }

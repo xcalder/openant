@@ -28,7 +28,7 @@ class Plate extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->bbs_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'extension_config/overall/plate');
+			redirect($this->config->item('admin').'/extension_config/overall/plate');
 		}
 		
 		$this->get_form();
@@ -41,7 +41,7 @@ class Plate extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->bbs_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'extension_config/overall/plate');
+			redirect($this->config->item('admin').'/extension_config/overall/plate');
 		}
 		
 		$this->get_form();
@@ -53,7 +53,7 @@ class Plate extends MY_Controller{
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->bbs_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'extension_config/overall/plate');
+			redirect($this->config->item('admin').'/extension_config/overall/plate');
 		}
 		$this->get_list();
 	}
@@ -61,7 +61,7 @@ class Plate extends MY_Controller{
 	//列表
 	protected function get_list(){
 		
-		$data['delete']					=$this->config->item('admin').'extension_config/overall/plate/delete';
+		$data['delete']					=$this->config->item('admin').'/extension_config/overall/plate/delete';
 		
 		$plates = $this->bbs_model->get_plates_for_list($this->input->get('page'));
 		$data['plates']=$plates['plates'];
@@ -75,7 +75,7 @@ class Plate extends MY_Controller{
 			$page = $this->input->get('page');
 		}
 		
-		$config['base_url'] = $this->config->item('admin').'extension_config/overall/plate';
+		$config['base_url'] = $this->config->item('admin').'/extension_config/overall/plate';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -188,9 +188,9 @@ class Plate extends MY_Controller{
 		}
 		
 		if($this->input->get('plate_id')){
-			$data['action'] = $this->config->item('admin').'extension_config/overall/plate/edit?plate_id='.$this->input->get('plate_id');
+			$data['action'] = $this->config->item('admin').'/extension_config/overall/plate/edit?plate_id='.$this->input->get('plate_id');
 		}else{
-			$data['action'] = $this->config->item('admin').'extension_config/overall/plate/add';
+			$data['action'] = $this->config->item('admin').'/extension_config/overall/plate/add';
 		}
 		
 		$data['header']=$this->header->index();

@@ -28,7 +28,7 @@ class Will_move_text extends MY_Controller {
 			$this->module_model->update($this->input->post(),'Will_move_text');
 			
 			$this->session->set_flashdata('success','动画文字修改成功！');
-			redirect($this->config->item('admin').'extension_config/module/will_move_text');
+			redirect($this->config->item('admin').'/extension_config/module/will_move_text');
 		}
 		
 		$this->get_form();
@@ -42,7 +42,7 @@ class Will_move_text extends MY_Controller {
 			$this->module_model->add($this->input->post(),'Will_move_text');
 			
 			$this->session->set_flashdata('success','动画文字添加成功！');
-			redirect($this->config->item('admin').'extension_config/module/will_move_text');
+			redirect($this->config->item('admin').'/extension_config/module/will_move_text');
 		}
 		
 		$this->get_form();
@@ -53,12 +53,12 @@ class Will_move_text extends MY_Controller {
 		
 		if($this->input->get('module_id') == NULL){
 			$this->session->set_flashdata('fali','动画文字删除失败！');
-			redirect($this->config->item('admin').'extension_config/module/will_move_text');
+			redirect($this->config->item('admin').'/extension_config/module/will_move_text');
 			return;
 		}
 		if($this->check_modify() && $this->module_model->delete($this->input->get('module_id'))){
 			$this->session->set_flashdata('success','动画文字删除成功！');
-			redirect($this->config->item('admin').'extension_config/module/will_move_text');
+			redirect($this->config->item('admin').'/extension_config/module/will_move_text');
 		}
 		
 		$this->get_list();
@@ -80,12 +80,12 @@ class Will_move_text extends MY_Controller {
 		$data['languages']=$this->language_model->get_languages();
 		
 		if($this->input->get('module_id') != NULL){
-			$data['action']=$this->config->item('admin').'extension_config/module/will_move_text/edit?module_id='.$this->input->get('module_id');
+			$data['action']=$this->config->item('admin').'/extension_config/module/will_move_text/edit?module_id='.$this->input->get('module_id');
 			//查数据
 			$module=$this->module_model->get_modules_for_module_id($this->input->get('module_id'));
 			
 		}else{
-			$data['action']=$this->config->item('admin').'extension_config/module/will_move_text/add';
+			$data['action']=$this->config->item('admin').'/extension_config/module/will_move_text/add';
 		}
 		
 		if($this->input->post() != NULL){
@@ -106,7 +106,7 @@ class Will_move_text extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/module/will_move_text')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'extension_config/module/will_move_text');
+			redirect($this->config->item('admin').'/extension_config/module/will_move_text');
 			exit();
 		}else {
 			return true;

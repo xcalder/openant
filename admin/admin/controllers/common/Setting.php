@@ -30,7 +30,7 @@ class Setting extends MY_Controller
 		{
 			$this->setting_model->edit($this->input->post(), 'config');
 			$this->session->set_flashdata('success', '成功：修改网站设置成功！');
-			redirect($this->config->item('admin').'common/setting');
+			redirect($this->config->item('admin').'/common/setting');
 		}
 
 		$this->get_form();
@@ -950,7 +950,7 @@ class Setting extends MY_Controller
 	
 		}
 
-		$data['action'] = $this->config->item('admin').'common/setting/edit';
+		$data['action'] = $this->config->item('admin').'/common/setting/edit';
 
 		$data['placeholder_image'] = 'resources/public/resources/default/image/no_image.jpg';
 
@@ -977,7 +977,7 @@ class Setting extends MY_Controller
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/common/setting')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/setting');
+			redirect($this->config->item('admin').'/common/setting');
 			exit();
 		}else {
 			return true;

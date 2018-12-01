@@ -30,7 +30,7 @@ class Zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->zone_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/zone');
+			redirect($this->config->item('admin').'/localisation/zone');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->zone_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/zone');
+			redirect($this->config->item('admin').'/localisation/zone');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->zone_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/zone');
+			redirect($this->config->item('admin').'/localisation/zone');
 		}
 		
 		$this->get_list();
@@ -99,9 +99,9 @@ class Zone extends MY_Controller {
 		}
 		
 		if($this->input->get('zone_id')){
-			$data['action']					=$this->config->item('admin').'localisation/zone/edit?zone_id='.$this->input->get('zone_id');
+			$data['action']					=$this->config->item('admin').'/localisation/zone/edit?zone_id='.$this->input->get('zone_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/zone/add';
+			$data['action']					=$this->config->item('admin').'/localisation/zone/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -133,7 +133,7 @@ class Zone extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/zone';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/zone';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -160,7 +160,7 @@ class Zone extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/zone/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/zone/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

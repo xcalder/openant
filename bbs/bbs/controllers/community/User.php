@@ -58,7 +58,7 @@ class User extends CI_Controller {
 		
 		$data['postings']=$postings['postings'];
 		
-		$config['base_url'] 			= $this->config->item('bbs').'community/user/user_posting?user_id='.$this->input->get('user_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/user/user_posting?user_id='.$this->input->get('user_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'p_page';
@@ -102,7 +102,7 @@ class User extends CI_Controller {
 		
 		$data['postings']=$postings['postings'];
 	
-		$config['base_url'] 			= $this->config->item('bbs').'community/user/user_attention?user_id='.$this->input->get('user_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/user/user_attention?user_id='.$this->input->get('user_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'a_page';
@@ -191,7 +191,7 @@ class User extends CI_Controller {
 		$data['users']=$users['users'];
 		$data['count']=$users['count'];
 		
-		$config['base_url'] 			= $this->config->item('bbs').'community/user/users_to?user_id='.$this->input->get('user_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/user/users_to?user_id='.$this->input->get('user_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'u_page';
@@ -236,7 +236,7 @@ class User extends CI_Controller {
 		$data['users']=$users['users'];
 		$data['count']=$users['count'];
 	
-		$config['base_url'] 			= $this->config->item('bbs').'community/user/users_for?user_id='.$this->input->get('user_id');
+		$config['base_url'] 			= $this->config->item('bbs').'/community/user/users_for?user_id='.$this->input->get('user_id');
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'u_page';

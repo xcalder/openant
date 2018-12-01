@@ -27,7 +27,7 @@ class Review extends MY_Controller {
 			
 			$this->review_model->del_review($this->input->post('selected'));
 		}
-		redirect($this->config->item('admin').'product/review');
+		redirect($this->config->item('admin').'/product/review');
 		
 		$this->get_list();
 	}
@@ -43,10 +43,10 @@ class Review extends MY_Controller {
 		$reviews_nifo=$this->review_model->get_reviews($data);
 		$data['reviews']=$reviews_nifo['reviews'];
 		
-		$data['delete']=$this->config->item('admin').'product/review/delete';
+		$data['delete']=$this->config->item('admin').'/product/review/delete';
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/review';
+		$config['base_url'] 			= $this->config->item('admin').'/product/review';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -84,7 +84,7 @@ class Review extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/product/review')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/review');
+			redirect($this->config->item('admin').'/product/review');
 			exit();
 		}else {
 			return true;

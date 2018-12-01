@@ -30,7 +30,7 @@ class Mode_transport extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->mode_transport_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/mode_transport');
+			redirect($this->config->item('admin').'/localisation/mode_transport');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Mode_transport extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->mode_transport_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/mode_transport');
+			redirect($this->config->item('admin').'/localisation/mode_transport');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Mode_transport extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->mode_transport_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/mode_transport');
+			redirect($this->config->item('admin').'/localisation/mode_transport');
 		}
 		
 		$this->get_list();
@@ -91,9 +91,9 @@ class Mode_transport extends MY_Controller {
 		}
 		
 		if($this->input->get('mode_transport_id')){
-			$data['action']					=$this->config->item('admin').'localisation/mode_transport/edit?mode_transport_id='.$this->input->get('mode_transport_id');
+			$data['action']					=$this->config->item('admin').'/localisation/mode_transport/edit?mode_transport_id='.$this->input->get('mode_transport_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/mode_transport/add';
+			$data['action']					=$this->config->item('admin').'/localisation/mode_transport/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -124,7 +124,7 @@ class Mode_transport extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/mode_transport';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/mode_transport';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -151,7 +151,7 @@ class Mode_transport extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/mode_transport/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/mode_transport/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

@@ -30,7 +30,7 @@ class Geo_zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->geo_zone_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/geo_zone');
+			redirect($this->config->item('admin').'/localisation/geo_zone');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Geo_zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->geo_zone_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/geo_zone');
+			redirect($this->config->item('admin').'/localisation/geo_zone');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Geo_zone extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->geo_zone_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/geo_zone');
+			redirect($this->config->item('admin').'/localisation/geo_zone');
 		}
 		
 		$this->get_list();
@@ -89,9 +89,9 @@ class Geo_zone extends MY_Controller {
 		}
 		
 		if($this->input->get('geo_zone_id')){
-			$data['action']					=$this->config->item('admin').'localisation/geo_zone/edit?geo_zone_id='.$this->input->get('geo_zone_id');
+			$data['action']					=$this->config->item('admin').'/localisation/geo_zone/edit?geo_zone_id='.$this->input->get('geo_zone_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/geo_zone/add';
+			$data['action']					=$this->config->item('admin').'/localisation/geo_zone/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -122,7 +122,7 @@ class Geo_zone extends MY_Controller {
 		}
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/geo_zone';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/geo_zone';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -149,7 +149,7 @@ class Geo_zone extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/geo_zone/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/geo_zone/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

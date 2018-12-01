@@ -8,7 +8,7 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;退换货事件列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'localisation/return_action/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/localisation/return_action/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除退换货事件参数吗？') ? $('#form-return_action').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -29,7 +29,7 @@
 					<tr>
 						<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $return_action['return_action_id']; ?>" /></td>
 						<td><?php echo $return_action['name'];?></td>
-						<td class="text-right"><a href="<?php echo $this->config->item('admin').'localisation/return_action/edit?return_action_id='.$return_action['return_action_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo $this->config->item('admin').'/localisation/return_action/edit?return_action_id='.$return_action['return_action_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

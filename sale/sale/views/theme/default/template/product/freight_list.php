@@ -33,7 +33,7 @@
 									<td><?php echo $freight['name'];?></td>
 									<td><?php echo $freight['freight_template_name'];?></td>
 									<td><?php echo $freight['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo $this->config->item('sale').'product/freight/edit_freight?freight_id='.$freight['freight_id']?>#edit-freight" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo $this->config->item('sale').'/product/freight/edit_freight?freight_id='.$freight['freight_id']?>#edit-freight" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>
@@ -78,7 +78,7 @@
 									<td class="text-center"><input type="checkbox" name="selected_group[]" value="<?php echo $freight_template['freight_template_id']; ?>" /></td>
 									<td><?php echo $freight_template['freight_template_name'];?></td>
 									<td><?php echo $freight_template['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo $this->config->item('sale').'product/freight/edit_freight_template?freight_template_id='.$freight_template['freight_template_id']?>#edit-freight-group" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo $this->config->item('sale').'/product/freight/edit_freight_template?freight_template_id='.$freight_template['freight_template_id']?>#edit-freight-group" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

@@ -30,7 +30,7 @@ class Tax_class extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->tax_class_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/tax_class');
+			redirect($this->config->item('admin').'/localisation/tax_class');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Tax_class extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->tax_class_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'localisation/tax_class');
+			redirect($this->config->item('admin').'/localisation/tax_class');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Tax_class extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->tax_class_model->delete_tax_class($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'localisation/tax_class');
+			redirect($this->config->item('admin').'/localisation/tax_class');
 		}
 		
 		$this->get_list();
@@ -81,9 +81,9 @@ class Tax_class extends MY_Controller {
 		}
 		
 		if($this->input->get('tax_class_id')){
-			$data['action']					=$this->config->item('admin').'localisation/tax_class/edit?tax_class_id='.$this->input->get('tax_class_id');
+			$data['action']					=$this->config->item('admin').'/localisation/tax_class/edit?tax_class_id='.$this->input->get('tax_class_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'localisation/tax_class/add';
+			$data['action']					=$this->config->item('admin').'/localisation/tax_class/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -117,7 +117,7 @@ class Tax_class extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'localisation/tax_class';
+		$config['base_url'] 			= $this->config->item('admin').'/localisation/tax_class';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -144,7 +144,7 @@ class Tax_class extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'localisation/tax_class/delete';
+		$data['delete']					=$this->config->item('admin').'/localisation/tax_class/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();

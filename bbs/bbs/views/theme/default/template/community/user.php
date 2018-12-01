@@ -95,7 +95,7 @@
 	  }
 	  
 	  $.ajax({
-			url: '<?php echo $this->config->item('bbs').'community/user/add_attention';?>',
+			url: '<?php echo $this->config->item('bbs').'/community/user/add_attention';?>',
 			type: 'post',
 			dataType: 'json',
 			data: {to_user_id: id},
@@ -126,7 +126,7 @@
   		//取消关注
 		function unattention(id){
 			$.ajax({
-				url: '<?php echo $this->config->item('bbs').'community/user/unattention';?>',
+				url: '<?php echo $this->config->item('bbs').'/community/user/unattention';?>',
 				type: 'post',
 				dataType: 'json',
 				data: {to_user_id: id},
@@ -155,10 +155,10 @@
 		}
 		
 		$(document).ready(function (){
-			$('#load-user-for').load("<?php echo $this->config->item('bbs').'community/user/users_for?user_id='.$this->input->get('user_id');?>");
-			$('#load-user-to').load("<?php echo $this->config->item('bbs').'community/user/users_to?user_id='.$this->input->get('user_id');?>");
-			$('#load-posting-list').load("<?php echo $this->config->item('bbs').'community/user/user_posting?user_id='.$this->input->get('user_id');?>");
-			$('#load-posting-attention').load("<?php echo $this->config->item('bbs').'community/user/user_attention?user_id='.$this->input->get('user_id');?>");
+			$('#load-user-for').load("<?php echo $this->config->item('bbs').'/community/user/users_for?user_id='.$this->input->get('user_id');?>");
+			$('#load-user-to').load("<?php echo $this->config->item('bbs').'/community/user/users_to?user_id='.$this->input->get('user_id');?>");
+			$('#load-posting-list').load("<?php echo $this->config->item('bbs').'/community/user/user_posting?user_id='.$this->input->get('user_id');?>");
+			$('#load-posting-attention').load("<?php echo $this->config->item('bbs').'/community/user/user_attention?user_id='.$this->input->get('user_id');?>");
 		});
 	</script>
 </div>

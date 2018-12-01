@@ -9,12 +9,12 @@
 					<p class="navbar-left"><i class="glyphicon glyphicon-edit"></i>编辑<?php echo isset($value['vname']) ? $value['vname'] : 'payment';?></p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
 						<button type="button" onclick="submit('form-module')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-						<a href="<?php echo $this->config->item('admin').'extension_config/module/paypal';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+						<a href="<?php echo $this->config->item('admin').'/extension_config/module/paypal';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 					</div>
 				</div>
 				<!-- /widget-header -->
 				<div class="panel-body page-tab">
-					<form action="<?php echo $this->config->item('admin').'extension_config/payment/paypal';?>" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+					<form action="<?php echo $this->config->item('admin').'/extension_config/payment/paypal';?>" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
 						<div class="form-group">
 							<label class="col-sm-2 control-label" for="vname">名称</label>
 							<div class="col-sm-10">

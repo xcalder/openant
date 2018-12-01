@@ -33,7 +33,7 @@ class User_group extends MY_Controller {
 			
 			$this->user_model->add_user_group($this->input->post());
 			
-			redirect($this->config->item('admin').'user/user_group');
+			redirect($this->config->item('admin').'/user/user_group');
 		}
 		
 		$this->get_from();
@@ -73,7 +73,7 @@ class User_group extends MY_Controller {
 			
 			$this->user_model->edit_user_group_description($this->input->get('user_group_id'), $description);
 			
-			redirect($this->config->item('admin').'user/user_group');
+			redirect($this->config->item('admin').'/user/user_group');
 		}
 		
 		$this->get_from();
@@ -87,7 +87,7 @@ class User_group extends MY_Controller {
 			$this->user_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：权限组删除成功！');
-			redirect($this->config->item('admin').'user/user_group');
+			redirect($this->config->item('admin').'/user/user_group');
 		}
 		
 		$this->get_list();
@@ -106,7 +106,7 @@ class User_group extends MY_Controller {
 		$data['user_groups']			=$user_groups['user_groups'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'user/user_group';
+		$config['base_url'] 			= $this->config->item('admin').'/user/user_group';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -133,7 +133,7 @@ class User_group extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'user/user_group/delete';
+		$data['delete']					=$this->config->item('admin').'/user/user_group/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
@@ -240,9 +240,9 @@ class User_group extends MY_Controller {
 		$data['error']					=$this->error;
 		
 		if($this->input->get('user_group_id')){
-			$data['action']=$this->config->item('admin').'user/user_group/edit?user_group_id='.$this->input->get('user_group_id');
+			$data['action']=$this->config->item('admin').'/user/user_group/edit?user_group_id='.$this->input->get('user_group_id');
 		}else{
-			$data['action']=$this->config->item('admin').'user/user_group/add';
+			$data['action']=$this->config->item('admin').'/user/user_group/add';
 		}
 		
 		$this->load->view('theme/default/template/user/user_group_from',$data);

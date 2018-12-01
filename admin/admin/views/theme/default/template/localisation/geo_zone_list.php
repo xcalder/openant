@@ -8,7 +8,7 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;区域设置列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'localisation/geo_zone/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/localisation/geo_zone/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除区域设置参数吗？') ? $('#form-geo_zone').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -31,7 +31,7 @@
 						<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $geo_zone['geo_zone_id']; ?>" /></td>
 						<td><?php echo $geo_zone['geo_zone_name'];?></td>
 						<td><?php echo $geo_zone['geo_zone_description'];?></td>
-						<td class="text-right"><a href="<?php echo $this->config->item('admin').'localisation/geo_zone/edit?geo_zone_id='.$geo_zone['geo_zone_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo $this->config->item('admin').'/localisation/geo_zone/edit?geo_zone_id='.$geo_zone['geo_zone_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

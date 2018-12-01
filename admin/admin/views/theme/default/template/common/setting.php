@@ -1626,7 +1626,7 @@
 		{
 			$.ajax(
 				{
-					url: '<?php echo $this->config->item('admin').'localisation/country/get_country?country_id';?>=' + this.value,
+					url: '<?php echo $this->config->item('admin').'/localisation/country/get_country?country_id';?>=' + this.value,
 					dataType: 'json',
 					beforeSend: function()
 					{

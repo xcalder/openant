@@ -25,7 +25,7 @@ class Product extends MY_Controller{
 	public function add(){
 		$this->document->setTitle('添加商品');
 		if(!$_SERVER['REQUEST_METHOD']=="POST" || $this->input->post('parent_id') == NULL){
-			redirect($this->config->item('sale').'product/product/select_category');
+			redirect($this->config->item('sale').'/product/product/select_category');
 		}
 		
 		$this->get_form();
@@ -36,7 +36,7 @@ class Product extends MY_Controller{
 		$this->document->setTitle('添加商品');
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$this->product_model->add_product($this->input->post());
-			redirect($this->config->item('sale').'product/product');
+			redirect($this->config->item('sale').'/product/product');
 		}
 		
 		$this->get_form();
@@ -47,12 +47,12 @@ class Product extends MY_Controller{
 		$this->document->setTitle('编辑商品');
 		
 		if($this->input->get('product_id') == NULL){
-			redirect($this->config->item('sale').'product/product/select_category');
+			redirect($this->config->item('sale').'/product/product/select_category');
 		}
 		
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->check_modify()){
 			$this->product_model->edit_product($this->input->post());
-			redirect($this->config->item('sale').'product/product');
+			redirect($this->config->item('sale').'/product/product');
 		}
 		$this->get_form();
 	}
@@ -64,7 +64,7 @@ class Product extends MY_Controller{
 		$data['parent_categorys']=$this->product_model->get_parent_categorys();
 		$data['last_add']=$this->product_model->get_last_add();
 		
-		$data['action']						=$this->config->item('sale').'product/product/add';
+		$data['action']						=$this->config->item('sale').'/product/product/add';
 		
 		$data['header']						=$this->header->index();
 		$data['top']						=$this->header->top();
@@ -79,7 +79,7 @@ class Product extends MY_Controller{
 		if($this->check_modify() && $_SERVER['REQUEST_METHOD']=="POST" && !empty($this->input->post('selected'))){
 			$this->product_model->added($this->input->post('selected'));
 		}
-		redirect($this->config->item('sale').'product/product');
+		redirect($this->config->item('sale').'/product/product');
 		
 		$this->get_list();
 	}
@@ -91,7 +91,7 @@ class Product extends MY_Controller{
 			$this->product_model->shelves($this->input->post('selected'));
 		}
 		
-		redirect($this->config->item('sale').'product/product');
+		redirect($this->config->item('sale').'/product/product');
 		
 		$this->get_list();
 	}
@@ -102,7 +102,7 @@ class Product extends MY_Controller{
 			$this->product_model->delete_product($this->input->post('selected'));
 		}
 		
-		redirect($this->config->item('sale').'product/product');
+		redirect($this->config->item('sale').'/product/product');
 		
 		$this->get_list();
 	}
@@ -313,9 +313,9 @@ class Product extends MY_Controller{
 		$data['footer']						=$this->footer->index();
 		
 		if($this->input->get('product_id') != NULL){
-			$data['action']					=$this->config->item('sale').'product/product/edit?product_id='.$this->input->get('product_id');
+			$data['action']					=$this->config->item('sale').'/product/product/edit?product_id='.$this->input->get('product_id');
 		}else{
-			$data['action']					=$this->config->item('sale').'product/product/add_product';
+			$data['action']					=$this->config->item('sale').'/product/product/add_product';
 		}
 		$this->load->view('theme/default/template/product/product_form',$data);
 	}
@@ -329,17 +329,17 @@ class Product extends MY_Controller{
 		
 		if($this->input->get('status') != NULL){
 			$data['status']=$this->input->get('status');
-			$url_pagination=$this->config->item('sale').'product/product?status='.$this->input->get('status');
+			$url_pagination=$this->config->item('sale').'/product/product?status='.$this->input->get('status');
 		}
 		
 		if($this->input->get('invalid') != NULL){
 			$data['invalid']=$this->input->get('invalid');
-			$url_pagination=$this->config->item('sale').'product/product?invalid='.$this->input->get('invalid');
+			$url_pagination=$this->config->item('sale').'/product/product?invalid='.$this->input->get('invalid');
 		}
 		
 		if($this->input->get('time') != NULL){
 			$data['time']=$this->input->get('time');
-			$url_pagination=$this->config->item('sale').'product/product?time='.$this->input->get('time');
+			$url_pagination=$this->config->item('sale').'/product/product?time='.$this->input->get('time');
 		}
 		
 		$product_list=$this->product_model->get_products($data);
@@ -361,12 +361,12 @@ class Product extends MY_Controller{
 			$data['products']					=$products;
 		}
 		
-		$data['added']					=$this->config->item('sale').'product/product/added';
-		$data['shelves']				=$this->config->item('sale').'product/product/shelves';
-		$data['delete']					=$this->config->item('sale').'product/product/delete';
+		$data['added']					=$this->config->item('sale').'/product/product/added';
+		$data['shelves']				=$this->config->item('sale').'/product/product/shelves';
+		$data['delete']					=$this->config->item('sale').'/product/product/delete';
 		
 		//分页
-		$config['base_url'] 			= isset($url_pagination) ? $url_pagination : $this->config->item('sale').'product/product';
+		$config['base_url'] 			= isset($url_pagination) ? $url_pagination : $this->config->item('sale').'/product/product';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -426,7 +426,7 @@ class Product extends MY_Controller{
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'sale/product/product')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'product/product');
+			redirect($this->config->item('sale').'/product/product');
 			exit();
 		}else {
 			return true;

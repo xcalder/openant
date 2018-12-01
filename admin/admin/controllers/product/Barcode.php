@@ -31,7 +31,7 @@ class Barcode extends MY_Controller {
 			
 			$this->barcode_model->add_barcode($data);
 			
-			redirect($this->config->item('admin').'product/barcode');
+			redirect($this->config->item('admin').'/product/barcode');
 		}
 		
 		$this->get_form();
@@ -48,7 +48,7 @@ class Barcode extends MY_Controller {
 			
 			$this->barcode_model->edit_barcode($data);
 			
-			redirect($this->config->item('admin').'product/barcode');
+			redirect($this->config->item('admin').'/product/barcode');
 		}
 		
 		$this->get_form();
@@ -62,7 +62,7 @@ class Barcode extends MY_Controller {
 			
 			$this->barcode_model->delete_barcode($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'product/barcode');
+			redirect($this->config->item('admin').'/product/barcode');
 		}
 		
 		$this->get_list();
@@ -86,9 +86,9 @@ class Barcode extends MY_Controller {
 		$data['footer']=$this->footer->index();
 		
 		if($this->input->get('barcode_id')){
-			$data['action']=$this->config->item('admin').'product/barcode/edit?barcode_id='.$this->input->get('barcode_id');
+			$data['action']=$this->config->item('admin').'/product/barcode/edit?barcode_id='.$this->input->get('barcode_id');
 		}else{
-			$data['action']=$this->config->item('admin').'product/barcode/add';
+			$data['action']=$this->config->item('admin').'/product/barcode/add';
 		}
 		
 		$this->load->view('theme/default/template/product/barcode_form',$data);
@@ -105,10 +105,10 @@ class Barcode extends MY_Controller {
 		$barcodes=$this->barcode_model->get_barcodes($data);
 		$data['barcodes']=$barcodes['barcode'];
 		
-		$data['delete']=$this->config->item('admin').'product/barcode/delete';
+		$data['delete']=$this->config->item('admin').'/product/barcode/delete';
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/barcode';
+		$config['base_url'] 			= $this->config->item('admin').'/product/barcode';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -165,7 +165,7 @@ class Barcode extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/product/barcode')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/barcode');
+			redirect($this->config->item('admin').'/product/barcode');
 			exit();
 		}else {
 			return true;

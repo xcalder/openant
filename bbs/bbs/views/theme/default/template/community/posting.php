@@ -24,7 +24,7 @@
 				  	<span class="btn btn-success btn-sm" onclick="add_attention();">关注<i class="glyphicon glyphicon-plus"></i></span>
 				  	<?php endif;?>
 				  	&nbsp;
-				    <a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$posting['user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize($posting['image'], 60, 60);?>" alt="<?php echo $posting['nickname'];?>"></a>
+				    <a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$posting['user_id'];?>"><img class="img-circle" src="<?php echo $this->image_common->resize($posting['image'], 60, 60);?>" alt="<?php echo $posting['nickname'];?>"></a>
 				  </div>
 				  <div class="media-body">
 				    <h1 class="media-heading"><?php echo $posting['title'];?></h1>
@@ -36,19 +36,19 @@
 			  		关注:<a><?php echo $posting['attentions'];?></a>
 			  		<br/>
 			  		
-			  		板块:<a href="<?php echo $this->config->item('bbs').'?plate_id='.$posting['plate_id'];?>"><?php echo $posting['plate_title'];?></a>
-			  		由:<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$posting['user_id'];?>"><?php echo $posting['nickname'];?></a>
+			  		板块:<a href="<?php echo $this->config->item('bbs').'/?plate_id='.$posting['plate_id'];?>"><?php echo $posting['plate_title'];?></a>
+			  		由:<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$posting['user_id'];?>"><?php echo $posting['nickname'];?></a>
 			  		发布于:<a><?php echo $time['time'].$time['unit'];?></a>
 			  		
 			  		<!--最新回复时间-->
 			  		<?php if($posting['replies']):?>
 			  		<?php if($posting['replies'][0]['discuss']):?>
 			  		<?php $re_time=timediff(human_to_unix($posting['replies'][0]['discuss'][0]['date_added']), human_to_unix(date("Y-m-d H:i:s")));?>
-			  		最后回复:<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$posting['replies'][0]['discuss'][0]['user_id'];?>"><?php echo $posting['replies'][0]['discuss'][0]['nickname'];?></a>
+			  		最后回复:<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$posting['replies'][0]['discuss'][0]['user_id'];?>"><?php echo $posting['replies'][0]['discuss'][0]['nickname'];?></a>
 			  		于:<a><?php echo $re_time['time'].$re_time['unit'];?></a>
 			  		<?php else:?>
 			  		<?php $re_time=timediff(human_to_unix($posting['replies'][0]['date_added']), human_to_unix(date("Y-m-d H:i:s")));?>
-			  		最后回复:<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$posting['replies'][0]['user_id'];?>"><?php echo $posting['replies'][0]['nickname'];?></a>
+			  		最后回复:<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$posting['replies'][0]['user_id'];?>"><?php echo $posting['replies'][0]['nickname'];?></a>
 			  		于:<a><?php echo $re_time['time'].$re_time['unit'];?></a>
 			  		<?php endif;?>
 			  		<?php endif;?>
@@ -72,10 +72,10 @@
 				<?php if($posting['replies']):?>
 				<?php foreach($posting['replies'] as $replie):?>
 				<div class="media">
-					<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$replie['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($replie['image'], 30, 30);?>" alt="<?php echo $replie['nickname'];?>" title="<?php echo $replie['nickname'];?>"></a>
+					<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$replie['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($replie['image'], 30, 30);?>" alt="<?php echo $replie['nickname'];?>" title="<?php echo $replie['nickname'];?>"></a>
 				  <div class="media-body">
 					<?php $re_time=timediff(human_to_unix($replie['date_added']), human_to_unix(date("Y-m-d H:i:s")));?>
-					<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$replie['user_id'];?>" style="color: #b3b3b3;"><?php echo $replie['nickname'];?></a>&nbsp;<span><?php echo $re_time['time'].$re_time['unit'];?></span><span style="float: right;cursor: pointer;" onclick="click_scroll('<?php echo $replie['nickname']?>', '<?php echo $replie['replies_id']?>');"><i class="glyphicon glyphicon-pencil"></i></span></p>
+					<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$replie['user_id'];?>" style="color: #b3b3b3;"><?php echo $replie['nickname'];?></a>&nbsp;<span><?php echo $re_time['time'].$re_time['unit'];?></span><span style="float: right;cursor: pointer;" onclick="click_scroll('<?php echo $replie['nickname']?>', '<?php echo $replie['replies_id']?>');"><i class="glyphicon glyphicon-pencil"></i></span></p>
 					<?php echo str_ireplace('href="', 'href="'.base_url('errors/page_missing/go_to?go_to='), $replie['content']);?>
 					
 					<!--回帖讨论-->
@@ -85,19 +85,19 @@
 					<div class="media">
 						
 						<?php if($replie['user_id'] != $discuss['user_id']):?>
-						<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$discuss['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($discuss['image'], 30, 30);?>" alt="<?php echo $discuss['nickname'];?>" title="<?php echo $discuss['nickname'];?>"></a>
+						<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$discuss['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($discuss['image'], 30, 30);?>" alt="<?php echo $discuss['nickname'];?>" title="<?php echo $discuss['nickname'];?>"></a>
 					  <div class="media-body">
 						<?php $ds_time=timediff(human_to_unix($discuss['date_added']), human_to_unix(date("Y-m-d H:i:s")));?>
-						<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$discuss['user_id'];?>" style="color: #b3b3b3;"><?php echo $discuss['nickname'];?></a>&nbsp;<span><?php echo $ds_time['time'].$ds_time['unit'];?></span></p>
+						<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$discuss['user_id'];?>" style="color: #b3b3b3;"><?php echo $discuss['nickname'];?></a>&nbsp;<span><?php echo $ds_time['time'].$ds_time['unit'];?></span></p>
 						<?php echo str_ireplace('href="', 'href="'.base_url('errors/page_missing/go_to?go_to='), $discuss['content']);?>
 					  </div>
 					  <?php else:?>
 					  <div class="media-body" style="padding-left: 15px">
 						<?php $ds_time=timediff(human_to_unix($discuss['date_added']), human_to_unix(date("Y-m-d H:i:s")));?>
-						<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$discuss['user_id'];?>" style="color: #b3b3b3;"><?php echo $discuss['nickname'];?></a>&nbsp;<span><?php echo $ds_time['time'].$ds_time['unit'];?></span></p>
+						<p class="media-heading" style="color: #b3b3b3;"><a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$discuss['user_id'];?>" style="color: #b3b3b3;"><?php echo $discuss['nickname'];?></a>&nbsp;<span><?php echo $ds_time['time'].$ds_time['unit'];?></span></p>
 						<?php echo str_ireplace('href="', 'href="'.base_url('errors/page_missing/go_to?go_to='), $discuss['content']);?>
 					  </div>
-					   <a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$discuss['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($discuss['image'], 30, 30);?>" alt="<?php echo $discuss['nickname'];?>" title="<?php echo $discuss['nickname'];?>"></a>
+					   <a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$discuss['user_id'];?>" class="media-left media-middle"><img class="img-circle" src="<?php echo $this->image_common->resize($discuss['image'], 30, 30);?>" alt="<?php echo $discuss['nickname'];?>" title="<?php echo $discuss['nickname'];?>"></a>
 					  <?php endif;?>
 					</div>
 					<?php endforeach;?>
@@ -156,7 +156,7 @@
 		</div>
 		
 		<div class="col-sm-12" style="padding: 0">
-			<form action="<?php echo $this->config->item('bbs').'community/posting?posting_id='.$this->input->get('posting_id');?>" method="post" enctype="multipart/form-data">
+			<form action="<?php echo $this->config->item('bbs').'/community/posting?posting_id='.$this->input->get('posting_id');?>" method="post" enctype="multipart/form-data">
 			  <div class="form-group">
 				<textarea rows="5" id="posting-reply" name="content" class="form-control" placeholder="<?php echo ($this->user->isLogged() == TRUE) ? '回复内容，最多2000个字"' : '请先登陆！" disabled="disabled"';?>"></textarea>
 			  </div>
@@ -178,7 +178,7 @@
 	  }
 	  
 	  $.ajax({
-			url: '<?php echo $this->config->item('bbs').'community/posting/add_attention';?>',
+			url: '<?php echo $this->config->item('bbs').'/community/posting/add_attention';?>',
 			type: 'post',
 			dataType: 'json',
 			data: {posting_id: <?php echo $posting['posting_id'];?>},
@@ -209,7 +209,7 @@
   	//取消关注
 	function unattention(){
 		$.ajax({
-			url: '<?php echo $this->config->item('bbs').'community/posting/unattention_position';?>',
+			url: '<?php echo $this->config->item('bbs').'/community/posting/unattention_position';?>',
 			type: 'post',
 			dataType: 'json',
 			data: {posting_id: <?php echo $posting['posting_id'];?>},
@@ -265,9 +265,9 @@
  	}
  	
 	$(document).ready(function (){
-		$('#posting-attention').load("<?php echo $this->config->item('bbs').'community/posting/attention_page?posting_id='.$posting['posting_id']?>");
+		$('#posting-attention').load("<?php echo $this->config->item('bbs').'/community/posting/attention_page?posting_id='.$posting['posting_id']?>");
 		//统计帖子访问量
-		$.get('<?php echo $this->config->item('bbs').'community/posting/total?posting_id='.$this->input->get('posting_id')?>');
+		$.get('<?php echo $this->config->item('bbs').'/community/posting/total?posting_id='.$this->input->get('posting_id')?>');
 	});
   </script>
   <!-- /row --> 

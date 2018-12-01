@@ -125,47 +125,47 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/category';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/category';?>">
 									分类管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/product';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/product';?>">
 									商品管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/download';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/download';?>">
 									下载商品
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/attribute';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/attribute';?>">
 									属性维护
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/option';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/option';?>">
 									选项维护
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/manufacturer';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/manufacturer';?>">
 									品牌维护
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/barcode';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/barcode';?>">
 									条码维护
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/review';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/review';?>">
 									评价管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'product/freight';?>">
+								<a href="<?php echo $this->config->item('admin').'/product/freight';?>">
 									运费模板
 								</a>
 							</li>
@@ -181,52 +181,52 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders';?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders';?>">
 									所有订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('default_order_status');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('default_order_status');?>">
 									待付款订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('to_be_delivered');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('to_be_delivered');?>">
 									待发货订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('inbound_state');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('inbound_state');?>">
 									待收货订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('state_to_be_evaluated');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('state_to_be_evaluated');?>">
 									待评价订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('order_completion_status');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('order_completion_status');?>">
 									交易成功订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('refund_order');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('refund_order');?>">
 									退款中订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/orders?order_status='.$this->config->get_config('refund_order_success');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/orders?order_status='.$this->config->get_config('refund_order_success');?>">
 									退款成功的订单
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/returned';?>">
+								<a href="<?php echo $this->config->item('admin').'/order/returned';?>">
 									退款商品列表
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'order/returned?status_id='.$this->config->get_config('intervention');?>">
+								<a href="<?php echo $this->config->item('admin').'/order/returned?status_id='.$this->config->get_config('intervention');?>">
 									平台介入退款商品
 								</a>
 							</li>
@@ -242,32 +242,32 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user';?>">
 									会员列表
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user_group';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user_group';?>">
 									权限组
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user_class';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user_class';?>">
 									买家组
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user_online';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user_online';?>">
 									在线会员
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user_activity';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user_activity';?>">
 									会员活动
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'user/user_manager/user_reward';?>">
+								<a href="<?php echo $this->config->item('admin').'/user/user_manager/user_reward';?>">
 									会员积分
 								</a>
 							</li>
@@ -282,9 +282,9 @@
 							</span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo $this->config->item('admin').'sale/sale_class';?>">商家组</a></li>
-							<li><a href="<?php echo $this->config->item('admin').'sale/sale';?>">商家列表</a></li>
-							<li><a href="<?php echo $this->config->item('admin').'sale/check';?>">审核列表</a></li>
+							<li><a href="<?php echo $this->config->item('admin').'/sale/sale_class';?>">商家组</a></li>
+							<li><a href="<?php echo $this->config->item('admin').'/sale/sale';?>">商家列表</a></li>
+							<li><a href="<?php echo $this->config->item('admin').'/sale/check';?>">审核列表</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -297,42 +297,42 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/layout';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/layout';?>">
 									插件
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/extension/module';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/extension/module';?>">
 									扩展模块
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/extension/payment';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/extension/payment';?>">
 									支付管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/extension/delivery';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/extension/delivery';?>">
 									配送管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/extension/overall';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/extension/overall';?>">
 									全局模块
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/extension/sign_in_with';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/extension/sign_in_with';?>">
 									第三方登陆
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/layout';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/layout';?>">
 									布局管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/banner';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/banner';?>">
 									Banner管理
 								</a>
 							</li>
@@ -348,87 +348,87 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/language';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/language';?>">
 									语言设置
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/currency';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/currency';?>">
 									货币设置
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/stock_status';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/stock_status';?>">
 									发货时间
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/order_status';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/order_status';?>">
 									订单状态
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/return_status';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/return_status';?>">
 									退换状态
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/aftermarket';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/aftermarket';?>">
 									售后保障
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/return_action';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/return_action';?>">
 									退换事件
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/return_reason';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/return_reason';?>">
 									退换原因
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/return_mode';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/return_mode';?>">
 									退款方式
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/mode_transport';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/mode_transport';?>">
 									运输方式
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/tax_class';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/tax_class';?>">
 									税费组
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/tax_rate';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/tax_rate';?>">
 									税费税率
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/length_class';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/length_class';?>">
 									长度单位
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/weight_class';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/weight_class';?>">
 									重量单位
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/country';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/country';?>">
 									国家设置
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/zone';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/zone';?>">
 									地区设置
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'localisation/geo_zone';?>">
+								<a href="<?php echo $this->config->item('admin').'/localisation/geo_zone';?>">
 									区域设置
 								</a>
 							</li>
@@ -444,22 +444,22 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/setting';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/setting';?>">
 									网站设置
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'common/competence';?>">
+								<a href="<?php echo $this->config->item('admin').'/common/competence';?>">
 									权限管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'information/information';?>">
+								<a href="<?php echo $this->config->item('admin').'/information/information';?>">
 									文章管理
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo $this->config->item('admin').'information/information_category';?>">
+								<a href="<?php echo $this->config->item('admin').'/information/information_category';?>">
 									文章分类
 								</a>
 							</li>

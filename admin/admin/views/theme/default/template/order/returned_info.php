@@ -82,7 +82,7 @@
 			<?php if($return_info['return_history'][0]['return_status_id'] == $this->config->get_config('intervention')):?>
 			退款处理
 			<hr>
-			<form action="<?php echo $this->config->item('admin').'order/returned/action?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<form action="<?php echo $this->config->item('admin').'/order/returned/action?token='.$_SESSION['token'].'&rowid='.$this->input->get('rowid');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-12" for="comment">退款说明</div>
 				<div class="col-sm-12">

@@ -46,7 +46,7 @@
 							$(this).parents('.note-editor').find('.note-editable').focus();
 			
 							$.ajax({
-									url: '<?php echo $this->config->item('sale').'common/filemanager';?>',
+									url: '<?php echo $this->config->item('sale').'/common/filemanager';?>',
 									dataType: 'html',
 									beforeSend: function() {
 										NProgress.start();
@@ -87,7 +87,7 @@
 									$('#modal-image').remove();
 			
 									$.ajax({
-											url: '<?php echo $this->config->item('sale').'common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+											url: '<?php echo $this->config->item('sale').'/common/filemanager?target=';?>' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
 											dataType: 'html',
 											beforeSend: function() {
 												NProgress.start();

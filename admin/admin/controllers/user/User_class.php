@@ -32,7 +32,7 @@ class User_class extends MY_Controller {
 			
 			$this->user_class_model->add_user_class($this->input->post());
 			
-			redirect($this->config->item('admin').'user/user_class');
+			redirect($this->config->item('admin').'/user/user_class');
 		}
 		
 		$this->get_from();
@@ -58,7 +58,7 @@ class User_class extends MY_Controller {
 			
 			$this->user_class_model->edit_user_class_description($this->input->get('user_class_id'), $description);
 			
-			redirect($this->config->item('admin').'user/user_class');
+			redirect($this->config->item('admin').'/user/user_class');
 		}
 		
 		$this->get_from();
@@ -72,7 +72,7 @@ class User_class extends MY_Controller {
 			$this->user_class_model->delete($this->input->post('selected'));
 			
 			$this->session->set_flashdata('success', '成功：买家组删除成功！');
-			redirect($this->config->item('admin').'user/user_class');
+			redirect($this->config->item('admin').'/user/user_class');
 		}
 		
 		$this->get_list();
@@ -91,7 +91,7 @@ class User_class extends MY_Controller {
 		$data['user_classs']			=$user_classs['user_classs'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'user/user_class';
+		$config['base_url'] 			= $this->config->item('admin').'/user/user_class';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -118,7 +118,7 @@ class User_class extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'user/user_class/delete';
+		$data['delete']					=$this->config->item('admin').'/user/user_class/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
@@ -162,9 +162,9 @@ class User_class extends MY_Controller {
 		$data['error']					=$this->error;
 		
 		if($this->input->get('user_class_id')){
-			$data['action']=$this->config->item('admin').'user/user_class/edit?user_class_id='.$this->input->get('user_class_id');
+			$data['action']=$this->config->item('admin').'/user/user_class/edit?user_class_id='.$this->input->get('user_class_id');
 		}else{
-			$data['action']=$this->config->item('admin').'user/user_class/add';
+			$data['action']=$this->config->item('admin').'/user/user_class/add';
 		}
 		
 		$this->load->view('theme/default/template/user/user_class_from',$data);

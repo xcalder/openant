@@ -8,7 +8,7 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;商家组列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'sale/sale_class/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/sale/sale_class/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除商家组吗？') ? $('#form-sale-class').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -31,7 +31,7 @@
 								<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $sale_class['sale_class_id']; ?>" /></td>
 								<td><?php echo $sale_class['name'].'('.$sale_class['description'].')';?></td>
 								<td><?php echo $sale_class['sort_order']?></td>
-								<td class="text-right"><a href="<?php echo $this->config->item('admin').'sale/sale_class/edit?sale_class_id='.$sale_class['sale_class_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+								<td class="text-right"><a href="<?php echo $this->config->item('admin').'/sale/sale_class/edit?sale_class_id='.$sale_class['sale_class_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 							</tr>
 							<?php endforeach;?>
 							<?php endif;?>

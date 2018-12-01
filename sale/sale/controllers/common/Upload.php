@@ -62,7 +62,7 @@ class Upload extends CI_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'sale/common/upload')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('sale').'extension_config/module/slideshow');
+			redirect($this->config->item('sale').'/extension_config/module/slideshow');
 			exit();
 		}else {
 			return true;

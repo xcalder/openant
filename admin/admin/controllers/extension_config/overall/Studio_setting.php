@@ -32,7 +32,7 @@ class Studio_setting extends MY_Controller{
 			$this->setting_model->edit($this->input->post(), 'config');
 			$this->session->set_flashdata('success', '成功：修改工作室官网配置成功！');
 			
-			redirect($this->config->item('admin').'common/extension/overall');
+			redirect($this->config->item('admin').'/common/extension/overall');
 			exit;
 		}
 
@@ -54,7 +54,7 @@ class Studio_setting extends MY_Controller{
 			$data['studio_meta_description']=unserialize($this->config->get_config('studio_meta_description'));
 		}
 		
-		$data['action'] = $this->config->item('admin').'extension_config/overall/studio_setting';
+		$data['action'] = $this->config->item('admin').'/extension_config/overall/studio_setting';
 		
 		$data['header']=$this->header->index();
 		$data['top_nav']=$this->header->top();

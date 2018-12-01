@@ -27,7 +27,7 @@ class Information_category extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_category_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'information/information_category');
+			redirect($this->config->item('admin').'/information/information_category');
 		}
 		
 		$this->get_form();
@@ -40,7 +40,7 @@ class Information_category extends MY_Controller{
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validateForm()){
 			$this->information_category_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'information/information_category');
+			redirect($this->config->item('admin').'/information/information_category');
 		}
 		
 		$this->get_form();
@@ -52,7 +52,7 @@ class Information_category extends MY_Controller{
 		if($this->validate_delete($this->input->post('selected'))){
 			$this->information_category_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'information/information_category');
+			redirect($this->config->item('admin').'/information/information_category');
 		}
 		
 		if(!empty($this->error)){
@@ -65,7 +65,7 @@ class Information_category extends MY_Controller{
 	protected function get_list(){
 		$data=array();
 		
-		$data['delete']					=$this->config->item('admin').'information/information_category/delete';
+		$data['delete']					=$this->config->item('admin').'/information/information_category/delete';
 		
 		$information_categorys = $this->information_category_model->get_information_categorys($this->input->get('limit'));
 		$data['information_categorys']=$information_categorys['information_categorys'];
@@ -80,7 +80,7 @@ class Information_category extends MY_Controller{
 		}
 		
 		
-		$config['base_url'] = $this->config->item('admin').'information/information_category';
+		$config['base_url'] = $this->config->item('admin').'/information/information_category';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'limit';
@@ -180,9 +180,9 @@ class Information_category extends MY_Controller{
 		}
 		
 		if($this->input->get('information_category_id')){
-			$data['action'] = $this->config->item('admin').'information/information_category/edit?information_category_id='.$this->input->get('information_category_id');
+			$data['action'] = $this->config->item('admin').'/information/information_category/edit?information_category_id='.$this->input->get('information_category_id');
 		}else{
-			$data['action'] = $this->config->item('admin').'information/information_category/add';
+			$data['action'] = $this->config->item('admin').'/information/information_category/add';
 		}
 		
 		$data['header']=$this->header->index();

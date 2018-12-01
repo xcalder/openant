@@ -11,7 +11,7 @@
 						</i>&nbsp;文章列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="<?php echo $this->config->item('admin').'information/information/add'?>" class="btn btn-sm btn-default">
+						<a href="<?php echo $this->config->item('admin').'/information/information/add'?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
@@ -57,7 +57,7 @@
 									<?php echo $information['sort_order'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo $this->config->item('admin').'information/information/edit?information_id='.$information['information_id']?>" class="btn btn-sm btn-info">
+									<a href="<?php echo $this->config->item('admin').'/information/information/edit?information_id='.$information['information_id']?>" class="btn btn-sm btn-info">
 										<i class="glyphicon glyphicon-edit">
 										</i>
 									</a>

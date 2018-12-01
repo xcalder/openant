@@ -34,7 +34,7 @@
 							<td class="col-md-2 col-sm-2 hidden-xs text-center border-right"><strong style="color: red"><?php echo $this->currency->Compute($return['price'] * $return['currency_value']);?></b></strong></td>
 							<td class="col-md-2 col-sm-2 col-xs-2 text-center border-right"><?php echo $return['quantity']; ?></td>
 							<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><strong style="color: red"><?php echo $this->currency->Compute($return['return_amount']  * $return['currency_value']); ?></b></strong></td>
-							<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><span><?php echo $return['status_name']; ?></span><br/><span><?php echo $return['return_action']; ?></span><br/><a target="_blank" href="<?php echo $this->config->item('sale').'order/returned/info?rowid='.$return['rowid'];?>">查看退换详情</a></td>
+							<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><span><?php echo $return['status_name']; ?></span><br/><span><?php echo $return['return_action']; ?></span><br/><a target="_blank" href="<?php echo $this->config->item('sale').'/order/returned/info?rowid='.$return['rowid'];?>">查看退换详情</a></td>
 						</tr>
 						<?php endforeach;?>
 					</tbody>

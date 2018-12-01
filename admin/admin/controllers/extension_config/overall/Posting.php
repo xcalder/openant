@@ -19,7 +19,7 @@ class Posting extends MY_Controller{
 	public function index(){
 		$this->document->setTitle('帖子管理');
 		
-		$data['delete']					=$this->config->item('admin').'extension_config/overall/posting/delete';
+		$data['delete']					=$this->config->item('admin').'/extension_config/overall/posting/delete';
 		
 		$postings = $this->bbs_model->get_postings($this->input->get('page'));
 		$data['postings']=$postings['postings'];
@@ -32,7 +32,7 @@ class Posting extends MY_Controller{
 			$page = $this->input->get('page');
 		}
 		
-		$config['base_url'] 			= $this->config->item('admin').'extension_config/overall/posting';
+		$config['base_url'] 			= $this->config->item('admin').'/extension_config/overall/posting';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -70,7 +70,7 @@ class Posting extends MY_Controller{
 	public function edit_show(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/overall/posting')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'extension_config/overall/posting');
+			redirect($this->config->item('admin').'/extension_config/overall/posting');
 			exit();
 		}
 		
@@ -99,19 +99,19 @@ class Posting extends MY_Controller{
 			$this->session->set_flashdata('fali', '帖子修改失败');
 		}
 		
-		redirect($this->config->item('admin').'extension_config/overall/posting');
+		redirect($this->config->item('admin').'/extension_config/overall/posting');
 	}
 	
 	//删除
 	public function delete(){
 		if (!$this->user->hasPermission('modify', 'admin/extension_config/overall/posting')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'extension_config/overall/posting');
+			redirect($this->config->item('admin').'/extension_config/overall/posting');
 			exit();
 		}
 		
 		$this->bbs_model->delete_posting($this->input->post('selected'));
-		redirect($this->config->item('admin').'extension_config/overall/posting');
+		redirect($this->config->item('admin').'/extension_config/overall/posting');
 	}
 
 }

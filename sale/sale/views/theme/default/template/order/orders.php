@@ -88,7 +88,7 @@
 							<td class="text-center col-md-2 col-sm-2 col-xs-2 border-right"><strong style="color: red"><?php echo $this->currency->Compute($order['total'] * $order['currency_value']); ?></b></strong>
 							<span>含税（<?php echo $this->currency->Compute(array_sum(array_column($order['products'], 'tax')) * $order['currency_value']);?>）</span>
 							</td>
-							<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a href="<?php echo $this->config->item('sale').'order/orders/order_info?order_id='.$order['order_id'];?>">订单详情</a></td>
+							<td class="text-center col-md-1 col-sm-1 col-xs-2 border-right"><span><?php echo $order['status_name']; ?></span><a href="<?php echo $this->config->item('sale').'/order/orders/order_info?order_id='.$order['order_id'];?>">订单详情</a></td>
 							<td class="text-center col-md-2 col-sm-2 col-xs-2">
 							<?php if($order['order_status_id'] == $this->config->get_config('default_order_status')):?>
 							<button type="button" class="btn btn-default btn-sm">等待付款</button>
@@ -146,7 +146,7 @@
 		function callout(id, type){
 			var content=$('#'+type+'-'+id).val();
 			$.ajax({
-				url: '<?php echo $this->config->item('sale').'order/orders/add_callout';?>',
+				url: '<?php echo $this->config->item('sale').'/order/orders/add_callout';?>',
 				type: 'post',
 				dataType: 'json',
 				data: {order_id:id, callout_type:type, callout_content:content},

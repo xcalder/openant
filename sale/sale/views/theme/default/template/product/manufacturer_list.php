@@ -33,7 +33,7 @@
 									<td><?php echo $manufacturer['name'];?></td>
 									<td><?php echo ($manufacturer['status'] == '1') ? '待审核' : '审核通过';?></td>
 									<td><?php echo $manufacturer['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo $this->config->item('sale').'product/manufacturer/edit?manufacturer_id='.$manufacturer['manufacturer_id']?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo $this->config->item('sale').'/product/manufacturer/edit?manufacturer_id='.$manufacturer['manufacturer_id']?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

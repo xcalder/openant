@@ -105,7 +105,7 @@
 <script>     
 function invalid(store_id, date_invalid){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'sale/sale/invalid';?>',
+		url: '<?php echo $this->config->item('admin').'/sale/sale/invalid';?>',
 		type: 'post',
 		data: 'store_id=' + store_id + '&date_invalid='+date_invalid,
 		beforeSend: function() {
@@ -122,7 +122,7 @@ function invalid(store_id, date_invalid){
 
 function uninvalid(store_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'sale/sale/uninvalid';?>',
+		url: '<?php echo $this->config->item('admin').'/sale/sale/uninvalid';?>',
 		type: 'post',
 		data: 'store_id=' + store_id,
 		beforeSend: function() {

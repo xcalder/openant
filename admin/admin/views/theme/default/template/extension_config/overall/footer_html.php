@@ -8,7 +8,7 @@
 					<p class="navbar-left"><i class="glyphicon glyphicon-signal"></i>全局底部设置</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
 						<button type="button" onclick="submit('form-module')" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
-						<a href="<?php echo $this->config->item('admin').'extension_config/module/product';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
+						<a href="<?php echo $this->config->item('admin').'/extension_config/module/product';?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-share-alt"></i></a>
 					</div>
 				</div>
 				<!-- /widget-header -->

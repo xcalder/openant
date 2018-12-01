@@ -113,7 +113,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'catalog';
+	$application_folder = 'catalog/catalog';
 
 /*
  *---------------------------------------------------------------

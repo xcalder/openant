@@ -953,7 +953,7 @@
 			clearInterval(timer);
 
 			$.ajax({
-				url: '<?php echo $this->config->item('sale').'common/upload'?>',
+				url: '<?php echo $this->config->item('sale').'/common/upload'?>',
 				type: 'post',
 				dataType: 'json',
 				data: new FormData($('#form-upload')[0]),

@@ -31,7 +31,7 @@
 									<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" /></td>
 									<td class="text-left"><?php echo $category['name'];?></td>
 									<td class="text-left"><?php echo $category['sort_order'];?></td>
-									<td class="text-right"><a href="<?php echo $this->config->item('sale').'product/category/edit?category_id='.$category['category_id']?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+									<td class="text-right"><a href="<?php echo $this->config->item('sale').'/product/category/edit?category_id='.$category['category_id']?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
 									</td>
 								</tr>
 								<?php endforeach;?>

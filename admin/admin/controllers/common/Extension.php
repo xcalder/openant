@@ -268,7 +268,7 @@ class Extension extends MY_Controller{
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/common/extension')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'common/extension/module');
+			redirect($this->config->item('admin').'/common/extension/module');
 			exit();
 		}else{
 			return TRUE;

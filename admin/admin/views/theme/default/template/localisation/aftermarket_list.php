@@ -8,7 +8,7 @@
         <div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;售后保障列表</p>
 			<div class="navbar-right btn-group" style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'localisation/aftermarket/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/localisation/aftermarket/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default" onclick="confirm('确定删除售后保障参数吗？') ? $('#form-aftermarket').submit() : false;"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -29,7 +29,7 @@
 					<tr>
 						<td class="text-center"><input type="checkbox" name="selected[]" value="<?php echo $aftermarket['aftermarket_id']; ?>" /></td>
 						<td><?php echo $aftermarket['name'];?></td>
-						<td class="text-right"><a href="<?php echo $this->config->item('admin').'localisation/aftermarket/edit?aftermarket_id='.$aftermarket['aftermarket_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
+						<td class="text-right"><a href="<?php echo $this->config->item('admin').'/localisation/aftermarket/edit?aftermarket_id='.$aftermarket['aftermarket_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a></td>
 					</tr>
 					<?php endforeach;?>
 					<?php endif;?>

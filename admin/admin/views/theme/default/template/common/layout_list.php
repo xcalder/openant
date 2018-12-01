@@ -11,7 +11,7 @@
 						</i>&nbsp;布局列表
 					</p>
 					<div class="navbar-right btn-group" style="margin-right: 0">
-						<a href="<?php echo $this->config->item('admin').'common/layout/add';?>" class="btn btn-sm btn-default">
+						<a href="<?php echo $this->config->item('admin').'/common/layout/add';?>" class="btn btn-sm btn-default">
 							<i class="glyphicon glyphicon-plus">
 							</i>
 						</a>
@@ -53,7 +53,7 @@
 										<?php echo $layout['name'];?>
 									</td>
 									<td class="text-right">
-										<a href="<?php echo $this->config->item('admin').'common/layout/edit?layout_id='.$layout['layout_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
+										<a href="<?php echo $this->config->item('admin').'/common/layout/edit?layout_id='.$layout['layout_id'];?>" class="btn btn-sm btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑">
 											<i class="glyphicon glyphicon-edit">
 											</i>
 										</a>

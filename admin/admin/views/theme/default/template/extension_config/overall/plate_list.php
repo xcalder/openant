@@ -63,7 +63,7 @@
 									<?php echo $plate['date_added'];?>
 								</td>
 								<td class="text-right">
-									<a href="<?php echo $this->config->item('admin').'extension_config/overall/plate/edit?plate_id='.$plate['plate_id'];?>" class="btn btn-info btn-sm">
+									<a href="<?php echo $this->config->item('admin').'/extension_config/overall/plate/edit?plate_id='.$plate['plate_id'];?>" class="btn btn-info btn-sm">
 										<i class="glyphicon glyphicon-edit"></i>
 									</a>
 								</td>

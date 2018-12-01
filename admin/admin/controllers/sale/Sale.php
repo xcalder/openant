@@ -38,7 +38,7 @@ class Sale extends MY_Controller {
 			$data['count']				=$stores['count'];
 		}
 		
-		$config['base_url'] 			= $this->config->item('admin').'sale/sale';
+		$config['base_url'] 			= $this->config->item('admin').'/sale/sale';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -75,7 +75,7 @@ class Sale extends MY_Controller {
 	public function invalid(){
 		if (!$this->user->hasPermission('modify', 'admin/sale/sale')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'sale/sale');
+			redirect($this->config->item('admin').'/sale/sale');
 			exit();
 		}
 		
@@ -105,13 +105,13 @@ class Sale extends MY_Controller {
 			$this->store_model->invalid($this->input->post('store_id'), $data);
 		}
 		
-		redirect($this->config->item('admin').'sale/sale');
+		redirect($this->config->item('admin').'/sale/sale');
 	}
 	
 	public function uninvalid(){
 		if (!$this->user->hasPermission('modify', 'admin/sale/sale')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'sale/sale');
+			redirect($this->config->item('admin').'/sale/sale');
 			exit();
 		}
 		
@@ -126,6 +126,6 @@ class Sale extends MY_Controller {
 			$this->store_model->invalid($this->input->post('store_id'), $data);
 		}
 		
-		redirect($this->config->item('admin').'sale/sale');
+		redirect($this->config->item('admin').'/sale/sale');
 	}
 }

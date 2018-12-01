@@ -61,7 +61,7 @@
 <script>     
 function pass(store_id, user_id){
 	$.ajax({
-		url: '<?php echo $this->config->item('admin').'sale/check/pass';?>',
+		url: '<?php echo $this->config->item('admin').'/sale/check/pass';?>',
 		type: 'post',
 		data: 'store_id=' + store_id + '&user_id=' + user_id,
 		beforeSend: function() {

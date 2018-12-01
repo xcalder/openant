@@ -8,7 +8,7 @@
       	<div class="panel-heading row row-panel-heading bg-info">
 	        <p class="navbar-left"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;会员列表</p>
 			<div class="navbar-right btn-group" role="group" aria-label="..." style="margin-right: 0">
-				<a href="<?php echo $this->config->item('admin').'user/user/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="<?php echo $this->config->item('admin').'/user/user/add'?>" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 				<button type="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i></button>
 			</div>
 	    </div>
@@ -116,7 +116,7 @@
 								<button type="button" class="btn btn-warning  btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="禁止登陆" disabled="disabled"><i class="glyphicon glyphicon-off"></i></button>
 								<?php endif;?>
 								
-								<a href="<?php echo $this->config->item('admin').'user/user/edit?user_id='.$user['user_id'];?>" class="btn btn-primary  btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="<?php echo $this->config->item('admin').'/user/user/edit?user_id='.$user['user_id'];?>" class="btn btn-primary  btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="编辑"><i class="glyphicon glyphicon-edit"></i></a>
 							</td>
 						</tr>
 						<?php endforeach;?>

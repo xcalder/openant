@@ -45,7 +45,7 @@
 										<?php if($very_goods):?>
 										<ul class="menu-col">
 											<?php foreach($very_goods as $very_good):?>
-											<li><a href="<?php echo $this->config->item('bbs').'community/posting?posting_id='.$very_good['posting_id'];?>" title="<?php echo $very_good['title'];?>"><?php echo '['.$very_good['plate_title'].']'.utf8_substr($very_good['title'], 0, 10);?></a></li><hr>
+											<li><a href="<?php echo $this->config->item('bbs').'/community/posting?posting_id='.$very_good['posting_id'];?>" title="<?php echo $very_good['title'];?>"><?php echo '['.$very_good['plate_title'].']'.utf8_substr($very_good['title'], 0, 10);?></a></li><hr>
 											<?php endforeach;?>
 										</ul>
 										<?php endif;?>
@@ -56,7 +56,7 @@
 										<?php if($actives):?>
 										<ul class="menu-col">
 											<?php foreach($actives as $active):?>
-											<li><a href="<?php echo $this->config->item('bbs').'community/posting?posting_id='.$active['posting_id'];?>" title="<?php echo $active['title'];?>"><?php echo '['.$active['plate_title'].']'.utf8_substr($active['title'], 0, 10);?></a></li><hr>
+											<li><a href="<?php echo $this->config->item('bbs').'/community/posting?posting_id='.$active['posting_id'];?>" title="<?php echo $active['title'];?>"><?php echo '['.$active['plate_title'].']'.utf8_substr($active['title'], 0, 10);?></a></li><hr>
 											<?php endforeach;?>
 										</ul>
 										<?php endif;?>
@@ -91,7 +91,7 @@
 						</li>
 						<?php else:?>
 						<li>
-							<a href="<?php echo $this->config->item('catalog');?>user/signin/login?url=<?php echo rawurlencode(all_current_url());?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
+							<a href="<?php echo $this->config->item('catalog');?>/user/signin/login?url=<?php echo rawurlencode(all_current_url());?>"><i class="glyphicon glyphicon-user"></i><?php echo lang_line('login');?></a>
 						</li>
 						<li>
 							<a href="<?php echo $this->config->item('catalog');?>/user/signin/signinup"><i class="glyphicon glyphicon-pencil"></i><?php echo lang_line('register');?></a>
@@ -108,7 +108,7 @@
 									<a href="<?php echo $this->config->item('catalog');?>/user/notice"><?php echo lang_line('news');?><span class="badge"><?php echo $activity_count;?></span></a>
 								</li>
 								<li>
-									<a href="<?php echo $this->config->item('bbs').'community/user?user_id='.$_SESSION['user_id'];?>"><?php echo lang_line('user_center');?></a>
+									<a href="<?php echo $this->config->item('bbs').'/community/user?user_id='.$_SESSION['user_id'];?>"><?php echo lang_line('user_center');?></a>
 								</li>
 								<?php if(isset($access_admin)):?>
 								<li>
@@ -126,7 +126,7 @@
 							</ul>
 						</li>
 						<?php endif;?>
-						<li><a href="<?php echo $this->config->item('bbs').'community/release';?>">提问<i class="glyphicon glyphicon-edit"></i></a></li>
+						<li><a href="<?php echo $this->config->item('bbs').'/community/release';?>">提问<i class="glyphicon glyphicon-edit"></i></a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -201,7 +201,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane login-botton" id="login-tab">
-							<form action="<?php echo $this->config->item('catalog').'user/signin/login';?>" method="post" enctype="multipart/form-data" id="login">
+							<form action="<?php echo $this->config->item('catalog').'/user/signin/login';?>" method="post" enctype="multipart/form-data" id="login">
 								<div class="form-group error"></div>
 								<div class="form-group">
 									<input type="text" id="email" name="email" value=""

@@ -67,7 +67,7 @@
 		{
 			$.ajax(
 				{
-					url: "<?php echo $this->config->item('sale').'product/product/get_child_category?parent_id=';?>" + parent_id,
+					url: "<?php echo $this->config->item('sale').'/product/product/get_child_category?parent_id=';?>" + parent_id,
 					dataType: 'json',
 					beforeSend: function()
 					{

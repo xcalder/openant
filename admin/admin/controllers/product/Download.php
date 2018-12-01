@@ -30,7 +30,7 @@ class Download extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->download_model->add($this->input->post());
 			
-			redirect($this->config->item('admin').'product/download');
+			redirect($this->config->item('admin').'/product/download');
 		}
 		
 		$this->get_form();
@@ -43,7 +43,7 @@ class Download extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_form()){
 			$this->download_model->edit($this->input->post());
 			
-			redirect($this->config->item('admin').'product/download');
+			redirect($this->config->item('admin').'/product/download');
 		}
 		
 		$this->get_form();
@@ -56,7 +56,7 @@ class Download extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST" && $this->validate_delete()){
 			$this->download_model->delete($this->input->post('selected'));
 			
-			redirect($this->config->item('admin').'product/download');
+			redirect($this->config->item('admin').'/product/download');
 		}
 		
 		$this->get_list();
@@ -83,9 +83,9 @@ class Download extends MY_Controller {
 		}
 		
 		if($this->input->get('download_id')){
-			$data['action']					=$this->config->item('admin').'product/download/edit?download_id='.$this->input->get('download_id');
+			$data['action']					=$this->config->item('admin').'/product/download/edit?download_id='.$this->input->get('download_id');
 		}else{
-			$data['action']					=$this->config->item('admin').'product/download/add';
+			$data['action']					=$this->config->item('admin').'/product/download/add';
 		}
 		
 		if(isset($this->error['error_description'])){
@@ -116,7 +116,7 @@ class Download extends MY_Controller {
 		
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'product/download';
+		$config['base_url'] 			= $this->config->item('admin').'/product/download';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -143,7 +143,7 @@ class Download extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['delete']					=$this->config->item('admin').'product/download/delete';
+		$data['delete']					=$this->config->item('admin').'/product/download/delete';
 		
 		$data['header']=$this->header->index();
 		$data['top']=$this->header->top();
@@ -154,7 +154,7 @@ class Download extends MY_Controller {
 	public function validate_delete(){
 		if (!$this->user->hasPermission('modify', 'admin/product/download')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/download');
+			redirect($this->config->item('admin').'/product/download');
 			exit();
 		}
 		
@@ -169,7 +169,7 @@ class Download extends MY_Controller {
 	public function validate_form(){
 		if (!$this->user->hasPermission('modify', 'admin/product/download')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'product/download');
+			redirect($this->config->item('admin').'/product/download');
 			exit();
 		}
 		

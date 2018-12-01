@@ -43,7 +43,7 @@ class User extends MY_Controller {
 			
 			$this->user_model->edit_user_competence($this->input->post('competence'), $this->input->get('user_id'));
 			
-			redirect($this->config->item('admin').'user/user');
+			redirect($this->config->item('admin').'/user/user');
 		}
 		
 		$this->get_from();
@@ -112,7 +112,7 @@ class User extends MY_Controller {
 		$data['users']					= $users['users'];
 		
 		//分页
-		$config['base_url'] 			= $this->config->item('admin').'user/user';
+		$config['base_url'] 			= $this->config->item('admin').'/user/user';
 		$config['num_links'] 			= 2;
 		$config['page_query_string'] 	= TRUE;
 		$config['query_string_segment'] = 'page';
@@ -139,7 +139,7 @@ class User extends MY_Controller {
 
 		$data['pagination'] 			= $this->pagination->create_links();
 		
-		$data['action']					= $this->config->item('admin').'user/user';
+		$data['action']					= $this->config->item('admin').'/user/user';
 		
 		$data['user_groups']			= $this->user_model->get_user_groups()['user_groups'];
 		
@@ -297,9 +297,9 @@ class User extends MY_Controller {
 		$data['error']=$this->error;
 		
 		if($this->input->get('user_id')){
-			$data['action']=$this->config->item('admin').'user/user/edit?user_id='.$this->input->get('user_id');
+			$data['action']=$this->config->item('admin').'/user/user/edit?user_id='.$this->input->get('user_id');
 		}else{
-			$data['action']=$this->config->item('admin').'user/user/add';
+			$data['action']=$this->config->item('admin').'/user/user/add';
 		}
 		
 		if($this->input->get('user_id')){
@@ -356,7 +356,7 @@ class User extends MY_Controller {
 			
 			//分页
 			
-			$config['base_url'] 			= $this->config->item('admin').'user/user/get_user_historys?user_id='.$this->input->get('user_id');
+			$config['base_url'] 			= $this->config->item('admin').'/user/user/get_user_historys?user_id='.$this->input->get('user_id');
 			$config['num_links'] 			= 2;
 			$config['page_query_string'] 	= TRUE;
 			$config['query_string_segment'] = 'page';
@@ -421,7 +421,7 @@ class User extends MY_Controller {
 			
 			//分页
 			
-			$config['base_url'] 			= $this->config->item('admin').'user/user/get_user_transactions?user_id='.$this->input->get('user_id');
+			$config['base_url'] 			= $this->config->item('admin').'/user/user/get_user_transactions?user_id='.$this->input->get('user_id');
 			$config['num_links'] 			= 2;
 			$config['page_query_string'] 	= TRUE;
 			$config['query_string_segment'] = 'page';
@@ -487,7 +487,7 @@ class User extends MY_Controller {
 			}
 			
 			//分页
-			$config['base_url'] 			= $this->config->item('admin').'user/user/get_user_rewards?user_id='.$this->input->get('user_id');
+			$config['base_url'] 			= $this->config->item('admin').'/user/user/get_user_rewards?user_id='.$this->input->get('user_id');
 			$config['num_links'] 			= 2;
 			$config['page_query_string'] 	= TRUE;
 			$config['query_string_segment'] = 'page';
@@ -687,7 +687,7 @@ class User extends MY_Controller {
 	public function check_modify(){
 		if (!$this->user->hasPermission('modify', 'admin/user/user')) {
 			$this->session->set_flashdata('danger', '你无权修改，请联系管理员！');
-			redirect($this->config->item('admin').'user/user');
+			redirect($this->config->item('admin').'/user/user');
 			exit();
 		}else {
 			return true;
