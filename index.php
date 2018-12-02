@@ -113,7 +113,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'catalog/catalog';
+	$application_folder = 'bbs/bbs';
 
 /*
  *---------------------------------------------------------------
@@ -225,7 +225,7 @@ switch (ENVIRONMENT)
 	define('BASEPATH', str_replace('\\', '/', $system_path));
 
 	// Path to the front controller (this file)
-	define('FCPATH', dirname(__FILE__).'/');
+	define('FCPATH', dirname(__FILE__).'/bbs/');
 	
 	// 图片目录
 	define('IMGPATH', FCPATH.'resources/image');

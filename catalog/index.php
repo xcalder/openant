@@ -113,7 +113,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'catalog/catalog';
+	$application_folder = 'catalog';
 
 /*
  *---------------------------------------------------------------
@@ -228,7 +228,7 @@ switch (ENVIRONMENT)
 	define('FCPATH', dirname(__FILE__).'/');
 	
 	// 图片目录
-	define('IMGPATH', FCPATH.'resources/image');
+	define('IMGPATH', FCPATH.'../resources/image');
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
