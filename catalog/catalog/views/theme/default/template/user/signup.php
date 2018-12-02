@@ -120,7 +120,7 @@ if(isset($_SESSION['warning'])):?>
 						{
 							required: true,
 							email: true,
-							remote: "user/signin/check_email_web"
+							remote: "<?php echo $this->config->item('catalog');?>/user/signin/check_email_web"
 						},
 						password:
 						{
