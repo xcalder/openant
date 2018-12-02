@@ -24,7 +24,7 @@ class Banner_model extends CI_Model {
 		$this->db->join('banner_image_description AS bid', 'bi.banner_image_id = bid.banner_image_id');
 		
 		$this->db->order_by('bi.sort_order', 'ASC');
-		$this->db->from($this->db->dbprefix('banner') . ' AS b');
+		$this->db->from('`'.$this->db->dbprefix('banner').'`' . ' AS b');
 		$query=$this->db->get();
 		if($query->num_rows() > 0){
 			$data=$query->result_array();
