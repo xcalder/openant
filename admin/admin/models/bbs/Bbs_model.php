@@ -81,7 +81,7 @@ class Bbs_model extends CI_Model {
 		$this->db->join('bbs_replies AS br', 'br.posting_id = bbp.posting_id', 'left');
 		
 		//回帖人信息
-		$this->db->join('user as u', 'bbs_replies.user_id = u.user_id', 'left');
+		$this->db->join('user as u', 'br.user_id = u.user_id', 'left');
 		
 		$this->db->from($this->db->dbprefix('bbs_posting') . ' AS bbp');//查
 		$query = $this->db->get();

@@ -17,7 +17,7 @@
 			<?php if($postings):?>
     		<?php foreach($postings as $posting):?>
 		   	<li>
-	   			<?php $img=$this->image_common->get_string_image($posting['description'], 50, 50);?>
+	   			<?php $img=$this->image_common->get_string_image(@$posting['description'], 50, 50);?>
 	   			<?php if($img):?>
 	   			<a href="<?php echo $this->config->item('bbs');?>/community/posting?posting_id=<?php echo $posting['posting_id'];?>">
 	   				<img class="col-md-12" src=<?php echo $img;?>>
