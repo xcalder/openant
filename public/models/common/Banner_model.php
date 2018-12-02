@@ -26,7 +26,7 @@ class Banner_model extends CI_Model {
 		$this->db->order_by('bi.sort_order', 'ASC');
 		$this->db->from($this->db->dbprefix('banner') . ' AS b');
 
-		//$query=$this->db->get();
+		$query=$this->db->get();
 		if($query->num_rows() > 0){
 			$data=$query->result_array();
 			return $data;
